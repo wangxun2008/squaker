@@ -11,4 +11,7 @@ namespace squ {
     // 测试用例
     void RunTests();
 
+    // 测试求值
+    void RunEvalTests();
+
 } // namespace squ

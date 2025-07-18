@@ -4,4 +4,5 @@ int main() {
     squ::InitConsole();
     squ::PrintLOGO();
     squ::RunTests();
+    squ::RunEvalTests();
 }

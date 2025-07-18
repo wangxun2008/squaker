@@ -143,4 +143,33 @@ namespace squ {
 		}
     }
 
+    // 写一个函数测试求值功能
+    void RunEvalTests() {
+        std::vector<std::string> test_cases = {
+            "3 + 4 * (2 - 1)",
+            "a + 5",
+            "b * 2",
+            "c / 3",
+            "d - 1",
+            "e % 2",
+            "f == 0",
+            "g && true",
+            "h || false"
+        };
+
+        for (const auto& input : test_cases) {
+            std::cout << "Evaluating: " << input << std::endl;
+            try {
+                auto tokens = ParseTokens(input);
+                squ::Parser parser(tokens);
+                auto expr = parser.parse();
+                auto result = expr->evaluate();
+                std::cout << "Result: " << result.to_string() << std::endl;
+            } catch (const std::exception& e) {
+                std::cerr << "  Error: " << e.what() << std::endl;
+            }
+            std::cout << "------------------------" << std::endl;
+        }
+    }
+
 } // namespace squ
