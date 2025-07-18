@@ -14,4 +14,7 @@ namespace squ {
     // 测试求值
     void RunEvalTests();
 
+    // 独立的交互式代码执行函数
+    void InteractiveExecution();
+
 } // namespace squ

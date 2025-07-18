@@ -190,8 +190,11 @@ namespace squ {
     }
 
     ValueData BlockNode::evaluate() const {
-        // 实现块节点的求值逻辑
-        throw std::runtime_error("Block evaluation not implemented");
+        // 返回最后一条语句计算值
+        if (statements.empty()) {
+            return ValueData(); // 返回空值
+        }
+        return statements.back()->evaluate();
     }
 
     // While循环节点
