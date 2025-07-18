@@ -1,6 +1,7 @@
 #include "../include/node.h"
 #include "../include/type.h"
 #include "../include/operator.h"
+#include "../include/evironment.h"
 #include <cmath>
 #include <iostream>
 #include <map>
