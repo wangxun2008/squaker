@@ -1,0 +1,132 @@
+{
+	"kind" : "toolchains",
+	"toolchains" : 
+	[
+		{
+			"compiler" : 
+			{
+				"id" : "GNU",
+				"implicit" : 
+				{
+					"includeDirectories" : 
+					[
+						"C:/Program Files/RedPanda-Cpp/mingw64-ucrt-15/lib/gcc/x86_64-w64-mingw32/15/include",
+						"C:/Program Files/RedPanda-Cpp/mingw64-ucrt-15/include",
+						"C:/Program Files/RedPanda-Cpp/mingw64-ucrt-15/lib/gcc/x86_64-w64-mingw32/15/include-fixed"
+					],
+					"linkDirectories" : 
+					[
+						"C:/Program Files/RedPanda-Cpp/mingw64-ucrt-15/lib/gcc/x86_64-w64-mingw32/15",
+						"C:/Program Files/RedPanda-Cpp/mingw64-ucrt-15/lib/gcc",
+						"C:/Program Files/RedPanda-Cpp/mingw64-ucrt-15/lib"
+					],
+					"linkFrameworkDirectories" : [],
+					"linkLibraries" : 
+					[
+						"mingw32",
+						"gcc",
+						"mingwex",
+						"kernel32",
+						"pthread",
+						"advapi32",
+						"shell32",
+						"user32",
+						"kernel32",
+						"mingw32",
+						"gcc",
+						"mingwex",
+						"kernel32"
+					]
+				},
+				"path" : "C:/Program Files/RedPanda-Cpp/mingw64-ucrt-15/bin/gcc.exe",
+				"version" : "15.0.0"
+			},
+			"language" : "C",
+			"sourceFileExtensions" : 
+			[
+				"c",
+				"m"
+			]
+		},
+		{
+			"compiler" : 
+			{
+				"id" : "GNU",
+				"implicit" : 
+				{
+					"includeDirectories" : 
+					[
+						"C:/Program Files/RedPanda-Cpp/mingw64-ucrt-15/include/c++/15",
+						"C:/Program Files/RedPanda-Cpp/mingw64-ucrt-15/include/c++/15/x86_64-w64-mingw32",
+						"C:/Program Files/RedPanda-Cpp/mingw64-ucrt-15/include/c++/15/backward",
+						"C:/Program Files/RedPanda-Cpp/mingw64-ucrt-15/lib/gcc/x86_64-w64-mingw32/15/include",
+						"C:/Program Files/RedPanda-Cpp/mingw64-ucrt-15/include",
+						"C:/Program Files/RedPanda-Cpp/mingw64-ucrt-15/lib/gcc/x86_64-w64-mingw32/15/include-fixed"
+					],
+					"linkDirectories" : 
+					[
+						"C:/Program Files/RedPanda-Cpp/mingw64-ucrt-15/lib/gcc/x86_64-w64-mingw32/15",
+						"C:/Program Files/RedPanda-Cpp/mingw64-ucrt-15/lib/gcc",
+						"C:/Program Files/RedPanda-Cpp/mingw64-ucrt-15/lib"
+					],
+					"linkFrameworkDirectories" : [],
+					"linkLibraries" : 
+					[
+						"stdc++",
+						"mingw32",
+						"gcc",
+						"mingwex",
+						"kernel32",
+						"pthread",
+						"advapi32",
+						"shell32",
+						"user32",
+						"kernel32",
+						"mingw32",
+						"gcc",
+						"mingwex",
+						"kernel32"
+					]
+				},
+				"path" : "C:/Program Files/RedPanda-Cpp/mingw64-ucrt-15/bin/g++.exe",
+				"version" : "15.0.0"
+			},
+			"language" : "CXX",
+			"sourceFileExtensions" : 
+			[
+				"C",
+				"M",
+				"c++",
+				"cc",
+				"cpp",
+				"cxx",
+				"mm",
+				"mpp",
+				"CPP",
+				"ixx",
+				"cppm",
+				"ccm",
+				"cxxm",
+				"c++m"
+			]
+		},
+		{
+			"compiler" : 
+			{
+				"implicit" : {},
+				"path" : "C:/Program Files/RedPanda-Cpp/mingw64-ucrt-15/bin/windres.exe"
+			},
+			"language" : "RC",
+			"sourceFileExtensions" : 
+			[
+				"rc",
+				"RC"
+			]
+		}
+	],
+	"version" : 
+	{
+		"major" : 1,
+		"minor" : 0
+	}
+}

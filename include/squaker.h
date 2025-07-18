@@ -1,0 +1,14 @@
+#pragma once
+
+namespace squ {
+
+    // 初始化控制台
+    void InitConsole();
+
+    // 打印 squaker 的 Logo
+    void PrintLOGO();
+
+    // 测试用例
+    void RunTests();
+
+} // namespace squ

@@ -1,0 +1,37 @@
+#pragma once
+
+#include <string>
+#include <unordered_map>
+#include <variant>
+#include <vector>
+
+namespace squ {
+
+    // 数据类型枚举
+    enum class ValueType {
+        Real,     // 实数
+        Bool,     // 布尔
+        Char,     // 字符
+        String,   // 字符串
+        Function, // 函数
+        Array,    // 数组
+        Map       // 表
+    };
+
+    // 值数据存储结构
+    struct ValueData {
+        ValueType type = ValueType::Real;
+        bool is_const = false;
+        std::variant<double,                 // 实数
+                     bool,                   // 布尔
+                     char,                   // 字符
+                     std::string,            // 字符串
+                     std::vector<ValueData>, // 数组
+                     std::unordered_map<std::string, ValueData>>
+            value = 0.0; // 映射（使用字符串作为键）
+
+        // 成员函数声明
+        std::string to_string() const;
+    };
+
+} // namespace squ

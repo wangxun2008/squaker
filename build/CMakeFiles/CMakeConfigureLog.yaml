@@ -1,0 +1,2418 @@
+
+---
+events:
+  -
+    kind: "message-v1"
+    backtrace:
+      - "C:/Program Files/CMake/share/cmake-4.1/Modules/CMakeDetermineSystem.cmake:212 (message)"
+      - "CMakeLists.txt:2 (project)"
+    message: |
+      The system is: Windows - 10.0.26100 - AMD64
+  -
+    kind: "find-v1"
+    backtrace:
+      - "C:/Program Files/CMake/share/cmake-4.1/Modules/CMakeMinGWFindMake.cmake:5 (find_program)"
+      - "CMakeLists.txt:2 (project)"
+    mode: "program"
+    variable: "CMAKE_MAKE_PROGRAM"
+    description: "Path to a program."
+    settings:
+      SearchFramework: "NEVER"
+      SearchAppBundle: "NEVER"
+      CMAKE_FIND_USE_CMAKE_PATH: true
+      CMAKE_FIND_USE_CMAKE_ENVIRONMENT_PATH: true
+      CMAKE_FIND_USE_SYSTEM_ENVIRONMENT_PATH: true
+      CMAKE_FIND_USE_CMAKE_SYSTEM_PATH: true
+      CMAKE_FIND_USE_INSTALL_PREFIX: true
+    names:
+      - "mingw32-make.exe"
+    candidate_directories:
+      - "C:/Program Files/RedPanda-Cpp/mingw64-ucrt-15/bin/"
+      - "C:/Windows/System32/"
+      - "C:/Windows/"
+      - "C:/Windows/System32/wbem/"
+      - "C:/Windows/System32/WindowsPowerShell/v1.0/"
+      - "C:/Windows/System32/OpenSSH/"
+      - "C:/Program Files/Microsoft SQL Server/150/Tools/Binn/"
+      - "C:/Program Files/Microsoft SQL Server/Client SDK/ODBC/170/Tools/Binn/"
+      - "C:/Program Files/CMake/bin/"
+      - "C:/Program Files/Git/cmd/"
+      - "C:/Program Files/dotnet/"
+      - "C:/Program Files (x86)/Windows Kits/10/Windows Performance Toolkit/"
+      - "C:/Users/Administrator/AppData/Local/Programs/oh-my-posh/bin/"
+      - "C:/Users/Administrator/AppData/Local/Microsoft/WindowsApps/"
+      - "C:/Users/Administrator/AppData/Local/Programs/Microsoft VS Code/bin/"
+      - "C:/Users/Administrator/.dotnet/tools/"
+      - "C:/Users/Administrator/AppData/Local/GitHubDesktop/bin/"
+      - "/REGISTRY-NOTFOUND/bin/"
+      - "c:/MinGW/bin/"
+      - "/MinGW/bin/"
+      - "/REGISTRY-NOTFOUND/MinGW/bin/"
+    searched_directories:
+      - "C:/Program Files/RedPanda-Cpp/mingw64-ucrt-15/bin/mingw32-make.exe.com"
+    found: "C:/Program Files/RedPanda-Cpp/mingw64-ucrt-15/bin/mingw32-make.exe"
+    search_context:
+      ENV{PATH}:
+        - "C:\\Program Files\\RedPanda-Cpp\\mingw64-ucrt-15\\bin"
+        - "C:\\Program Files\\RedPanda-Cpp\\mingw64-ucrt-15\\bin"
+        - "C:\\Windows\\system32"
+        - "C:\\Windows"
+        - "C:\\Windows\\System32\\Wbem"
+        - "C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\"
+        - "C:\\Windows\\System32\\OpenSSH\\"
+        - "C:\\Program Files\\Microsoft SQL Server\\150\\Tools\\Binn\\"
+        - "C:\\Program Files\\Microsoft SQL Server\\Client SDK\\ODBC\\170\\Tools\\Binn\\"
+        - "C:\\Program Files\\RedPanda-Cpp\\mingw64-ucrt-15\\bin"
+        - "C:\\Program Files\\CMake\\bin"
+        - "C:\\Program Files\\Git\\cmd"
+        - "C:\\Program Files\\dotnet\\"
+        - "C:\\Program Files (x86)\\Windows Kits\\10\\Windows Performance Toolkit\\"
+        - "C:\\Users\\Administrator\\AppData\\Local\\Programs\\oh-my-posh\\bin\\"
+        - "C:\\Users\\Administrator\\AppData\\Local\\Microsoft\\WindowsApps"
+        - "C:\\Users\\Administrator\\AppData\\Local\\Programs\\Microsoft VS Code\\bin"
+        - "C:\\Users\\Administrator\\.dotnet\\tools"
+        - "C:\\Users\\Administrator\\AppData\\Local\\GitHubDesktop\\bin"
+  -
+    kind: "find-v1"
+    backtrace:
+      - "C:/Program Files/CMake/share/cmake-4.1/Modules/CMakeDetermineCompilerId.cmake:462 (find_file)"
+      - "C:/Program Files/CMake/share/cmake-4.1/Modules/CMakeDetermineCompilerId.cmake:500 (CMAKE_DETERMINE_COMPILER_ID_WRITE)"
+      - "C:/Program Files/CMake/share/cmake-4.1/Modules/CMakeDetermineCompilerId.cmake:8 (CMAKE_DETERMINE_COMPILER_ID_BUILD)"
+      - "C:/Program Files/CMake/share/cmake-4.1/Modules/CMakeDetermineCompilerId.cmake:64 (__determine_compiler_id_test)"
+      - "C:/Program Files/CMake/share/cmake-4.1/Modules/CMakeDetermineCCompiler.cmake:122 (CMAKE_DETERMINE_COMPILER_ID)"
+      - "CMakeLists.txt:2 (project)"
+    mode: "file"
+    variable: "src_in"
+    description: "Path to a file."
+    settings:
+      SearchFramework: "NEVER"
+      SearchAppBundle: "NEVER"
+      CMAKE_FIND_USE_CMAKE_PATH: true
+      CMAKE_FIND_USE_CMAKE_ENVIRONMENT_PATH: true
+      CMAKE_FIND_USE_SYSTEM_ENVIRONMENT_PATH: true
+      CMAKE_FIND_USE_CMAKE_SYSTEM_PATH: true
+      CMAKE_FIND_USE_INSTALL_PREFIX: true
+    names:
+      - "CMakeCCompilerId.c.in"
+    candidate_directories:
+      - "C:/Program Files/CMake/share/cmake-4.1/Modules/"
+    found: "C:/Program Files/CMake/share/cmake-4.1/Modules/CMakeCCompilerId.c.in"
+    search_context:
+      ENV{PATH}:
+        - "C:\\Program Files\\RedPanda-Cpp\\mingw64-ucrt-15\\bin"
+        - "C:\\Program Files\\RedPanda-Cpp\\mingw64-ucrt-15\\bin"
+        - "C:\\Windows\\system32"
+        - "C:\\Windows"
+        - "C:\\Windows\\System32\\Wbem"
+        - "C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\"
+        - "C:\\Windows\\System32\\OpenSSH\\"
+        - "C:\\Program Files\\Microsoft SQL Server\\150\\Tools\\Binn\\"
+        - "C:\\Program Files\\Microsoft SQL Server\\Client SDK\\ODBC\\170\\Tools\\Binn\\"
+        - "C:\\Program Files\\RedPanda-Cpp\\mingw64-ucrt-15\\bin"
+        - "C:\\Program Files\\CMake\\bin"
+        - "C:\\Program Files\\Git\\cmd"
+        - "C:\\Program Files\\dotnet\\"
+        - "C:\\Program Files (x86)\\Windows Kits\\10\\Windows Performance Toolkit\\"
+        - "C:\\Users\\Administrator\\AppData\\Local\\Programs\\oh-my-posh\\bin\\"
+        - "C:\\Users\\Administrator\\AppData\\Local\\Microsoft\\WindowsApps"
+        - "C:\\Users\\Administrator\\AppData\\Local\\Programs\\Microsoft VS Code\\bin"
+        - "C:\\Users\\Administrator\\.dotnet\\tools"
+        - "C:\\Users\\Administrator\\AppData\\Local\\GitHubDesktop\\bin"
+  -
+    kind: "message-v1"
+    backtrace:
+      - "C:/Program Files/CMake/share/cmake-4.1/Modules/CMakeDetermineCompilerId.cmake:17 (message)"
+      - "C:/Program Files/CMake/share/cmake-4.1/Modules/CMakeDetermineCompilerId.cmake:64 (__determine_compiler_id_test)"
+      - "C:/Program Files/CMake/share/cmake-4.1/Modules/CMakeDetermineCCompiler.cmake:122 (CMAKE_DETERMINE_COMPILER_ID)"
+      - "CMakeLists.txt:2 (project)"
+    message: |
+      Compiling the C compiler identification source file "CMakeCCompilerId.c" succeeded.
+      Compiler: C:/Program Files/RedPanda-Cpp/mingw64-ucrt-15/bin/gcc.exe 
+      Build flags: 
+      Id flags:  
+      
+      The output was:
+      0
+      
+      
+      Compilation of the C compiler identification source "CMakeCCompilerId.c" produced "a.exe"
+      
+      The C compiler identification is GNU, found in:
+        E:/GGCC Project/Projects/squaker/build/CMakeFiles/4.1.0-rc1/CompilerIdC/a.exe
+      
+  -
+    kind: "find-v1"
+    backtrace:
+      - "C:/Program Files/CMake/share/cmake-4.1/Modules/CMakeFindBinUtils.cmake:238 (find_program)"
+      - "C:/Program Files/CMake/share/cmake-4.1/Modules/CMakeDetermineCCompiler.cmake:200 (include)"
+      - "CMakeLists.txt:2 (project)"
+    mode: "program"
+    variable: "CMAKE_AR"
+    description: "Path to a program."
+    settings:
+      SearchFramework: "NEVER"
+      SearchAppBundle: "NEVER"
+      CMAKE_FIND_USE_CMAKE_PATH: false
+      CMAKE_FIND_USE_CMAKE_ENVIRONMENT_PATH: false
+      CMAKE_FIND_USE_SYSTEM_ENVIRONMENT_PATH: true
+      CMAKE_FIND_USE_CMAKE_SYSTEM_PATH: true
+      CMAKE_FIND_USE_INSTALL_PREFIX: true
+    names:
+      - "ar"
+    candidate_directories:
+      - "C:/Program Files/RedPanda-Cpp/mingw64-ucrt-15/bin/"
+      - "C:/Windows/System32/"
+      - "C:/Windows/"
+      - "C:/Windows/System32/wbem/"
+      - "C:/Windows/System32/WindowsPowerShell/v1.0/"
+      - "C:/Windows/System32/OpenSSH/"
+      - "C:/Program Files/Microsoft SQL Server/150/Tools/Binn/"
+      - "C:/Program Files/Microsoft SQL Server/Client SDK/ODBC/170/Tools/Binn/"
+      - "C:/Program Files/CMake/bin/"
+      - "C:/Program Files/Git/cmd/"
+      - "C:/Program Files/dotnet/"
+      - "C:/Program Files (x86)/Windows Kits/10/Windows Performance Toolkit/"
+      - "C:/Users/Administrator/AppData/Local/Programs/oh-my-posh/bin/"
+      - "C:/Users/Administrator/AppData/Local/Microsoft/WindowsApps/"
+      - "C:/Users/Administrator/AppData/Local/Programs/Microsoft VS Code/bin/"
+      - "C:/Users/Administrator/.dotnet/tools/"
+      - "C:/Users/Administrator/AppData/Local/GitHubDesktop/bin/"
+    searched_directories:
+      - "C:/Program Files/RedPanda-Cpp/mingw64-ucrt-15/bin/ar.com"
+    found: "C:/Program Files/RedPanda-Cpp/mingw64-ucrt-15/bin/ar.exe"
+    search_context:
+      ENV{PATH}:
+        - "C:\\Program Files\\RedPanda-Cpp\\mingw64-ucrt-15\\bin"
+        - "C:\\Program Files\\RedPanda-Cpp\\mingw64-ucrt-15\\bin"
+        - "C:\\Windows\\system32"
+        - "C:\\Windows"
+        - "C:\\Windows\\System32\\Wbem"
+        - "C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\"
+        - "C:\\Windows\\System32\\OpenSSH\\"
+        - "C:\\Program Files\\Microsoft SQL Server\\150\\Tools\\Binn\\"
+        - "C:\\Program Files\\Microsoft SQL Server\\Client SDK\\ODBC\\170\\Tools\\Binn\\"
+        - "C:\\Program Files\\RedPanda-Cpp\\mingw64-ucrt-15\\bin"
+        - "C:\\Program Files\\CMake\\bin"
+        - "C:\\Program Files\\Git\\cmd"
+        - "C:\\Program Files\\dotnet\\"
+        - "C:\\Program Files (x86)\\Windows Kits\\10\\Windows Performance Toolkit\\"
+        - "C:\\Users\\Administrator\\AppData\\Local\\Programs\\oh-my-posh\\bin\\"
+        - "C:\\Users\\Administrator\\AppData\\Local\\Microsoft\\WindowsApps"
+        - "C:\\Users\\Administrator\\AppData\\Local\\Programs\\Microsoft VS Code\\bin"
+        - "C:\\Users\\Administrator\\.dotnet\\tools"
+        - "C:\\Users\\Administrator\\AppData\\Local\\GitHubDesktop\\bin"
+  -
+    kind: "find-v1"
+    backtrace:
+      - "C:/Program Files/CMake/share/cmake-4.1/Modules/CMakeFindBinUtils.cmake:238 (find_program)"
+      - "C:/Program Files/CMake/share/cmake-4.1/Modules/CMakeDetermineCCompiler.cmake:200 (include)"
+      - "CMakeLists.txt:2 (project)"
+    mode: "program"
+    variable: "CMAKE_RANLIB"
+    description: "Path to a program."
+    settings:
+      SearchFramework: "NEVER"
+      SearchAppBundle: "NEVER"
+      CMAKE_FIND_USE_CMAKE_PATH: false
+      CMAKE_FIND_USE_CMAKE_ENVIRONMENT_PATH: false
+      CMAKE_FIND_USE_SYSTEM_ENVIRONMENT_PATH: true
+      CMAKE_FIND_USE_CMAKE_SYSTEM_PATH: true
+      CMAKE_FIND_USE_INSTALL_PREFIX: true
+    names:
+      - "ranlib"
+    candidate_directories:
+      - "C:/Program Files/RedPanda-Cpp/mingw64-ucrt-15/bin/"
+      - "C:/Windows/System32/"
+      - "C:/Windows/"
+      - "C:/Windows/System32/wbem/"
+      - "C:/Windows/System32/WindowsPowerShell/v1.0/"
+      - "C:/Windows/System32/OpenSSH/"
+      - "C:/Program Files/Microsoft SQL Server/150/Tools/Binn/"
+      - "C:/Program Files/Microsoft SQL Server/Client SDK/ODBC/170/Tools/Binn/"
+      - "C:/Program Files/CMake/bin/"
+      - "C:/Program Files/Git/cmd/"
+      - "C:/Program Files/dotnet/"
+      - "C:/Program Files (x86)/Windows Kits/10/Windows Performance Toolkit/"
+      - "C:/Users/Administrator/AppData/Local/Programs/oh-my-posh/bin/"
+      - "C:/Users/Administrator/AppData/Local/Microsoft/WindowsApps/"
+      - "C:/Users/Administrator/AppData/Local/Programs/Microsoft VS Code/bin/"
+      - "C:/Users/Administrator/.dotnet/tools/"
+      - "C:/Users/Administrator/AppData/Local/GitHubDesktop/bin/"
+    searched_directories:
+      - "C:/Program Files/RedPanda-Cpp/mingw64-ucrt-15/bin/ranlib.com"
+    found: "C:/Program Files/RedPanda-Cpp/mingw64-ucrt-15/bin/ranlib.exe"
+    search_context:
+      ENV{PATH}:
+        - "C:\\Program Files\\RedPanda-Cpp\\mingw64-ucrt-15\\bin"
+        - "C:\\Program Files\\RedPanda-Cpp\\mingw64-ucrt-15\\bin"
+        - "C:\\Windows\\system32"
+        - "C:\\Windows"
+        - "C:\\Windows\\System32\\Wbem"
+        - "C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\"
+        - "C:\\Windows\\System32\\OpenSSH\\"
+        - "C:\\Program Files\\Microsoft SQL Server\\150\\Tools\\Binn\\"
+        - "C:\\Program Files\\Microsoft SQL Server\\Client SDK\\ODBC\\170\\Tools\\Binn\\"
+        - "C:\\Program Files\\RedPanda-Cpp\\mingw64-ucrt-15\\bin"
+        - "C:\\Program Files\\CMake\\bin"
+        - "C:\\Program Files\\Git\\cmd"
+        - "C:\\Program Files\\dotnet\\"
+        - "C:\\Program Files (x86)\\Windows Kits\\10\\Windows Performance Toolkit\\"
+        - "C:\\Users\\Administrator\\AppData\\Local\\Programs\\oh-my-posh\\bin\\"
+        - "C:\\Users\\Administrator\\AppData\\Local\\Microsoft\\WindowsApps"
+        - "C:\\Users\\Administrator\\AppData\\Local\\Programs\\Microsoft VS Code\\bin"
+        - "C:\\Users\\Administrator\\.dotnet\\tools"
+        - "C:\\Users\\Administrator\\AppData\\Local\\GitHubDesktop\\bin"
+  -
+    kind: "find-v1"
+    backtrace:
+      - "C:/Program Files/CMake/share/cmake-4.1/Modules/CMakeFindBinUtils.cmake:238 (find_program)"
+      - "C:/Program Files/CMake/share/cmake-4.1/Modules/CMakeDetermineCCompiler.cmake:200 (include)"
+      - "CMakeLists.txt:2 (project)"
+    mode: "program"
+    variable: "CMAKE_STRIP"
+    description: "Path to a program."
+    settings:
+      SearchFramework: "NEVER"
+      SearchAppBundle: "NEVER"
+      CMAKE_FIND_USE_CMAKE_PATH: false
+      CMAKE_FIND_USE_CMAKE_ENVIRONMENT_PATH: false
+      CMAKE_FIND_USE_SYSTEM_ENVIRONMENT_PATH: true
+      CMAKE_FIND_USE_CMAKE_SYSTEM_PATH: true
+      CMAKE_FIND_USE_INSTALL_PREFIX: true
+    names:
+      - "strip"
+    candidate_directories:
+      - "C:/Program Files/RedPanda-Cpp/mingw64-ucrt-15/bin/"
+      - "C:/Windows/System32/"
+      - "C:/Windows/"
+      - "C:/Windows/System32/wbem/"
+      - "C:/Windows/System32/WindowsPowerShell/v1.0/"
+      - "C:/Windows/System32/OpenSSH/"
+      - "C:/Program Files/Microsoft SQL Server/150/Tools/Binn/"
+      - "C:/Program Files/Microsoft SQL Server/Client SDK/ODBC/170/Tools/Binn/"
+      - "C:/Program Files/CMake/bin/"
+      - "C:/Program Files/Git/cmd/"
+      - "C:/Program Files/dotnet/"
+      - "C:/Program Files (x86)/Windows Kits/10/Windows Performance Toolkit/"
+      - "C:/Users/Administrator/AppData/Local/Programs/oh-my-posh/bin/"
+      - "C:/Users/Administrator/AppData/Local/Microsoft/WindowsApps/"
+      - "C:/Users/Administrator/AppData/Local/Programs/Microsoft VS Code/bin/"
+      - "C:/Users/Administrator/.dotnet/tools/"
+      - "C:/Users/Administrator/AppData/Local/GitHubDesktop/bin/"
+    searched_directories:
+      - "C:/Program Files/RedPanda-Cpp/mingw64-ucrt-15/bin/strip.com"
+    found: "C:/Program Files/RedPanda-Cpp/mingw64-ucrt-15/bin/strip.exe"
+    search_context:
+      ENV{PATH}:
+        - "C:\\Program Files\\RedPanda-Cpp\\mingw64-ucrt-15\\bin"
+        - "C:\\Program Files\\RedPanda-Cpp\\mingw64-ucrt-15\\bin"
+        - "C:\\Windows\\system32"
+        - "C:\\Windows"
+        - "C:\\Windows\\System32\\Wbem"
+        - "C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\"
+        - "C:\\Windows\\System32\\OpenSSH\\"
+        - "C:\\Program Files\\Microsoft SQL Server\\150\\Tools\\Binn\\"
+        - "C:\\Program Files\\Microsoft SQL Server\\Client SDK\\ODBC\\170\\Tools\\Binn\\"
+        - "C:\\Program Files\\RedPanda-Cpp\\mingw64-ucrt-15\\bin"
+        - "C:\\Program Files\\CMake\\bin"
+        - "C:\\Program Files\\Git\\cmd"
+        - "C:\\Program Files\\dotnet\\"
+        - "C:\\Program Files (x86)\\Windows Kits\\10\\Windows Performance Toolkit\\"
+        - "C:\\Users\\Administrator\\AppData\\Local\\Programs\\oh-my-posh\\bin\\"
+        - "C:\\Users\\Administrator\\AppData\\Local\\Microsoft\\WindowsApps"
+        - "C:\\Users\\Administrator\\AppData\\Local\\Programs\\Microsoft VS Code\\bin"
+        - "C:\\Users\\Administrator\\.dotnet\\tools"
+        - "C:\\Users\\Administrator\\AppData\\Local\\GitHubDesktop\\bin"
+  -
+    kind: "find-v1"
+    backtrace:
+      - "C:/Program Files/CMake/share/cmake-4.1/Modules/CMakeFindBinUtils.cmake:238 (find_program)"
+      - "C:/Program Files/CMake/share/cmake-4.1/Modules/CMakeDetermineCCompiler.cmake:200 (include)"
+      - "CMakeLists.txt:2 (project)"
+    mode: "program"
+    variable: "CMAKE_LINKER"
+    description: "Path to a program."
+    settings:
+      SearchFramework: "NEVER"
+      SearchAppBundle: "NEVER"
+      CMAKE_FIND_USE_CMAKE_PATH: false
+      CMAKE_FIND_USE_CMAKE_ENVIRONMENT_PATH: false
+      CMAKE_FIND_USE_SYSTEM_ENVIRONMENT_PATH: true
+      CMAKE_FIND_USE_CMAKE_SYSTEM_PATH: true
+      CMAKE_FIND_USE_INSTALL_PREFIX: true
+    names:
+      - "ld"
+    candidate_directories:
+      - "C:/Program Files/RedPanda-Cpp/mingw64-ucrt-15/bin/"
+      - "C:/Windows/System32/"
+      - "C:/Windows/"
+      - "C:/Windows/System32/wbem/"
+      - "C:/Windows/System32/WindowsPowerShell/v1.0/"
+      - "C:/Windows/System32/OpenSSH/"
+      - "C:/Program Files/Microsoft SQL Server/150/Tools/Binn/"
+      - "C:/Program Files/Microsoft SQL Server/Client SDK/ODBC/170/Tools/Binn/"
+      - "C:/Program Files/CMake/bin/"
+      - "C:/Program Files/Git/cmd/"
+      - "C:/Program Files/dotnet/"
+      - "C:/Program Files (x86)/Windows Kits/10/Windows Performance Toolkit/"
+      - "C:/Users/Administrator/AppData/Local/Programs/oh-my-posh/bin/"
+      - "C:/Users/Administrator/AppData/Local/Microsoft/WindowsApps/"
+      - "C:/Users/Administrator/AppData/Local/Programs/Microsoft VS Code/bin/"
+      - "C:/Users/Administrator/.dotnet/tools/"
+      - "C:/Users/Administrator/AppData/Local/GitHubDesktop/bin/"
+    searched_directories:
+      - "C:/Program Files/RedPanda-Cpp/mingw64-ucrt-15/bin/ld.com"
+    found: "C:/Program Files/RedPanda-Cpp/mingw64-ucrt-15/bin/ld.exe"
+    search_context:
+      ENV{PATH}:
+        - "C:\\Program Files\\RedPanda-Cpp\\mingw64-ucrt-15\\bin"
+        - "C:\\Program Files\\RedPanda-Cpp\\mingw64-ucrt-15\\bin"
+        - "C:\\Windows\\system32"
+        - "C:\\Windows"
+        - "C:\\Windows\\System32\\Wbem"
+        - "C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\"
+        - "C:\\Windows\\System32\\OpenSSH\\"
+        - "C:\\Program Files\\Microsoft SQL Server\\150\\Tools\\Binn\\"
+        - "C:\\Program Files\\Microsoft SQL Server\\Client SDK\\ODBC\\170\\Tools\\Binn\\"
+        - "C:\\Program Files\\RedPanda-Cpp\\mingw64-ucrt-15\\bin"
+        - "C:\\Program Files\\CMake\\bin"
+        - "C:\\Program Files\\Git\\cmd"
+        - "C:\\Program Files\\dotnet\\"
+        - "C:\\Program Files (x86)\\Windows Kits\\10\\Windows Performance Toolkit\\"
+        - "C:\\Users\\Administrator\\AppData\\Local\\Programs\\oh-my-posh\\bin\\"
+        - "C:\\Users\\Administrator\\AppData\\Local\\Microsoft\\WindowsApps"
+        - "C:\\Users\\Administrator\\AppData\\Local\\Programs\\Microsoft VS Code\\bin"
+        - "C:\\Users\\Administrator\\.dotnet\\tools"
+        - "C:\\Users\\Administrator\\AppData\\Local\\GitHubDesktop\\bin"
+  -
+    kind: "find-v1"
+    backtrace:
+      - "C:/Program Files/CMake/share/cmake-4.1/Modules/CMakeFindBinUtils.cmake:238 (find_program)"
+      - "C:/Program Files/CMake/share/cmake-4.1/Modules/CMakeDetermineCCompiler.cmake:200 (include)"
+      - "CMakeLists.txt:2 (project)"
+    mode: "program"
+    variable: "CMAKE_NM"
+    description: "Path to a program."
+    settings:
+      SearchFramework: "NEVER"
+      SearchAppBundle: "NEVER"
+      CMAKE_FIND_USE_CMAKE_PATH: false
+      CMAKE_FIND_USE_CMAKE_ENVIRONMENT_PATH: false
+      CMAKE_FIND_USE_SYSTEM_ENVIRONMENT_PATH: true
+      CMAKE_FIND_USE_CMAKE_SYSTEM_PATH: true
+      CMAKE_FIND_USE_INSTALL_PREFIX: true
+    names:
+      - "nm"
+    candidate_directories:
+      - "C:/Program Files/RedPanda-Cpp/mingw64-ucrt-15/bin/"
+      - "C:/Windows/System32/"
+      - "C:/Windows/"
+      - "C:/Windows/System32/wbem/"
+      - "C:/Windows/System32/WindowsPowerShell/v1.0/"
+      - "C:/Windows/System32/OpenSSH/"
+      - "C:/Program Files/Microsoft SQL Server/150/Tools/Binn/"
+      - "C:/Program Files/Microsoft SQL Server/Client SDK/ODBC/170/Tools/Binn/"
+      - "C:/Program Files/CMake/bin/"
+      - "C:/Program Files/Git/cmd/"
+      - "C:/Program Files/dotnet/"
+      - "C:/Program Files (x86)/Windows Kits/10/Windows Performance Toolkit/"
+      - "C:/Users/Administrator/AppData/Local/Programs/oh-my-posh/bin/"
+      - "C:/Users/Administrator/AppData/Local/Microsoft/WindowsApps/"
+      - "C:/Users/Administrator/AppData/Local/Programs/Microsoft VS Code/bin/"
+      - "C:/Users/Administrator/.dotnet/tools/"
+      - "C:/Users/Administrator/AppData/Local/GitHubDesktop/bin/"
+    searched_directories:
+      - "C:/Program Files/RedPanda-Cpp/mingw64-ucrt-15/bin/nm.com"
+    found: "C:/Program Files/RedPanda-Cpp/mingw64-ucrt-15/bin/nm.exe"
+    search_context:
+      ENV{PATH}:
+        - "C:\\Program Files\\RedPanda-Cpp\\mingw64-ucrt-15\\bin"
+        - "C:\\Program Files\\RedPanda-Cpp\\mingw64-ucrt-15\\bin"
+        - "C:\\Windows\\system32"
+        - "C:\\Windows"
+        - "C:\\Windows\\System32\\Wbem"
+        - "C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\"
+        - "C:\\Windows\\System32\\OpenSSH\\"
+        - "C:\\Program Files\\Microsoft SQL Server\\150\\Tools\\Binn\\"
+        - "C:\\Program Files\\Microsoft SQL Server\\Client SDK\\ODBC\\170\\Tools\\Binn\\"
+        - "C:\\Program Files\\RedPanda-Cpp\\mingw64-ucrt-15\\bin"
+        - "C:\\Program Files\\CMake\\bin"
+        - "C:\\Program Files\\Git\\cmd"
+        - "C:\\Program Files\\dotnet\\"
+        - "C:\\Program Files (x86)\\Windows Kits\\10\\Windows Performance Toolkit\\"
+        - "C:\\Users\\Administrator\\AppData\\Local\\Programs\\oh-my-posh\\bin\\"
+        - "C:\\Users\\Administrator\\AppData\\Local\\Microsoft\\WindowsApps"
+        - "C:\\Users\\Administrator\\AppData\\Local\\Programs\\Microsoft VS Code\\bin"
+        - "C:\\Users\\Administrator\\.dotnet\\tools"
+        - "C:\\Users\\Administrator\\AppData\\Local\\GitHubDesktop\\bin"
+  -
+    kind: "find-v1"
+    backtrace:
+      - "C:/Program Files/CMake/share/cmake-4.1/Modules/CMakeFindBinUtils.cmake:238 (find_program)"
+      - "C:/Program Files/CMake/share/cmake-4.1/Modules/CMakeDetermineCCompiler.cmake:200 (include)"
+      - "CMakeLists.txt:2 (project)"
+    mode: "program"
+    variable: "CMAKE_OBJDUMP"
+    description: "Path to a program."
+    settings:
+      SearchFramework: "NEVER"
+      SearchAppBundle: "NEVER"
+      CMAKE_FIND_USE_CMAKE_PATH: false
+      CMAKE_FIND_USE_CMAKE_ENVIRONMENT_PATH: false
+      CMAKE_FIND_USE_SYSTEM_ENVIRONMENT_PATH: true
+      CMAKE_FIND_USE_CMAKE_SYSTEM_PATH: true
+      CMAKE_FIND_USE_INSTALL_PREFIX: true
+    names:
+      - "objdump"
+    candidate_directories:
+      - "C:/Program Files/RedPanda-Cpp/mingw64-ucrt-15/bin/"
+      - "C:/Windows/System32/"
+      - "C:/Windows/"
+      - "C:/Windows/System32/wbem/"
+      - "C:/Windows/System32/WindowsPowerShell/v1.0/"
+      - "C:/Windows/System32/OpenSSH/"
+      - "C:/Program Files/Microsoft SQL Server/150/Tools/Binn/"
+      - "C:/Program Files/Microsoft SQL Server/Client SDK/ODBC/170/Tools/Binn/"
+      - "C:/Program Files/CMake/bin/"
+      - "C:/Program Files/Git/cmd/"
+      - "C:/Program Files/dotnet/"
+      - "C:/Program Files (x86)/Windows Kits/10/Windows Performance Toolkit/"
+      - "C:/Users/Administrator/AppData/Local/Programs/oh-my-posh/bin/"
+      - "C:/Users/Administrator/AppData/Local/Microsoft/WindowsApps/"
+      - "C:/Users/Administrator/AppData/Local/Programs/Microsoft VS Code/bin/"
+      - "C:/Users/Administrator/.dotnet/tools/"
+      - "C:/Users/Administrator/AppData/Local/GitHubDesktop/bin/"
+    searched_directories:
+      - "C:/Program Files/RedPanda-Cpp/mingw64-ucrt-15/bin/objdump.com"
+    found: "C:/Program Files/RedPanda-Cpp/mingw64-ucrt-15/bin/objdump.exe"
+    search_context:
+      ENV{PATH}:
+        - "C:\\Program Files\\RedPanda-Cpp\\mingw64-ucrt-15\\bin"
+        - "C:\\Program Files\\RedPanda-Cpp\\mingw64-ucrt-15\\bin"
+        - "C:\\Windows\\system32"
+        - "C:\\Windows"
+        - "C:\\Windows\\System32\\Wbem"
+        - "C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\"
+        - "C:\\Windows\\System32\\OpenSSH\\"
+        - "C:\\Program Files\\Microsoft SQL Server\\150\\Tools\\Binn\\"
+        - "C:\\Program Files\\Microsoft SQL Server\\Client SDK\\ODBC\\170\\Tools\\Binn\\"
+        - "C:\\Program Files\\RedPanda-Cpp\\mingw64-ucrt-15\\bin"
+        - "C:\\Program Files\\CMake\\bin"
+        - "C:\\Program Files\\Git\\cmd"
+        - "C:\\Program Files\\dotnet\\"
+        - "C:\\Program Files (x86)\\Windows Kits\\10\\Windows Performance Toolkit\\"
+        - "C:\\Users\\Administrator\\AppData\\Local\\Programs\\oh-my-posh\\bin\\"
+        - "C:\\Users\\Administrator\\AppData\\Local\\Microsoft\\WindowsApps"
+        - "C:\\Users\\Administrator\\AppData\\Local\\Programs\\Microsoft VS Code\\bin"
+        - "C:\\Users\\Administrator\\.dotnet\\tools"
+        - "C:\\Users\\Administrator\\AppData\\Local\\GitHubDesktop\\bin"
+  -
+    kind: "find-v1"
+    backtrace:
+      - "C:/Program Files/CMake/share/cmake-4.1/Modules/CMakeFindBinUtils.cmake:238 (find_program)"
+      - "C:/Program Files/CMake/share/cmake-4.1/Modules/CMakeDetermineCCompiler.cmake:200 (include)"
+      - "CMakeLists.txt:2 (project)"
+    mode: "program"
+    variable: "CMAKE_OBJCOPY"
+    description: "Path to a program."
+    settings:
+      SearchFramework: "NEVER"
+      SearchAppBundle: "NEVER"
+      CMAKE_FIND_USE_CMAKE_PATH: false
+      CMAKE_FIND_USE_CMAKE_ENVIRONMENT_PATH: false
+      CMAKE_FIND_USE_SYSTEM_ENVIRONMENT_PATH: true
+      CMAKE_FIND_USE_CMAKE_SYSTEM_PATH: true
+      CMAKE_FIND_USE_INSTALL_PREFIX: true
+    names:
+      - "objcopy"
+    candidate_directories:
+      - "C:/Program Files/RedPanda-Cpp/mingw64-ucrt-15/bin/"
+      - "C:/Windows/System32/"
+      - "C:/Windows/"
+      - "C:/Windows/System32/wbem/"
+      - "C:/Windows/System32/WindowsPowerShell/v1.0/"
+      - "C:/Windows/System32/OpenSSH/"
+      - "C:/Program Files/Microsoft SQL Server/150/Tools/Binn/"
+      - "C:/Program Files/Microsoft SQL Server/Client SDK/ODBC/170/Tools/Binn/"
+      - "C:/Program Files/CMake/bin/"
+      - "C:/Program Files/Git/cmd/"
+      - "C:/Program Files/dotnet/"
+      - "C:/Program Files (x86)/Windows Kits/10/Windows Performance Toolkit/"
+      - "C:/Users/Administrator/AppData/Local/Programs/oh-my-posh/bin/"
+      - "C:/Users/Administrator/AppData/Local/Microsoft/WindowsApps/"
+      - "C:/Users/Administrator/AppData/Local/Programs/Microsoft VS Code/bin/"
+      - "C:/Users/Administrator/.dotnet/tools/"
+      - "C:/Users/Administrator/AppData/Local/GitHubDesktop/bin/"
+    searched_directories:
+      - "C:/Program Files/RedPanda-Cpp/mingw64-ucrt-15/bin/objcopy.com"
+    found: "C:/Program Files/RedPanda-Cpp/mingw64-ucrt-15/bin/objcopy.exe"
+    search_context:
+      ENV{PATH}:
+        - "C:\\Program Files\\RedPanda-Cpp\\mingw64-ucrt-15\\bin"
+        - "C:\\Program Files\\RedPanda-Cpp\\mingw64-ucrt-15\\bin"
+        - "C:\\Windows\\system32"
+        - "C:\\Windows"
+        - "C:\\Windows\\System32\\Wbem"
+        - "C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\"
+        - "C:\\Windows\\System32\\OpenSSH\\"
+        - "C:\\Program Files\\Microsoft SQL Server\\150\\Tools\\Binn\\"
+        - "C:\\Program Files\\Microsoft SQL Server\\Client SDK\\ODBC\\170\\Tools\\Binn\\"
+        - "C:\\Program Files\\RedPanda-Cpp\\mingw64-ucrt-15\\bin"
+        - "C:\\Program Files\\CMake\\bin"
+        - "C:\\Program Files\\Git\\cmd"
+        - "C:\\Program Files\\dotnet\\"
+        - "C:\\Program Files (x86)\\Windows Kits\\10\\Windows Performance Toolkit\\"
+        - "C:\\Users\\Administrator\\AppData\\Local\\Programs\\oh-my-posh\\bin\\"
+        - "C:\\Users\\Administrator\\AppData\\Local\\Microsoft\\WindowsApps"
+        - "C:\\Users\\Administrator\\AppData\\Local\\Programs\\Microsoft VS Code\\bin"
+        - "C:\\Users\\Administrator\\.dotnet\\tools"
+        - "C:\\Users\\Administrator\\AppData\\Local\\GitHubDesktop\\bin"
+  -
+    kind: "find-v1"
+    backtrace:
+      - "C:/Program Files/CMake/share/cmake-4.1/Modules/CMakeFindBinUtils.cmake:238 (find_program)"
+      - "C:/Program Files/CMake/share/cmake-4.1/Modules/CMakeDetermineCCompiler.cmake:200 (include)"
+      - "CMakeLists.txt:2 (project)"
+    mode: "program"
+    variable: "CMAKE_READELF"
+    description: "Path to a program."
+    settings:
+      SearchFramework: "NEVER"
+      SearchAppBundle: "NEVER"
+      CMAKE_FIND_USE_CMAKE_PATH: false
+      CMAKE_FIND_USE_CMAKE_ENVIRONMENT_PATH: false
+      CMAKE_FIND_USE_SYSTEM_ENVIRONMENT_PATH: true
+      CMAKE_FIND_USE_CMAKE_SYSTEM_PATH: true
+      CMAKE_FIND_USE_INSTALL_PREFIX: true
+    names:
+      - "readelf"
+    candidate_directories:
+      - "C:/Program Files/RedPanda-Cpp/mingw64-ucrt-15/bin/"
+      - "C:/Windows/System32/"
+      - "C:/Windows/"
+      - "C:/Windows/System32/wbem/"
+      - "C:/Windows/System32/WindowsPowerShell/v1.0/"
+      - "C:/Windows/System32/OpenSSH/"
+      - "C:/Program Files/Microsoft SQL Server/150/Tools/Binn/"
+      - "C:/Program Files/Microsoft SQL Server/Client SDK/ODBC/170/Tools/Binn/"
+      - "C:/Program Files/CMake/bin/"
+      - "C:/Program Files/Git/cmd/"
+      - "C:/Program Files/dotnet/"
+      - "C:/Program Files (x86)/Windows Kits/10/Windows Performance Toolkit/"
+      - "C:/Users/Administrator/AppData/Local/Programs/oh-my-posh/bin/"
+      - "C:/Users/Administrator/AppData/Local/Microsoft/WindowsApps/"
+      - "C:/Users/Administrator/AppData/Local/Programs/Microsoft VS Code/bin/"
+      - "C:/Users/Administrator/.dotnet/tools/"
+      - "C:/Users/Administrator/AppData/Local/GitHubDesktop/bin/"
+    searched_directories:
+      - "C:/Program Files/RedPanda-Cpp/mingw64-ucrt-15/bin/readelf.com"
+    found: "C:/Program Files/RedPanda-Cpp/mingw64-ucrt-15/bin/readelf.exe"
+    search_context:
+      ENV{PATH}:
+        - "C:\\Program Files\\RedPanda-Cpp\\mingw64-ucrt-15\\bin"
+        - "C:\\Program Files\\RedPanda-Cpp\\mingw64-ucrt-15\\bin"
+        - "C:\\Windows\\system32"
+        - "C:\\Windows"
+        - "C:\\Windows\\System32\\Wbem"
+        - "C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\"
+        - "C:\\Windows\\System32\\OpenSSH\\"
+        - "C:\\Program Files\\Microsoft SQL Server\\150\\Tools\\Binn\\"
+        - "C:\\Program Files\\Microsoft SQL Server\\Client SDK\\ODBC\\170\\Tools\\Binn\\"
+        - "C:\\Program Files\\RedPanda-Cpp\\mingw64-ucrt-15\\bin"
+        - "C:\\Program Files\\CMake\\bin"
+        - "C:\\Program Files\\Git\\cmd"
+        - "C:\\Program Files\\dotnet\\"
+        - "C:\\Program Files (x86)\\Windows Kits\\10\\Windows Performance Toolkit\\"
+        - "C:\\Users\\Administrator\\AppData\\Local\\Programs\\oh-my-posh\\bin\\"
+        - "C:\\Users\\Administrator\\AppData\\Local\\Microsoft\\WindowsApps"
+        - "C:\\Users\\Administrator\\AppData\\Local\\Programs\\Microsoft VS Code\\bin"
+        - "C:\\Users\\Administrator\\.dotnet\\tools"
+        - "C:\\Users\\Administrator\\AppData\\Local\\GitHubDesktop\\bin"
+  -
+    kind: "find-v1"
+    backtrace:
+      - "C:/Program Files/CMake/share/cmake-4.1/Modules/CMakeFindBinUtils.cmake:238 (find_program)"
+      - "C:/Program Files/CMake/share/cmake-4.1/Modules/CMakeDetermineCCompiler.cmake:200 (include)"
+      - "CMakeLists.txt:2 (project)"
+    mode: "program"
+    variable: "CMAKE_DLLTOOL"
+    description: "Path to a program."
+    settings:
+      SearchFramework: "NEVER"
+      SearchAppBundle: "NEVER"
+      CMAKE_FIND_USE_CMAKE_PATH: false
+      CMAKE_FIND_USE_CMAKE_ENVIRONMENT_PATH: false
+      CMAKE_FIND_USE_SYSTEM_ENVIRONMENT_PATH: true
+      CMAKE_FIND_USE_CMAKE_SYSTEM_PATH: true
+      CMAKE_FIND_USE_INSTALL_PREFIX: true
+    names:
+      - "dlltool"
+    candidate_directories:
+      - "C:/Program Files/RedPanda-Cpp/mingw64-ucrt-15/bin/"
+      - "C:/Windows/System32/"
+      - "C:/Windows/"
+      - "C:/Windows/System32/wbem/"
+      - "C:/Windows/System32/WindowsPowerShell/v1.0/"
+      - "C:/Windows/System32/OpenSSH/"
+      - "C:/Program Files/Microsoft SQL Server/150/Tools/Binn/"
+      - "C:/Program Files/Microsoft SQL Server/Client SDK/ODBC/170/Tools/Binn/"
+      - "C:/Program Files/CMake/bin/"
+      - "C:/Program Files/Git/cmd/"
+      - "C:/Program Files/dotnet/"
+      - "C:/Program Files (x86)/Windows Kits/10/Windows Performance Toolkit/"
+      - "C:/Users/Administrator/AppData/Local/Programs/oh-my-posh/bin/"
+      - "C:/Users/Administrator/AppData/Local/Microsoft/WindowsApps/"
+      - "C:/Users/Administrator/AppData/Local/Programs/Microsoft VS Code/bin/"
+      - "C:/Users/Administrator/.dotnet/tools/"
+      - "C:/Users/Administrator/AppData/Local/GitHubDesktop/bin/"
+    searched_directories:
+      - "C:/Program Files/RedPanda-Cpp/mingw64-ucrt-15/bin/dlltool.com"
+    found: "C:/Program Files/RedPanda-Cpp/mingw64-ucrt-15/bin/dlltool.exe"
+    search_context:
+      ENV{PATH}:
+        - "C:\\Program Files\\RedPanda-Cpp\\mingw64-ucrt-15\\bin"
+        - "C:\\Program Files\\RedPanda-Cpp\\mingw64-ucrt-15\\bin"
+        - "C:\\Windows\\system32"
+        - "C:\\Windows"
+        - "C:\\Windows\\System32\\Wbem"
+        - "C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\"
+        - "C:\\Windows\\System32\\OpenSSH\\"
+        - "C:\\Program Files\\Microsoft SQL Server\\150\\Tools\\Binn\\"
+        - "C:\\Program Files\\Microsoft SQL Server\\Client SDK\\ODBC\\170\\Tools\\Binn\\"
+        - "C:\\Program Files\\RedPanda-Cpp\\mingw64-ucrt-15\\bin"
+        - "C:\\Program Files\\CMake\\bin"
+        - "C:\\Program Files\\Git\\cmd"
+        - "C:\\Program Files\\dotnet\\"
+        - "C:\\Program Files (x86)\\Windows Kits\\10\\Windows Performance Toolkit\\"
+        - "C:\\Users\\Administrator\\AppData\\Local\\Programs\\oh-my-posh\\bin\\"
+        - "C:\\Users\\Administrator\\AppData\\Local\\Microsoft\\WindowsApps"
+        - "C:\\Users\\Administrator\\AppData\\Local\\Programs\\Microsoft VS Code\\bin"
+        - "C:\\Users\\Administrator\\.dotnet\\tools"
+        - "C:\\Users\\Administrator\\AppData\\Local\\GitHubDesktop\\bin"
+  -
+    kind: "find-v1"
+    backtrace:
+      - "C:/Program Files/CMake/share/cmake-4.1/Modules/CMakeFindBinUtils.cmake:238 (find_program)"
+      - "C:/Program Files/CMake/share/cmake-4.1/Modules/CMakeDetermineCCompiler.cmake:200 (include)"
+      - "CMakeLists.txt:2 (project)"
+    mode: "program"
+    variable: "CMAKE_ADDR2LINE"
+    description: "Path to a program."
+    settings:
+      SearchFramework: "NEVER"
+      SearchAppBundle: "NEVER"
+      CMAKE_FIND_USE_CMAKE_PATH: false
+      CMAKE_FIND_USE_CMAKE_ENVIRONMENT_PATH: false
+      CMAKE_FIND_USE_SYSTEM_ENVIRONMENT_PATH: true
+      CMAKE_FIND_USE_CMAKE_SYSTEM_PATH: true
+      CMAKE_FIND_USE_INSTALL_PREFIX: true
+    names:
+      - "addr2line"
+    candidate_directories:
+      - "C:/Program Files/RedPanda-Cpp/mingw64-ucrt-15/bin/"
+      - "C:/Windows/System32/"
+      - "C:/Windows/"
+      - "C:/Windows/System32/wbem/"
+      - "C:/Windows/System32/WindowsPowerShell/v1.0/"
+      - "C:/Windows/System32/OpenSSH/"
+      - "C:/Program Files/Microsoft SQL Server/150/Tools/Binn/"
+      - "C:/Program Files/Microsoft SQL Server/Client SDK/ODBC/170/Tools/Binn/"
+      - "C:/Program Files/CMake/bin/"
+      - "C:/Program Files/Git/cmd/"
+      - "C:/Program Files/dotnet/"
+      - "C:/Program Files (x86)/Windows Kits/10/Windows Performance Toolkit/"
+      - "C:/Users/Administrator/AppData/Local/Programs/oh-my-posh/bin/"
+      - "C:/Users/Administrator/AppData/Local/Microsoft/WindowsApps/"
+      - "C:/Users/Administrator/AppData/Local/Programs/Microsoft VS Code/bin/"
+      - "C:/Users/Administrator/.dotnet/tools/"
+      - "C:/Users/Administrator/AppData/Local/GitHubDesktop/bin/"
+    searched_directories:
+      - "C:/Program Files/RedPanda-Cpp/mingw64-ucrt-15/bin/addr2line.com"
+    found: "C:/Program Files/RedPanda-Cpp/mingw64-ucrt-15/bin/addr2line.exe"
+    search_context:
+      ENV{PATH}:
+        - "C:\\Program Files\\RedPanda-Cpp\\mingw64-ucrt-15\\bin"
+        - "C:\\Program Files\\RedPanda-Cpp\\mingw64-ucrt-15\\bin"
+        - "C:\\Windows\\system32"
+        - "C:\\Windows"
+        - "C:\\Windows\\System32\\Wbem"
+        - "C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\"
+        - "C:\\Windows\\System32\\OpenSSH\\"
+        - "C:\\Program Files\\Microsoft SQL Server\\150\\Tools\\Binn\\"
+        - "C:\\Program Files\\Microsoft SQL Server\\Client SDK\\ODBC\\170\\Tools\\Binn\\"
+        - "C:\\Program Files\\RedPanda-Cpp\\mingw64-ucrt-15\\bin"
+        - "C:\\Program Files\\CMake\\bin"
+        - "C:\\Program Files\\Git\\cmd"
+        - "C:\\Program Files\\dotnet\\"
+        - "C:\\Program Files (x86)\\Windows Kits\\10\\Windows Performance Toolkit\\"
+        - "C:\\Users\\Administrator\\AppData\\Local\\Programs\\oh-my-posh\\bin\\"
+        - "C:\\Users\\Administrator\\AppData\\Local\\Microsoft\\WindowsApps"
+        - "C:\\Users\\Administrator\\AppData\\Local\\Programs\\Microsoft VS Code\\bin"
+        - "C:\\Users\\Administrator\\.dotnet\\tools"
+        - "C:\\Users\\Administrator\\AppData\\Local\\GitHubDesktop\\bin"
+  -
+    kind: "find-v1"
+    backtrace:
+      - "C:/Program Files/CMake/share/cmake-4.1/Modules/CMakeFindBinUtils.cmake:238 (find_program)"
+      - "C:/Program Files/CMake/share/cmake-4.1/Modules/CMakeDetermineCCompiler.cmake:200 (include)"
+      - "CMakeLists.txt:2 (project)"
+    mode: "program"
+    variable: "CMAKE_TAPI"
+    description: "Path to a program."
+    settings:
+      SearchFramework: "NEVER"
+      SearchAppBundle: "NEVER"
+      CMAKE_FIND_USE_CMAKE_PATH: false
+      CMAKE_FIND_USE_CMAKE_ENVIRONMENT_PATH: false
+      CMAKE_FIND_USE_SYSTEM_ENVIRONMENT_PATH: true
+      CMAKE_FIND_USE_CMAKE_SYSTEM_PATH: true
+      CMAKE_FIND_USE_INSTALL_PREFIX: true
+    names:
+      - "tapi"
+    candidate_directories:
+      - "C:/Program Files/RedPanda-Cpp/mingw64-ucrt-15/bin/"
+      - "C:/Windows/System32/"
+      - "C:/Windows/"
+      - "C:/Windows/System32/wbem/"
+      - "C:/Windows/System32/WindowsPowerShell/v1.0/"
+      - "C:/Windows/System32/OpenSSH/"
+      - "C:/Program Files/Microsoft SQL Server/150/Tools/Binn/"
+      - "C:/Program Files/Microsoft SQL Server/Client SDK/ODBC/170/Tools/Binn/"
+      - "C:/Program Files/CMake/bin/"
+      - "C:/Program Files/Git/cmd/"
+      - "C:/Program Files/dotnet/"
+      - "C:/Program Files (x86)/Windows Kits/10/Windows Performance Toolkit/"
+      - "C:/Users/Administrator/AppData/Local/Programs/oh-my-posh/bin/"
+      - "C:/Users/Administrator/AppData/Local/Microsoft/WindowsApps/"
+      - "C:/Users/Administrator/AppData/Local/Programs/Microsoft VS Code/bin/"
+      - "C:/Users/Administrator/.dotnet/tools/"
+      - "C:/Users/Administrator/AppData/Local/GitHubDesktop/bin/"
+    searched_directories:
+      - "C:/Program Files/RedPanda-Cpp/mingw64-ucrt-15/bin/tapi.com"
+      - "C:/Program Files/RedPanda-Cpp/mingw64-ucrt-15/bin/tapi.exe"
+      - "C:/Program Files/RedPanda-Cpp/mingw64-ucrt-15/bin/tapi"
+      - "C:/Windows/System32/tapi.com"
+      - "C:/Windows/System32/tapi.exe"
+      - "C:/Windows/System32/tapi"
+      - "C:/Windows/tapi.com"
+      - "C:/Windows/tapi.exe"
+      - "C:/Windows/tapi"
+      - "C:/Windows/System32/wbem/tapi.com"
+      - "C:/Windows/System32/wbem/tapi.exe"
+      - "C:/Windows/System32/wbem/tapi"
+      - "C:/Windows/System32/WindowsPowerShell/v1.0/tapi.com"
+      - "C:/Windows/System32/WindowsPowerShell/v1.0/tapi.exe"
+      - "C:/Windows/System32/WindowsPowerShell/v1.0/tapi"
+      - "C:/Windows/System32/OpenSSH/tapi.com"
+      - "C:/Windows/System32/OpenSSH/tapi.exe"
+      - "C:/Windows/System32/OpenSSH/tapi"
+      - "C:/Program Files/Microsoft SQL Server/150/Tools/Binn/tapi.com"
+      - "C:/Program Files/Microsoft SQL Server/150/Tools/Binn/tapi.exe"
+      - "C:/Program Files/Microsoft SQL Server/150/Tools/Binn/tapi"
+      - "C:/Program Files/Microsoft SQL Server/Client SDK/ODBC/170/Tools/Binn/tapi.com"
+      - "C:/Program Files/Microsoft SQL Server/Client SDK/ODBC/170/Tools/Binn/tapi.exe"
+      - "C:/Program Files/Microsoft SQL Server/Client SDK/ODBC/170/Tools/Binn/tapi"
+      - "C:/Program Files/CMake/bin/tapi.com"
+      - "C:/Program Files/CMake/bin/tapi.exe"
+      - "C:/Program Files/CMake/bin/tapi"
+      - "C:/Program Files/Git/cmd/tapi.com"
+      - "C:/Program Files/Git/cmd/tapi.exe"
+      - "C:/Program Files/Git/cmd/tapi"
+      - "C:/Program Files/dotnet/tapi.com"
+      - "C:/Program Files/dotnet/tapi.exe"
+      - "C:/Program Files/dotnet/tapi"
+      - "C:/Program Files (x86)/Windows Kits/10/Windows Performance Toolkit/tapi.com"
+      - "C:/Program Files (x86)/Windows Kits/10/Windows Performance Toolkit/tapi.exe"
+      - "C:/Program Files (x86)/Windows Kits/10/Windows Performance Toolkit/tapi"
+      - "C:/Users/Administrator/AppData/Local/Programs/oh-my-posh/bin/tapi.com"
+      - "C:/Users/Administrator/AppData/Local/Programs/oh-my-posh/bin/tapi.exe"
+      - "C:/Users/Administrator/AppData/Local/Programs/oh-my-posh/bin/tapi"
+      - "C:/Users/Administrator/AppData/Local/Microsoft/WindowsApps/tapi.com"
+      - "C:/Users/Administrator/AppData/Local/Microsoft/WindowsApps/tapi.exe"
+      - "C:/Users/Administrator/AppData/Local/Microsoft/WindowsApps/tapi"
+      - "C:/Users/Administrator/AppData/Local/Programs/Microsoft VS Code/bin/tapi.com"
+      - "C:/Users/Administrator/AppData/Local/Programs/Microsoft VS Code/bin/tapi.exe"
+      - "C:/Users/Administrator/AppData/Local/Programs/Microsoft VS Code/bin/tapi"
+      - "C:/Users/Administrator/.dotnet/tools/tapi.com"
+      - "C:/Users/Administrator/.dotnet/tools/tapi.exe"
+      - "C:/Users/Administrator/.dotnet/tools/tapi"
+      - "C:/Users/Administrator/AppData/Local/GitHubDesktop/bin/tapi.com"
+      - "C:/Users/Administrator/AppData/Local/GitHubDesktop/bin/tapi.exe"
+      - "C:/Users/Administrator/AppData/Local/GitHubDesktop/bin/tapi"
+    found: false
+    search_context:
+      ENV{PATH}:
+        - "C:\\Program Files\\RedPanda-Cpp\\mingw64-ucrt-15\\bin"
+        - "C:\\Program Files\\RedPanda-Cpp\\mingw64-ucrt-15\\bin"
+        - "C:\\Windows\\system32"
+        - "C:\\Windows"
+        - "C:\\Windows\\System32\\Wbem"
+        - "C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\"
+        - "C:\\Windows\\System32\\OpenSSH\\"
+        - "C:\\Program Files\\Microsoft SQL Server\\150\\Tools\\Binn\\"
+        - "C:\\Program Files\\Microsoft SQL Server\\Client SDK\\ODBC\\170\\Tools\\Binn\\"
+        - "C:\\Program Files\\RedPanda-Cpp\\mingw64-ucrt-15\\bin"
+        - "C:\\Program Files\\CMake\\bin"
+        - "C:\\Program Files\\Git\\cmd"
+        - "C:\\Program Files\\dotnet\\"
+        - "C:\\Program Files (x86)\\Windows Kits\\10\\Windows Performance Toolkit\\"
+        - "C:\\Users\\Administrator\\AppData\\Local\\Programs\\oh-my-posh\\bin\\"
+        - "C:\\Users\\Administrator\\AppData\\Local\\Microsoft\\WindowsApps"
+        - "C:\\Users\\Administrator\\AppData\\Local\\Programs\\Microsoft VS Code\\bin"
+        - "C:\\Users\\Administrator\\.dotnet\\tools"
+        - "C:\\Users\\Administrator\\AppData\\Local\\GitHubDesktop\\bin"
+  -
+    kind: "find-v1"
+    backtrace:
+      - "C:/Program Files/CMake/share/cmake-4.1/Modules/Compiler/GNU-FindBinUtils.cmake:18 (find_program)"
+      - "C:/Program Files/CMake/share/cmake-4.1/Modules/CMakeDetermineCCompiler.cmake:201 (include)"
+      - "CMakeLists.txt:2 (project)"
+    mode: "program"
+    variable: "CMAKE_C_COMPILER_AR"
+    description: "A wrapper around 'ar' adding the appropriate '--plugin' option for the GCC compiler"
+    settings:
+      SearchFramework: "NEVER"
+      SearchAppBundle: "NEVER"
+      CMAKE_FIND_USE_CMAKE_PATH: false
+      CMAKE_FIND_USE_CMAKE_ENVIRONMENT_PATH: false
+      CMAKE_FIND_USE_SYSTEM_ENVIRONMENT_PATH: true
+      CMAKE_FIND_USE_CMAKE_SYSTEM_PATH: true
+      CMAKE_FIND_USE_INSTALL_PREFIX: true
+    names:
+      - "gcc-ar-15.0"
+      - "gcc-ar-15"
+      - "gcc-ar15"
+      - "gcc-ar"
+    candidate_directories:
+      - "C:/Program Files/RedPanda-Cpp/mingw64-ucrt-15/bin/"
+      - "C:/Windows/System32/"
+      - "C:/Windows/"
+      - "C:/Windows/System32/wbem/"
+      - "C:/Windows/System32/WindowsPowerShell/v1.0/"
+      - "C:/Windows/System32/OpenSSH/"
+      - "C:/Program Files/Microsoft SQL Server/150/Tools/Binn/"
+      - "C:/Program Files/Microsoft SQL Server/Client SDK/ODBC/170/Tools/Binn/"
+      - "C:/Program Files/CMake/bin/"
+      - "C:/Program Files/Git/cmd/"
+      - "C:/Program Files/dotnet/"
+      - "C:/Program Files (x86)/Windows Kits/10/Windows Performance Toolkit/"
+      - "C:/Users/Administrator/AppData/Local/Programs/oh-my-posh/bin/"
+      - "C:/Users/Administrator/AppData/Local/Microsoft/WindowsApps/"
+      - "C:/Users/Administrator/AppData/Local/Programs/Microsoft VS Code/bin/"
+      - "C:/Users/Administrator/.dotnet/tools/"
+      - "C:/Users/Administrator/AppData/Local/GitHubDesktop/bin/"
+    searched_directories:
+      - "C:/Program Files/RedPanda-Cpp/mingw64-ucrt-15/bin/gcc-ar-15.0.com"
+      - "C:/Program Files/RedPanda-Cpp/mingw64-ucrt-15/bin/gcc-ar-15.0.exe"
+      - "C:/Program Files/RedPanda-Cpp/mingw64-ucrt-15/bin/gcc-ar-15.0"
+      - "C:/Windows/System32/gcc-ar-15.0.com"
+      - "C:/Windows/System32/gcc-ar-15.0.exe"
+      - "C:/Windows/System32/gcc-ar-15.0"
+      - "C:/Windows/gcc-ar-15.0.com"
+      - "C:/Windows/gcc-ar-15.0.exe"
+      - "C:/Windows/gcc-ar-15.0"
+      - "C:/Windows/System32/wbem/gcc-ar-15.0.com"
+      - "C:/Windows/System32/wbem/gcc-ar-15.0.exe"
+      - "C:/Windows/System32/wbem/gcc-ar-15.0"
+      - "C:/Windows/System32/WindowsPowerShell/v1.0/gcc-ar-15.0.com"
+      - "C:/Windows/System32/WindowsPowerShell/v1.0/gcc-ar-15.0.exe"
+      - "C:/Windows/System32/WindowsPowerShell/v1.0/gcc-ar-15.0"
+      - "C:/Windows/System32/OpenSSH/gcc-ar-15.0.com"
+      - "C:/Windows/System32/OpenSSH/gcc-ar-15.0.exe"
+      - "C:/Windows/System32/OpenSSH/gcc-ar-15.0"
+      - "C:/Program Files/Microsoft SQL Server/150/Tools/Binn/gcc-ar-15.0.com"
+      - "C:/Program Files/Microsoft SQL Server/150/Tools/Binn/gcc-ar-15.0.exe"
+      - "C:/Program Files/Microsoft SQL Server/150/Tools/Binn/gcc-ar-15.0"
+      - "C:/Program Files/Microsoft SQL Server/Client SDK/ODBC/170/Tools/Binn/gcc-ar-15.0.com"
+      - "C:/Program Files/Microsoft SQL Server/Client SDK/ODBC/170/Tools/Binn/gcc-ar-15.0.exe"
+      - "C:/Program Files/Microsoft SQL Server/Client SDK/ODBC/170/Tools/Binn/gcc-ar-15.0"
+      - "C:/Program Files/CMake/bin/gcc-ar-15.0.com"
+      - "C:/Program Files/CMake/bin/gcc-ar-15.0.exe"
+      - "C:/Program Files/CMake/bin/gcc-ar-15.0"
+      - "C:/Program Files/Git/cmd/gcc-ar-15.0.com"
+      - "C:/Program Files/Git/cmd/gcc-ar-15.0.exe"
+      - "C:/Program Files/Git/cmd/gcc-ar-15.0"
+      - "C:/Program Files/dotnet/gcc-ar-15.0.com"
+      - "C:/Program Files/dotnet/gcc-ar-15.0.exe"
+      - "C:/Program Files/dotnet/gcc-ar-15.0"
+      - "C:/Program Files (x86)/Windows Kits/10/Windows Performance Toolkit/gcc-ar-15.0.com"
+      - "C:/Program Files (x86)/Windows Kits/10/Windows Performance Toolkit/gcc-ar-15.0.exe"
+      - "C:/Program Files (x86)/Windows Kits/10/Windows Performance Toolkit/gcc-ar-15.0"
+      - "C:/Users/Administrator/AppData/Local/Programs/oh-my-posh/bin/gcc-ar-15.0.com"
+      - "C:/Users/Administrator/AppData/Local/Programs/oh-my-posh/bin/gcc-ar-15.0.exe"
+      - "C:/Users/Administrator/AppData/Local/Programs/oh-my-posh/bin/gcc-ar-15.0"
+      - "C:/Users/Administrator/AppData/Local/Microsoft/WindowsApps/gcc-ar-15.0.com"
+      - "C:/Users/Administrator/AppData/Local/Microsoft/WindowsApps/gcc-ar-15.0.exe"
+      - "C:/Users/Administrator/AppData/Local/Microsoft/WindowsApps/gcc-ar-15.0"
+      - "C:/Users/Administrator/AppData/Local/Programs/Microsoft VS Code/bin/gcc-ar-15.0.com"
+      - "C:/Users/Administrator/AppData/Local/Programs/Microsoft VS Code/bin/gcc-ar-15.0.exe"
+      - "C:/Users/Administrator/AppData/Local/Programs/Microsoft VS Code/bin/gcc-ar-15.0"
+      - "C:/Users/Administrator/.dotnet/tools/gcc-ar-15.0.com"
+      - "C:/Users/Administrator/.dotnet/tools/gcc-ar-15.0.exe"
+      - "C:/Users/Administrator/.dotnet/tools/gcc-ar-15.0"
+      - "C:/Users/Administrator/AppData/Local/GitHubDesktop/bin/gcc-ar-15.0.com"
+      - "C:/Users/Administrator/AppData/Local/GitHubDesktop/bin/gcc-ar-15.0.exe"
+      - "C:/Users/Administrator/AppData/Local/GitHubDesktop/bin/gcc-ar-15.0"
+      - "C:/Program Files/RedPanda-Cpp/mingw64-ucrt-15/bin/gcc-ar-15.com"
+      - "C:/Program Files/RedPanda-Cpp/mingw64-ucrt-15/bin/gcc-ar-15.exe"
+      - "C:/Program Files/RedPanda-Cpp/mingw64-ucrt-15/bin/gcc-ar-15"
+      - "C:/Windows/System32/gcc-ar-15.com"
+      - "C:/Windows/System32/gcc-ar-15.exe"
+      - "C:/Windows/System32/gcc-ar-15"
+      - "C:/Windows/gcc-ar-15.com"
+      - "C:/Windows/gcc-ar-15.exe"
+      - "C:/Windows/gcc-ar-15"
+      - "C:/Windows/System32/wbem/gcc-ar-15.com"
+      - "C:/Windows/System32/wbem/gcc-ar-15.exe"
+      - "C:/Windows/System32/wbem/gcc-ar-15"
+      - "C:/Windows/System32/WindowsPowerShell/v1.0/gcc-ar-15.com"
+      - "C:/Windows/System32/WindowsPowerShell/v1.0/gcc-ar-15.exe"
+      - "C:/Windows/System32/WindowsPowerShell/v1.0/gcc-ar-15"
+      - "C:/Windows/System32/OpenSSH/gcc-ar-15.com"
+      - "C:/Windows/System32/OpenSSH/gcc-ar-15.exe"
+      - "C:/Windows/System32/OpenSSH/gcc-ar-15"
+      - "C:/Program Files/Microsoft SQL Server/150/Tools/Binn/gcc-ar-15.com"
+      - "C:/Program Files/Microsoft SQL Server/150/Tools/Binn/gcc-ar-15.exe"
+      - "C:/Program Files/Microsoft SQL Server/150/Tools/Binn/gcc-ar-15"
+      - "C:/Program Files/Microsoft SQL Server/Client SDK/ODBC/170/Tools/Binn/gcc-ar-15.com"
+      - "C:/Program Files/Microsoft SQL Server/Client SDK/ODBC/170/Tools/Binn/gcc-ar-15.exe"
+      - "C:/Program Files/Microsoft SQL Server/Client SDK/ODBC/170/Tools/Binn/gcc-ar-15"
+      - "C:/Program Files/CMake/bin/gcc-ar-15.com"
+      - "C:/Program Files/CMake/bin/gcc-ar-15.exe"
+      - "C:/Program Files/CMake/bin/gcc-ar-15"
+      - "C:/Program Files/Git/cmd/gcc-ar-15.com"
+      - "C:/Program Files/Git/cmd/gcc-ar-15.exe"
+      - "C:/Program Files/Git/cmd/gcc-ar-15"
+      - "C:/Program Files/dotnet/gcc-ar-15.com"
+      - "C:/Program Files/dotnet/gcc-ar-15.exe"
+      - "C:/Program Files/dotnet/gcc-ar-15"
+      - "C:/Program Files (x86)/Windows Kits/10/Windows Performance Toolkit/gcc-ar-15.com"
+      - "C:/Program Files (x86)/Windows Kits/10/Windows Performance Toolkit/gcc-ar-15.exe"
+      - "C:/Program Files (x86)/Windows Kits/10/Windows Performance Toolkit/gcc-ar-15"
+      - "C:/Users/Administrator/AppData/Local/Programs/oh-my-posh/bin/gcc-ar-15.com"
+      - "C:/Users/Administrator/AppData/Local/Programs/oh-my-posh/bin/gcc-ar-15.exe"
+      - "C:/Users/Administrator/AppData/Local/Programs/oh-my-posh/bin/gcc-ar-15"
+      - "C:/Users/Administrator/AppData/Local/Microsoft/WindowsApps/gcc-ar-15.com"
+      - "C:/Users/Administrator/AppData/Local/Microsoft/WindowsApps/gcc-ar-15.exe"
+      - "C:/Users/Administrator/AppData/Local/Microsoft/WindowsApps/gcc-ar-15"
+      - "C:/Users/Administrator/AppData/Local/Programs/Microsoft VS Code/bin/gcc-ar-15.com"
+      - "C:/Users/Administrator/AppData/Local/Programs/Microsoft VS Code/bin/gcc-ar-15.exe"
+      - "C:/Users/Administrator/AppData/Local/Programs/Microsoft VS Code/bin/gcc-ar-15"
+      - "C:/Users/Administrator/.dotnet/tools/gcc-ar-15.com"
+      - "C:/Users/Administrator/.dotnet/tools/gcc-ar-15.exe"
+      - "C:/Users/Administrator/.dotnet/tools/gcc-ar-15"
+      - "C:/Users/Administrator/AppData/Local/GitHubDesktop/bin/gcc-ar-15.com"
+      - "C:/Users/Administrator/AppData/Local/GitHubDesktop/bin/gcc-ar-15.exe"
+      - "C:/Users/Administrator/AppData/Local/GitHubDesktop/bin/gcc-ar-15"
+      - "C:/Program Files/RedPanda-Cpp/mingw64-ucrt-15/bin/gcc-ar15.com"
+      - "C:/Program Files/RedPanda-Cpp/mingw64-ucrt-15/bin/gcc-ar15.exe"
+      - "C:/Program Files/RedPanda-Cpp/mingw64-ucrt-15/bin/gcc-ar15"
+      - "C:/Windows/System32/gcc-ar15.com"
+      - "C:/Windows/System32/gcc-ar15.exe"
+      - "C:/Windows/System32/gcc-ar15"
+      - "C:/Windows/gcc-ar15.com"
+      - "C:/Windows/gcc-ar15.exe"
+      - "C:/Windows/gcc-ar15"
+      - "C:/Windows/System32/wbem/gcc-ar15.com"
+      - "C:/Windows/System32/wbem/gcc-ar15.exe"
+      - "C:/Windows/System32/wbem/gcc-ar15"
+      - "C:/Windows/System32/WindowsPowerShell/v1.0/gcc-ar15.com"
+      - "C:/Windows/System32/WindowsPowerShell/v1.0/gcc-ar15.exe"
+      - "C:/Windows/System32/WindowsPowerShell/v1.0/gcc-ar15"
+      - "C:/Windows/System32/OpenSSH/gcc-ar15.com"
+      - "C:/Windows/System32/OpenSSH/gcc-ar15.exe"
+      - "C:/Windows/System32/OpenSSH/gcc-ar15"
+      - "C:/Program Files/Microsoft SQL Server/150/Tools/Binn/gcc-ar15.com"
+      - "C:/Program Files/Microsoft SQL Server/150/Tools/Binn/gcc-ar15.exe"
+      - "C:/Program Files/Microsoft SQL Server/150/Tools/Binn/gcc-ar15"
+      - "C:/Program Files/Microsoft SQL Server/Client SDK/ODBC/170/Tools/Binn/gcc-ar15.com"
+      - "C:/Program Files/Microsoft SQL Server/Client SDK/ODBC/170/Tools/Binn/gcc-ar15.exe"
+      - "C:/Program Files/Microsoft SQL Server/Client SDK/ODBC/170/Tools/Binn/gcc-ar15"
+      - "C:/Program Files/CMake/bin/gcc-ar15.com"
+      - "C:/Program Files/CMake/bin/gcc-ar15.exe"
+      - "C:/Program Files/CMake/bin/gcc-ar15"
+      - "C:/Program Files/Git/cmd/gcc-ar15.com"
+      - "C:/Program Files/Git/cmd/gcc-ar15.exe"
+      - "C:/Program Files/Git/cmd/gcc-ar15"
+      - "C:/Program Files/dotnet/gcc-ar15.com"
+      - "C:/Program Files/dotnet/gcc-ar15.exe"
+      - "C:/Program Files/dotnet/gcc-ar15"
+      - "C:/Program Files (x86)/Windows Kits/10/Windows Performance Toolkit/gcc-ar15.com"
+      - "C:/Program Files (x86)/Windows Kits/10/Windows Performance Toolkit/gcc-ar15.exe"
+      - "C:/Program Files (x86)/Windows Kits/10/Windows Performance Toolkit/gcc-ar15"
+      - "C:/Users/Administrator/AppData/Local/Programs/oh-my-posh/bin/gcc-ar15.com"
+      - "C:/Users/Administrator/AppData/Local/Programs/oh-my-posh/bin/gcc-ar15.exe"
+      - "C:/Users/Administrator/AppData/Local/Programs/oh-my-posh/bin/gcc-ar15"
+      - "C:/Users/Administrator/AppData/Local/Microsoft/WindowsApps/gcc-ar15.com"
+      - "C:/Users/Administrator/AppData/Local/Microsoft/WindowsApps/gcc-ar15.exe"
+      - "C:/Users/Administrator/AppData/Local/Microsoft/WindowsApps/gcc-ar15"
+      - "C:/Users/Administrator/AppData/Local/Programs/Microsoft VS Code/bin/gcc-ar15.com"
+      - "C:/Users/Administrator/AppData/Local/Programs/Microsoft VS Code/bin/gcc-ar15.exe"
+      - "C:/Users/Administrator/AppData/Local/Programs/Microsoft VS Code/bin/gcc-ar15"
+      - "C:/Users/Administrator/.dotnet/tools/gcc-ar15.com"
+      - "C:/Users/Administrator/.dotnet/tools/gcc-ar15.exe"
+      - "C:/Users/Administrator/.dotnet/tools/gcc-ar15"
+      - "C:/Users/Administrator/AppData/Local/GitHubDesktop/bin/gcc-ar15.com"
+      - "C:/Users/Administrator/AppData/Local/GitHubDesktop/bin/gcc-ar15.exe"
+      - "C:/Users/Administrator/AppData/Local/GitHubDesktop/bin/gcc-ar15"
+      - "C:/Program Files/RedPanda-Cpp/mingw64-ucrt-15/bin/gcc-ar.com"
+    found: "C:/Program Files/RedPanda-Cpp/mingw64-ucrt-15/bin/gcc-ar.exe"
+    search_context:
+      ENV{PATH}:
+        - "C:\\Program Files\\RedPanda-Cpp\\mingw64-ucrt-15\\bin"
+        - "C:\\Program Files\\RedPanda-Cpp\\mingw64-ucrt-15\\bin"
+        - "C:\\Windows\\system32"
+        - "C:\\Windows"
+        - "C:\\Windows\\System32\\Wbem"
+        - "C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\"
+        - "C:\\Windows\\System32\\OpenSSH\\"
+        - "C:\\Program Files\\Microsoft SQL Server\\150\\Tools\\Binn\\"
+        - "C:\\Program Files\\Microsoft SQL Server\\Client SDK\\ODBC\\170\\Tools\\Binn\\"
+        - "C:\\Program Files\\RedPanda-Cpp\\mingw64-ucrt-15\\bin"
+        - "C:\\Program Files\\CMake\\bin"
+        - "C:\\Program Files\\Git\\cmd"
+        - "C:\\Program Files\\dotnet\\"
+        - "C:\\Program Files (x86)\\Windows Kits\\10\\Windows Performance Toolkit\\"
+        - "C:\\Users\\Administrator\\AppData\\Local\\Programs\\oh-my-posh\\bin\\"
+        - "C:\\Users\\Administrator\\AppData\\Local\\Microsoft\\WindowsApps"
+        - "C:\\Users\\Administrator\\AppData\\Local\\Programs\\Microsoft VS Code\\bin"
+        - "C:\\Users\\Administrator\\.dotnet\\tools"
+        - "C:\\Users\\Administrator\\AppData\\Local\\GitHubDesktop\\bin"
+  -
+    kind: "find-v1"
+    backtrace:
+      - "C:/Program Files/CMake/share/cmake-4.1/Modules/Compiler/GNU-FindBinUtils.cmake:30 (find_program)"
+      - "C:/Program Files/CMake/share/cmake-4.1/Modules/CMakeDetermineCCompiler.cmake:201 (include)"
+      - "CMakeLists.txt:2 (project)"
+    mode: "program"
+    variable: "CMAKE_C_COMPILER_RANLIB"
+    description: "A wrapper around 'ranlib' adding the appropriate '--plugin' option for the GCC compiler"
+    settings:
+      SearchFramework: "NEVER"
+      SearchAppBundle: "NEVER"
+      CMAKE_FIND_USE_CMAKE_PATH: false
+      CMAKE_FIND_USE_CMAKE_ENVIRONMENT_PATH: false
+      CMAKE_FIND_USE_SYSTEM_ENVIRONMENT_PATH: true
+      CMAKE_FIND_USE_CMAKE_SYSTEM_PATH: true
+      CMAKE_FIND_USE_INSTALL_PREFIX: true
+    names:
+      - "gcc-ranlib-15.0"
+      - "gcc-ranlib-15"
+      - "gcc-ranlib15"
+      - "gcc-ranlib"
+    candidate_directories:
+      - "C:/Program Files/RedPanda-Cpp/mingw64-ucrt-15/bin/"
+      - "C:/Windows/System32/"
+      - "C:/Windows/"
+      - "C:/Windows/System32/wbem/"
+      - "C:/Windows/System32/WindowsPowerShell/v1.0/"
+      - "C:/Windows/System32/OpenSSH/"
+      - "C:/Program Files/Microsoft SQL Server/150/Tools/Binn/"
+      - "C:/Program Files/Microsoft SQL Server/Client SDK/ODBC/170/Tools/Binn/"
+      - "C:/Program Files/CMake/bin/"
+      - "C:/Program Files/Git/cmd/"
+      - "C:/Program Files/dotnet/"
+      - "C:/Program Files (x86)/Windows Kits/10/Windows Performance Toolkit/"
+      - "C:/Users/Administrator/AppData/Local/Programs/oh-my-posh/bin/"
+      - "C:/Users/Administrator/AppData/Local/Microsoft/WindowsApps/"
+      - "C:/Users/Administrator/AppData/Local/Programs/Microsoft VS Code/bin/"
+      - "C:/Users/Administrator/.dotnet/tools/"
+      - "C:/Users/Administrator/AppData/Local/GitHubDesktop/bin/"
+    searched_directories:
+      - "C:/Program Files/RedPanda-Cpp/mingw64-ucrt-15/bin/gcc-ranlib-15.0.com"
+      - "C:/Program Files/RedPanda-Cpp/mingw64-ucrt-15/bin/gcc-ranlib-15.0.exe"
+      - "C:/Program Files/RedPanda-Cpp/mingw64-ucrt-15/bin/gcc-ranlib-15.0"
+      - "C:/Windows/System32/gcc-ranlib-15.0.com"
+      - "C:/Windows/System32/gcc-ranlib-15.0.exe"
+      - "C:/Windows/System32/gcc-ranlib-15.0"
+      - "C:/Windows/gcc-ranlib-15.0.com"
+      - "C:/Windows/gcc-ranlib-15.0.exe"
+      - "C:/Windows/gcc-ranlib-15.0"
+      - "C:/Windows/System32/wbem/gcc-ranlib-15.0.com"
+      - "C:/Windows/System32/wbem/gcc-ranlib-15.0.exe"
+      - "C:/Windows/System32/wbem/gcc-ranlib-15.0"
+      - "C:/Windows/System32/WindowsPowerShell/v1.0/gcc-ranlib-15.0.com"
+      - "C:/Windows/System32/WindowsPowerShell/v1.0/gcc-ranlib-15.0.exe"
+      - "C:/Windows/System32/WindowsPowerShell/v1.0/gcc-ranlib-15.0"
+      - "C:/Windows/System32/OpenSSH/gcc-ranlib-15.0.com"
+      - "C:/Windows/System32/OpenSSH/gcc-ranlib-15.0.exe"
+      - "C:/Windows/System32/OpenSSH/gcc-ranlib-15.0"
+      - "C:/Program Files/Microsoft SQL Server/150/Tools/Binn/gcc-ranlib-15.0.com"
+      - "C:/Program Files/Microsoft SQL Server/150/Tools/Binn/gcc-ranlib-15.0.exe"
+      - "C:/Program Files/Microsoft SQL Server/150/Tools/Binn/gcc-ranlib-15.0"
+      - "C:/Program Files/Microsoft SQL Server/Client SDK/ODBC/170/Tools/Binn/gcc-ranlib-15.0.com"
+      - "C:/Program Files/Microsoft SQL Server/Client SDK/ODBC/170/Tools/Binn/gcc-ranlib-15.0.exe"
+      - "C:/Program Files/Microsoft SQL Server/Client SDK/ODBC/170/Tools/Binn/gcc-ranlib-15.0"
+      - "C:/Program Files/CMake/bin/gcc-ranlib-15.0.com"
+      - "C:/Program Files/CMake/bin/gcc-ranlib-15.0.exe"
+      - "C:/Program Files/CMake/bin/gcc-ranlib-15.0"
+      - "C:/Program Files/Git/cmd/gcc-ranlib-15.0.com"
+      - "C:/Program Files/Git/cmd/gcc-ranlib-15.0.exe"
+      - "C:/Program Files/Git/cmd/gcc-ranlib-15.0"
+      - "C:/Program Files/dotnet/gcc-ranlib-15.0.com"
+      - "C:/Program Files/dotnet/gcc-ranlib-15.0.exe"
+      - "C:/Program Files/dotnet/gcc-ranlib-15.0"
+      - "C:/Program Files (x86)/Windows Kits/10/Windows Performance Toolkit/gcc-ranlib-15.0.com"
+      - "C:/Program Files (x86)/Windows Kits/10/Windows Performance Toolkit/gcc-ranlib-15.0.exe"
+      - "C:/Program Files (x86)/Windows Kits/10/Windows Performance Toolkit/gcc-ranlib-15.0"
+      - "C:/Users/Administrator/AppData/Local/Programs/oh-my-posh/bin/gcc-ranlib-15.0.com"
+      - "C:/Users/Administrator/AppData/Local/Programs/oh-my-posh/bin/gcc-ranlib-15.0.exe"
+      - "C:/Users/Administrator/AppData/Local/Programs/oh-my-posh/bin/gcc-ranlib-15.0"
+      - "C:/Users/Administrator/AppData/Local/Microsoft/WindowsApps/gcc-ranlib-15.0.com"
+      - "C:/Users/Administrator/AppData/Local/Microsoft/WindowsApps/gcc-ranlib-15.0.exe"
+      - "C:/Users/Administrator/AppData/Local/Microsoft/WindowsApps/gcc-ranlib-15.0"
+      - "C:/Users/Administrator/AppData/Local/Programs/Microsoft VS Code/bin/gcc-ranlib-15.0.com"
+      - "C:/Users/Administrator/AppData/Local/Programs/Microsoft VS Code/bin/gcc-ranlib-15.0.exe"
+      - "C:/Users/Administrator/AppData/Local/Programs/Microsoft VS Code/bin/gcc-ranlib-15.0"
+      - "C:/Users/Administrator/.dotnet/tools/gcc-ranlib-15.0.com"
+      - "C:/Users/Administrator/.dotnet/tools/gcc-ranlib-15.0.exe"
+      - "C:/Users/Administrator/.dotnet/tools/gcc-ranlib-15.0"
+      - "C:/Users/Administrator/AppData/Local/GitHubDesktop/bin/gcc-ranlib-15.0.com"
+      - "C:/Users/Administrator/AppData/Local/GitHubDesktop/bin/gcc-ranlib-15.0.exe"
+      - "C:/Users/Administrator/AppData/Local/GitHubDesktop/bin/gcc-ranlib-15.0"
+      - "C:/Program Files/RedPanda-Cpp/mingw64-ucrt-15/bin/gcc-ranlib-15.com"
+      - "C:/Program Files/RedPanda-Cpp/mingw64-ucrt-15/bin/gcc-ranlib-15.exe"
+      - "C:/Program Files/RedPanda-Cpp/mingw64-ucrt-15/bin/gcc-ranlib-15"
+      - "C:/Windows/System32/gcc-ranlib-15.com"
+      - "C:/Windows/System32/gcc-ranlib-15.exe"
+      - "C:/Windows/System32/gcc-ranlib-15"
+      - "C:/Windows/gcc-ranlib-15.com"
+      - "C:/Windows/gcc-ranlib-15.exe"
+      - "C:/Windows/gcc-ranlib-15"
+      - "C:/Windows/System32/wbem/gcc-ranlib-15.com"
+      - "C:/Windows/System32/wbem/gcc-ranlib-15.exe"
+      - "C:/Windows/System32/wbem/gcc-ranlib-15"
+      - "C:/Windows/System32/WindowsPowerShell/v1.0/gcc-ranlib-15.com"
+      - "C:/Windows/System32/WindowsPowerShell/v1.0/gcc-ranlib-15.exe"
+      - "C:/Windows/System32/WindowsPowerShell/v1.0/gcc-ranlib-15"
+      - "C:/Windows/System32/OpenSSH/gcc-ranlib-15.com"
+      - "C:/Windows/System32/OpenSSH/gcc-ranlib-15.exe"
+      - "C:/Windows/System32/OpenSSH/gcc-ranlib-15"
+      - "C:/Program Files/Microsoft SQL Server/150/Tools/Binn/gcc-ranlib-15.com"
+      - "C:/Program Files/Microsoft SQL Server/150/Tools/Binn/gcc-ranlib-15.exe"
+      - "C:/Program Files/Microsoft SQL Server/150/Tools/Binn/gcc-ranlib-15"
+      - "C:/Program Files/Microsoft SQL Server/Client SDK/ODBC/170/Tools/Binn/gcc-ranlib-15.com"
+      - "C:/Program Files/Microsoft SQL Server/Client SDK/ODBC/170/Tools/Binn/gcc-ranlib-15.exe"
+      - "C:/Program Files/Microsoft SQL Server/Client SDK/ODBC/170/Tools/Binn/gcc-ranlib-15"
+      - "C:/Program Files/CMake/bin/gcc-ranlib-15.com"
+      - "C:/Program Files/CMake/bin/gcc-ranlib-15.exe"
+      - "C:/Program Files/CMake/bin/gcc-ranlib-15"
+      - "C:/Program Files/Git/cmd/gcc-ranlib-15.com"
+      - "C:/Program Files/Git/cmd/gcc-ranlib-15.exe"
+      - "C:/Program Files/Git/cmd/gcc-ranlib-15"
+      - "C:/Program Files/dotnet/gcc-ranlib-15.com"
+      - "C:/Program Files/dotnet/gcc-ranlib-15.exe"
+      - "C:/Program Files/dotnet/gcc-ranlib-15"
+      - "C:/Program Files (x86)/Windows Kits/10/Windows Performance Toolkit/gcc-ranlib-15.com"
+      - "C:/Program Files (x86)/Windows Kits/10/Windows Performance Toolkit/gcc-ranlib-15.exe"
+      - "C:/Program Files (x86)/Windows Kits/10/Windows Performance Toolkit/gcc-ranlib-15"
+      - "C:/Users/Administrator/AppData/Local/Programs/oh-my-posh/bin/gcc-ranlib-15.com"
+      - "C:/Users/Administrator/AppData/Local/Programs/oh-my-posh/bin/gcc-ranlib-15.exe"
+      - "C:/Users/Administrator/AppData/Local/Programs/oh-my-posh/bin/gcc-ranlib-15"
+      - "C:/Users/Administrator/AppData/Local/Microsoft/WindowsApps/gcc-ranlib-15.com"
+      - "C:/Users/Administrator/AppData/Local/Microsoft/WindowsApps/gcc-ranlib-15.exe"
+      - "C:/Users/Administrator/AppData/Local/Microsoft/WindowsApps/gcc-ranlib-15"
+      - "C:/Users/Administrator/AppData/Local/Programs/Microsoft VS Code/bin/gcc-ranlib-15.com"
+      - "C:/Users/Administrator/AppData/Local/Programs/Microsoft VS Code/bin/gcc-ranlib-15.exe"
+      - "C:/Users/Administrator/AppData/Local/Programs/Microsoft VS Code/bin/gcc-ranlib-15"
+      - "C:/Users/Administrator/.dotnet/tools/gcc-ranlib-15.com"
+      - "C:/Users/Administrator/.dotnet/tools/gcc-ranlib-15.exe"
+      - "C:/Users/Administrator/.dotnet/tools/gcc-ranlib-15"
+      - "C:/Users/Administrator/AppData/Local/GitHubDesktop/bin/gcc-ranlib-15.com"
+      - "C:/Users/Administrator/AppData/Local/GitHubDesktop/bin/gcc-ranlib-15.exe"
+      - "C:/Users/Administrator/AppData/Local/GitHubDesktop/bin/gcc-ranlib-15"
+      - "C:/Program Files/RedPanda-Cpp/mingw64-ucrt-15/bin/gcc-ranlib15.com"
+      - "C:/Program Files/RedPanda-Cpp/mingw64-ucrt-15/bin/gcc-ranlib15.exe"
+      - "C:/Program Files/RedPanda-Cpp/mingw64-ucrt-15/bin/gcc-ranlib15"
+      - "C:/Windows/System32/gcc-ranlib15.com"
+      - "C:/Windows/System32/gcc-ranlib15.exe"
+      - "C:/Windows/System32/gcc-ranlib15"
+      - "C:/Windows/gcc-ranlib15.com"
+      - "C:/Windows/gcc-ranlib15.exe"
+      - "C:/Windows/gcc-ranlib15"
+      - "C:/Windows/System32/wbem/gcc-ranlib15.com"
+      - "C:/Windows/System32/wbem/gcc-ranlib15.exe"
+      - "C:/Windows/System32/wbem/gcc-ranlib15"
+      - "C:/Windows/System32/WindowsPowerShell/v1.0/gcc-ranlib15.com"
+      - "C:/Windows/System32/WindowsPowerShell/v1.0/gcc-ranlib15.exe"
+      - "C:/Windows/System32/WindowsPowerShell/v1.0/gcc-ranlib15"
+      - "C:/Windows/System32/OpenSSH/gcc-ranlib15.com"
+      - "C:/Windows/System32/OpenSSH/gcc-ranlib15.exe"
+      - "C:/Windows/System32/OpenSSH/gcc-ranlib15"
+      - "C:/Program Files/Microsoft SQL Server/150/Tools/Binn/gcc-ranlib15.com"
+      - "C:/Program Files/Microsoft SQL Server/150/Tools/Binn/gcc-ranlib15.exe"
+      - "C:/Program Files/Microsoft SQL Server/150/Tools/Binn/gcc-ranlib15"
+      - "C:/Program Files/Microsoft SQL Server/Client SDK/ODBC/170/Tools/Binn/gcc-ranlib15.com"
+      - "C:/Program Files/Microsoft SQL Server/Client SDK/ODBC/170/Tools/Binn/gcc-ranlib15.exe"
+      - "C:/Program Files/Microsoft SQL Server/Client SDK/ODBC/170/Tools/Binn/gcc-ranlib15"
+      - "C:/Program Files/CMake/bin/gcc-ranlib15.com"
+      - "C:/Program Files/CMake/bin/gcc-ranlib15.exe"
+      - "C:/Program Files/CMake/bin/gcc-ranlib15"
+      - "C:/Program Files/Git/cmd/gcc-ranlib15.com"
+      - "C:/Program Files/Git/cmd/gcc-ranlib15.exe"
+      - "C:/Program Files/Git/cmd/gcc-ranlib15"
+      - "C:/Program Files/dotnet/gcc-ranlib15.com"
+      - "C:/Program Files/dotnet/gcc-ranlib15.exe"
+      - "C:/Program Files/dotnet/gcc-ranlib15"
+      - "C:/Program Files (x86)/Windows Kits/10/Windows Performance Toolkit/gcc-ranlib15.com"
+      - "C:/Program Files (x86)/Windows Kits/10/Windows Performance Toolkit/gcc-ranlib15.exe"
+      - "C:/Program Files (x86)/Windows Kits/10/Windows Performance Toolkit/gcc-ranlib15"
+      - "C:/Users/Administrator/AppData/Local/Programs/oh-my-posh/bin/gcc-ranlib15.com"
+      - "C:/Users/Administrator/AppData/Local/Programs/oh-my-posh/bin/gcc-ranlib15.exe"
+      - "C:/Users/Administrator/AppData/Local/Programs/oh-my-posh/bin/gcc-ranlib15"
+      - "C:/Users/Administrator/AppData/Local/Microsoft/WindowsApps/gcc-ranlib15.com"
+      - "C:/Users/Administrator/AppData/Local/Microsoft/WindowsApps/gcc-ranlib15.exe"
+      - "C:/Users/Administrator/AppData/Local/Microsoft/WindowsApps/gcc-ranlib15"
+      - "C:/Users/Administrator/AppData/Local/Programs/Microsoft VS Code/bin/gcc-ranlib15.com"
+      - "C:/Users/Administrator/AppData/Local/Programs/Microsoft VS Code/bin/gcc-ranlib15.exe"
+      - "C:/Users/Administrator/AppData/Local/Programs/Microsoft VS Code/bin/gcc-ranlib15"
+      - "C:/Users/Administrator/.dotnet/tools/gcc-ranlib15.com"
+      - "C:/Users/Administrator/.dotnet/tools/gcc-ranlib15.exe"
+      - "C:/Users/Administrator/.dotnet/tools/gcc-ranlib15"
+      - "C:/Users/Administrator/AppData/Local/GitHubDesktop/bin/gcc-ranlib15.com"
+      - "C:/Users/Administrator/AppData/Local/GitHubDesktop/bin/gcc-ranlib15.exe"
+      - "C:/Users/Administrator/AppData/Local/GitHubDesktop/bin/gcc-ranlib15"
+      - "C:/Program Files/RedPanda-Cpp/mingw64-ucrt-15/bin/gcc-ranlib.com"
+    found: "C:/Program Files/RedPanda-Cpp/mingw64-ucrt-15/bin/gcc-ranlib.exe"
+    search_context:
+      ENV{PATH}:
+        - "C:\\Program Files\\RedPanda-Cpp\\mingw64-ucrt-15\\bin"
+        - "C:\\Program Files\\RedPanda-Cpp\\mingw64-ucrt-15\\bin"
+        - "C:\\Windows\\system32"
+        - "C:\\Windows"
+        - "C:\\Windows\\System32\\Wbem"
+        - "C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\"
+        - "C:\\Windows\\System32\\OpenSSH\\"
+        - "C:\\Program Files\\Microsoft SQL Server\\150\\Tools\\Binn\\"
+        - "C:\\Program Files\\Microsoft SQL Server\\Client SDK\\ODBC\\170\\Tools\\Binn\\"
+        - "C:\\Program Files\\RedPanda-Cpp\\mingw64-ucrt-15\\bin"
+        - "C:\\Program Files\\CMake\\bin"
+        - "C:\\Program Files\\Git\\cmd"
+        - "C:\\Program Files\\dotnet\\"
+        - "C:\\Program Files (x86)\\Windows Kits\\10\\Windows Performance Toolkit\\"
+        - "C:\\Users\\Administrator\\AppData\\Local\\Programs\\oh-my-posh\\bin\\"
+        - "C:\\Users\\Administrator\\AppData\\Local\\Microsoft\\WindowsApps"
+        - "C:\\Users\\Administrator\\AppData\\Local\\Programs\\Microsoft VS Code\\bin"
+        - "C:\\Users\\Administrator\\.dotnet\\tools"
+        - "C:\\Users\\Administrator\\AppData\\Local\\GitHubDesktop\\bin"
+  -
+    kind: "find-v1"
+    backtrace:
+      - "C:/Program Files/CMake/share/cmake-4.1/Modules/CMakeDetermineCompilerId.cmake:462 (find_file)"
+      - "C:/Program Files/CMake/share/cmake-4.1/Modules/CMakeDetermineCompilerId.cmake:500 (CMAKE_DETERMINE_COMPILER_ID_WRITE)"
+      - "C:/Program Files/CMake/share/cmake-4.1/Modules/CMakeDetermineCompilerId.cmake:8 (CMAKE_DETERMINE_COMPILER_ID_BUILD)"
+      - "C:/Program Files/CMake/share/cmake-4.1/Modules/CMakeDetermineCompilerId.cmake:64 (__determine_compiler_id_test)"
+      - "C:/Program Files/CMake/share/cmake-4.1/Modules/CMakeDetermineCXXCompiler.cmake:125 (CMAKE_DETERMINE_COMPILER_ID)"
+      - "CMakeLists.txt:2 (project)"
+    mode: "file"
+    variable: "src_in"
+    description: "Path to a file."
+    settings:
+      SearchFramework: "NEVER"
+      SearchAppBundle: "NEVER"
+      CMAKE_FIND_USE_CMAKE_PATH: true
+      CMAKE_FIND_USE_CMAKE_ENVIRONMENT_PATH: true
+      CMAKE_FIND_USE_SYSTEM_ENVIRONMENT_PATH: true
+      CMAKE_FIND_USE_CMAKE_SYSTEM_PATH: true
+      CMAKE_FIND_USE_INSTALL_PREFIX: true
+    names:
+      - "CMakeCXXCompilerId.cpp.in"
+    candidate_directories:
+      - "C:/Program Files/CMake/share/cmake-4.1/Modules/"
+    found: "C:/Program Files/CMake/share/cmake-4.1/Modules/CMakeCXXCompilerId.cpp.in"
+    search_context:
+      ENV{PATH}:
+        - "C:\\Program Files\\RedPanda-Cpp\\mingw64-ucrt-15\\bin"
+        - "C:\\Program Files\\RedPanda-Cpp\\mingw64-ucrt-15\\bin"
+        - "C:\\Windows\\system32"
+        - "C:\\Windows"
+        - "C:\\Windows\\System32\\Wbem"
+        - "C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\"
+        - "C:\\Windows\\System32\\OpenSSH\\"
+        - "C:\\Program Files\\Microsoft SQL Server\\150\\Tools\\Binn\\"
+        - "C:\\Program Files\\Microsoft SQL Server\\Client SDK\\ODBC\\170\\Tools\\Binn\\"
+        - "C:\\Program Files\\RedPanda-Cpp\\mingw64-ucrt-15\\bin"
+        - "C:\\Program Files\\CMake\\bin"
+        - "C:\\Program Files\\Git\\cmd"
+        - "C:\\Program Files\\dotnet\\"
+        - "C:\\Program Files (x86)\\Windows Kits\\10\\Windows Performance Toolkit\\"
+        - "C:\\Users\\Administrator\\AppData\\Local\\Programs\\oh-my-posh\\bin\\"
+        - "C:\\Users\\Administrator\\AppData\\Local\\Microsoft\\WindowsApps"
+        - "C:\\Users\\Administrator\\AppData\\Local\\Programs\\Microsoft VS Code\\bin"
+        - "C:\\Users\\Administrator\\.dotnet\\tools"
+        - "C:\\Users\\Administrator\\AppData\\Local\\GitHubDesktop\\bin"
+  -
+    kind: "message-v1"
+    backtrace:
+      - "C:/Program Files/CMake/share/cmake-4.1/Modules/CMakeDetermineCompilerId.cmake:17 (message)"
+      - "C:/Program Files/CMake/share/cmake-4.1/Modules/CMakeDetermineCompilerId.cmake:64 (__determine_compiler_id_test)"
+      - "C:/Program Files/CMake/share/cmake-4.1/Modules/CMakeDetermineCXXCompiler.cmake:125 (CMAKE_DETERMINE_COMPILER_ID)"
+      - "CMakeLists.txt:2 (project)"
+    message: |
+      Compiling the CXX compiler identification source file "CMakeCXXCompilerId.cpp" succeeded.
+      Compiler: C:/Program Files/RedPanda-Cpp/mingw64-ucrt-15/bin/g++.exe 
+      Build flags: 
+      Id flags:  
+      
+      The output was:
+      0
+      
+      
+      Compilation of the CXX compiler identification source "CMakeCXXCompilerId.cpp" produced "a.exe"
+      
+      The CXX compiler identification is GNU, found in:
+        E:/GGCC Project/Projects/squaker/build/CMakeFiles/4.1.0-rc1/CompilerIdCXX/a.exe
+      
+  -
+    kind: "find-v1"
+    backtrace:
+      - "C:/Program Files/CMake/share/cmake-4.1/Modules/Compiler/GNU-FindBinUtils.cmake:18 (find_program)"
+      - "C:/Program Files/CMake/share/cmake-4.1/Modules/CMakeDetermineCXXCompiler.cmake:207 (include)"
+      - "CMakeLists.txt:2 (project)"
+    mode: "program"
+    variable: "CMAKE_CXX_COMPILER_AR"
+    description: "A wrapper around 'ar' adding the appropriate '--plugin' option for the GCC compiler"
+    settings:
+      SearchFramework: "NEVER"
+      SearchAppBundle: "NEVER"
+      CMAKE_FIND_USE_CMAKE_PATH: false
+      CMAKE_FIND_USE_CMAKE_ENVIRONMENT_PATH: false
+      CMAKE_FIND_USE_SYSTEM_ENVIRONMENT_PATH: true
+      CMAKE_FIND_USE_CMAKE_SYSTEM_PATH: true
+      CMAKE_FIND_USE_INSTALL_PREFIX: true
+    names:
+      - "gcc-ar-15.0"
+      - "gcc-ar-15"
+      - "gcc-ar15"
+      - "gcc-ar"
+    candidate_directories:
+      - "C:/Program Files/RedPanda-Cpp/mingw64-ucrt-15/bin/"
+      - "C:/Windows/System32/"
+      - "C:/Windows/"
+      - "C:/Windows/System32/wbem/"
+      - "C:/Windows/System32/WindowsPowerShell/v1.0/"
+      - "C:/Windows/System32/OpenSSH/"
+      - "C:/Program Files/Microsoft SQL Server/150/Tools/Binn/"
+      - "C:/Program Files/Microsoft SQL Server/Client SDK/ODBC/170/Tools/Binn/"
+      - "C:/Program Files/CMake/bin/"
+      - "C:/Program Files/Git/cmd/"
+      - "C:/Program Files/dotnet/"
+      - "C:/Program Files (x86)/Windows Kits/10/Windows Performance Toolkit/"
+      - "C:/Users/Administrator/AppData/Local/Programs/oh-my-posh/bin/"
+      - "C:/Users/Administrator/AppData/Local/Microsoft/WindowsApps/"
+      - "C:/Users/Administrator/AppData/Local/Programs/Microsoft VS Code/bin/"
+      - "C:/Users/Administrator/.dotnet/tools/"
+      - "C:/Users/Administrator/AppData/Local/GitHubDesktop/bin/"
+    searched_directories:
+      - "C:/Program Files/RedPanda-Cpp/mingw64-ucrt-15/bin/gcc-ar-15.0.com"
+      - "C:/Program Files/RedPanda-Cpp/mingw64-ucrt-15/bin/gcc-ar-15.0.exe"
+      - "C:/Program Files/RedPanda-Cpp/mingw64-ucrt-15/bin/gcc-ar-15.0"
+      - "C:/Windows/System32/gcc-ar-15.0.com"
+      - "C:/Windows/System32/gcc-ar-15.0.exe"
+      - "C:/Windows/System32/gcc-ar-15.0"
+      - "C:/Windows/gcc-ar-15.0.com"
+      - "C:/Windows/gcc-ar-15.0.exe"
+      - "C:/Windows/gcc-ar-15.0"
+      - "C:/Windows/System32/wbem/gcc-ar-15.0.com"
+      - "C:/Windows/System32/wbem/gcc-ar-15.0.exe"
+      - "C:/Windows/System32/wbem/gcc-ar-15.0"
+      - "C:/Windows/System32/WindowsPowerShell/v1.0/gcc-ar-15.0.com"
+      - "C:/Windows/System32/WindowsPowerShell/v1.0/gcc-ar-15.0.exe"
+      - "C:/Windows/System32/WindowsPowerShell/v1.0/gcc-ar-15.0"
+      - "C:/Windows/System32/OpenSSH/gcc-ar-15.0.com"
+      - "C:/Windows/System32/OpenSSH/gcc-ar-15.0.exe"
+      - "C:/Windows/System32/OpenSSH/gcc-ar-15.0"
+      - "C:/Program Files/Microsoft SQL Server/150/Tools/Binn/gcc-ar-15.0.com"
+      - "C:/Program Files/Microsoft SQL Server/150/Tools/Binn/gcc-ar-15.0.exe"
+      - "C:/Program Files/Microsoft SQL Server/150/Tools/Binn/gcc-ar-15.0"
+      - "C:/Program Files/Microsoft SQL Server/Client SDK/ODBC/170/Tools/Binn/gcc-ar-15.0.com"
+      - "C:/Program Files/Microsoft SQL Server/Client SDK/ODBC/170/Tools/Binn/gcc-ar-15.0.exe"
+      - "C:/Program Files/Microsoft SQL Server/Client SDK/ODBC/170/Tools/Binn/gcc-ar-15.0"
+      - "C:/Program Files/CMake/bin/gcc-ar-15.0.com"
+      - "C:/Program Files/CMake/bin/gcc-ar-15.0.exe"
+      - "C:/Program Files/CMake/bin/gcc-ar-15.0"
+      - "C:/Program Files/Git/cmd/gcc-ar-15.0.com"
+      - "C:/Program Files/Git/cmd/gcc-ar-15.0.exe"
+      - "C:/Program Files/Git/cmd/gcc-ar-15.0"
+      - "C:/Program Files/dotnet/gcc-ar-15.0.com"
+      - "C:/Program Files/dotnet/gcc-ar-15.0.exe"
+      - "C:/Program Files/dotnet/gcc-ar-15.0"
+      - "C:/Program Files (x86)/Windows Kits/10/Windows Performance Toolkit/gcc-ar-15.0.com"
+      - "C:/Program Files (x86)/Windows Kits/10/Windows Performance Toolkit/gcc-ar-15.0.exe"
+      - "C:/Program Files (x86)/Windows Kits/10/Windows Performance Toolkit/gcc-ar-15.0"
+      - "C:/Users/Administrator/AppData/Local/Programs/oh-my-posh/bin/gcc-ar-15.0.com"
+      - "C:/Users/Administrator/AppData/Local/Programs/oh-my-posh/bin/gcc-ar-15.0.exe"
+      - "C:/Users/Administrator/AppData/Local/Programs/oh-my-posh/bin/gcc-ar-15.0"
+      - "C:/Users/Administrator/AppData/Local/Microsoft/WindowsApps/gcc-ar-15.0.com"
+      - "C:/Users/Administrator/AppData/Local/Microsoft/WindowsApps/gcc-ar-15.0.exe"
+      - "C:/Users/Administrator/AppData/Local/Microsoft/WindowsApps/gcc-ar-15.0"
+      - "C:/Users/Administrator/AppData/Local/Programs/Microsoft VS Code/bin/gcc-ar-15.0.com"
+      - "C:/Users/Administrator/AppData/Local/Programs/Microsoft VS Code/bin/gcc-ar-15.0.exe"
+      - "C:/Users/Administrator/AppData/Local/Programs/Microsoft VS Code/bin/gcc-ar-15.0"
+      - "C:/Users/Administrator/.dotnet/tools/gcc-ar-15.0.com"
+      - "C:/Users/Administrator/.dotnet/tools/gcc-ar-15.0.exe"
+      - "C:/Users/Administrator/.dotnet/tools/gcc-ar-15.0"
+      - "C:/Users/Administrator/AppData/Local/GitHubDesktop/bin/gcc-ar-15.0.com"
+      - "C:/Users/Administrator/AppData/Local/GitHubDesktop/bin/gcc-ar-15.0.exe"
+      - "C:/Users/Administrator/AppData/Local/GitHubDesktop/bin/gcc-ar-15.0"
+      - "C:/Program Files/RedPanda-Cpp/mingw64-ucrt-15/bin/gcc-ar-15.com"
+      - "C:/Program Files/RedPanda-Cpp/mingw64-ucrt-15/bin/gcc-ar-15.exe"
+      - "C:/Program Files/RedPanda-Cpp/mingw64-ucrt-15/bin/gcc-ar-15"
+      - "C:/Windows/System32/gcc-ar-15.com"
+      - "C:/Windows/System32/gcc-ar-15.exe"
+      - "C:/Windows/System32/gcc-ar-15"
+      - "C:/Windows/gcc-ar-15.com"
+      - "C:/Windows/gcc-ar-15.exe"
+      - "C:/Windows/gcc-ar-15"
+      - "C:/Windows/System32/wbem/gcc-ar-15.com"
+      - "C:/Windows/System32/wbem/gcc-ar-15.exe"
+      - "C:/Windows/System32/wbem/gcc-ar-15"
+      - "C:/Windows/System32/WindowsPowerShell/v1.0/gcc-ar-15.com"
+      - "C:/Windows/System32/WindowsPowerShell/v1.0/gcc-ar-15.exe"
+      - "C:/Windows/System32/WindowsPowerShell/v1.0/gcc-ar-15"
+      - "C:/Windows/System32/OpenSSH/gcc-ar-15.com"
+      - "C:/Windows/System32/OpenSSH/gcc-ar-15.exe"
+      - "C:/Windows/System32/OpenSSH/gcc-ar-15"
+      - "C:/Program Files/Microsoft SQL Server/150/Tools/Binn/gcc-ar-15.com"
+      - "C:/Program Files/Microsoft SQL Server/150/Tools/Binn/gcc-ar-15.exe"
+      - "C:/Program Files/Microsoft SQL Server/150/Tools/Binn/gcc-ar-15"
+      - "C:/Program Files/Microsoft SQL Server/Client SDK/ODBC/170/Tools/Binn/gcc-ar-15.com"
+      - "C:/Program Files/Microsoft SQL Server/Client SDK/ODBC/170/Tools/Binn/gcc-ar-15.exe"
+      - "C:/Program Files/Microsoft SQL Server/Client SDK/ODBC/170/Tools/Binn/gcc-ar-15"
+      - "C:/Program Files/CMake/bin/gcc-ar-15.com"
+      - "C:/Program Files/CMake/bin/gcc-ar-15.exe"
+      - "C:/Program Files/CMake/bin/gcc-ar-15"
+      - "C:/Program Files/Git/cmd/gcc-ar-15.com"
+      - "C:/Program Files/Git/cmd/gcc-ar-15.exe"
+      - "C:/Program Files/Git/cmd/gcc-ar-15"
+      - "C:/Program Files/dotnet/gcc-ar-15.com"
+      - "C:/Program Files/dotnet/gcc-ar-15.exe"
+      - "C:/Program Files/dotnet/gcc-ar-15"
+      - "C:/Program Files (x86)/Windows Kits/10/Windows Performance Toolkit/gcc-ar-15.com"
+      - "C:/Program Files (x86)/Windows Kits/10/Windows Performance Toolkit/gcc-ar-15.exe"
+      - "C:/Program Files (x86)/Windows Kits/10/Windows Performance Toolkit/gcc-ar-15"
+      - "C:/Users/Administrator/AppData/Local/Programs/oh-my-posh/bin/gcc-ar-15.com"
+      - "C:/Users/Administrator/AppData/Local/Programs/oh-my-posh/bin/gcc-ar-15.exe"
+      - "C:/Users/Administrator/AppData/Local/Programs/oh-my-posh/bin/gcc-ar-15"
+      - "C:/Users/Administrator/AppData/Local/Microsoft/WindowsApps/gcc-ar-15.com"
+      - "C:/Users/Administrator/AppData/Local/Microsoft/WindowsApps/gcc-ar-15.exe"
+      - "C:/Users/Administrator/AppData/Local/Microsoft/WindowsApps/gcc-ar-15"
+      - "C:/Users/Administrator/AppData/Local/Programs/Microsoft VS Code/bin/gcc-ar-15.com"
+      - "C:/Users/Administrator/AppData/Local/Programs/Microsoft VS Code/bin/gcc-ar-15.exe"
+      - "C:/Users/Administrator/AppData/Local/Programs/Microsoft VS Code/bin/gcc-ar-15"
+      - "C:/Users/Administrator/.dotnet/tools/gcc-ar-15.com"
+      - "C:/Users/Administrator/.dotnet/tools/gcc-ar-15.exe"
+      - "C:/Users/Administrator/.dotnet/tools/gcc-ar-15"
+      - "C:/Users/Administrator/AppData/Local/GitHubDesktop/bin/gcc-ar-15.com"
+      - "C:/Users/Administrator/AppData/Local/GitHubDesktop/bin/gcc-ar-15.exe"
+      - "C:/Users/Administrator/AppData/Local/GitHubDesktop/bin/gcc-ar-15"
+      - "C:/Program Files/RedPanda-Cpp/mingw64-ucrt-15/bin/gcc-ar15.com"
+      - "C:/Program Files/RedPanda-Cpp/mingw64-ucrt-15/bin/gcc-ar15.exe"
+      - "C:/Program Files/RedPanda-Cpp/mingw64-ucrt-15/bin/gcc-ar15"
+      - "C:/Windows/System32/gcc-ar15.com"
+      - "C:/Windows/System32/gcc-ar15.exe"
+      - "C:/Windows/System32/gcc-ar15"
+      - "C:/Windows/gcc-ar15.com"
+      - "C:/Windows/gcc-ar15.exe"
+      - "C:/Windows/gcc-ar15"
+      - "C:/Windows/System32/wbem/gcc-ar15.com"
+      - "C:/Windows/System32/wbem/gcc-ar15.exe"
+      - "C:/Windows/System32/wbem/gcc-ar15"
+      - "C:/Windows/System32/WindowsPowerShell/v1.0/gcc-ar15.com"
+      - "C:/Windows/System32/WindowsPowerShell/v1.0/gcc-ar15.exe"
+      - "C:/Windows/System32/WindowsPowerShell/v1.0/gcc-ar15"
+      - "C:/Windows/System32/OpenSSH/gcc-ar15.com"
+      - "C:/Windows/System32/OpenSSH/gcc-ar15.exe"
+      - "C:/Windows/System32/OpenSSH/gcc-ar15"
+      - "C:/Program Files/Microsoft SQL Server/150/Tools/Binn/gcc-ar15.com"
+      - "C:/Program Files/Microsoft SQL Server/150/Tools/Binn/gcc-ar15.exe"
+      - "C:/Program Files/Microsoft SQL Server/150/Tools/Binn/gcc-ar15"
+      - "C:/Program Files/Microsoft SQL Server/Client SDK/ODBC/170/Tools/Binn/gcc-ar15.com"
+      - "C:/Program Files/Microsoft SQL Server/Client SDK/ODBC/170/Tools/Binn/gcc-ar15.exe"
+      - "C:/Program Files/Microsoft SQL Server/Client SDK/ODBC/170/Tools/Binn/gcc-ar15"
+      - "C:/Program Files/CMake/bin/gcc-ar15.com"
+      - "C:/Program Files/CMake/bin/gcc-ar15.exe"
+      - "C:/Program Files/CMake/bin/gcc-ar15"
+      - "C:/Program Files/Git/cmd/gcc-ar15.com"
+      - "C:/Program Files/Git/cmd/gcc-ar15.exe"
+      - "C:/Program Files/Git/cmd/gcc-ar15"
+      - "C:/Program Files/dotnet/gcc-ar15.com"
+      - "C:/Program Files/dotnet/gcc-ar15.exe"
+      - "C:/Program Files/dotnet/gcc-ar15"
+      - "C:/Program Files (x86)/Windows Kits/10/Windows Performance Toolkit/gcc-ar15.com"
+      - "C:/Program Files (x86)/Windows Kits/10/Windows Performance Toolkit/gcc-ar15.exe"
+      - "C:/Program Files (x86)/Windows Kits/10/Windows Performance Toolkit/gcc-ar15"
+      - "C:/Users/Administrator/AppData/Local/Programs/oh-my-posh/bin/gcc-ar15.com"
+      - "C:/Users/Administrator/AppData/Local/Programs/oh-my-posh/bin/gcc-ar15.exe"
+      - "C:/Users/Administrator/AppData/Local/Programs/oh-my-posh/bin/gcc-ar15"
+      - "C:/Users/Administrator/AppData/Local/Microsoft/WindowsApps/gcc-ar15.com"
+      - "C:/Users/Administrator/AppData/Local/Microsoft/WindowsApps/gcc-ar15.exe"
+      - "C:/Users/Administrator/AppData/Local/Microsoft/WindowsApps/gcc-ar15"
+      - "C:/Users/Administrator/AppData/Local/Programs/Microsoft VS Code/bin/gcc-ar15.com"
+      - "C:/Users/Administrator/AppData/Local/Programs/Microsoft VS Code/bin/gcc-ar15.exe"
+      - "C:/Users/Administrator/AppData/Local/Programs/Microsoft VS Code/bin/gcc-ar15"
+      - "C:/Users/Administrator/.dotnet/tools/gcc-ar15.com"
+      - "C:/Users/Administrator/.dotnet/tools/gcc-ar15.exe"
+      - "C:/Users/Administrator/.dotnet/tools/gcc-ar15"
+      - "C:/Users/Administrator/AppData/Local/GitHubDesktop/bin/gcc-ar15.com"
+      - "C:/Users/Administrator/AppData/Local/GitHubDesktop/bin/gcc-ar15.exe"
+      - "C:/Users/Administrator/AppData/Local/GitHubDesktop/bin/gcc-ar15"
+      - "C:/Program Files/RedPanda-Cpp/mingw64-ucrt-15/bin/gcc-ar.com"
+    found: "C:/Program Files/RedPanda-Cpp/mingw64-ucrt-15/bin/gcc-ar.exe"
+    search_context:
+      ENV{PATH}:
+        - "C:\\Program Files\\RedPanda-Cpp\\mingw64-ucrt-15\\bin"
+        - "C:\\Program Files\\RedPanda-Cpp\\mingw64-ucrt-15\\bin"
+        - "C:\\Windows\\system32"
+        - "C:\\Windows"
+        - "C:\\Windows\\System32\\Wbem"
+        - "C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\"
+        - "C:\\Windows\\System32\\OpenSSH\\"
+        - "C:\\Program Files\\Microsoft SQL Server\\150\\Tools\\Binn\\"
+        - "C:\\Program Files\\Microsoft SQL Server\\Client SDK\\ODBC\\170\\Tools\\Binn\\"
+        - "C:\\Program Files\\RedPanda-Cpp\\mingw64-ucrt-15\\bin"
+        - "C:\\Program Files\\CMake\\bin"
+        - "C:\\Program Files\\Git\\cmd"
+        - "C:\\Program Files\\dotnet\\"
+        - "C:\\Program Files (x86)\\Windows Kits\\10\\Windows Performance Toolkit\\"
+        - "C:\\Users\\Administrator\\AppData\\Local\\Programs\\oh-my-posh\\bin\\"
+        - "C:\\Users\\Administrator\\AppData\\Local\\Microsoft\\WindowsApps"
+        - "C:\\Users\\Administrator\\AppData\\Local\\Programs\\Microsoft VS Code\\bin"
+        - "C:\\Users\\Administrator\\.dotnet\\tools"
+        - "C:\\Users\\Administrator\\AppData\\Local\\GitHubDesktop\\bin"
+  -
+    kind: "find-v1"
+    backtrace:
+      - "C:/Program Files/CMake/share/cmake-4.1/Modules/Compiler/GNU-FindBinUtils.cmake:30 (find_program)"
+      - "C:/Program Files/CMake/share/cmake-4.1/Modules/CMakeDetermineCXXCompiler.cmake:207 (include)"
+      - "CMakeLists.txt:2 (project)"
+    mode: "program"
+    variable: "CMAKE_CXX_COMPILER_RANLIB"
+    description: "A wrapper around 'ranlib' adding the appropriate '--plugin' option for the GCC compiler"
+    settings:
+      SearchFramework: "NEVER"
+      SearchAppBundle: "NEVER"
+      CMAKE_FIND_USE_CMAKE_PATH: false
+      CMAKE_FIND_USE_CMAKE_ENVIRONMENT_PATH: false
+      CMAKE_FIND_USE_SYSTEM_ENVIRONMENT_PATH: true
+      CMAKE_FIND_USE_CMAKE_SYSTEM_PATH: true
+      CMAKE_FIND_USE_INSTALL_PREFIX: true
+    names:
+      - "gcc-ranlib-15.0"
+      - "gcc-ranlib-15"
+      - "gcc-ranlib15"
+      - "gcc-ranlib"
+    candidate_directories:
+      - "C:/Program Files/RedPanda-Cpp/mingw64-ucrt-15/bin/"
+      - "C:/Windows/System32/"
+      - "C:/Windows/"
+      - "C:/Windows/System32/wbem/"
+      - "C:/Windows/System32/WindowsPowerShell/v1.0/"
+      - "C:/Windows/System32/OpenSSH/"
+      - "C:/Program Files/Microsoft SQL Server/150/Tools/Binn/"
+      - "C:/Program Files/Microsoft SQL Server/Client SDK/ODBC/170/Tools/Binn/"
+      - "C:/Program Files/CMake/bin/"
+      - "C:/Program Files/Git/cmd/"
+      - "C:/Program Files/dotnet/"
+      - "C:/Program Files (x86)/Windows Kits/10/Windows Performance Toolkit/"
+      - "C:/Users/Administrator/AppData/Local/Programs/oh-my-posh/bin/"
+      - "C:/Users/Administrator/AppData/Local/Microsoft/WindowsApps/"
+      - "C:/Users/Administrator/AppData/Local/Programs/Microsoft VS Code/bin/"
+      - "C:/Users/Administrator/.dotnet/tools/"
+      - "C:/Users/Administrator/AppData/Local/GitHubDesktop/bin/"
+    searched_directories:
+      - "C:/Program Files/RedPanda-Cpp/mingw64-ucrt-15/bin/gcc-ranlib-15.0.com"
+      - "C:/Program Files/RedPanda-Cpp/mingw64-ucrt-15/bin/gcc-ranlib-15.0.exe"
+      - "C:/Program Files/RedPanda-Cpp/mingw64-ucrt-15/bin/gcc-ranlib-15.0"
+      - "C:/Windows/System32/gcc-ranlib-15.0.com"
+      - "C:/Windows/System32/gcc-ranlib-15.0.exe"
+      - "C:/Windows/System32/gcc-ranlib-15.0"
+      - "C:/Windows/gcc-ranlib-15.0.com"
+      - "C:/Windows/gcc-ranlib-15.0.exe"
+      - "C:/Windows/gcc-ranlib-15.0"
+      - "C:/Windows/System32/wbem/gcc-ranlib-15.0.com"
+      - "C:/Windows/System32/wbem/gcc-ranlib-15.0.exe"
+      - "C:/Windows/System32/wbem/gcc-ranlib-15.0"
+      - "C:/Windows/System32/WindowsPowerShell/v1.0/gcc-ranlib-15.0.com"
+      - "C:/Windows/System32/WindowsPowerShell/v1.0/gcc-ranlib-15.0.exe"
+      - "C:/Windows/System32/WindowsPowerShell/v1.0/gcc-ranlib-15.0"
+      - "C:/Windows/System32/OpenSSH/gcc-ranlib-15.0.com"
+      - "C:/Windows/System32/OpenSSH/gcc-ranlib-15.0.exe"
+      - "C:/Windows/System32/OpenSSH/gcc-ranlib-15.0"
+      - "C:/Program Files/Microsoft SQL Server/150/Tools/Binn/gcc-ranlib-15.0.com"
+      - "C:/Program Files/Microsoft SQL Server/150/Tools/Binn/gcc-ranlib-15.0.exe"
+      - "C:/Program Files/Microsoft SQL Server/150/Tools/Binn/gcc-ranlib-15.0"
+      - "C:/Program Files/Microsoft SQL Server/Client SDK/ODBC/170/Tools/Binn/gcc-ranlib-15.0.com"
+      - "C:/Program Files/Microsoft SQL Server/Client SDK/ODBC/170/Tools/Binn/gcc-ranlib-15.0.exe"
+      - "C:/Program Files/Microsoft SQL Server/Client SDK/ODBC/170/Tools/Binn/gcc-ranlib-15.0"
+      - "C:/Program Files/CMake/bin/gcc-ranlib-15.0.com"
+      - "C:/Program Files/CMake/bin/gcc-ranlib-15.0.exe"
+      - "C:/Program Files/CMake/bin/gcc-ranlib-15.0"
+      - "C:/Program Files/Git/cmd/gcc-ranlib-15.0.com"
+      - "C:/Program Files/Git/cmd/gcc-ranlib-15.0.exe"
+      - "C:/Program Files/Git/cmd/gcc-ranlib-15.0"
+      - "C:/Program Files/dotnet/gcc-ranlib-15.0.com"
+      - "C:/Program Files/dotnet/gcc-ranlib-15.0.exe"
+      - "C:/Program Files/dotnet/gcc-ranlib-15.0"
+      - "C:/Program Files (x86)/Windows Kits/10/Windows Performance Toolkit/gcc-ranlib-15.0.com"
+      - "C:/Program Files (x86)/Windows Kits/10/Windows Performance Toolkit/gcc-ranlib-15.0.exe"
+      - "C:/Program Files (x86)/Windows Kits/10/Windows Performance Toolkit/gcc-ranlib-15.0"
+      - "C:/Users/Administrator/AppData/Local/Programs/oh-my-posh/bin/gcc-ranlib-15.0.com"
+      - "C:/Users/Administrator/AppData/Local/Programs/oh-my-posh/bin/gcc-ranlib-15.0.exe"
+      - "C:/Users/Administrator/AppData/Local/Programs/oh-my-posh/bin/gcc-ranlib-15.0"
+      - "C:/Users/Administrator/AppData/Local/Microsoft/WindowsApps/gcc-ranlib-15.0.com"
+      - "C:/Users/Administrator/AppData/Local/Microsoft/WindowsApps/gcc-ranlib-15.0.exe"
+      - "C:/Users/Administrator/AppData/Local/Microsoft/WindowsApps/gcc-ranlib-15.0"
+      - "C:/Users/Administrator/AppData/Local/Programs/Microsoft VS Code/bin/gcc-ranlib-15.0.com"
+      - "C:/Users/Administrator/AppData/Local/Programs/Microsoft VS Code/bin/gcc-ranlib-15.0.exe"
+      - "C:/Users/Administrator/AppData/Local/Programs/Microsoft VS Code/bin/gcc-ranlib-15.0"
+      - "C:/Users/Administrator/.dotnet/tools/gcc-ranlib-15.0.com"
+      - "C:/Users/Administrator/.dotnet/tools/gcc-ranlib-15.0.exe"
+      - "C:/Users/Administrator/.dotnet/tools/gcc-ranlib-15.0"
+      - "C:/Users/Administrator/AppData/Local/GitHubDesktop/bin/gcc-ranlib-15.0.com"
+      - "C:/Users/Administrator/AppData/Local/GitHubDesktop/bin/gcc-ranlib-15.0.exe"
+      - "C:/Users/Administrator/AppData/Local/GitHubDesktop/bin/gcc-ranlib-15.0"
+      - "C:/Program Files/RedPanda-Cpp/mingw64-ucrt-15/bin/gcc-ranlib-15.com"
+      - "C:/Program Files/RedPanda-Cpp/mingw64-ucrt-15/bin/gcc-ranlib-15.exe"
+      - "C:/Program Files/RedPanda-Cpp/mingw64-ucrt-15/bin/gcc-ranlib-15"
+      - "C:/Windows/System32/gcc-ranlib-15.com"
+      - "C:/Windows/System32/gcc-ranlib-15.exe"
+      - "C:/Windows/System32/gcc-ranlib-15"
+      - "C:/Windows/gcc-ranlib-15.com"
+      - "C:/Windows/gcc-ranlib-15.exe"
+      - "C:/Windows/gcc-ranlib-15"
+      - "C:/Windows/System32/wbem/gcc-ranlib-15.com"
+      - "C:/Windows/System32/wbem/gcc-ranlib-15.exe"
+      - "C:/Windows/System32/wbem/gcc-ranlib-15"
+      - "C:/Windows/System32/WindowsPowerShell/v1.0/gcc-ranlib-15.com"
+      - "C:/Windows/System32/WindowsPowerShell/v1.0/gcc-ranlib-15.exe"
+      - "C:/Windows/System32/WindowsPowerShell/v1.0/gcc-ranlib-15"
+      - "C:/Windows/System32/OpenSSH/gcc-ranlib-15.com"
+      - "C:/Windows/System32/OpenSSH/gcc-ranlib-15.exe"
+      - "C:/Windows/System32/OpenSSH/gcc-ranlib-15"
+      - "C:/Program Files/Microsoft SQL Server/150/Tools/Binn/gcc-ranlib-15.com"
+      - "C:/Program Files/Microsoft SQL Server/150/Tools/Binn/gcc-ranlib-15.exe"
+      - "C:/Program Files/Microsoft SQL Server/150/Tools/Binn/gcc-ranlib-15"
+      - "C:/Program Files/Microsoft SQL Server/Client SDK/ODBC/170/Tools/Binn/gcc-ranlib-15.com"
+      - "C:/Program Files/Microsoft SQL Server/Client SDK/ODBC/170/Tools/Binn/gcc-ranlib-15.exe"
+      - "C:/Program Files/Microsoft SQL Server/Client SDK/ODBC/170/Tools/Binn/gcc-ranlib-15"
+      - "C:/Program Files/CMake/bin/gcc-ranlib-15.com"
+      - "C:/Program Files/CMake/bin/gcc-ranlib-15.exe"
+      - "C:/Program Files/CMake/bin/gcc-ranlib-15"
+      - "C:/Program Files/Git/cmd/gcc-ranlib-15.com"
+      - "C:/Program Files/Git/cmd/gcc-ranlib-15.exe"
+      - "C:/Program Files/Git/cmd/gcc-ranlib-15"
+      - "C:/Program Files/dotnet/gcc-ranlib-15.com"
+      - "C:/Program Files/dotnet/gcc-ranlib-15.exe"
+      - "C:/Program Files/dotnet/gcc-ranlib-15"
+      - "C:/Program Files (x86)/Windows Kits/10/Windows Performance Toolkit/gcc-ranlib-15.com"
+      - "C:/Program Files (x86)/Windows Kits/10/Windows Performance Toolkit/gcc-ranlib-15.exe"
+      - "C:/Program Files (x86)/Windows Kits/10/Windows Performance Toolkit/gcc-ranlib-15"
+      - "C:/Users/Administrator/AppData/Local/Programs/oh-my-posh/bin/gcc-ranlib-15.com"
+      - "C:/Users/Administrator/AppData/Local/Programs/oh-my-posh/bin/gcc-ranlib-15.exe"
+      - "C:/Users/Administrator/AppData/Local/Programs/oh-my-posh/bin/gcc-ranlib-15"
+      - "C:/Users/Administrator/AppData/Local/Microsoft/WindowsApps/gcc-ranlib-15.com"
+      - "C:/Users/Administrator/AppData/Local/Microsoft/WindowsApps/gcc-ranlib-15.exe"
+      - "C:/Users/Administrator/AppData/Local/Microsoft/WindowsApps/gcc-ranlib-15"
+      - "C:/Users/Administrator/AppData/Local/Programs/Microsoft VS Code/bin/gcc-ranlib-15.com"
+      - "C:/Users/Administrator/AppData/Local/Programs/Microsoft VS Code/bin/gcc-ranlib-15.exe"
+      - "C:/Users/Administrator/AppData/Local/Programs/Microsoft VS Code/bin/gcc-ranlib-15"
+      - "C:/Users/Administrator/.dotnet/tools/gcc-ranlib-15.com"
+      - "C:/Users/Administrator/.dotnet/tools/gcc-ranlib-15.exe"
+      - "C:/Users/Administrator/.dotnet/tools/gcc-ranlib-15"
+      - "C:/Users/Administrator/AppData/Local/GitHubDesktop/bin/gcc-ranlib-15.com"
+      - "C:/Users/Administrator/AppData/Local/GitHubDesktop/bin/gcc-ranlib-15.exe"
+      - "C:/Users/Administrator/AppData/Local/GitHubDesktop/bin/gcc-ranlib-15"
+      - "C:/Program Files/RedPanda-Cpp/mingw64-ucrt-15/bin/gcc-ranlib15.com"
+      - "C:/Program Files/RedPanda-Cpp/mingw64-ucrt-15/bin/gcc-ranlib15.exe"
+      - "C:/Program Files/RedPanda-Cpp/mingw64-ucrt-15/bin/gcc-ranlib15"
+      - "C:/Windows/System32/gcc-ranlib15.com"
+      - "C:/Windows/System32/gcc-ranlib15.exe"
+      - "C:/Windows/System32/gcc-ranlib15"
+      - "C:/Windows/gcc-ranlib15.com"
+      - "C:/Windows/gcc-ranlib15.exe"
+      - "C:/Windows/gcc-ranlib15"
+      - "C:/Windows/System32/wbem/gcc-ranlib15.com"
+      - "C:/Windows/System32/wbem/gcc-ranlib15.exe"
+      - "C:/Windows/System32/wbem/gcc-ranlib15"
+      - "C:/Windows/System32/WindowsPowerShell/v1.0/gcc-ranlib15.com"
+      - "C:/Windows/System32/WindowsPowerShell/v1.0/gcc-ranlib15.exe"
+      - "C:/Windows/System32/WindowsPowerShell/v1.0/gcc-ranlib15"
+      - "C:/Windows/System32/OpenSSH/gcc-ranlib15.com"
+      - "C:/Windows/System32/OpenSSH/gcc-ranlib15.exe"
+      - "C:/Windows/System32/OpenSSH/gcc-ranlib15"
+      - "C:/Program Files/Microsoft SQL Server/150/Tools/Binn/gcc-ranlib15.com"
+      - "C:/Program Files/Microsoft SQL Server/150/Tools/Binn/gcc-ranlib15.exe"
+      - "C:/Program Files/Microsoft SQL Server/150/Tools/Binn/gcc-ranlib15"
+      - "C:/Program Files/Microsoft SQL Server/Client SDK/ODBC/170/Tools/Binn/gcc-ranlib15.com"
+      - "C:/Program Files/Microsoft SQL Server/Client SDK/ODBC/170/Tools/Binn/gcc-ranlib15.exe"
+      - "C:/Program Files/Microsoft SQL Server/Client SDK/ODBC/170/Tools/Binn/gcc-ranlib15"
+      - "C:/Program Files/CMake/bin/gcc-ranlib15.com"
+      - "C:/Program Files/CMake/bin/gcc-ranlib15.exe"
+      - "C:/Program Files/CMake/bin/gcc-ranlib15"
+      - "C:/Program Files/Git/cmd/gcc-ranlib15.com"
+      - "C:/Program Files/Git/cmd/gcc-ranlib15.exe"
+      - "C:/Program Files/Git/cmd/gcc-ranlib15"
+      - "C:/Program Files/dotnet/gcc-ranlib15.com"
+      - "C:/Program Files/dotnet/gcc-ranlib15.exe"
+      - "C:/Program Files/dotnet/gcc-ranlib15"
+      - "C:/Program Files (x86)/Windows Kits/10/Windows Performance Toolkit/gcc-ranlib15.com"
+      - "C:/Program Files (x86)/Windows Kits/10/Windows Performance Toolkit/gcc-ranlib15.exe"
+      - "C:/Program Files (x86)/Windows Kits/10/Windows Performance Toolkit/gcc-ranlib15"
+      - "C:/Users/Administrator/AppData/Local/Programs/oh-my-posh/bin/gcc-ranlib15.com"
+      - "C:/Users/Administrator/AppData/Local/Programs/oh-my-posh/bin/gcc-ranlib15.exe"
+      - "C:/Users/Administrator/AppData/Local/Programs/oh-my-posh/bin/gcc-ranlib15"
+      - "C:/Users/Administrator/AppData/Local/Microsoft/WindowsApps/gcc-ranlib15.com"
+      - "C:/Users/Administrator/AppData/Local/Microsoft/WindowsApps/gcc-ranlib15.exe"
+      - "C:/Users/Administrator/AppData/Local/Microsoft/WindowsApps/gcc-ranlib15"
+      - "C:/Users/Administrator/AppData/Local/Programs/Microsoft VS Code/bin/gcc-ranlib15.com"
+      - "C:/Users/Administrator/AppData/Local/Programs/Microsoft VS Code/bin/gcc-ranlib15.exe"
+      - "C:/Users/Administrator/AppData/Local/Programs/Microsoft VS Code/bin/gcc-ranlib15"
+      - "C:/Users/Administrator/.dotnet/tools/gcc-ranlib15.com"
+      - "C:/Users/Administrator/.dotnet/tools/gcc-ranlib15.exe"
+      - "C:/Users/Administrator/.dotnet/tools/gcc-ranlib15"
+      - "C:/Users/Administrator/AppData/Local/GitHubDesktop/bin/gcc-ranlib15.com"
+      - "C:/Users/Administrator/AppData/Local/GitHubDesktop/bin/gcc-ranlib15.exe"
+      - "C:/Users/Administrator/AppData/Local/GitHubDesktop/bin/gcc-ranlib15"
+      - "C:/Program Files/RedPanda-Cpp/mingw64-ucrt-15/bin/gcc-ranlib.com"
+    found: "C:/Program Files/RedPanda-Cpp/mingw64-ucrt-15/bin/gcc-ranlib.exe"
+    search_context:
+      ENV{PATH}:
+        - "C:\\Program Files\\RedPanda-Cpp\\mingw64-ucrt-15\\bin"
+        - "C:\\Program Files\\RedPanda-Cpp\\mingw64-ucrt-15\\bin"
+        - "C:\\Windows\\system32"
+        - "C:\\Windows"
+        - "C:\\Windows\\System32\\Wbem"
+        - "C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\"
+        - "C:\\Windows\\System32\\OpenSSH\\"
+        - "C:\\Program Files\\Microsoft SQL Server\\150\\Tools\\Binn\\"
+        - "C:\\Program Files\\Microsoft SQL Server\\Client SDK\\ODBC\\170\\Tools\\Binn\\"
+        - "C:\\Program Files\\RedPanda-Cpp\\mingw64-ucrt-15\\bin"
+        - "C:\\Program Files\\CMake\\bin"
+        - "C:\\Program Files\\Git\\cmd"
+        - "C:\\Program Files\\dotnet\\"
+        - "C:\\Program Files (x86)\\Windows Kits\\10\\Windows Performance Toolkit\\"
+        - "C:\\Users\\Administrator\\AppData\\Local\\Programs\\oh-my-posh\\bin\\"
+        - "C:\\Users\\Administrator\\AppData\\Local\\Microsoft\\WindowsApps"
+        - "C:\\Users\\Administrator\\AppData\\Local\\Programs\\Microsoft VS Code\\bin"
+        - "C:\\Users\\Administrator\\.dotnet\\tools"
+        - "C:\\Users\\Administrator\\AppData\\Local\\GitHubDesktop\\bin"
+  -
+    kind: "find-v1"
+    backtrace:
+      - "C:/Program Files/CMake/share/cmake-4.1/Modules/CMakeDetermineRCCompiler.cmake:40 (find_program)"
+      - "C:/Program Files/CMake/share/cmake-4.1/Modules/Platform/Windows-GNU.cmake:167 (enable_language)"
+      - "C:/Program Files/CMake/share/cmake-4.1/Modules/Platform/Windows-GNU-C.cmake:2 (__windows_compiler_gnu)"
+      - "C:/Program Files/CMake/share/cmake-4.1/Modules/CMakeCInformation.cmake:48 (include)"
+      - "CMakeLists.txt:2 (project)"
+    mode: "program"
+    variable: "CMAKE_RC_COMPILER"
+    description: "RC compiler"
+    settings:
+      SearchFramework: "NEVER"
+      SearchAppBundle: "NEVER"
+      CMAKE_FIND_USE_CMAKE_PATH: true
+      CMAKE_FIND_USE_CMAKE_ENVIRONMENT_PATH: true
+      CMAKE_FIND_USE_SYSTEM_ENVIRONMENT_PATH: true
+      CMAKE_FIND_USE_CMAKE_SYSTEM_PATH: true
+      CMAKE_FIND_USE_INSTALL_PREFIX: true
+    names:
+      - "windres"
+      - "windres"
+    candidate_directories:
+      - "C:/Program Files/RedPanda-Cpp/mingw64-ucrt-15/bin/"
+      - "C:/Windows/System32/"
+      - "C:/Windows/"
+      - "C:/Windows/System32/wbem/"
+      - "C:/Windows/System32/WindowsPowerShell/v1.0/"
+      - "C:/Windows/System32/OpenSSH/"
+      - "C:/Program Files/Microsoft SQL Server/150/Tools/Binn/"
+      - "C:/Program Files/Microsoft SQL Server/Client SDK/ODBC/170/Tools/Binn/"
+      - "C:/Program Files/CMake/bin/"
+      - "C:/Program Files/Git/cmd/"
+      - "C:/Program Files/dotnet/"
+      - "C:/Program Files (x86)/Windows Kits/10/Windows Performance Toolkit/"
+      - "C:/Users/Administrator/AppData/Local/Programs/oh-my-posh/bin/"
+      - "C:/Users/Administrator/AppData/Local/Microsoft/WindowsApps/"
+      - "C:/Users/Administrator/AppData/Local/Programs/Microsoft VS Code/bin/"
+      - "C:/Users/Administrator/.dotnet/tools/"
+      - "C:/Users/Administrator/AppData/Local/GitHubDesktop/bin/"
+      - "C:/Program Files/bin/"
+      - "C:/Program Files/sbin/"
+      - "C:/Program Files/"
+      - "C:/Program Files (x86)/bin/"
+      - "C:/Program Files (x86)/sbin/"
+      - "C:/Program Files (x86)/"
+      - "C:/Program Files/CMake/bin/"
+      - "C:/Program Files/CMake/sbin/"
+      - "C:/Program Files/CMake/"
+      - "C:/Program Files (x86)/squaker/bin/"
+      - "C:/Program Files (x86)/squaker/sbin/"
+      - "C:/Program Files (x86)/squaker/"
+    searched_directories:
+      - "C:/Program Files/RedPanda-Cpp/mingw64-ucrt-15/bin/windres.com"
+    found: "C:/Program Files/RedPanda-Cpp/mingw64-ucrt-15/bin/windres.exe"
+    search_context:
+      ENV{PATH}:
+        - "C:\\Program Files\\RedPanda-Cpp\\mingw64-ucrt-15\\bin"
+        - "C:\\Program Files\\RedPanda-Cpp\\mingw64-ucrt-15\\bin"
+        - "C:\\Windows\\system32"
+        - "C:\\Windows"
+        - "C:\\Windows\\System32\\Wbem"
+        - "C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\"
+        - "C:\\Windows\\System32\\OpenSSH\\"
+        - "C:\\Program Files\\Microsoft SQL Server\\150\\Tools\\Binn\\"
+        - "C:\\Program Files\\Microsoft SQL Server\\Client SDK\\ODBC\\170\\Tools\\Binn\\"
+        - "C:\\Program Files\\RedPanda-Cpp\\mingw64-ucrt-15\\bin"
+        - "C:\\Program Files\\CMake\\bin"
+        - "C:\\Program Files\\Git\\cmd"
+        - "C:\\Program Files\\dotnet\\"
+        - "C:\\Program Files (x86)\\Windows Kits\\10\\Windows Performance Toolkit\\"
+        - "C:\\Users\\Administrator\\AppData\\Local\\Programs\\oh-my-posh\\bin\\"
+        - "C:\\Users\\Administrator\\AppData\\Local\\Microsoft\\WindowsApps"
+        - "C:\\Users\\Administrator\\AppData\\Local\\Programs\\Microsoft VS Code\\bin"
+        - "C:\\Users\\Administrator\\.dotnet\\tools"
+        - "C:\\Users\\Administrator\\AppData\\Local\\GitHubDesktop\\bin"
+      CMAKE_INSTALL_PREFIX: "C:/Program Files (x86)/squaker"
+      CMAKE_SYSTEM_PREFIX_PATH:
+        - "C:/Program Files"
+        - "C:/Program Files (x86)"
+        - "C:/Program Files/CMake"
+        - "C:/Program Files (x86)/squaker"
+  -
+    kind: "try_compile-v1"
+    backtrace:
+      - "C:/Program Files/CMake/share/cmake-4.1/Modules/CMakeDetermineCompilerABI.cmake:83 (try_compile)"
+      - "C:/Program Files/CMake/share/cmake-4.1/Modules/CMakeTestCCompiler.cmake:26 (CMAKE_DETERMINE_COMPILER_ABI)"
+      - "CMakeLists.txt:2 (project)"
+    checks:
+      - "Detecting C compiler ABI info"
+    directories:
+      source: "E:/GGCC Project/Projects/squaker/build/CMakeFiles/CMakeScratch/TryCompile-9dnqzp"
+      binary: "E:/GGCC Project/Projects/squaker/build/CMakeFiles/CMakeScratch/TryCompile-9dnqzp"
+    cmakeVariables:
+      CMAKE_C_FLAGS: ""
+      CMAKE_C_FLAGS_DEBUG: "-g"
+      CMAKE_EXE_LINKER_FLAGS: ""
+    buildResult:
+      variable: "CMAKE_C_ABI_COMPILED"
+      cached: true
+      stdout: |
+        Change Dir: 'E:/GGCC Project/Projects/squaker/build/CMakeFiles/CMakeScratch/TryCompile-9dnqzp'
+        
+        Run Build Command(s): "C:/Program Files/CMake/bin/cmake.exe" -E env VERBOSE=1 C:/PROGRA~1/REDPAN~1/MINGW6~1/bin/mingw32-make.exe -f Makefile cmTC_cd19d/fast
+        C:/PROGRA~1/REDPAN~1/MINGW6~1/bin/mingw32-make.exe  -f CMakeFiles\\cmTC_cd19d.dir\\build.make CMakeFiles/cmTC_cd19d.dir/build
+        mingw32-make[1]: Entering directory 'E:/GGCC Project/Projects/squaker/build/CMakeFiles/CMakeScratch/TryCompile-9dnqzp'
+        Building C object CMakeFiles/cmTC_cd19d.dir/CMakeCCompilerABI.c.obj
+        C:\\PROGRA~1\\REDPAN~1\\MINGW6~1\\bin\\gcc.exe   -v -o CMakeFiles\\cmTC_cd19d.dir\\CMakeCCompilerABI.c.obj -c "C:\\Program Files\\CMake\\share\\cmake-4.1\\Modules\\CMakeCCompilerABI.c"
+        Using built-in specs.
+        COLLECT_GCC=C:\\PROGRA~1\\REDPAN~1\\MINGW6~1\\bin\\gcc.exe
+        Target: x86_64-w64-mingw32
+        Configured with: ../configure --prefix=/opt/mingw64-ucrt-15 --libexecdir=/opt/mingw64-ucrt-15/lib --with-gcc-major-version-only --target=x86_64-w64-mingw32 --host=x86_64-w64-mingw32 --enable-lto --disable-plugin --disable-shared --enable-static --without-pic --disable-dependency-tracking --enable-languages=c,c++ --enable-libgomp --enable-mingw-wildcard --disable-multilib --enable-nls --enable-threads=posix --disable-win32-registry --with-gmp=/tmp/build/mingw64-ucrt-15/deps --without-libcc1 --with-libiconv-prefix=/tmp/build/mingw64-ucrt-15/deps --with-libintl-prefix=/tmp/build/mingw64-ucrt-15/deps --with-mpc=/tmp/build/mingw64-ucrt-15/deps --with-mpfr=/tmp/build/mingw64-ucrt-15/deps CFLAGS=-Os CXXFLAGS=-Os LDFLAGS=-s CFLAGS_FOR_TARGET=-Os CXXFLAGS_FOR_TARGET=-Os LDFLAGS_FOR_TARGET=-s
+        Thread model: posix
+        Supported LTO compression algorithms: zlib
+        gcc version 15.0.0 20240908 (experimental) (GCC) 
+        COLLECT_GCC_OPTIONS='-v' '-o' 'CMakeFiles\\cmTC_cd19d.dir\\CMakeCCompilerABI.c.obj' '-c' '-mtune=generic' '-march=x86-64' '-dumpdir' 'CMakeFiles\\cmTC_cd19d.dir\\'
+         C:/PROGRA~1/REDPAN~1/MINGW6~1/bin/../lib/gcc/x86_64-w64-mingw32/15/cc1.exe -quiet -v -iprefix C:/PROGRA~1/REDPAN~1/MINGW6~1/bin/../lib/gcc/x86_64-w64-mingw32/15/ -D_REENTRANT C:\\Program Files\\CMake\\share\\cmake-4.1\\Modules\\CMakeCCompilerABI.c -quiet -dumpdir CMakeFiles\\cmTC_cd19d.dir\\ -dumpbase CMakeCCompilerABI.c.c -dumpbase-ext .c -mtune=generic -march=x86-64 -version -o C:\\Users\\Administrator\\AppData\\Local\\Temp\\ccaAZwNP.s
+        GNU C17 (GCC) version 15.0.0 20240908 (experimental) (x86_64-w64-mingw32)
+        	compiled by GNU C version 15.0.0 20240908 (experimental), GMP version 6.3.0, MPFR version 4.2.1, MPC version 1.3.1, isl version none
+        GGC heuristics: --param ggc-min-expand=30 --param ggc-min-heapsize=4096
+        ignoring nonexistent directory "C:/PROGRA~1/REDPAN~1/MINGW6~1/bin/../lib/gcc/x86_64-w64-mingw32/15/../../../../x86_64-w64-mingw32/include"
+        ignoring duplicate directory "C:/PROGRA~1/REDPAN~1/MINGW6~1/lib/gcc/../../lib/gcc/x86_64-w64-mingw32/15/include"
+        ignoring nonexistent directory "/opt/mingw64-ucrt-15/include"
+        ignoring duplicate directory "C:/PROGRA~1/REDPAN~1/MINGW6~1/lib/gcc/../../include"
+        ignoring duplicate directory "C:/PROGRA~1/REDPAN~1/MINGW6~1/lib/gcc/../../lib/gcc/x86_64-w64-mingw32/15/include-fixed"
+        ignoring nonexistent directory "C:/PROGRA~1/REDPAN~1/MINGW6~1/lib/gcc/../../lib/gcc/x86_64-w64-mingw32/15/../../../../x86_64-w64-mingw32/include"
+        ignoring nonexistent directory "/mingw/include"
+        #include "..." search starts here:
+        #include <...> search starts here:
+         C:/PROGRA~1/REDPAN~1/MINGW6~1/bin/../lib/gcc/x86_64-w64-mingw32/15/include
+         C:/PROGRA~1/REDPAN~1/MINGW6~1/bin/../lib/gcc/x86_64-w64-mingw32/15/../../../../include
+         C:/PROGRA~1/REDPAN~1/MINGW6~1/bin/../lib/gcc/x86_64-w64-mingw32/15/include-fixed
+        End of search list.
+        Compiler executable checksum: 6ea528e6ff2aadf1f07ae78f6c94ca78
+        COLLECT_GCC_OPTIONS='-v' '-o' 'CMakeFiles\\cmTC_cd19d.dir\\CMakeCCompilerABI.c.obj' '-c' '-mtune=generic' '-march=x86-64' '-dumpdir' 'CMakeFiles\\cmTC_cd19d.dir\\'
+         as -v -o CMakeFiles\\cmTC_cd19d.dir\\CMakeCCompilerABI.c.obj C:\\Users\\Administrator\\AppData\\Local\\Temp\\ccaAZwNP.s
+        GNU assembler version 2.43.1 (x86_64-w64-mingw32) using BFD version (GNU Binutils) 2.43.1
+        COMPILER_PATH=C:/PROGRA~1/REDPAN~1/MINGW6~1/bin/../lib/gcc/x86_64-w64-mingw32/15/;C:/PROGRA~1/REDPAN~1/MINGW6~1/bin/../lib/gcc/
+        LIBRARY_PATH=C:/PROGRA~1/REDPAN~1/MINGW6~1/bin/../lib/gcc/x86_64-w64-mingw32/15/;C:/PROGRA~1/REDPAN~1/MINGW6~1/bin/../lib/gcc/;C:/PROGRA~1/REDPAN~1/MINGW6~1/bin/../lib/gcc/x86_64-w64-mingw32/15/../../../../lib/;C:/PROGRA~1/REDPAN~1/MINGW6~1/bin/../lib/gcc/x86_64-w64-mingw32/15/../../../
+        COLLECT_GCC_OPTIONS='-v' '-o' 'CMakeFiles\\cmTC_cd19d.dir\\CMakeCCompilerABI.c.obj' '-c' '-mtune=generic' '-march=x86-64' '-dumpdir' 'CMakeFiles\\cmTC_cd19d.dir\\CMakeCCompilerABI.c.'
+        Linking C executable cmTC_cd19d.exe
+        "C:\\Program Files\\CMake\\bin\\cmake.exe" -E cmake_link_script CMakeFiles\\cmTC_cd19d.dir\\link.txt --verbose=1
+        Using built-in specs.
+        COLLECT_GCC=C:\\PROGRA~1\\REDPAN~1\\MINGW6~1\\bin\\gcc.exe
+        COLLECT_LTO_WRAPPER=C:/PROGRA~1/REDPAN~1/MINGW6~1/bin/../lib/gcc/x86_64-w64-mingw32/15/lto-wrapper.exe
+        Target: x86_64-w64-mingw32
+        Configured with: ../configure --prefix=/opt/mingw64-ucrt-15 --libexecdir=/opt/mingw64-ucrt-15/lib --with-gcc-major-version-only --target=x86_64-w64-mingw32 --host=x86_64-w64-mingw32 --enable-lto --disable-plugin --disable-shared --enable-static --without-pic --disable-dependency-tracking --enable-languages=c,c++ --enable-libgomp --enable-mingw-wildcard --disable-multilib --enable-nls --enable-threads=posix --disable-win32-registry --with-gmp=/tmp/build/mingw64-ucrt-15/deps --without-libcc1 --with-libiconv-prefix=/tmp/build/mingw64-ucrt-15/deps --with-libintl-prefix=/tmp/build/mingw64-ucrt-15/deps --with-mpc=/tmp/build/mingw64-ucrt-15/deps --with-mpfr=/tmp/build/mingw64-ucrt-15/deps CFLAGS=-Os CXXFLAGS=-Os LDFLAGS=-s CFLAGS_FOR_TARGET=-Os CXXFLAGS_FOR_TARGET=-Os LDFLAGS_FOR_TARGET=-s
+        Thread model: posix
+        Supported LTO compression algorithms: zlib
+        gcc version 15.0.0 20240908 (experimental) (GCC) 
+        COMPILER_PATH=C:/PROGRA~1/REDPAN~1/MINGW6~1/bin/../lib/gcc/x86_64-w64-mingw32/15/;C:/PROGRA~1/REDPAN~1/MINGW6~1/bin/../lib/gcc/
+        LIBRARY_PATH=C:/PROGRA~1/REDPAN~1/MINGW6~1/bin/../lib/gcc/x86_64-w64-mingw32/15/;C:/PROGRA~1/REDPAN~1/MINGW6~1/bin/../lib/gcc/;C:/PROGRA~1/REDPAN~1/MINGW6~1/bin/../lib/gcc/x86_64-w64-mingw32/15/../../../../lib/;C:/PROGRA~1/REDPAN~1/MINGW6~1/bin/../lib/gcc/x86_64-w64-mingw32/15/../../../
+        COLLECT_GCC_OPTIONS='-v' '-o' 'cmTC_cd19d.exe' '-mtune=generic' '-march=x86-64' '-dumpdir' 'cmTC_cd19d.'
+         C:/PROGRA~1/REDPAN~1/MINGW6~1/bin/../lib/gcc/x86_64-w64-mingw32/15/collect2.exe -plugin C:/PROGRA~1/REDPAN~1/MINGW6~1/bin/../lib/gcc/x86_64-w64-mingw32/15/liblto_plugin.dll -plugin-opt=C:/PROGRA~1/REDPAN~1/MINGW6~1/bin/../lib/gcc/x86_64-w64-mingw32/15/lto-wrapper.exe -plugin-opt=-fresolution=C:\\Users\\Administrator\\AppData\\Local\\Temp\\ccUXkgb7.res -plugin-opt=-pass-through=-lmingw32 -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lmingwex -plugin-opt=-pass-through=-lmsvcrt -plugin-opt=-pass-through=-lkernel32 -plugin-opt=-pass-through=-lpthread -plugin-opt=-pass-through=-ladvapi32 -plugin-opt=-pass-through=-lshell32 -plugin-opt=-pass-through=-luser32 -plugin-opt=-pass-through=-lkernel32 -plugin-opt=-pass-through=-lmingw32 -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lmingwex -plugin-opt=-pass-through=-lmsvcrt -plugin-opt=-pass-through=-lkernel32 -m i386pep -Bdynamic -o cmTC_cd19d.exe C:/PROGRA~1/REDPAN~1/MINGW6~1/bin/../lib/gcc/x86_64-w64-mingw32/15/../../../../lib/crt2.o C:/PROGRA~1/REDPAN~1/MINGW6~1/bin/../lib/gcc/x86_64-w64-mingw32/15/crtbegin.o -LC:/PROGRA~1/REDPAN~1/MINGW6~1/bin/../lib/gcc/x86_64-w64-mingw32/15 -LC:/PROGRA~1/REDPAN~1/MINGW6~1/bin/../lib/gcc -LC:/PROGRA~1/REDPAN~1/MINGW6~1/bin/../lib/gcc/x86_64-w64-mingw32/15/../../../../lib -LC:/PROGRA~1/REDPAN~1/MINGW6~1/bin/../lib/gcc/x86_64-w64-mingw32/15/../../.. -v --whole-archive CMakeFiles\\cmTC_cd19d.dir/objects.a --no-whole-archive --out-implib libcmTC_cd19d.dll.a --major-image-version 0 --minor-image-version 0 -lmingw32 -lgcc -lmingwex -lmsvcrt -lkernel32 -lpthread -ladvapi32 -lshell32 -luser32 -lkernel32 -lmingw32 -lgcc -lmingwex -lmsvcrt -lkernel32 C:/PROGRA~1/REDPAN~1/MINGW6~1/bin/../lib/gcc/x86_64-w64-mingw32/15/crtend.o
+        collect2 version 15.0.0 20240908 (experimental)
+        C:\\Program Files\\RedPanda-Cpp\\mingw64-ucrt-15\\bin/ld.exe -plugin C:/PROGRA~1/REDPAN~1/MINGW6~1/bin/../lib/gcc/x86_64-w64-mingw32/15/liblto_plugin.dll -plugin-opt=C:/PROGRA~1/REDPAN~1/MINGW6~1/bin/../lib/gcc/x86_64-w64-mingw32/15/lto-wrapper.exe -plugin-opt=-fresolution=C:\\Users\\Administrator\\AppData\\Local\\Temp\\ccUXkgb7.res -plugin-opt=-pass-through=-lmingw32 -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lmingwex -plugin-opt=-pass-through=-lmsvcrt -plugin-opt=-pass-through=-lkernel32 -plugin-opt=-pass-through=-lpthread -plugin-opt=-pass-through=-ladvapi32 -plugin-opt=-pass-through=-lshell32 -plugin-opt=-pass-through=-luser32 -plugin-opt=-pass-through=-lkernel32 -plugin-opt=-pass-through=-lmingw32 -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lmingwex -plugin-opt=-pass-through=-lmsvcrt -plugin-opt=-pass-through=-lkernel32 -m i386pep -Bdynamic -o cmTC_cd19d.exe C:/PROGRA~1/REDPAN~1/MINGW6~1/bin/../lib/gcc/x86_64-w64-mingw32/15/../../../../lib/crt2.o C:/PROGRA~1/REDPAN~1/MINGW6~1/bin/../lib/gcc/x86_64-w64-mingw32/15/crtbegin.o -LC:/PROGRA~1/REDPAN~1/MINGW6~1/bin/../lib/gcc/x86_64-w64-mingw32/15 -LC:/PROGRA~1/REDPAN~1/MINGW6~1/bin/../lib/gcc -LC:/PROGRA~1/REDPAN~1/MINGW6~1/bin/../lib/gcc/x86_64-w64-mingw32/15/../../../../lib -LC:/PROGRA~1/REDPAN~1/MINGW6~1/bin/../lib/gcc/x86_64-w64-mingw32/15/../../.. -v --whole-archive CMakeFiles\\cmTC_cd19d.dir/objects.a --no-whole-archive --out-implib libcmTC_cd19d.dll.a --major-image-version 0 --minor-image-version 0 -lmingw32 -lgcc -lmingwex -lmsvcrt -lkernel32 -lpthread -ladvapi32 -lshell32 -luser32 -lkernel32 -lmingw32 -lgcc -lmingwex -lmsvcrt -lkernel32 C:/PROGRA~1/REDPAN~1/MINGW6~1/bin/../lib/gcc/x86_64-w64-mingw32/15/crtend.o
+        GNU ld (GNU Binutils) 2.43.1
+        COLLECT_GCC_OPTIONS='-v' '-o' 'cmTC_cd19d.exe' '-mtune=generic' '-march=x86-64' '-dumpdir' 'cmTC_cd19d.'
+        "C:\\Program Files\\CMake\\bin\\cmake.exe" -E rm -f CMakeFiles\\cmTC_cd19d.dir/objects.a
+        C:\\PROGRA~1\\REDPAN~1\\MINGW6~1\\bin\\ar.exe qc CMakeFiles\\cmTC_cd19d.dir/objects.a @CMakeFiles\\cmTC_cd19d.dir\\objects1.rsp
+        C:\\PROGRA~1\\REDPAN~1\\MINGW6~1\\bin\\gcc.exe  -v -Wl,-v -Wl,--whole-archive CMakeFiles\\cmTC_cd19d.dir/objects.a -Wl,--no-whole-archive -o cmTC_cd19d.exe -Wl,--out-implib,libcmTC_cd19d.dll.a -Wl,--major-image-version,0,--minor-image-version,0
+        mingw32-make[1]: Leaving directory 'E:/GGCC Project/Projects/squaker/build/CMakeFiles/CMakeScratch/TryCompile-9dnqzp'
+        
+      exitCode: 0
+  -
+    kind: "message-v1"
+    backtrace:
+      - "C:/Program Files/CMake/share/cmake-4.1/Modules/CMakeDetermineCompilerABI.cmake:217 (message)"
+      - "C:/Program Files/CMake/share/cmake-4.1/Modules/CMakeTestCCompiler.cmake:26 (CMAKE_DETERMINE_COMPILER_ABI)"
+      - "CMakeLists.txt:2 (project)"
+    message: |
+      Parsed C implicit include dir info: rv=done
+        found start of include info
+        found start of implicit include info
+          add: [C:/PROGRA~1/REDPAN~1/MINGW6~1/bin/../lib/gcc/x86_64-w64-mingw32/15/include]
+          add: [C:/PROGRA~1/REDPAN~1/MINGW6~1/bin/../lib/gcc/x86_64-w64-mingw32/15/../../../../include]
+          add: [C:/PROGRA~1/REDPAN~1/MINGW6~1/bin/../lib/gcc/x86_64-w64-mingw32/15/include-fixed]
+        end of search list found
+        collapse include dir [C:/PROGRA~1/REDPAN~1/MINGW6~1/bin/../lib/gcc/x86_64-w64-mingw32/15/include] ==> [C:/Program Files/RedPanda-Cpp/mingw64-ucrt-15/lib/gcc/x86_64-w64-mingw32/15/include]
+        collapse include dir [C:/PROGRA~1/REDPAN~1/MINGW6~1/bin/../lib/gcc/x86_64-w64-mingw32/15/../../../../include] ==> [C:/Program Files/RedPanda-Cpp/mingw64-ucrt-15/include]
+        collapse include dir [C:/PROGRA~1/REDPAN~1/MINGW6~1/bin/../lib/gcc/x86_64-w64-mingw32/15/include-fixed] ==> [C:/Program Files/RedPanda-Cpp/mingw64-ucrt-15/lib/gcc/x86_64-w64-mingw32/15/include-fixed]
+        implicit include dirs: [C:/Program Files/RedPanda-Cpp/mingw64-ucrt-15/lib/gcc/x86_64-w64-mingw32/15/include;C:/Program Files/RedPanda-Cpp/mingw64-ucrt-15/include;C:/Program Files/RedPanda-Cpp/mingw64-ucrt-15/lib/gcc/x86_64-w64-mingw32/15/include-fixed]
+      
+      
+  -
+    kind: "message-v1"
+    backtrace:
+      - "C:/Program Files/CMake/share/cmake-4.1/Modules/CMakeDetermineCompilerABI.cmake:253 (message)"
+      - "C:/Program Files/CMake/share/cmake-4.1/Modules/CMakeTestCCompiler.cmake:26 (CMAKE_DETERMINE_COMPILER_ABI)"
+      - "CMakeLists.txt:2 (project)"
+    message: |
+      Parsed C implicit link information:
+        link line regex: [^( *|.*[/\\])(ld[0-9]*(|\\.[a-rt-z][a-z]*|\\.s[a-np-z][a-z]*|\\.so[a-z]+)|CMAKE_LINK_STARTFILE-NOTFOUND|([^/\\]+-)?ld|collect2)[^/\\]*( |$)]
+        linker tool regex: [^[ 	]*(->|")?[ 	]*(([^"]*[/\\])?(ld[0-9]*(|\\.[a-rt-z][a-z]*|\\.s[a-np-z][a-z]*|\\.so[a-z]+)))("|,| |$)]
+        ignore line: [Change Dir: 'E:/GGCC Project/Projects/squaker/build/CMakeFiles/CMakeScratch/TryCompile-9dnqzp']
+        ignore line: []
+        ignore line: [Run Build Command(s): "C:/Program Files/CMake/bin/cmake.exe" -E env VERBOSE=1 C:/PROGRA~1/REDPAN~1/MINGW6~1/bin/mingw32-make.exe -f Makefile cmTC_cd19d/fast]
+        ignore line: [C:/PROGRA~1/REDPAN~1/MINGW6~1/bin/mingw32-make.exe  -f CMakeFiles\\cmTC_cd19d.dir\\build.make CMakeFiles/cmTC_cd19d.dir/build]
+        ignore line: [mingw32-make[1]: Entering directory 'E:/GGCC Project/Projects/squaker/build/CMakeFiles/CMakeScratch/TryCompile-9dnqzp']
+        ignore line: [Building C object CMakeFiles/cmTC_cd19d.dir/CMakeCCompilerABI.c.obj]
+        ignore line: [C:\\PROGRA~1\\REDPAN~1\\MINGW6~1\\bin\\gcc.exe   -v -o CMakeFiles\\cmTC_cd19d.dir\\CMakeCCompilerABI.c.obj -c "C:\\Program Files\\CMake\\share\\cmake-4.1\\Modules\\CMakeCCompilerABI.c"]
+        ignore line: [Using built-in specs.]
+        ignore line: [COLLECT_GCC=C:\\PROGRA~1\\REDPAN~1\\MINGW6~1\\bin\\gcc.exe]
+        ignore line: [Target: x86_64-w64-mingw32]
+        ignore line: [Configured with: ../configure --prefix=/opt/mingw64-ucrt-15 --libexecdir=/opt/mingw64-ucrt-15/lib --with-gcc-major-version-only --target=x86_64-w64-mingw32 --host=x86_64-w64-mingw32 --enable-lto --disable-plugin --disable-shared --enable-static --without-pic --disable-dependency-tracking --enable-languages=c c++ --enable-libgomp --enable-mingw-wildcard --disable-multilib --enable-nls --enable-threads=posix --disable-win32-registry --with-gmp=/tmp/build/mingw64-ucrt-15/deps --without-libcc1 --with-libiconv-prefix=/tmp/build/mingw64-ucrt-15/deps --with-libintl-prefix=/tmp/build/mingw64-ucrt-15/deps --with-mpc=/tmp/build/mingw64-ucrt-15/deps --with-mpfr=/tmp/build/mingw64-ucrt-15/deps CFLAGS=-Os CXXFLAGS=-Os LDFLAGS=-s CFLAGS_FOR_TARGET=-Os CXXFLAGS_FOR_TARGET=-Os LDFLAGS_FOR_TARGET=-s]
+        ignore line: [Thread model: posix]
+        ignore line: [Supported LTO compression algorithms: zlib]
+        ignore line: [gcc version 15.0.0 20240908 (experimental) (GCC) ]
+        ignore line: [COLLECT_GCC_OPTIONS='-v' '-o' 'CMakeFiles\\cmTC_cd19d.dir\\CMakeCCompilerABI.c.obj' '-c' '-mtune=generic' '-march=x86-64' '-dumpdir' 'CMakeFiles\\cmTC_cd19d.dir\\']
+        ignore line: [ C:/PROGRA~1/REDPAN~1/MINGW6~1/bin/../lib/gcc/x86_64-w64-mingw32/15/cc1.exe -quiet -v -iprefix C:/PROGRA~1/REDPAN~1/MINGW6~1/bin/../lib/gcc/x86_64-w64-mingw32/15/ -D_REENTRANT C:\\Program Files\\CMake\\share\\cmake-4.1\\Modules\\CMakeCCompilerABI.c -quiet -dumpdir CMakeFiles\\cmTC_cd19d.dir\\ -dumpbase CMakeCCompilerABI.c.c -dumpbase-ext .c -mtune=generic -march=x86-64 -version -o C:\\Users\\Administrator\\AppData\\Local\\Temp\\ccaAZwNP.s]
+        ignore line: [GNU C17 (GCC) version 15.0.0 20240908 (experimental) (x86_64-w64-mingw32)]
+        ignore line: [	compiled by GNU C version 15.0.0 20240908 (experimental)  GMP version 6.3.0  MPFR version 4.2.1  MPC version 1.3.1  isl version none]
+        ignore line: [GGC heuristics: --param ggc-min-expand=30 --param ggc-min-heapsize=4096]
+        ignore line: [ignoring nonexistent directory "C:/PROGRA~1/REDPAN~1/MINGW6~1/bin/../lib/gcc/x86_64-w64-mingw32/15/../../../../x86_64-w64-mingw32/include"]
+        ignore line: [ignoring duplicate directory "C:/PROGRA~1/REDPAN~1/MINGW6~1/lib/gcc/../../lib/gcc/x86_64-w64-mingw32/15/include"]
+        ignore line: [ignoring nonexistent directory "/opt/mingw64-ucrt-15/include"]
+        ignore line: [ignoring duplicate directory "C:/PROGRA~1/REDPAN~1/MINGW6~1/lib/gcc/../../include"]
+        ignore line: [ignoring duplicate directory "C:/PROGRA~1/REDPAN~1/MINGW6~1/lib/gcc/../../lib/gcc/x86_64-w64-mingw32/15/include-fixed"]
+        ignore line: [ignoring nonexistent directory "C:/PROGRA~1/REDPAN~1/MINGW6~1/lib/gcc/../../lib/gcc/x86_64-w64-mingw32/15/../../../../x86_64-w64-mingw32/include"]
+        ignore line: [ignoring nonexistent directory "/mingw/include"]
+        ignore line: [#include "..." search starts here:]
+        ignore line: [#include <...> search starts here:]
+        ignore line: [ C:/PROGRA~1/REDPAN~1/MINGW6~1/bin/../lib/gcc/x86_64-w64-mingw32/15/include]
+        ignore line: [ C:/PROGRA~1/REDPAN~1/MINGW6~1/bin/../lib/gcc/x86_64-w64-mingw32/15/../../../../include]
+        ignore line: [ C:/PROGRA~1/REDPAN~1/MINGW6~1/bin/../lib/gcc/x86_64-w64-mingw32/15/include-fixed]
+        ignore line: [End of search list.]
+        ignore line: [Compiler executable checksum: 6ea528e6ff2aadf1f07ae78f6c94ca78]
+        ignore line: [COLLECT_GCC_OPTIONS='-v' '-o' 'CMakeFiles\\cmTC_cd19d.dir\\CMakeCCompilerABI.c.obj' '-c' '-mtune=generic' '-march=x86-64' '-dumpdir' 'CMakeFiles\\cmTC_cd19d.dir\\']
+        ignore line: [ as -v -o CMakeFiles\\cmTC_cd19d.dir\\CMakeCCompilerABI.c.obj C:\\Users\\Administrator\\AppData\\Local\\Temp\\ccaAZwNP.s]
+        ignore line: [GNU assembler version 2.43.1 (x86_64-w64-mingw32) using BFD version (GNU Binutils) 2.43.1]
+        ignore line: [COMPILER_PATH=C:/PROGRA~1/REDPAN~1/MINGW6~1/bin/../lib/gcc/x86_64-w64-mingw32/15/]
+        ignore line: [C:/PROGRA~1/REDPAN~1/MINGW6~1/bin/../lib/gcc/]
+        ignore line: [LIBRARY_PATH=C:/PROGRA~1/REDPAN~1/MINGW6~1/bin/../lib/gcc/x86_64-w64-mingw32/15/]
+        ignore line: [C:/PROGRA~1/REDPAN~1/MINGW6~1/bin/../lib/gcc/]
+        ignore line: [C:/PROGRA~1/REDPAN~1/MINGW6~1/bin/../lib/gcc/x86_64-w64-mingw32/15/../../../../lib/]
+        ignore line: [C:/PROGRA~1/REDPAN~1/MINGW6~1/bin/../lib/gcc/x86_64-w64-mingw32/15/../../../]
+        ignore line: [COLLECT_GCC_OPTIONS='-v' '-o' 'CMakeFiles\\cmTC_cd19d.dir\\CMakeCCompilerABI.c.obj' '-c' '-mtune=generic' '-march=x86-64' '-dumpdir' 'CMakeFiles\\cmTC_cd19d.dir\\CMakeCCompilerABI.c.']
+        ignore line: [Linking C executable cmTC_cd19d.exe]
+        ignore line: ["C:\\Program Files\\CMake\\bin\\cmake.exe" -E cmake_link_script CMakeFiles\\cmTC_cd19d.dir\\link.txt --verbose=1]
+        ignore line: [Using built-in specs.]
+        ignore line: [COLLECT_GCC=C:\\PROGRA~1\\REDPAN~1\\MINGW6~1\\bin\\gcc.exe]
+        ignore line: [COLLECT_LTO_WRAPPER=C:/PROGRA~1/REDPAN~1/MINGW6~1/bin/../lib/gcc/x86_64-w64-mingw32/15/lto-wrapper.exe]
+        ignore line: [Target: x86_64-w64-mingw32]
+        ignore line: [Configured with: ../configure --prefix=/opt/mingw64-ucrt-15 --libexecdir=/opt/mingw64-ucrt-15/lib --with-gcc-major-version-only --target=x86_64-w64-mingw32 --host=x86_64-w64-mingw32 --enable-lto --disable-plugin --disable-shared --enable-static --without-pic --disable-dependency-tracking --enable-languages=c c++ --enable-libgomp --enable-mingw-wildcard --disable-multilib --enable-nls --enable-threads=posix --disable-win32-registry --with-gmp=/tmp/build/mingw64-ucrt-15/deps --without-libcc1 --with-libiconv-prefix=/tmp/build/mingw64-ucrt-15/deps --with-libintl-prefix=/tmp/build/mingw64-ucrt-15/deps --with-mpc=/tmp/build/mingw64-ucrt-15/deps --with-mpfr=/tmp/build/mingw64-ucrt-15/deps CFLAGS=-Os CXXFLAGS=-Os LDFLAGS=-s CFLAGS_FOR_TARGET=-Os CXXFLAGS_FOR_TARGET=-Os LDFLAGS_FOR_TARGET=-s]
+        ignore line: [Thread model: posix]
+        ignore line: [Supported LTO compression algorithms: zlib]
+        ignore line: [gcc version 15.0.0 20240908 (experimental) (GCC) ]
+        ignore line: [COMPILER_PATH=C:/PROGRA~1/REDPAN~1/MINGW6~1/bin/../lib/gcc/x86_64-w64-mingw32/15/]
+        ignore line: [C:/PROGRA~1/REDPAN~1/MINGW6~1/bin/../lib/gcc/]
+        ignore line: [LIBRARY_PATH=C:/PROGRA~1/REDPAN~1/MINGW6~1/bin/../lib/gcc/x86_64-w64-mingw32/15/]
+        ignore line: [C:/PROGRA~1/REDPAN~1/MINGW6~1/bin/../lib/gcc/]
+        ignore line: [C:/PROGRA~1/REDPAN~1/MINGW6~1/bin/../lib/gcc/x86_64-w64-mingw32/15/../../../../lib/]
+        ignore line: [C:/PROGRA~1/REDPAN~1/MINGW6~1/bin/../lib/gcc/x86_64-w64-mingw32/15/../../../]
+        ignore line: [COLLECT_GCC_OPTIONS='-v' '-o' 'cmTC_cd19d.exe' '-mtune=generic' '-march=x86-64' '-dumpdir' 'cmTC_cd19d.']
+        link line: [ C:/PROGRA~1/REDPAN~1/MINGW6~1/bin/../lib/gcc/x86_64-w64-mingw32/15/collect2.exe -plugin C:/PROGRA~1/REDPAN~1/MINGW6~1/bin/../lib/gcc/x86_64-w64-mingw32/15/liblto_plugin.dll -plugin-opt=C:/PROGRA~1/REDPAN~1/MINGW6~1/bin/../lib/gcc/x86_64-w64-mingw32/15/lto-wrapper.exe -plugin-opt=-fresolution=C:\\Users\\Administrator\\AppData\\Local\\Temp\\ccUXkgb7.res -plugin-opt=-pass-through=-lmingw32 -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lmingwex -plugin-opt=-pass-through=-lmsvcrt -plugin-opt=-pass-through=-lkernel32 -plugin-opt=-pass-through=-lpthread -plugin-opt=-pass-through=-ladvapi32 -plugin-opt=-pass-through=-lshell32 -plugin-opt=-pass-through=-luser32 -plugin-opt=-pass-through=-lkernel32 -plugin-opt=-pass-through=-lmingw32 -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lmingwex -plugin-opt=-pass-through=-lmsvcrt -plugin-opt=-pass-through=-lkernel32 -m i386pep -Bdynamic -o cmTC_cd19d.exe C:/PROGRA~1/REDPAN~1/MINGW6~1/bin/../lib/gcc/x86_64-w64-mingw32/15/../../../../lib/crt2.o C:/PROGRA~1/REDPAN~1/MINGW6~1/bin/../lib/gcc/x86_64-w64-mingw32/15/crtbegin.o -LC:/PROGRA~1/REDPAN~1/MINGW6~1/bin/../lib/gcc/x86_64-w64-mingw32/15 -LC:/PROGRA~1/REDPAN~1/MINGW6~1/bin/../lib/gcc -LC:/PROGRA~1/REDPAN~1/MINGW6~1/bin/../lib/gcc/x86_64-w64-mingw32/15/../../../../lib -LC:/PROGRA~1/REDPAN~1/MINGW6~1/bin/../lib/gcc/x86_64-w64-mingw32/15/../../.. -v --whole-archive CMakeFiles\\cmTC_cd19d.dir/objects.a --no-whole-archive --out-implib libcmTC_cd19d.dll.a --major-image-version 0 --minor-image-version 0 -lmingw32 -lgcc -lmingwex -lmsvcrt -lkernel32 -lpthread -ladvapi32 -lshell32 -luser32 -lkernel32 -lmingw32 -lgcc -lmingwex -lmsvcrt -lkernel32 C:/PROGRA~1/REDPAN~1/MINGW6~1/bin/../lib/gcc/x86_64-w64-mingw32/15/crtend.o]
+          arg [C:/PROGRA~1/REDPAN~1/MINGW6~1/bin/../lib/gcc/x86_64-w64-mingw32/15/collect2.exe] ==> ignore
+          arg [-plugin] ==> ignore
+          arg [C:/PROGRA~1/REDPAN~1/MINGW6~1/bin/../lib/gcc/x86_64-w64-mingw32/15/liblto_plugin.dll] ==> ignore
+          arg [-plugin-opt=C:/PROGRA~1/REDPAN~1/MINGW6~1/bin/../lib/gcc/x86_64-w64-mingw32/15/lto-wrapper.exe] ==> ignore
+          arg [-plugin-opt=-fresolution=C:\\Users\\Administrator\\AppData\\Local\\Temp\\ccUXkgb7.res] ==> ignore
+          arg [-plugin-opt=-pass-through=-lmingw32] ==> ignore
+          arg [-plugin-opt=-pass-through=-lgcc] ==> ignore
+          arg [-plugin-opt=-pass-through=-lmingwex] ==> ignore
+          arg [-plugin-opt=-pass-through=-lmsvcrt] ==> ignore
+          arg [-plugin-opt=-pass-through=-lkernel32] ==> ignore
+          arg [-plugin-opt=-pass-through=-lpthread] ==> ignore
+          arg [-plugin-opt=-pass-through=-ladvapi32] ==> ignore
+          arg [-plugin-opt=-pass-through=-lshell32] ==> ignore
+          arg [-plugin-opt=-pass-through=-luser32] ==> ignore
+          arg [-plugin-opt=-pass-through=-lkernel32] ==> ignore
+          arg [-plugin-opt=-pass-through=-lmingw32] ==> ignore
+          arg [-plugin-opt=-pass-through=-lgcc] ==> ignore
+          arg [-plugin-opt=-pass-through=-lmingwex] ==> ignore
+          arg [-plugin-opt=-pass-through=-lmsvcrt] ==> ignore
+          arg [-plugin-opt=-pass-through=-lkernel32] ==> ignore
+          arg [-m] ==> ignore
+          arg [i386pep] ==> ignore
+          arg [-Bdynamic] ==> search dynamic
+          arg [-o] ==> ignore
+          arg [cmTC_cd19d.exe] ==> ignore
+          arg [C:/PROGRA~1/REDPAN~1/MINGW6~1/bin/../lib/gcc/x86_64-w64-mingw32/15/../../../../lib/crt2.o] ==> obj [C:/PROGRA~1/REDPAN~1/MINGW6~1/bin/../lib/gcc/x86_64-w64-mingw32/15/../../../../lib/crt2.o]
+          arg [C:/PROGRA~1/REDPAN~1/MINGW6~1/bin/../lib/gcc/x86_64-w64-mingw32/15/crtbegin.o] ==> obj [C:/PROGRA~1/REDPAN~1/MINGW6~1/bin/../lib/gcc/x86_64-w64-mingw32/15/crtbegin.o]
+          arg [-LC:/PROGRA~1/REDPAN~1/MINGW6~1/bin/../lib/gcc/x86_64-w64-mingw32/15] ==> dir [C:/PROGRA~1/REDPAN~1/MINGW6~1/bin/../lib/gcc/x86_64-w64-mingw32/15]
+          arg [-LC:/PROGRA~1/REDPAN~1/MINGW6~1/bin/../lib/gcc] ==> dir [C:/PROGRA~1/REDPAN~1/MINGW6~1/bin/../lib/gcc]
+          arg [-LC:/PROGRA~1/REDPAN~1/MINGW6~1/bin/../lib/gcc/x86_64-w64-mingw32/15/../../../../lib] ==> dir [C:/PROGRA~1/REDPAN~1/MINGW6~1/bin/../lib/gcc/x86_64-w64-mingw32/15/../../../../lib]
+          arg [-LC:/PROGRA~1/REDPAN~1/MINGW6~1/bin/../lib/gcc/x86_64-w64-mingw32/15/../../..] ==> dir [C:/PROGRA~1/REDPAN~1/MINGW6~1/bin/../lib/gcc/x86_64-w64-mingw32/15/../../..]
+          arg [-v] ==> ignore
+          arg [--whole-archive] ==> ignore
+          arg [CMakeFiles\\cmTC_cd19d.dir/objects.a] ==> ignore
+          arg [--no-whole-archive] ==> ignore
+          arg [--out-implib] ==> ignore
+          arg [libcmTC_cd19d.dll.a] ==> ignore
+          arg [--major-image-version] ==> ignore
+          arg [0] ==> ignore
+          arg [--minor-image-version] ==> ignore
+          arg [0] ==> ignore
+          arg [-lmingw32] ==> lib [mingw32]
+          arg [-lgcc] ==> lib [gcc]
+          arg [-lmingwex] ==> lib [mingwex]
+          arg [-lmsvcrt] ==> lib [msvcrt]
+          arg [-lkernel32] ==> lib [kernel32]
+          arg [-lpthread] ==> lib [pthread]
+          arg [-ladvapi32] ==> lib [advapi32]
+          arg [-lshell32] ==> lib [shell32]
+          arg [-luser32] ==> lib [user32]
+          arg [-lkernel32] ==> lib [kernel32]
+          arg [-lmingw32] ==> lib [mingw32]
+          arg [-lgcc] ==> lib [gcc]
+          arg [-lmingwex] ==> lib [mingwex]
+          arg [-lmsvcrt] ==> lib [msvcrt]
+          arg [-lkernel32] ==> lib [kernel32]
+          arg [C:/PROGRA~1/REDPAN~1/MINGW6~1/bin/../lib/gcc/x86_64-w64-mingw32/15/crtend.o] ==> obj [C:/PROGRA~1/REDPAN~1/MINGW6~1/bin/../lib/gcc/x86_64-w64-mingw32/15/crtend.o]
+        ignore line: [collect2 version 15.0.0 20240908 (experimental)]
+        ignore line: [C:\\Program Files\\RedPanda-Cpp\\mingw64-ucrt-15\\bin/ld.exe -plugin C:/PROGRA~1/REDPAN~1/MINGW6~1/bin/../lib/gcc/x86_64-w64-mingw32/15/liblto_plugin.dll -plugin-opt=C:/PROGRA~1/REDPAN~1/MINGW6~1/bin/../lib/gcc/x86_64-w64-mingw32/15/lto-wrapper.exe -plugin-opt=-fresolution=C:\\Users\\Administrator\\AppData\\Local\\Temp\\ccUXkgb7.res -plugin-opt=-pass-through=-lmingw32 -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lmingwex -plugin-opt=-pass-through=-lmsvcrt -plugin-opt=-pass-through=-lkernel32 -plugin-opt=-pass-through=-lpthread -plugin-opt=-pass-through=-ladvapi32 -plugin-opt=-pass-through=-lshell32 -plugin-opt=-pass-through=-luser32 -plugin-opt=-pass-through=-lkernel32 -plugin-opt=-pass-through=-lmingw32 -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lmingwex -plugin-opt=-pass-through=-lmsvcrt -plugin-opt=-pass-through=-lkernel32 -m i386pep -Bdynamic -o cmTC_cd19d.exe C:/PROGRA~1/REDPAN~1/MINGW6~1/bin/../lib/gcc/x86_64-w64-mingw32/15/../../../../lib/crt2.o C:/PROGRA~1/REDPAN~1/MINGW6~1/bin/../lib/gcc/x86_64-w64-mingw32/15/crtbegin.o -LC:/PROGRA~1/REDPAN~1/MINGW6~1/bin/../lib/gcc/x86_64-w64-mingw32/15 -LC:/PROGRA~1/REDPAN~1/MINGW6~1/bin/../lib/gcc -LC:/PROGRA~1/REDPAN~1/MINGW6~1/bin/../lib/gcc/x86_64-w64-mingw32/15/../../../../lib -LC:/PROGRA~1/REDPAN~1/MINGW6~1/bin/../lib/gcc/x86_64-w64-mingw32/15/../../.. -v --whole-archive CMakeFiles\\cmTC_cd19d.dir/objects.a --no-whole-archive --out-implib libcmTC_cd19d.dll.a --major-image-version 0 --minor-image-version 0 -lmingw32 -lgcc -lmingwex -lmsvcrt -lkernel32 -lpthread -ladvapi32 -lshell32 -luser32 -lkernel32 -lmingw32 -lgcc -lmingwex -lmsvcrt -lkernel32 C:/PROGRA~1/REDPAN~1/MINGW6~1/bin/../lib/gcc/x86_64-w64-mingw32/15/crtend.o]
+        linker tool for 'C': C:/Program Files/RedPanda-Cpp/mingw64-ucrt-15/bin/ld.exe
+        remove lib [msvcrt]
+        remove lib [msvcrt]
+        collapse obj [C:/PROGRA~1/REDPAN~1/MINGW6~1/bin/../lib/gcc/x86_64-w64-mingw32/15/../../../../lib/crt2.o] ==> [C:/Program Files/RedPanda-Cpp/mingw64-ucrt-15/lib/crt2.o]
+        collapse obj [C:/PROGRA~1/REDPAN~1/MINGW6~1/bin/../lib/gcc/x86_64-w64-mingw32/15/crtbegin.o] ==> [C:/Program Files/RedPanda-Cpp/mingw64-ucrt-15/lib/gcc/x86_64-w64-mingw32/15/crtbegin.o]
+        collapse obj [C:/PROGRA~1/REDPAN~1/MINGW6~1/bin/../lib/gcc/x86_64-w64-mingw32/15/crtend.o] ==> [C:/Program Files/RedPanda-Cpp/mingw64-ucrt-15/lib/gcc/x86_64-w64-mingw32/15/crtend.o]
+        collapse library dir [C:/PROGRA~1/REDPAN~1/MINGW6~1/bin/../lib/gcc/x86_64-w64-mingw32/15] ==> [C:/Program Files/RedPanda-Cpp/mingw64-ucrt-15/lib/gcc/x86_64-w64-mingw32/15]
+        collapse library dir [C:/PROGRA~1/REDPAN~1/MINGW6~1/bin/../lib/gcc] ==> [C:/Program Files/RedPanda-Cpp/mingw64-ucrt-15/lib/gcc]
+        collapse library dir [C:/PROGRA~1/REDPAN~1/MINGW6~1/bin/../lib/gcc/x86_64-w64-mingw32/15/../../../../lib] ==> [C:/Program Files/RedPanda-Cpp/mingw64-ucrt-15/lib]
+        collapse library dir [C:/PROGRA~1/REDPAN~1/MINGW6~1/bin/../lib/gcc/x86_64-w64-mingw32/15/../../..] ==> [C:/Program Files/RedPanda-Cpp/mingw64-ucrt-15/lib]
+        implicit libs: [mingw32;gcc;mingwex;kernel32;pthread;advapi32;shell32;user32;kernel32;mingw32;gcc;mingwex;kernel32]
+        implicit objs: [C:/Program Files/RedPanda-Cpp/mingw64-ucrt-15/lib/crt2.o;C:/Program Files/RedPanda-Cpp/mingw64-ucrt-15/lib/gcc/x86_64-w64-mingw32/15/crtbegin.o;C:/Program Files/RedPanda-Cpp/mingw64-ucrt-15/lib/gcc/x86_64-w64-mingw32/15/crtend.o]
+        implicit dirs: [C:/Program Files/RedPanda-Cpp/mingw64-ucrt-15/lib/gcc/x86_64-w64-mingw32/15;C:/Program Files/RedPanda-Cpp/mingw64-ucrt-15/lib/gcc;C:/Program Files/RedPanda-Cpp/mingw64-ucrt-15/lib]
+        implicit fwks: []
+      
+      
+  -
+    kind: "message-v1"
+    backtrace:
+      - "C:/Program Files/CMake/share/cmake-4.1/Modules/Internal/CMakeDetermineLinkerId.cmake:36 (message)"
+      - "C:/Program Files/CMake/share/cmake-4.1/Modules/CMakeDetermineCompilerABI.cmake:299 (cmake_determine_linker_id)"
+      - "C:/Program Files/CMake/share/cmake-4.1/Modules/CMakeTestCCompiler.cmake:26 (CMAKE_DETERMINE_COMPILER_ABI)"
+      - "CMakeLists.txt:2 (project)"
+    message: |
+      Running the C compiler's linker: "C:/Program Files/RedPanda-Cpp/mingw64-ucrt-15/bin/ld.exe" "-v"
+      GNU ld (GNU Binutils) 2.43.1
+  -
+    kind: "try_compile-v1"
+    backtrace:
+      - "C:/Program Files/CMake/share/cmake-4.1/Modules/CMakeDetermineCompilerABI.cmake:83 (try_compile)"
+      - "C:/Program Files/CMake/share/cmake-4.1/Modules/CMakeTestCXXCompiler.cmake:26 (CMAKE_DETERMINE_COMPILER_ABI)"
+      - "CMakeLists.txt:2 (project)"
+    checks:
+      - "Detecting CXX compiler ABI info"
+    directories:
+      source: "E:/GGCC Project/Projects/squaker/build/CMakeFiles/CMakeScratch/TryCompile-k0acb3"
+      binary: "E:/GGCC Project/Projects/squaker/build/CMakeFiles/CMakeScratch/TryCompile-k0acb3"
+    cmakeVariables:
+      CMAKE_CXX_FLAGS: ""
+      CMAKE_CXX_FLAGS_DEBUG: "-g"
+      CMAKE_CXX_SCAN_FOR_MODULES: "OFF"
+      CMAKE_EXE_LINKER_FLAGS: ""
+    buildResult:
+      variable: "CMAKE_CXX_ABI_COMPILED"
+      cached: true
+      stdout: |
+        Change Dir: 'E:/GGCC Project/Projects/squaker/build/CMakeFiles/CMakeScratch/TryCompile-k0acb3'
+        
+        Run Build Command(s): "C:/Program Files/CMake/bin/cmake.exe" -E env VERBOSE=1 C:/PROGRA~1/REDPAN~1/MINGW6~1/bin/mingw32-make.exe -f Makefile cmTC_9c475/fast
+        C:/PROGRA~1/REDPAN~1/MINGW6~1/bin/mingw32-make.exe  -f CMakeFiles\\cmTC_9c475.dir\\build.make CMakeFiles/cmTC_9c475.dir/build
+        mingw32-make[1]: Entering directory 'E:/GGCC Project/Projects/squaker/build/CMakeFiles/CMakeScratch/TryCompile-k0acb3'
+        Building CXX object CMakeFiles/cmTC_9c475.dir/CMakeCXXCompilerABI.cpp.obj
+        C:\\PROGRA~1\\REDPAN~1\\MINGW6~1\\bin\\G__~1.EXE   -v -o CMakeFiles\\cmTC_9c475.dir\\CMakeCXXCompilerABI.cpp.obj -c "C:\\Program Files\\CMake\\share\\cmake-4.1\\Modules\\CMakeCXXCompilerABI.cpp"
+        Using built-in specs.
+        COLLECT_GCC=C:\\PROGRA~1\\REDPAN~1\\MINGW6~1\\bin\\G__~1.EXE
+        Target: x86_64-w64-mingw32
+        Configured with: ../configure --prefix=/opt/mingw64-ucrt-15 --libexecdir=/opt/mingw64-ucrt-15/lib --with-gcc-major-version-only --target=x86_64-w64-mingw32 --host=x86_64-w64-mingw32 --enable-lto --disable-plugin --disable-shared --enable-static --without-pic --disable-dependency-tracking --enable-languages=c,c++ --enable-libgomp --enable-mingw-wildcard --disable-multilib --enable-nls --enable-threads=posix --disable-win32-registry --with-gmp=/tmp/build/mingw64-ucrt-15/deps --without-libcc1 --with-libiconv-prefix=/tmp/build/mingw64-ucrt-15/deps --with-libintl-prefix=/tmp/build/mingw64-ucrt-15/deps --with-mpc=/tmp/build/mingw64-ucrt-15/deps --with-mpfr=/tmp/build/mingw64-ucrt-15/deps CFLAGS=-Os CXXFLAGS=-Os LDFLAGS=-s CFLAGS_FOR_TARGET=-Os CXXFLAGS_FOR_TARGET=-Os LDFLAGS_FOR_TARGET=-s
+        Thread model: posix
+        Supported LTO compression algorithms: zlib
+        gcc version 15.0.0 20240908 (experimental) (GCC) 
+        COLLECT_GCC_OPTIONS='-v' '-o' 'CMakeFiles\\cmTC_9c475.dir\\CMakeCXXCompilerABI.cpp.obj' '-c' '-mtune=generic' '-march=x86-64' '-dumpdir' 'CMakeFiles\\cmTC_9c475.dir\\'
+         C:/PROGRA~1/REDPAN~1/MINGW6~1/bin/../lib/gcc/x86_64-w64-mingw32/15/cc1plus.exe -quiet -v -iprefix C:/PROGRA~1/REDPAN~1/MINGW6~1/bin/../lib/gcc/x86_64-w64-mingw32/15/ -D_REENTRANT C:\\Program Files\\CMake\\share\\cmake-4.1\\Modules\\CMakeCXXCompilerABI.cpp -quiet -dumpdir CMakeFiles\\cmTC_9c475.dir\\ -dumpbase CMakeCXXCompilerABI.cpp.cpp -dumpbase-ext .cpp -mtune=generic -march=x86-64 -version -o C:\\Users\\Administrator\\AppData\\Local\\Temp\\ccZJKAkx.s
+        GNU C++17 (GCC) version 15.0.0 20240908 (experimental) (x86_64-w64-mingw32)
+        	compiled by GNU C version 15.0.0 20240908 (experimental), GMP version 6.3.0, MPFR version 4.2.1, MPC version 1.3.1, isl version none
+        GGC heuristics: --param ggc-min-expand=30 --param ggc-min-heapsize=4096
+        ignoring nonexistent directory "C:/PROGRA~1/REDPAN~1/MINGW6~1/bin/../lib/gcc/x86_64-w64-mingw32/15/../../../../x86_64-w64-mingw32/include"
+        ignoring duplicate directory "C:/PROGRA~1/REDPAN~1/MINGW6~1/lib/gcc/../../lib/gcc/x86_64-w64-mingw32/15/../../../../include/c++/15"
+        ignoring duplicate directory "C:/PROGRA~1/REDPAN~1/MINGW6~1/lib/gcc/../../lib/gcc/x86_64-w64-mingw32/15/../../../../include/c++/15/x86_64-w64-mingw32"
+        ignoring duplicate directory "C:/PROGRA~1/REDPAN~1/MINGW6~1/lib/gcc/../../lib/gcc/x86_64-w64-mingw32/15/../../../../include/c++/15/backward"
+        ignoring duplicate directory "C:/PROGRA~1/REDPAN~1/MINGW6~1/lib/gcc/../../lib/gcc/x86_64-w64-mingw32/15/include"
+        ignoring nonexistent directory "/opt/mingw64-ucrt-15/include"
+        ignoring duplicate directory "C:/PROGRA~1/REDPAN~1/MINGW6~1/lib/gcc/../../include"
+        ignoring duplicate directory "C:/PROGRA~1/REDPAN~1/MINGW6~1/lib/gcc/../../lib/gcc/x86_64-w64-mingw32/15/include-fixed"
+        ignoring nonexistent directory "C:/PROGRA~1/REDPAN~1/MINGW6~1/lib/gcc/../../lib/gcc/x86_64-w64-mingw32/15/../../../../x86_64-w64-mingw32/include"
+        ignoring nonexistent directory "/mingw/include"
+        #include "..." search starts here:
+        #include <...> search starts here:
+         C:/PROGRA~1/REDPAN~1/MINGW6~1/bin/../lib/gcc/x86_64-w64-mingw32/15/../../../../include/c++/15
+         C:/PROGRA~1/REDPAN~1/MINGW6~1/bin/../lib/gcc/x86_64-w64-mingw32/15/../../../../include/c++/15/x86_64-w64-mingw32
+         C:/PROGRA~1/REDPAN~1/MINGW6~1/bin/../lib/gcc/x86_64-w64-mingw32/15/../../../../include/c++/15/backward
+         C:/PROGRA~1/REDPAN~1/MINGW6~1/bin/../lib/gcc/x86_64-w64-mingw32/15/include
+         C:/PROGRA~1/REDPAN~1/MINGW6~1/bin/../lib/gcc/x86_64-w64-mingw32/15/../../../../include
+         C:/PROGRA~1/REDPAN~1/MINGW6~1/bin/../lib/gcc/x86_64-w64-mingw32/15/include-fixed
+        End of search list.
+        Compiler executable checksum: 3cd08a0c1ca22f7a87e26d4a7d7bed0f
+        COLLECT_GCC_OPTIONS='-v' '-o' 'CMakeFiles\\cmTC_9c475.dir\\CMakeCXXCompilerABI.cpp.obj' '-c' '-mtune=generic' '-march=x86-64' '-dumpdir' 'CMakeFiles\\cmTC_9c475.dir\\'
+         as -v -o CMakeFiles\\cmTC_9c475.dir\\CMakeCXXCompilerABI.cpp.obj C:\\Users\\Administrator\\AppData\\Local\\Temp\\ccZJKAkx.s
+        GNU assembler version 2.43.1 (x86_64-w64-mingw32) using BFD version (GNU Binutils) 2.43.1
+        COMPILER_PATH=C:/PROGRA~1/REDPAN~1/MINGW6~1/bin/../lib/gcc/x86_64-w64-mingw32/15/;C:/PROGRA~1/REDPAN~1/MINGW6~1/bin/../lib/gcc/
+        LIBRARY_PATH=C:/PROGRA~1/REDPAN~1/MINGW6~1/bin/../lib/gcc/x86_64-w64-mingw32/15/;C:/PROGRA~1/REDPAN~1/MINGW6~1/bin/../lib/gcc/;C:/PROGRA~1/REDPAN~1/MINGW6~1/bin/../lib/gcc/x86_64-w64-mingw32/15/../../../../lib/;C:/PROGRA~1/REDPAN~1/MINGW6~1/bin/../lib/gcc/x86_64-w64-mingw32/15/../../../
+        COLLECT_GCC_OPTIONS='-v' '-o' 'CMakeFiles\\cmTC_9c475.dir\\CMakeCXXCompilerABI.cpp.obj' '-c' '-mtune=generic' '-march=x86-64' '-dumpdir' 'CMakeFiles\\cmTC_9c475.dir\\CMakeCXXCompilerABI.cpp.'
+        Linking CXX executable cmTC_9c475.exe
+        "C:\\Program Files\\CMake\\bin\\cmake.exe" -E cmake_link_script CMakeFiles\\cmTC_9c475.dir\\link.txt --verbose=1
+        Using built-in specs.
+        COLLECT_GCC=C:\\PROGRA~1\\REDPAN~1\\MINGW6~1\\bin\\G__~1.EXE
+        COLLECT_LTO_WRAPPER=C:/PROGRA~1/REDPAN~1/MINGW6~1/bin/../lib/gcc/x86_64-w64-mingw32/15/lto-wrapper.exe
+        Target: x86_64-w64-mingw32
+        Configured with: ../configure --prefix=/opt/mingw64-ucrt-15 --libexecdir=/opt/mingw64-ucrt-15/lib --with-gcc-major-version-only --target=x86_64-w64-mingw32 --host=x86_64-w64-mingw32 --enable-lto --disable-plugin --disable-shared --enable-static --without-pic --disable-dependency-tracking --enable-languages=c,c++ --enable-libgomp --enable-mingw-wildcard --disable-multilib --enable-nls --enable-threads=posix --disable-win32-registry --with-gmp=/tmp/build/mingw64-ucrt-15/deps --without-libcc1 --with-libiconv-prefix=/tmp/build/mingw64-ucrt-15/deps --with-libintl-prefix=/tmp/build/mingw64-ucrt-15/deps --with-mpc=/tmp/build/mingw64-ucrt-15/deps --with-mpfr=/tmp/build/mingw64-ucrt-15/deps CFLAGS=-Os CXXFLAGS=-Os LDFLAGS=-s CFLAGS_FOR_TARGET=-Os CXXFLAGS_FOR_TARGET=-Os LDFLAGS_FOR_TARGET=-s
+        Thread model: posix
+        Supported LTO compression algorithms: zlib
+        gcc version 15.0.0 20240908 (experimental) (GCC) 
+        COMPILER_PATH=C:/PROGRA~1/REDPAN~1/MINGW6~1/bin/../lib/gcc/x86_64-w64-mingw32/15/;C:/PROGRA~1/REDPAN~1/MINGW6~1/bin/../lib/gcc/
+        LIBRARY_PATH=C:/PROGRA~1/REDPAN~1/MINGW6~1/bin/../lib/gcc/x86_64-w64-mingw32/15/;C:/PROGRA~1/REDPAN~1/MINGW6~1/bin/../lib/gcc/;C:/PROGRA~1/REDPAN~1/MINGW6~1/bin/../lib/gcc/x86_64-w64-mingw32/15/../../../../lib/;C:/PROGRA~1/REDPAN~1/MINGW6~1/bin/../lib/gcc/x86_64-w64-mingw32/15/../../../
+        COLLECT_GCC_OPTIONS='-v' '-o' 'cmTC_9c475.exe' '-mtune=generic' '-march=x86-64' '-dumpdir' 'cmTC_9c475.'
+         C:/PROGRA~1/REDPAN~1/MINGW6~1/bin/../lib/gcc/x86_64-w64-mingw32/15/collect2.exe -plugin C:/PROGRA~1/REDPAN~1/MINGW6~1/bin/../lib/gcc/x86_64-w64-mingw32/15/liblto_plugin.dll -plugin-opt=C:/PROGRA~1/REDPAN~1/MINGW6~1/bin/../lib/gcc/x86_64-w64-mingw32/15/lto-wrapper.exe -plugin-opt=-fresolution=C:\\Users\\Administrator\\AppData\\Local\\Temp\\ccnC1woS.res -plugin-opt=-pass-through=-lmingw32 -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lmingwex -plugin-opt=-pass-through=-lmsvcrt -plugin-opt=-pass-through=-lkernel32 -plugin-opt=-pass-through=-lpthread -plugin-opt=-pass-through=-ladvapi32 -plugin-opt=-pass-through=-lshell32 -plugin-opt=-pass-through=-luser32 -plugin-opt=-pass-through=-lkernel32 -plugin-opt=-pass-through=-lmingw32 -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lmingwex -plugin-opt=-pass-through=-lmsvcrt -plugin-opt=-pass-through=-lkernel32 -m i386pep -Bdynamic -o cmTC_9c475.exe C:/PROGRA~1/REDPAN~1/MINGW6~1/bin/../lib/gcc/x86_64-w64-mingw32/15/../../../../lib/crt2.o C:/PROGRA~1/REDPAN~1/MINGW6~1/bin/../lib/gcc/x86_64-w64-mingw32/15/crtbegin.o -LC:/PROGRA~1/REDPAN~1/MINGW6~1/bin/../lib/gcc/x86_64-w64-mingw32/15 -LC:/PROGRA~1/REDPAN~1/MINGW6~1/bin/../lib/gcc -LC:/PROGRA~1/REDPAN~1/MINGW6~1/bin/../lib/gcc/x86_64-w64-mingw32/15/../../../../lib -LC:/PROGRA~1/REDPAN~1/MINGW6~1/bin/../lib/gcc/x86_64-w64-mingw32/15/../../.. -v --whole-archive CMakeFiles\\cmTC_9c475.dir/objects.a --no-whole-archive --out-implib libcmTC_9c475.dll.a --major-image-version 0 --minor-image-version 0 -lstdc++ -lmingw32 -lgcc -lmingwex -lmsvcrt -lkernel32 -lpthread -ladvapi32 -lshell32 -luser32 -lkernel32 -lmingw32 -lgcc -lmingwex -lmsvcrt -lkernel32 C:/PROGRA~1/REDPAN~1/MINGW6~1/bin/../lib/gcc/x86_64-w64-mingw32/15/crtend.o
+        collect2 version 15.0.0 20240908 (experimental)
+        C:\\Program Files\\RedPanda-Cpp\\mingw64-ucrt-15\\bin/ld.exe -plugin C:/PROGRA~1/REDPAN~1/MINGW6~1/bin/../lib/gcc/x86_64-w64-mingw32/15/liblto_plugin.dll -plugin-opt=C:/PROGRA~1/REDPAN~1/MINGW6~1/bin/../lib/gcc/x86_64-w64-mingw32/15/lto-wrapper.exe -plugin-opt=-fresolution=C:\\Users\\Administrator\\AppData\\Local\\Temp\\ccnC1woS.res -plugin-opt=-pass-through=-lmingw32 -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lmingwex -plugin-opt=-pass-through=-lmsvcrt -plugin-opt=-pass-through=-lkernel32 -plugin-opt=-pass-through=-lpthread -plugin-opt=-pass-through=-ladvapi32 -plugin-opt=-pass-through=-lshell32 -plugin-opt=-pass-through=-luser32 -plugin-opt=-pass-through=-lkernel32 -plugin-opt=-pass-through=-lmingw32 -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lmingwex -plugin-opt=-pass-through=-lmsvcrt -plugin-opt=-pass-through=-lkernel32 -m i386pep -Bdynamic -o cmTC_9c475.exe C:/PROGRA~1/REDPAN~1/MINGW6~1/bin/../lib/gcc/x86_64-w64-mingw32/15/../../../../lib/crt2.o C:/PROGRA~1/REDPAN~1/MINGW6~1/bin/../lib/gcc/x86_64-w64-mingw32/15/crtbegin.o -LC:/PROGRA~1/REDPAN~1/MINGW6~1/bin/../lib/gcc/x86_64-w64-mingw32/15 -LC:/PROGRA~1/REDPAN~1/MINGW6~1/bin/../lib/gcc -LC:/PROGRA~1/REDPAN~1/MINGW6~1/bin/../lib/gcc/x86_64-w64-mingw32/15/../../../../lib -LC:/PROGRA~1/REDPAN~1/MINGW6~1/bin/../lib/gcc/x86_64-w64-mingw32/15/../../.. -v --whole-archive CMakeFiles\\cmTC_9c475.dir/objects.a --no-whole-archive --out-implib libcmTC_9c475.dll.a --major-image-version 0 --minor-image-version 0 -lstdc++ -lmingw32 -lgcc -lmingwex -lmsvcrt -lkernel32 -lpthread -ladvapi32 -lshell32 -luser32 -lkernel32 -lmingw32 -lgcc -lmingwex -lmsvcrt -lkernel32 C:/PROGRA~1/REDPAN~1/MINGW6~1/bin/../lib/gcc/x86_64-w64-mingw32/15/crtend.o
+        GNU ld (GNU Binutils) 2.43.1
+        COLLECT_GCC_OPTIONS='-v' '-o' 'cmTC_9c475.exe' '-mtune=generic' '-march=x86-64' '-dumpdir' 'cmTC_9c475.'
+        "C:\\Program Files\\CMake\\bin\\cmake.exe" -E rm -f CMakeFiles\\cmTC_9c475.dir/objects.a
+        C:\\PROGRA~1\\REDPAN~1\\MINGW6~1\\bin\\ar.exe qc CMakeFiles\\cmTC_9c475.dir/objects.a @CMakeFiles\\cmTC_9c475.dir\\objects1.rsp
+        C:\\PROGRA~1\\REDPAN~1\\MINGW6~1\\bin\\G__~1.EXE  -v -Wl,-v -Wl,--whole-archive CMakeFiles\\cmTC_9c475.dir/objects.a -Wl,--no-whole-archive -o cmTC_9c475.exe -Wl,--out-implib,libcmTC_9c475.dll.a -Wl,--major-image-version,0,--minor-image-version,0
+        mingw32-make[1]: Leaving directory 'E:/GGCC Project/Projects/squaker/build/CMakeFiles/CMakeScratch/TryCompile-k0acb3'
+        
+      exitCode: 0
+  -
+    kind: "message-v1"
+    backtrace:
+      - "C:/Program Files/CMake/share/cmake-4.1/Modules/CMakeDetermineCompilerABI.cmake:217 (message)"
+      - "C:/Program Files/CMake/share/cmake-4.1/Modules/CMakeTestCXXCompiler.cmake:26 (CMAKE_DETERMINE_COMPILER_ABI)"
+      - "CMakeLists.txt:2 (project)"
+    message: |
+      Parsed CXX implicit include dir info: rv=done
+        found start of include info
+        found start of implicit include info
+          add: [C:/PROGRA~1/REDPAN~1/MINGW6~1/bin/../lib/gcc/x86_64-w64-mingw32/15/../../../../include/c++/15]
+          add: [C:/PROGRA~1/REDPAN~1/MINGW6~1/bin/../lib/gcc/x86_64-w64-mingw32/15/../../../../include/c++/15/x86_64-w64-mingw32]
+          add: [C:/PROGRA~1/REDPAN~1/MINGW6~1/bin/../lib/gcc/x86_64-w64-mingw32/15/../../../../include/c++/15/backward]
+          add: [C:/PROGRA~1/REDPAN~1/MINGW6~1/bin/../lib/gcc/x86_64-w64-mingw32/15/include]
+          add: [C:/PROGRA~1/REDPAN~1/MINGW6~1/bin/../lib/gcc/x86_64-w64-mingw32/15/../../../../include]
+          add: [C:/PROGRA~1/REDPAN~1/MINGW6~1/bin/../lib/gcc/x86_64-w64-mingw32/15/include-fixed]
+        end of search list found
+        collapse include dir [C:/PROGRA~1/REDPAN~1/MINGW6~1/bin/../lib/gcc/x86_64-w64-mingw32/15/../../../../include/c++/15] ==> [C:/Program Files/RedPanda-Cpp/mingw64-ucrt-15/include/c++/15]
+        collapse include dir [C:/PROGRA~1/REDPAN~1/MINGW6~1/bin/../lib/gcc/x86_64-w64-mingw32/15/../../../../include/c++/15/x86_64-w64-mingw32] ==> [C:/Program Files/RedPanda-Cpp/mingw64-ucrt-15/include/c++/15/x86_64-w64-mingw32]
+        collapse include dir [C:/PROGRA~1/REDPAN~1/MINGW6~1/bin/../lib/gcc/x86_64-w64-mingw32/15/../../../../include/c++/15/backward] ==> [C:/Program Files/RedPanda-Cpp/mingw64-ucrt-15/include/c++/15/backward]
+        collapse include dir [C:/PROGRA~1/REDPAN~1/MINGW6~1/bin/../lib/gcc/x86_64-w64-mingw32/15/include] ==> [C:/Program Files/RedPanda-Cpp/mingw64-ucrt-15/lib/gcc/x86_64-w64-mingw32/15/include]
+        collapse include dir [C:/PROGRA~1/REDPAN~1/MINGW6~1/bin/../lib/gcc/x86_64-w64-mingw32/15/../../../../include] ==> [C:/Program Files/RedPanda-Cpp/mingw64-ucrt-15/include]
+        collapse include dir [C:/PROGRA~1/REDPAN~1/MINGW6~1/bin/../lib/gcc/x86_64-w64-mingw32/15/include-fixed] ==> [C:/Program Files/RedPanda-Cpp/mingw64-ucrt-15/lib/gcc/x86_64-w64-mingw32/15/include-fixed]
+        implicit include dirs: [C:/Program Files/RedPanda-Cpp/mingw64-ucrt-15/include/c++/15;C:/Program Files/RedPanda-Cpp/mingw64-ucrt-15/include/c++/15/x86_64-w64-mingw32;C:/Program Files/RedPanda-Cpp/mingw64-ucrt-15/include/c++/15/backward;C:/Program Files/RedPanda-Cpp/mingw64-ucrt-15/lib/gcc/x86_64-w64-mingw32/15/include;C:/Program Files/RedPanda-Cpp/mingw64-ucrt-15/include;C:/Program Files/RedPanda-Cpp/mingw64-ucrt-15/lib/gcc/x86_64-w64-mingw32/15/include-fixed]
+      
+      
+  -
+    kind: "message-v1"
+    backtrace:
+      - "C:/Program Files/CMake/share/cmake-4.1/Modules/CMakeDetermineCompilerABI.cmake:253 (message)"
+      - "C:/Program Files/CMake/share/cmake-4.1/Modules/CMakeTestCXXCompiler.cmake:26 (CMAKE_DETERMINE_COMPILER_ABI)"
+      - "CMakeLists.txt:2 (project)"
+    message: |
+      Parsed CXX implicit link information:
+        link line regex: [^( *|.*[/\\])(ld[0-9]*(|\\.[a-rt-z][a-z]*|\\.s[a-np-z][a-z]*|\\.so[a-z]+)|CMAKE_LINK_STARTFILE-NOTFOUND|([^/\\]+-)?ld|collect2)[^/\\]*( |$)]
+        linker tool regex: [^[ 	]*(->|")?[ 	]*(([^"]*[/\\])?(ld[0-9]*(|\\.[a-rt-z][a-z]*|\\.s[a-np-z][a-z]*|\\.so[a-z]+)))("|,| |$)]
+        ignore line: [Change Dir: 'E:/GGCC Project/Projects/squaker/build/CMakeFiles/CMakeScratch/TryCompile-k0acb3']
+        ignore line: []
+        ignore line: [Run Build Command(s): "C:/Program Files/CMake/bin/cmake.exe" -E env VERBOSE=1 C:/PROGRA~1/REDPAN~1/MINGW6~1/bin/mingw32-make.exe -f Makefile cmTC_9c475/fast]
+        ignore line: [C:/PROGRA~1/REDPAN~1/MINGW6~1/bin/mingw32-make.exe  -f CMakeFiles\\cmTC_9c475.dir\\build.make CMakeFiles/cmTC_9c475.dir/build]
+        ignore line: [mingw32-make[1]: Entering directory 'E:/GGCC Project/Projects/squaker/build/CMakeFiles/CMakeScratch/TryCompile-k0acb3']
+        ignore line: [Building CXX object CMakeFiles/cmTC_9c475.dir/CMakeCXXCompilerABI.cpp.obj]
+        ignore line: [C:\\PROGRA~1\\REDPAN~1\\MINGW6~1\\bin\\G__~1.EXE   -v -o CMakeFiles\\cmTC_9c475.dir\\CMakeCXXCompilerABI.cpp.obj -c "C:\\Program Files\\CMake\\share\\cmake-4.1\\Modules\\CMakeCXXCompilerABI.cpp"]
+        ignore line: [Using built-in specs.]
+        ignore line: [COLLECT_GCC=C:\\PROGRA~1\\REDPAN~1\\MINGW6~1\\bin\\G__~1.EXE]
+        ignore line: [Target: x86_64-w64-mingw32]
+        ignore line: [Configured with: ../configure --prefix=/opt/mingw64-ucrt-15 --libexecdir=/opt/mingw64-ucrt-15/lib --with-gcc-major-version-only --target=x86_64-w64-mingw32 --host=x86_64-w64-mingw32 --enable-lto --disable-plugin --disable-shared --enable-static --without-pic --disable-dependency-tracking --enable-languages=c c++ --enable-libgomp --enable-mingw-wildcard --disable-multilib --enable-nls --enable-threads=posix --disable-win32-registry --with-gmp=/tmp/build/mingw64-ucrt-15/deps --without-libcc1 --with-libiconv-prefix=/tmp/build/mingw64-ucrt-15/deps --with-libintl-prefix=/tmp/build/mingw64-ucrt-15/deps --with-mpc=/tmp/build/mingw64-ucrt-15/deps --with-mpfr=/tmp/build/mingw64-ucrt-15/deps CFLAGS=-Os CXXFLAGS=-Os LDFLAGS=-s CFLAGS_FOR_TARGET=-Os CXXFLAGS_FOR_TARGET=-Os LDFLAGS_FOR_TARGET=-s]
+        ignore line: [Thread model: posix]
+        ignore line: [Supported LTO compression algorithms: zlib]
+        ignore line: [gcc version 15.0.0 20240908 (experimental) (GCC) ]
+        ignore line: [COLLECT_GCC_OPTIONS='-v' '-o' 'CMakeFiles\\cmTC_9c475.dir\\CMakeCXXCompilerABI.cpp.obj' '-c' '-mtune=generic' '-march=x86-64' '-dumpdir' 'CMakeFiles\\cmTC_9c475.dir\\']
+        ignore line: [ C:/PROGRA~1/REDPAN~1/MINGW6~1/bin/../lib/gcc/x86_64-w64-mingw32/15/cc1plus.exe -quiet -v -iprefix C:/PROGRA~1/REDPAN~1/MINGW6~1/bin/../lib/gcc/x86_64-w64-mingw32/15/ -D_REENTRANT C:\\Program Files\\CMake\\share\\cmake-4.1\\Modules\\CMakeCXXCompilerABI.cpp -quiet -dumpdir CMakeFiles\\cmTC_9c475.dir\\ -dumpbase CMakeCXXCompilerABI.cpp.cpp -dumpbase-ext .cpp -mtune=generic -march=x86-64 -version -o C:\\Users\\Administrator\\AppData\\Local\\Temp\\ccZJKAkx.s]
+        ignore line: [GNU C++17 (GCC) version 15.0.0 20240908 (experimental) (x86_64-w64-mingw32)]
+        ignore line: [	compiled by GNU C version 15.0.0 20240908 (experimental)  GMP version 6.3.0  MPFR version 4.2.1  MPC version 1.3.1  isl version none]
+        ignore line: [GGC heuristics: --param ggc-min-expand=30 --param ggc-min-heapsize=4096]
+        ignore line: [ignoring nonexistent directory "C:/PROGRA~1/REDPAN~1/MINGW6~1/bin/../lib/gcc/x86_64-w64-mingw32/15/../../../../x86_64-w64-mingw32/include"]
+        ignore line: [ignoring duplicate directory "C:/PROGRA~1/REDPAN~1/MINGW6~1/lib/gcc/../../lib/gcc/x86_64-w64-mingw32/15/../../../../include/c++/15"]
+        ignore line: [ignoring duplicate directory "C:/PROGRA~1/REDPAN~1/MINGW6~1/lib/gcc/../../lib/gcc/x86_64-w64-mingw32/15/../../../../include/c++/15/x86_64-w64-mingw32"]
+        ignore line: [ignoring duplicate directory "C:/PROGRA~1/REDPAN~1/MINGW6~1/lib/gcc/../../lib/gcc/x86_64-w64-mingw32/15/../../../../include/c++/15/backward"]
+        ignore line: [ignoring duplicate directory "C:/PROGRA~1/REDPAN~1/MINGW6~1/lib/gcc/../../lib/gcc/x86_64-w64-mingw32/15/include"]
+        ignore line: [ignoring nonexistent directory "/opt/mingw64-ucrt-15/include"]
+        ignore line: [ignoring duplicate directory "C:/PROGRA~1/REDPAN~1/MINGW6~1/lib/gcc/../../include"]
+        ignore line: [ignoring duplicate directory "C:/PROGRA~1/REDPAN~1/MINGW6~1/lib/gcc/../../lib/gcc/x86_64-w64-mingw32/15/include-fixed"]
+        ignore line: [ignoring nonexistent directory "C:/PROGRA~1/REDPAN~1/MINGW6~1/lib/gcc/../../lib/gcc/x86_64-w64-mingw32/15/../../../../x86_64-w64-mingw32/include"]
+        ignore line: [ignoring nonexistent directory "/mingw/include"]
+        ignore line: [#include "..." search starts here:]
+        ignore line: [#include <...> search starts here:]
+        ignore line: [ C:/PROGRA~1/REDPAN~1/MINGW6~1/bin/../lib/gcc/x86_64-w64-mingw32/15/../../../../include/c++/15]
+        ignore line: [ C:/PROGRA~1/REDPAN~1/MINGW6~1/bin/../lib/gcc/x86_64-w64-mingw32/15/../../../../include/c++/15/x86_64-w64-mingw32]
+        ignore line: [ C:/PROGRA~1/REDPAN~1/MINGW6~1/bin/../lib/gcc/x86_64-w64-mingw32/15/../../../../include/c++/15/backward]
+        ignore line: [ C:/PROGRA~1/REDPAN~1/MINGW6~1/bin/../lib/gcc/x86_64-w64-mingw32/15/include]
+        ignore line: [ C:/PROGRA~1/REDPAN~1/MINGW6~1/bin/../lib/gcc/x86_64-w64-mingw32/15/../../../../include]
+        ignore line: [ C:/PROGRA~1/REDPAN~1/MINGW6~1/bin/../lib/gcc/x86_64-w64-mingw32/15/include-fixed]
+        ignore line: [End of search list.]
+        ignore line: [Compiler executable checksum: 3cd08a0c1ca22f7a87e26d4a7d7bed0f]
+        ignore line: [COLLECT_GCC_OPTIONS='-v' '-o' 'CMakeFiles\\cmTC_9c475.dir\\CMakeCXXCompilerABI.cpp.obj' '-c' '-mtune=generic' '-march=x86-64' '-dumpdir' 'CMakeFiles\\cmTC_9c475.dir\\']
+        ignore line: [ as -v -o CMakeFiles\\cmTC_9c475.dir\\CMakeCXXCompilerABI.cpp.obj C:\\Users\\Administrator\\AppData\\Local\\Temp\\ccZJKAkx.s]
+        ignore line: [GNU assembler version 2.43.1 (x86_64-w64-mingw32) using BFD version (GNU Binutils) 2.43.1]
+        ignore line: [COMPILER_PATH=C:/PROGRA~1/REDPAN~1/MINGW6~1/bin/../lib/gcc/x86_64-w64-mingw32/15/]
+        ignore line: [C:/PROGRA~1/REDPAN~1/MINGW6~1/bin/../lib/gcc/]
+        ignore line: [LIBRARY_PATH=C:/PROGRA~1/REDPAN~1/MINGW6~1/bin/../lib/gcc/x86_64-w64-mingw32/15/]
+        ignore line: [C:/PROGRA~1/REDPAN~1/MINGW6~1/bin/../lib/gcc/]
+        ignore line: [C:/PROGRA~1/REDPAN~1/MINGW6~1/bin/../lib/gcc/x86_64-w64-mingw32/15/../../../../lib/]
+        ignore line: [C:/PROGRA~1/REDPAN~1/MINGW6~1/bin/../lib/gcc/x86_64-w64-mingw32/15/../../../]
+        ignore line: [COLLECT_GCC_OPTIONS='-v' '-o' 'CMakeFiles\\cmTC_9c475.dir\\CMakeCXXCompilerABI.cpp.obj' '-c' '-mtune=generic' '-march=x86-64' '-dumpdir' 'CMakeFiles\\cmTC_9c475.dir\\CMakeCXXCompilerABI.cpp.']
+        ignore line: [Linking CXX executable cmTC_9c475.exe]
+        ignore line: ["C:\\Program Files\\CMake\\bin\\cmake.exe" -E cmake_link_script CMakeFiles\\cmTC_9c475.dir\\link.txt --verbose=1]
+        ignore line: [Using built-in specs.]
+        ignore line: [COLLECT_GCC=C:\\PROGRA~1\\REDPAN~1\\MINGW6~1\\bin\\G__~1.EXE]
+        ignore line: [COLLECT_LTO_WRAPPER=C:/PROGRA~1/REDPAN~1/MINGW6~1/bin/../lib/gcc/x86_64-w64-mingw32/15/lto-wrapper.exe]
+        ignore line: [Target: x86_64-w64-mingw32]
+        ignore line: [Configured with: ../configure --prefix=/opt/mingw64-ucrt-15 --libexecdir=/opt/mingw64-ucrt-15/lib --with-gcc-major-version-only --target=x86_64-w64-mingw32 --host=x86_64-w64-mingw32 --enable-lto --disable-plugin --disable-shared --enable-static --without-pic --disable-dependency-tracking --enable-languages=c c++ --enable-libgomp --enable-mingw-wildcard --disable-multilib --enable-nls --enable-threads=posix --disable-win32-registry --with-gmp=/tmp/build/mingw64-ucrt-15/deps --without-libcc1 --with-libiconv-prefix=/tmp/build/mingw64-ucrt-15/deps --with-libintl-prefix=/tmp/build/mingw64-ucrt-15/deps --with-mpc=/tmp/build/mingw64-ucrt-15/deps --with-mpfr=/tmp/build/mingw64-ucrt-15/deps CFLAGS=-Os CXXFLAGS=-Os LDFLAGS=-s CFLAGS_FOR_TARGET=-Os CXXFLAGS_FOR_TARGET=-Os LDFLAGS_FOR_TARGET=-s]
+        ignore line: [Thread model: posix]
+        ignore line: [Supported LTO compression algorithms: zlib]
+        ignore line: [gcc version 15.0.0 20240908 (experimental) (GCC) ]
+        ignore line: [COMPILER_PATH=C:/PROGRA~1/REDPAN~1/MINGW6~1/bin/../lib/gcc/x86_64-w64-mingw32/15/]
+        ignore line: [C:/PROGRA~1/REDPAN~1/MINGW6~1/bin/../lib/gcc/]
+        ignore line: [LIBRARY_PATH=C:/PROGRA~1/REDPAN~1/MINGW6~1/bin/../lib/gcc/x86_64-w64-mingw32/15/]
+        ignore line: [C:/PROGRA~1/REDPAN~1/MINGW6~1/bin/../lib/gcc/]
+        ignore line: [C:/PROGRA~1/REDPAN~1/MINGW6~1/bin/../lib/gcc/x86_64-w64-mingw32/15/../../../../lib/]
+        ignore line: [C:/PROGRA~1/REDPAN~1/MINGW6~1/bin/../lib/gcc/x86_64-w64-mingw32/15/../../../]
+        ignore line: [COLLECT_GCC_OPTIONS='-v' '-o' 'cmTC_9c475.exe' '-mtune=generic' '-march=x86-64' '-dumpdir' 'cmTC_9c475.']
+        link line: [ C:/PROGRA~1/REDPAN~1/MINGW6~1/bin/../lib/gcc/x86_64-w64-mingw32/15/collect2.exe -plugin C:/PROGRA~1/REDPAN~1/MINGW6~1/bin/../lib/gcc/x86_64-w64-mingw32/15/liblto_plugin.dll -plugin-opt=C:/PROGRA~1/REDPAN~1/MINGW6~1/bin/../lib/gcc/x86_64-w64-mingw32/15/lto-wrapper.exe -plugin-opt=-fresolution=C:\\Users\\Administrator\\AppData\\Local\\Temp\\ccnC1woS.res -plugin-opt=-pass-through=-lmingw32 -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lmingwex -plugin-opt=-pass-through=-lmsvcrt -plugin-opt=-pass-through=-lkernel32 -plugin-opt=-pass-through=-lpthread -plugin-opt=-pass-through=-ladvapi32 -plugin-opt=-pass-through=-lshell32 -plugin-opt=-pass-through=-luser32 -plugin-opt=-pass-through=-lkernel32 -plugin-opt=-pass-through=-lmingw32 -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lmingwex -plugin-opt=-pass-through=-lmsvcrt -plugin-opt=-pass-through=-lkernel32 -m i386pep -Bdynamic -o cmTC_9c475.exe C:/PROGRA~1/REDPAN~1/MINGW6~1/bin/../lib/gcc/x86_64-w64-mingw32/15/../../../../lib/crt2.o C:/PROGRA~1/REDPAN~1/MINGW6~1/bin/../lib/gcc/x86_64-w64-mingw32/15/crtbegin.o -LC:/PROGRA~1/REDPAN~1/MINGW6~1/bin/../lib/gcc/x86_64-w64-mingw32/15 -LC:/PROGRA~1/REDPAN~1/MINGW6~1/bin/../lib/gcc -LC:/PROGRA~1/REDPAN~1/MINGW6~1/bin/../lib/gcc/x86_64-w64-mingw32/15/../../../../lib -LC:/PROGRA~1/REDPAN~1/MINGW6~1/bin/../lib/gcc/x86_64-w64-mingw32/15/../../.. -v --whole-archive CMakeFiles\\cmTC_9c475.dir/objects.a --no-whole-archive --out-implib libcmTC_9c475.dll.a --major-image-version 0 --minor-image-version 0 -lstdc++ -lmingw32 -lgcc -lmingwex -lmsvcrt -lkernel32 -lpthread -ladvapi32 -lshell32 -luser32 -lkernel32 -lmingw32 -lgcc -lmingwex -lmsvcrt -lkernel32 C:/PROGRA~1/REDPAN~1/MINGW6~1/bin/../lib/gcc/x86_64-w64-mingw32/15/crtend.o]
+          arg [C:/PROGRA~1/REDPAN~1/MINGW6~1/bin/../lib/gcc/x86_64-w64-mingw32/15/collect2.exe] ==> ignore
+          arg [-plugin] ==> ignore
+          arg [C:/PROGRA~1/REDPAN~1/MINGW6~1/bin/../lib/gcc/x86_64-w64-mingw32/15/liblto_plugin.dll] ==> ignore
+          arg [-plugin-opt=C:/PROGRA~1/REDPAN~1/MINGW6~1/bin/../lib/gcc/x86_64-w64-mingw32/15/lto-wrapper.exe] ==> ignore
+          arg [-plugin-opt=-fresolution=C:\\Users\\Administrator\\AppData\\Local\\Temp\\ccnC1woS.res] ==> ignore
+          arg [-plugin-opt=-pass-through=-lmingw32] ==> ignore
+          arg [-plugin-opt=-pass-through=-lgcc] ==> ignore
+          arg [-plugin-opt=-pass-through=-lmingwex] ==> ignore
+          arg [-plugin-opt=-pass-through=-lmsvcrt] ==> ignore
+          arg [-plugin-opt=-pass-through=-lkernel32] ==> ignore
+          arg [-plugin-opt=-pass-through=-lpthread] ==> ignore
+          arg [-plugin-opt=-pass-through=-ladvapi32] ==> ignore
+          arg [-plugin-opt=-pass-through=-lshell32] ==> ignore
+          arg [-plugin-opt=-pass-through=-luser32] ==> ignore
+          arg [-plugin-opt=-pass-through=-lkernel32] ==> ignore
+          arg [-plugin-opt=-pass-through=-lmingw32] ==> ignore
+          arg [-plugin-opt=-pass-through=-lgcc] ==> ignore
+          arg [-plugin-opt=-pass-through=-lmingwex] ==> ignore
+          arg [-plugin-opt=-pass-through=-lmsvcrt] ==> ignore
+          arg [-plugin-opt=-pass-through=-lkernel32] ==> ignore
+          arg [-m] ==> ignore
+          arg [i386pep] ==> ignore
+          arg [-Bdynamic] ==> search dynamic
+          arg [-o] ==> ignore
+          arg [cmTC_9c475.exe] ==> ignore
+          arg [C:/PROGRA~1/REDPAN~1/MINGW6~1/bin/../lib/gcc/x86_64-w64-mingw32/15/../../../../lib/crt2.o] ==> obj [C:/PROGRA~1/REDPAN~1/MINGW6~1/bin/../lib/gcc/x86_64-w64-mingw32/15/../../../../lib/crt2.o]
+          arg [C:/PROGRA~1/REDPAN~1/MINGW6~1/bin/../lib/gcc/x86_64-w64-mingw32/15/crtbegin.o] ==> obj [C:/PROGRA~1/REDPAN~1/MINGW6~1/bin/../lib/gcc/x86_64-w64-mingw32/15/crtbegin.o]
+          arg [-LC:/PROGRA~1/REDPAN~1/MINGW6~1/bin/../lib/gcc/x86_64-w64-mingw32/15] ==> dir [C:/PROGRA~1/REDPAN~1/MINGW6~1/bin/../lib/gcc/x86_64-w64-mingw32/15]
+          arg [-LC:/PROGRA~1/REDPAN~1/MINGW6~1/bin/../lib/gcc] ==> dir [C:/PROGRA~1/REDPAN~1/MINGW6~1/bin/../lib/gcc]
+          arg [-LC:/PROGRA~1/REDPAN~1/MINGW6~1/bin/../lib/gcc/x86_64-w64-mingw32/15/../../../../lib] ==> dir [C:/PROGRA~1/REDPAN~1/MINGW6~1/bin/../lib/gcc/x86_64-w64-mingw32/15/../../../../lib]
+          arg [-LC:/PROGRA~1/REDPAN~1/MINGW6~1/bin/../lib/gcc/x86_64-w64-mingw32/15/../../..] ==> dir [C:/PROGRA~1/REDPAN~1/MINGW6~1/bin/../lib/gcc/x86_64-w64-mingw32/15/../../..]
+          arg [-v] ==> ignore
+          arg [--whole-archive] ==> ignore
+          arg [CMakeFiles\\cmTC_9c475.dir/objects.a] ==> ignore
+          arg [--no-whole-archive] ==> ignore
+          arg [--out-implib] ==> ignore
+          arg [libcmTC_9c475.dll.a] ==> ignore
+          arg [--major-image-version] ==> ignore
+          arg [0] ==> ignore
+          arg [--minor-image-version] ==> ignore
+          arg [0] ==> ignore
+          arg [-lstdc++] ==> lib [stdc++]
+          arg [-lmingw32] ==> lib [mingw32]
+          arg [-lgcc] ==> lib [gcc]
+          arg [-lmingwex] ==> lib [mingwex]
+          arg [-lmsvcrt] ==> lib [msvcrt]
+          arg [-lkernel32] ==> lib [kernel32]
+          arg [-lpthread] ==> lib [pthread]
+          arg [-ladvapi32] ==> lib [advapi32]
+          arg [-lshell32] ==> lib [shell32]
+          arg [-luser32] ==> lib [user32]
+          arg [-lkernel32] ==> lib [kernel32]
+          arg [-lmingw32] ==> lib [mingw32]
+          arg [-lgcc] ==> lib [gcc]
+          arg [-lmingwex] ==> lib [mingwex]
+          arg [-lmsvcrt] ==> lib [msvcrt]
+          arg [-lkernel32] ==> lib [kernel32]
+          arg [C:/PROGRA~1/REDPAN~1/MINGW6~1/bin/../lib/gcc/x86_64-w64-mingw32/15/crtend.o] ==> obj [C:/PROGRA~1/REDPAN~1/MINGW6~1/bin/../lib/gcc/x86_64-w64-mingw32/15/crtend.o]
+        ignore line: [collect2 version 15.0.0 20240908 (experimental)]
+        ignore line: [C:\\Program Files\\RedPanda-Cpp\\mingw64-ucrt-15\\bin/ld.exe -plugin C:/PROGRA~1/REDPAN~1/MINGW6~1/bin/../lib/gcc/x86_64-w64-mingw32/15/liblto_plugin.dll -plugin-opt=C:/PROGRA~1/REDPAN~1/MINGW6~1/bin/../lib/gcc/x86_64-w64-mingw32/15/lto-wrapper.exe -plugin-opt=-fresolution=C:\\Users\\Administrator\\AppData\\Local\\Temp\\ccnC1woS.res -plugin-opt=-pass-through=-lmingw32 -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lmingwex -plugin-opt=-pass-through=-lmsvcrt -plugin-opt=-pass-through=-lkernel32 -plugin-opt=-pass-through=-lpthread -plugin-opt=-pass-through=-ladvapi32 -plugin-opt=-pass-through=-lshell32 -plugin-opt=-pass-through=-luser32 -plugin-opt=-pass-through=-lkernel32 -plugin-opt=-pass-through=-lmingw32 -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lmingwex -plugin-opt=-pass-through=-lmsvcrt -plugin-opt=-pass-through=-lkernel32 -m i386pep -Bdynamic -o cmTC_9c475.exe C:/PROGRA~1/REDPAN~1/MINGW6~1/bin/../lib/gcc/x86_64-w64-mingw32/15/../../../../lib/crt2.o C:/PROGRA~1/REDPAN~1/MINGW6~1/bin/../lib/gcc/x86_64-w64-mingw32/15/crtbegin.o -LC:/PROGRA~1/REDPAN~1/MINGW6~1/bin/../lib/gcc/x86_64-w64-mingw32/15 -LC:/PROGRA~1/REDPAN~1/MINGW6~1/bin/../lib/gcc -LC:/PROGRA~1/REDPAN~1/MINGW6~1/bin/../lib/gcc/x86_64-w64-mingw32/15/../../../../lib -LC:/PROGRA~1/REDPAN~1/MINGW6~1/bin/../lib/gcc/x86_64-w64-mingw32/15/../../.. -v --whole-archive CMakeFiles\\cmTC_9c475.dir/objects.a --no-whole-archive --out-implib libcmTC_9c475.dll.a --major-image-version 0 --minor-image-version 0 -lstdc++ -lmingw32 -lgcc -lmingwex -lmsvcrt -lkernel32 -lpthread -ladvapi32 -lshell32 -luser32 -lkernel32 -lmingw32 -lgcc -lmingwex -lmsvcrt -lkernel32 C:/PROGRA~1/REDPAN~1/MINGW6~1/bin/../lib/gcc/x86_64-w64-mingw32/15/crtend.o]
+        linker tool for 'CXX': C:/Program Files/RedPanda-Cpp/mingw64-ucrt-15/bin/ld.exe
+        remove lib [msvcrt]
+        remove lib [msvcrt]
+        collapse obj [C:/PROGRA~1/REDPAN~1/MINGW6~1/bin/../lib/gcc/x86_64-w64-mingw32/15/../../../../lib/crt2.o] ==> [C:/Program Files/RedPanda-Cpp/mingw64-ucrt-15/lib/crt2.o]
+        collapse obj [C:/PROGRA~1/REDPAN~1/MINGW6~1/bin/../lib/gcc/x86_64-w64-mingw32/15/crtbegin.o] ==> [C:/Program Files/RedPanda-Cpp/mingw64-ucrt-15/lib/gcc/x86_64-w64-mingw32/15/crtbegin.o]
+        collapse obj [C:/PROGRA~1/REDPAN~1/MINGW6~1/bin/../lib/gcc/x86_64-w64-mingw32/15/crtend.o] ==> [C:/Program Files/RedPanda-Cpp/mingw64-ucrt-15/lib/gcc/x86_64-w64-mingw32/15/crtend.o]
+        collapse library dir [C:/PROGRA~1/REDPAN~1/MINGW6~1/bin/../lib/gcc/x86_64-w64-mingw32/15] ==> [C:/Program Files/RedPanda-Cpp/mingw64-ucrt-15/lib/gcc/x86_64-w64-mingw32/15]
+        collapse library dir [C:/PROGRA~1/REDPAN~1/MINGW6~1/bin/../lib/gcc] ==> [C:/Program Files/RedPanda-Cpp/mingw64-ucrt-15/lib/gcc]
+        collapse library dir [C:/PROGRA~1/REDPAN~1/MINGW6~1/bin/../lib/gcc/x86_64-w64-mingw32/15/../../../../lib] ==> [C:/Program Files/RedPanda-Cpp/mingw64-ucrt-15/lib]
+        collapse library dir [C:/PROGRA~1/REDPAN~1/MINGW6~1/bin/../lib/gcc/x86_64-w64-mingw32/15/../../..] ==> [C:/Program Files/RedPanda-Cpp/mingw64-ucrt-15/lib]
+        implicit libs: [stdc++;mingw32;gcc;mingwex;kernel32;pthread;advapi32;shell32;user32;kernel32;mingw32;gcc;mingwex;kernel32]
+        implicit objs: [C:/Program Files/RedPanda-Cpp/mingw64-ucrt-15/lib/crt2.o;C:/Program Files/RedPanda-Cpp/mingw64-ucrt-15/lib/gcc/x86_64-w64-mingw32/15/crtbegin.o;C:/Program Files/RedPanda-Cpp/mingw64-ucrt-15/lib/gcc/x86_64-w64-mingw32/15/crtend.o]
+        implicit dirs: [C:/Program Files/RedPanda-Cpp/mingw64-ucrt-15/lib/gcc/x86_64-w64-mingw32/15;C:/Program Files/RedPanda-Cpp/mingw64-ucrt-15/lib/gcc;C:/Program Files/RedPanda-Cpp/mingw64-ucrt-15/lib]
+        implicit fwks: []
+      
+      
+  -
+    kind: "message-v1"
+    backtrace:
+      - "C:/Program Files/CMake/share/cmake-4.1/Modules/Internal/CMakeDetermineLinkerId.cmake:36 (message)"
+      - "C:/Program Files/CMake/share/cmake-4.1/Modules/CMakeDetermineCompilerABI.cmake:299 (cmake_determine_linker_id)"
+      - "C:/Program Files/CMake/share/cmake-4.1/Modules/CMakeTestCXXCompiler.cmake:26 (CMAKE_DETERMINE_COMPILER_ABI)"
+      - "CMakeLists.txt:2 (project)"
+    message: |
+      Running the CXX compiler's linker: "C:/Program Files/RedPanda-Cpp/mingw64-ucrt-15/bin/ld.exe" "-v"
+      GNU ld (GNU Binutils) 2.43.1
+...

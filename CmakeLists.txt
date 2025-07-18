@@ -1,0 +1,18 @@
+cmake_minimum_required(VERSION 3.15)
+project(squaker)
+
+# C++17
+set(CMAKE_CXX_STANDARD 17)
+set(CMAKE_CXX_STANDARD_REQUIRED ON)
+
+# 头文件搜索路径
+include_directories(include)
+
+# 查找所有 .cpp
+file(GLOB SRC_FILES src/*.cpp)
+
+# 可执行文件
+add_executable(squaker ${SRC_FILES} test/main.cpp)
+
+# 如果想把 exe 放到 bin
+set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_SOURCE_DIR}/bin)

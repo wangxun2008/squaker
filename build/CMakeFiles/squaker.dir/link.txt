@@ -1,0 +1,3 @@
+"C:\Program Files\CMake\bin\cmake.exe" -E rm -f CMakeFiles\squaker.dir/objects.a
+C:\PROGRA~1\REDPAN~1\MINGW6~1\bin\ar.exe qc CMakeFiles\squaker.dir/objects.a @CMakeFiles\squaker.dir\objects1.rsp
+C:\PROGRA~1\REDPAN~1\MINGW6~1\bin\G__~1.EXE -g -Wl,--whole-archive CMakeFiles\squaker.dir/objects.a -Wl,--no-whole-archive -o squaker.exe -Wl,--out-implib,libsquaker.dll.a -Wl,--major-image-version,0,--minor-image-version,0 @CMakeFiles\squaker.dir\linkLibs.rsp
