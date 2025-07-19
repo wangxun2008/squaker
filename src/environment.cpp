@@ -3,22 +3,22 @@
 #include <stdexcept>
 #include <memory>
 #include "type.h"
-#include "evironment.h"
+#include "Environment.h"
 
 namespace squ { 
 
     // 返回父级作用域
-    Evironment* Evironment::parent_evironment() const {
+    Environment* Environment::parent_environment() const {
         return parent;
     }
 
     // 创建子作用域：返回独占指针
-    std::unique_ptr<Evironment> Evironment::new_child() {
-        return std::make_unique<Evironment>(this);
+    std::unique_ptr<Environment> Environment::new_child() {
+        return std::make_unique<Environment>(this);
     }
 
     // 读取变量：链式查找
-    ValueData& Evironment::get(const std::string &name) {
+    ValueData& Environment::get(const std::string &name) {
         auto it = locals.find(name);
         if (it != locals.end())
             return it->second;
@@ -28,8 +28,8 @@ namespace squ {
     }
 
     // 写入变量：链式查找，查不到在本层新建
-    ValueData& Evironment::set(const std::string &name, ValueData v) {
-        Evironment *curr = this;
+    ValueData& Environment::set(const std::string &name, ValueData v) {
+        Environment *curr = this;
         while (curr) {
             auto it = curr->locals.find(name);
             if (it != curr->locals.end()) { // 找到就覆盖

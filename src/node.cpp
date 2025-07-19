@@ -1,7 +1,7 @@
 #include "../include/node.h"
 #include "../include/type.h"
 #include "../include/operator.h"
-#include "../include/evironment.h"
+#include "../include/environment.h"
 #include <cmath>
 #include <iostream>
 #include <map>
@@ -12,20 +12,20 @@
 namespace squ {
 
     // 统一字面量节点
-    std::string LiteralNode::toString() const {
-        return data.to_string();
+    std::string LiteralNode::string() const {
+        return data.string();
     }
 
-    ValueData LiteralNode::evaluate() const {
+    ValueData LiteralNode::evaluate(Environment& env) const {
         return data;
     }
 
     // 标识符节点
-    std::string IdentifierNode::toString() const {
+    std::string IdentifierNode::string() const {
         return name;
     }
 
-    ValueData IdentifierNode::evaluate() const {
+    ValueData IdentifierNode::evaluate(Environment& env) const {
         // 这里需要从环境中查找变量值
         throw std::runtime_error("Identifier evaluation requires environment context: " + name);
     }
@@ -35,13 +35,13 @@ namespace squ {
                                std::unique_ptr<ExprNode> r)
         : op(std::move(op)), left(std::move(l)), right(std::move(r)) {}
 
-    std::string BinaryOpNode::toString() const {
-        return "(" + left->toString() + " " + op + " " + right->toString() + ")";
+    std::string BinaryOpNode::string() const {
+        return "(" + left->string() + " " + op + " " + right->string() + ")";
     }
 
-    ValueData BinaryOpNode::evaluate() const {
-        ValueData leftVal = left->evaluate();
-        ValueData rightVal = right->evaluate();
+    ValueData BinaryOpNode::evaluate(Environment& env) const {
+        ValueData leftVal = left->evaluate(env);
+        ValueData rightVal = right->evaluate(env);
         return applyBinary(leftVal, op, rightVal);
     }
 
@@ -49,12 +49,12 @@ namespace squ {
     UnaryOpNode::UnaryOpNode(std::string op, std::unique_ptr<ExprNode> expr)
         : op(std::move(op)), operand(std::move(expr)) {}
 
-    std::string UnaryOpNode::toString() const {
-        return "(" + op + operand->toString() + ")";
+    std::string UnaryOpNode::string() const {
+        return "(" + op + operand->string() + ")";
     }
 
-    ValueData UnaryOpNode::evaluate() const {
-        ValueData operandVal = operand->evaluate();
+    ValueData UnaryOpNode::evaluate(Environment& env) const {
+        ValueData operandVal = operand->evaluate(env);
 
         // 实现一元操作的求值逻辑
         throw std::runtime_error("Unary operation evaluation not implemented for op: " + op);
@@ -64,12 +64,12 @@ namespace squ {
     PostfixOpNode::PostfixOpNode(std::string op, std::unique_ptr<ExprNode> expr)
         : op(std::move(op)), operand(std::move(expr)) {}
 
-    std::string PostfixOpNode::toString() const {
-        return "(" + operand->toString() + op + ")";
+    std::string PostfixOpNode::string() const {
+        return "(" + operand->string() + op + ")";
     }
 
-    ValueData PostfixOpNode::evaluate() const {
-        ValueData operandVal = operand->evaluate();
+    ValueData PostfixOpNode::evaluate(Environment& env) const {
+        ValueData operandVal = operand->evaluate(env);
 
         // 实现后缀操作的求值逻辑
         throw std::runtime_error("Postfix operation evaluation not implemented for op: " + op);
@@ -80,11 +80,11 @@ namespace squ {
                                    std::unique_ptr<ExprNode> r)
         : op(std::move(op)), left(std::move(l)), right(std::move(r)) {}
 
-    std::string AssignmentNode::toString() const {
-        return "(" + left->toString() + " " + op + " " + right->toString() + ")";
+    std::string AssignmentNode::string() const {
+        return "(" + left->string() + " " + op + " " + right->string() + ")";
     }
 
-    ValueData AssignmentNode::evaluate() const {
+    ValueData AssignmentNode::evaluate(Environment& env) const {
         // 这里需要处理赋值操作
         // 左侧通常是标识符，右侧是表达式
         throw std::runtime_error("Assignment evaluation requires environment context");
@@ -95,17 +95,17 @@ namespace squ {
                            std::unique_ptr<ExprNode> b)
         : parameters(std::move(params)), body(std::move(b)) {}
 
-    std::string LambdaNode::toString() const {
+    std::string LambdaNode::string() const {
         std::string params;
         for (size_t i = 0; i < parameters.size(); i++) {
             if (i > 0)
                 params += ", ";
             params += parameters[i];
         }
-        return "(lambda (" + params + ") -> " + body->toString() + ")";
+        return "(lambda (" + params + ") -> " + body->string() + ")";
     }
 
-    ValueData LambdaNode::evaluate() const {
+    ValueData LambdaNode::evaluate(Environment& env) const {
         // 返回一个函数值，需要在ValueData中表示函数
         throw std::runtime_error("Lambda evaluation not implemented");
     }
@@ -115,17 +115,17 @@ namespace squ {
                          std::vector<std::unique_ptr<ExprNode>> args)
         : callee(std::move(callee)), arguments(std::move(args)) {}
 
-    std::string ApplyNode::toString() const {
+    std::string ApplyNode::string() const {
         std::string args;
         for (size_t i = 0; i < arguments.size(); i++) {
             if (i > 0)
                 args += ", ";
-            args += arguments[i]->toString();
+            args += arguments[i]->string();
         }
-        return "(apply:" + callee->toString() + "(" + args + "))";
+        return "(apply:" + callee->string() + "(" + args + "))";
     }
 
-    ValueData ApplyNode::evaluate() const {
+    ValueData ApplyNode::evaluate(Environment& env) const {
         // 实现函数调用的求值逻辑
         throw std::runtime_error("Function application evaluation not implemented");
     }
@@ -137,23 +137,23 @@ namespace squ {
         std::unique_ptr<ExprNode> eb)
         : branches(std::move(br)), elseBranch(std::move(eb)) {}
 
-    std::string IfNode::toString() const {
+    std::string IfNode::string() const {
         std::string result = "(if ";
         for (size_t i = 0; i < branches.size(); i++) {
             const auto &branch = branches[i];
             if (i > 0)
                 result += " else if ";
             result +=
-                "(" + branch.first->toString() + ") " + branch.second->toString();
+                "(" + branch.first->string() + ") " + branch.second->string();
         }
         if (elseBranch) {
-            result += " else " + elseBranch->toString();
+            result += " else " + elseBranch->string();
         }
         result += ")";
         return result;
     }
 
-    ValueData IfNode::evaluate() const {
+    ValueData IfNode::evaluate(Environment& env) const {
         // 实现条件表达式的求值逻辑
         throw std::runtime_error("Condition evaluation not implemented");
     }
@@ -164,14 +164,14 @@ namespace squ {
         : init(std::move(i)), condition(std::move(c)), update(std::move(u)),
           body(std::move(b)) {}
 
-    std::string ForNode::toString() const {
-        return "(for (" + (init ? init->toString() : "/* no init */") + "; " +
-               (condition ? condition->toString() : "/* no condition */") + "; " +
-               (update ? update->toString() : "/* no update */") + ") " +
-               body->toString() + ")";
+    std::string ForNode::string() const {
+        return "(for (" + (init ? init->string() : "/* no init */") + "; " +
+               (condition ? condition->string() : "/* no condition */") + "; " +
+               (update ? update->string() : "/* no update */") + ") " +
+               body->string() + ")";
     }
 
-    ValueData ForNode::evaluate() const {
+    ValueData ForNode::evaluate(Environment& env) const {
         // 实现For循环表达式的求值逻辑
         throw std::runtime_error("For evaluation not implemented");
     }
@@ -180,22 +180,22 @@ namespace squ {
     BlockNode::BlockNode(std::vector<std::unique_ptr<ExprNode>> stmts)
         : statements(std::move(stmts)) {}
 
-    std::string BlockNode::toString() const {
+    std::string BlockNode::string() const {
         std::string result = "{ ";
         for (const auto &stmt : statements) {
-            result += stmt->toString();
+            result += stmt->string();
             result += "; ";
         }
         result += "}";
         return result;
     }
 
-    ValueData BlockNode::evaluate() const {
+    ValueData BlockNode::evaluate(Environment& env) const {
         // 返回最后一条语句计算值
         if (statements.empty()) {
             return ValueData(); // 返回空值
         }
-        return statements.back()->evaluate();
+        return statements.back()->evaluate(env);
     }
 
     // While循环节点
@@ -203,32 +203,32 @@ namespace squ {
                          std::unique_ptr<ExprNode> b)
         : condition(std::move(cond)), body(std::move(b)) {}
 
-    std::string WhileNode::toString() const {
-        return "(while (" + condition->toString() + ") " + body->toString() + ")";
+    std::string WhileNode::string() const {
+        return "(while (" + condition->string() + ") " + body->string() + ")";
     }
 
-    ValueData WhileNode::evaluate() const {
+    ValueData WhileNode::evaluate(Environment& env) const {
         // 实现While循环表达式的求值逻辑
         throw std::runtime_error("While evaluation not implemented");
     }
 
     // 模块导入节点
-    std::string ImportNode::toString() const {
+    std::string ImportNode::string() const {
         return "(import " + moduleName + ")";
     }
 
-    ValueData ImportNode::evaluate() const {
+    ValueData ImportNode::evaluate(Environment& env) const {
         // 实现模块导入的求值逻辑
         throw std::runtime_error("Module import evaluation not implemented for: " +
                                  moduleName);
     }
 
     // 循环控制节点
-    std::string ControlFlowNode::toString() const {
+    std::string ControlFlowNode::string() const {
         return "(" + type + ")";
     }
 
-    ValueData ControlFlowNode::evaluate() const {
+    ValueData ControlFlowNode::evaluate(Environment& env) const {
         // 实现循环控制的求值逻辑
         throw std::runtime_error("Control flow evaluation not implemented for: " + type);
     }
@@ -236,11 +236,11 @@ namespace squ {
     // 返回值节点
     ReturnNode::ReturnNode(std::unique_ptr<ExprNode> val) : value(std::move(val)) {}
 
-    std::string ReturnNode::toString() const {
-        return "(return " + (value ? value->toString() : "void") + ")";
+    std::string ReturnNode::string() const {
+        return "(return " + (value ? value->string() : "void") + ")";
     }
 
-    ValueData ReturnNode::evaluate() const {
+    ValueData ReturnNode::evaluate(Environment& env) const {
         // 实现返回语句的求值逻辑
         // 这里应该抛出一个异常，由解释器捕获并处理返回值
         throw std::runtime_error("Return evaluation should be handled by the interpreter");
@@ -251,11 +251,11 @@ namespace squ {
                                        std::string mem)
         : object(std::move(obj)), member(std::move(mem)) {}
 
-    std::string MemberAccessNode::toString() const {
-        return "(" + object->toString() + "." + member + ")";
+    std::string MemberAccessNode::string() const {
+        return "(" + object->string() + "." + member + ")";
     }
 
-    ValueData MemberAccessNode::evaluate() const {
+    ValueData MemberAccessNode::evaluate(Environment& env) const {
         // 实现成员访问的求值逻辑
         throw std::runtime_error("Member access evaluation not implemented for: " + member);
     }
@@ -265,11 +265,11 @@ namespace squ {
                          std::unique_ptr<ExprNode> idx)
         : container(std::move(cont)), index(std::move(idx)) {}
 
-    std::string IndexNode::toString() const {
-        return "(" + container->toString() + "[" + index->toString() + "])";
+    std::string IndexNode::string() const {
+        return "(" + container->string() + "[" + index->string() + "])";
     }
 
-    ValueData IndexNode::evaluate() const {
+    ValueData IndexNode::evaluate(Environment& env) const {
         // 实现索引访问的求值逻辑
         throw std::runtime_error("Index access evaluation not implemented");
     }
@@ -279,17 +279,17 @@ namespace squ {
                                    std::vector<std::unique_ptr<ExprNode>> args)
         : functionName(std::move(name)), arguments(std::move(args)) {}
 
-    std::string NativeCallNode::toString() const {
+    std::string NativeCallNode::string() const {
         std::string args;
         for (size_t i = 0; i < arguments.size(); i++) {
             if (i > 0)
                 args += ", ";
-            args += arguments[i]->toString();
+            args += arguments[i]->string();
         }
         return "(@" + functionName + "(" + args + "))";
     }
 
-    ValueData NativeCallNode::evaluate() const {
+    ValueData NativeCallNode::evaluate(Environment& env) const {
         // 实现原生函数调用的求值逻辑
         throw std::runtime_error(
             "Native function call evaluation not implemented for: " + functionName);
@@ -299,17 +299,17 @@ namespace squ {
     ArrayNode::ArrayNode(std::vector<std::unique_ptr<ExprNode>> elems)
         : elements(std::move(elems)) {}
 
-    std::string ArrayNode::toString() const {
+    std::string ArrayNode::string() const {
         std::string result = "[";
         for (size_t i = 0; i < elements.size(); i++) {
             if (i > 0)
                 result += ", ";
-            result += elements[i]->toString();
+            result += elements[i]->string();
         }
         return result + "]";
     }
 
-    ValueData ArrayNode::evaluate() const {
+    ValueData ArrayNode::evaluate(Environment& env) const {
         // 实现数组创建的求值逻辑
         throw std::runtime_error("Array creation evaluation not implemented");
     }
@@ -320,18 +320,18 @@ namespace squ {
             entries)
         : entries(std::move(entries)) {}
 
-    std::string MapNode::toString() const {
+    std::string MapNode::string() const {
         std::string result = "{";
         for (size_t i = 0; i < entries.size(); i++) {
             if (i > 0)
                 result += ", ";
             result +=
-                entries[i].first->toString() + ": " + entries[i].second->toString();
+                entries[i].first->string() + ": " + entries[i].second->string();
         }
         return result + "}";
     }
 
-    ValueData MapNode::evaluate() const {
+    ValueData MapNode::evaluate(Environment& env) const {
         // 实现映射表创建的求值逻辑
         throw std::runtime_error("Map creation evaluation not implemented");
     }

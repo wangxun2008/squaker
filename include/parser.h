@@ -45,6 +45,9 @@ private:
     // 关系
     std::unique_ptr<ExprNode> parse_relational();
 
+    // 字符串连接
+    std::unique_ptr<ExprNode> parse_concatenation();
+
     // 移位
     std::unique_ptr<ExprNode> parse_shift();
 

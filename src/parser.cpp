@@ -126,10 +126,23 @@ namespace squ {
 
     // 关系
     std::unique_ptr<ExprNode> Parser::parse_relational() {
-        auto left = parse_shift();
+        auto left = parse_concatenation();
 
         while (match(TokenType::Operator, "<") || match(TokenType::Operator, ">") ||
                match(TokenType::Operator, "<=") || match(TokenType::Operator, ">=")) {
+            Token op = previous();
+            auto right = parse_shift();
+            left = std::make_unique<BinaryOpNode>(op.value, std::move(left), std::move(right));
+        }
+
+        return left;
+    }
+
+    // 字符串连接
+    std::unique_ptr<ExprNode> Parser::parse_concatenation() {
+        auto left = parse_shift();
+
+        while (match(TokenType::Operator, "..")) {
             Token op = previous();
             auto right = parse_shift();
             left = std::make_unique<BinaryOpNode>(op.value, std::move(left), std::move(right));
@@ -751,11 +764,19 @@ namespace squ {
             }
         }
 
-        if (match(TokenType::Number)) {
+        if (match(TokenType::Real)) {
             Token token = previous();
             ValueData data;
             data.type = ValueType::Real;
-            data.value = token.num_value;
+            data.value = token.num_real;
+            return std::make_unique<LiteralNode>(data);
+        }
+
+        if (match(TokenType::Integer)) {
+            Token token = previous();
+            ValueData data;
+            data.type = ValueType::Integer;
+            data.value = token.num_integer;
             return std::make_unique<LiteralNode>(data);
         }
 

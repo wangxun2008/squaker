@@ -9,6 +9,7 @@ namespace squ {
 
     // 数据类型枚举
     enum class ValueType {
+        Integer,  // 整数
         Real,     // 实数
         Bool,     // 布尔
         Char,     // 字符
@@ -22,7 +23,8 @@ namespace squ {
     struct ValueData {
         ValueType type = ValueType::Real;
         bool is_const = false;
-        std::variant<double,                 // 实数
+        std::variant<long long,              // 整数
+                     double,                 // 实数
                      bool,                   // 布尔
                      char,                   // 字符
                      std::string,            // 字符串
@@ -31,7 +33,7 @@ namespace squ {
             value = 0.0; // 映射（使用字符串作为键）
 
         // 成员函数声明
-        std::string to_string() const;
+        std::string string() const;
     };
 
 } // namespace squ

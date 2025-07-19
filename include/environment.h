@@ -8,20 +8,20 @@
 namespace squ { 
 
     // 作用域环境类：用于变量查找和存储
-    class Evironment {
+    class Environment {
       private:
         using Map = std::unordered_map<std::string, ValueData>;
         Map locals;
-        Evironment *parent = nullptr;
+        Environment *parent = nullptr;
 
       public:
-        explicit Evironment(Evironment *p = nullptr) : parent(p) {}
+        explicit Environment(Environment *p = nullptr) : parent(p) {}
 
         // 返回父级作用域
-        Evironment *parent_evironment() const;
+        Environment *parent_environment() const;
 
         // 创建子作用域：返回独占指针
-        std::unique_ptr<Evironment> new_child();
+        std::unique_ptr<Environment> new_child();
 
         // 读取变量：链式查找
         ValueData &get(const std::string &name);

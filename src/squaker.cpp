@@ -143,7 +143,7 @@ namespace squ {
                 auto tokens = ParseTokens(input);
                 squ::Parser parser(tokens);
                 auto expr = parser.parse();
-                std::cout << "AST: " << expr->toString() << std::endl;
+                std::cout << "AST: " << expr->string() << std::endl;
             } catch (const std::exception &e) {
                 std::cerr << "  Error: " << e.what() << std::endl;
             }
@@ -198,9 +198,10 @@ namespace squ {
         auto start = std::chrono::high_resolution_clock::now();
         for (const auto &token_list : tokens) {
             try {
+                squ::Environment env; // 创建一个新的环境
                 squ::Parser parser(token_list);
                 auto expr = parser.parse();
-                auto result = expr->evaluate(); // 调用求值接口
+                auto result = expr->evaluate(env); // 调用求值接口
             } catch (const std::exception &e) {
                 std::cerr << "Error evaluating expression: " << e.what() << std::endl;
             }
@@ -275,8 +276,8 @@ namespace squ {
             }
 
             return true;
-        } catch (std::exception &ex) {
-            throw ex;
+        } catch (const std::exception &ex) {
+            throw std::runtime_error(ex.what());
         }
     }
 
@@ -309,13 +310,15 @@ namespace squ {
                     std::cout << CYAN;
                     auto start = std::chrono::high_resolution_clock::now();
                     auto tokens = ParseTokens(input_buffer);
+                    std::cout << PrintTokens(tokens) << std::endl;
+                    squ::Environment env; // 创建一个新的环境
                     squ::Parser parser(tokens);
                     auto expr = parser.parse();
-                    std::cout << expr->toString() << std::endl; // 触发 AST 构建
-                    auto result = expr->evaluate();
+                    std::cout << expr->string() << std::endl; // 触发 AST 构建
+                    auto result = expr->evaluate(env);
                     auto end = std::chrono::high_resolution_clock::now();
                     std::chrono::duration<double> elapsed = end - start;
-                    std::cout << GRAY << "(return: " << CYAN << result.to_string() << GRAY
+                    std::cout << GRAY << "(return: " << CYAN << result.string() << GRAY
                               << ", time: " << RED << elapsed.count() * 1000 << "ms" << GRAY << ")" << std::endl;
                     input_buffer.clear();
                 }
