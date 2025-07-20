@@ -1,7 +1,7 @@
 #pragma once
 
-#include "type.h"
 #include "environment.h"
+#include "type.h"
 #include <memory>
 #include <string>
 #include <unordered_map>
@@ -9,11 +9,41 @@
 
 namespace squ {
 
+    // 节点类型枚举
+    enum class NodeType {
+        Literal,        // 字面量
+        Identifier,     // 标识符
+        BinaryOp,       // 二元操作
+        UnaryOp,        // 一元操作
+        PostfixOp,      // 后缀操作
+        Assignment,     // 赋值
+        CompoundAssign, // 复合赋值
+        Lambda,         // Lambda 函数
+        Apply,          // 函数应用
+        If,             // 条件语句
+        For,            // 循环语句
+        Block,          // 代码块
+        While,          // 循环语句
+        Import,         // 导入语句
+        ControlFlow,    // 控制流语句
+        Return,         // 返回语句
+        MemberAccess,   // 成员访问
+        Index,          // 索引访问
+        NativeCall,     // 原生函数调用
+        Array,          // 数组
+        Map             // 映射表
+    };
+
     class ExprNode {
       public:
         virtual ~ExprNode() = default;
         virtual std::string string() const = 0;
-        virtual ValueData evaluate(Environment& env) const = 0; // 添加求值接口
+        // 节点类型接口
+        virtual NodeType type() const = 0;
+        // 右值求值接口
+        virtual ValueData evaluate(Environment &env) const = 0;
+        // 左值求值接口
+        virtual ValueData &evaluate_lvalue(Environment &env) const = 0;
     };
 
     // 统一字面量节点
@@ -24,7 +54,9 @@ namespace squ {
         explicit LiteralNode(ValueData data) : data(std::move(data)) {}
 
         std::string string() const override;
-        ValueData evaluate(Environment& env) const override;
+        NodeType type() const override { return NodeType::Literal; }
+        ValueData evaluate(Environment &env) const override;
+        ValueData &evaluate_lvalue(Environment &env) const override;
     };
 
     // 标识符节点
@@ -34,7 +66,9 @@ namespace squ {
       public:
         explicit IdentifierNode(std::string id) : name(std::move(id)) {}
         std::string string() const override;
-        ValueData evaluate(Environment& env) const override;
+        NodeType type() const override { return NodeType::Identifier; }
+        ValueData evaluate(Environment &env) const override;
+        ValueData &evaluate_lvalue(Environment &env) const override;
     };
 
     // 二元操作节点
@@ -44,11 +78,12 @@ namespace squ {
         std::unique_ptr<ExprNode> right;
 
       public:
-        BinaryOpNode(std::string op, std::unique_ptr<ExprNode> l,
-                     std::unique_ptr<ExprNode> r);
+        BinaryOpNode(std::string op, std::unique_ptr<ExprNode> l, std::unique_ptr<ExprNode> r);
 
         std::string string() const override;
-        ValueData evaluate(Environment& env) const override;
+        NodeType type() const override { return NodeType::BinaryOp; }
+        ValueData evaluate(Environment &env) const override;
+        ValueData &evaluate_lvalue(Environment &env) const override;
     };
 
     // 一元操作节点（前缀）
@@ -60,7 +95,9 @@ namespace squ {
         UnaryOpNode(std::string op, std::unique_ptr<ExprNode> expr);
 
         std::string string() const override;
-        ValueData evaluate(Environment& env) const override;
+        NodeType type() const override { return NodeType::UnaryOp; }
+        ValueData evaluate(Environment &env) const override;
+        ValueData &evaluate_lvalue(Environment &env) const override;
     };
 
     // 后缀操作节点
@@ -72,7 +109,9 @@ namespace squ {
         PostfixOpNode(std::string op, std::unique_ptr<ExprNode> expr);
 
         std::string string() const override;
-        ValueData evaluate(Environment& env) const override;
+        NodeType type() const override { return NodeType::PostfixOp; }
+        ValueData evaluate(Environment &env) const override;
+        ValueData &evaluate_lvalue(Environment &env) const override;
     };
 
     // 赋值节点
@@ -82,11 +121,27 @@ namespace squ {
         std::unique_ptr<ExprNode> right;
 
       public:
-        AssignmentNode(std::string op, std::unique_ptr<ExprNode> l,
-                       std::unique_ptr<ExprNode> r);
+        AssignmentNode(std::string op, std::unique_ptr<ExprNode> l, std::unique_ptr<ExprNode> r);
 
         std::string string() const override;
-        ValueData evaluate(Environment& env) const override;
+        NodeType type() const override { return NodeType::Assignment; }
+        ValueData evaluate(Environment &env) const override;
+        ValueData &evaluate_lvalue(Environment &env) const override;
+    };
+
+    // 复合赋值节点（如 +=, -= 等）
+    class CompoundAssignmentNode : public ExprNode {
+        std::string op;
+        std::unique_ptr<ExprNode> left;
+        std::unique_ptr<ExprNode> right;
+
+      public:
+        CompoundAssignmentNode(std::string op, std::unique_ptr<ExprNode> l, std::unique_ptr<ExprNode> r);
+
+        std::string string() const override;
+        NodeType type() const override { return NodeType::CompoundAssign; }
+        ValueData evaluate(Environment &env) const override;
+        ValueData &evaluate_lvalue(Environment &env) const override;
     };
 
     // Lambda节点（函数定义）
@@ -98,7 +153,9 @@ namespace squ {
         LambdaNode(std::vector<std::string> params, std::unique_ptr<ExprNode> b);
 
         std::string string() const override;
-        ValueData evaluate(Environment& env) const override;
+        NodeType type() const override { return NodeType::Lambda; }
+        ValueData evaluate(Environment &env) const override;
+        ValueData &evaluate_lvalue(Environment &env) const override;
     };
 
     // 函数应用节点（函数调用）
@@ -107,27 +164,27 @@ namespace squ {
         std::vector<std::unique_ptr<ExprNode>> arguments;
 
       public:
-        ApplyNode(std::unique_ptr<ExprNode> callee,
-                  std::vector<std::unique_ptr<ExprNode>> args);
+        ApplyNode(std::unique_ptr<ExprNode> callee, std::vector<std::unique_ptr<ExprNode>> args);
 
         std::string string() const override;
-        ValueData evaluate(Environment& env) const override;
+        NodeType type() const override { return NodeType::Apply; }
+        ValueData evaluate(Environment &env) const override;
+        ValueData &evaluate_lvalue(Environment &env) const override;
     };
 
     // 条件节点（if-else if-else）
     class IfNode : public ExprNode {
         std::vector<std::pair<std::unique_ptr<ExprNode>,
-                              std::unique_ptr<ExprNode>>>
-            branches;                         // (条件, 结果) 对
-        std::unique_ptr<ExprNode> elseBranch; // 可选的else分支
+                              std::unique_ptr<ExprNode>>> branches; // (条件, 结果) 对
+        std::unique_ptr<ExprNode> elseBranch;                       // 可选的else分支
       public:
-        IfNode(std::vector<
-                   std::pair<std::unique_ptr<ExprNode>, std::unique_ptr<ExprNode>>>
-                   br,
+        IfNode(std::vector<std::pair<std::unique_ptr<ExprNode>, std::unique_ptr<ExprNode>>> br,
                std::unique_ptr<ExprNode> eb);
 
         std::string string() const override;
-        ValueData evaluate(Environment& env) const override;
+        NodeType type() const override { return NodeType::If; }
+        ValueData evaluate(Environment &env) const override;
+        ValueData &evaluate_lvalue(Environment &env) const override;
     };
 
     // For循环节点
@@ -138,11 +195,13 @@ namespace squ {
         std::unique_ptr<ExprNode> body;
 
       public:
-        ForNode(std::unique_ptr<ExprNode> i, std::unique_ptr<ExprNode> c,
-                std::unique_ptr<ExprNode> u, std::unique_ptr<ExprNode> b);
+        ForNode(std::unique_ptr<ExprNode> i, std::unique_ptr<ExprNode> c, std::unique_ptr<ExprNode> u,
+                std::unique_ptr<ExprNode> b);
 
         std::string string() const override;
-        ValueData evaluate(Environment& env) const override;
+        NodeType type() const override { return NodeType::For; }
+        ValueData evaluate(Environment &env) const override;
+        ValueData &evaluate_lvalue(Environment &env) const override;
     };
 
     // 块节点（用于多语句）
@@ -153,7 +212,9 @@ namespace squ {
         explicit BlockNode(std::vector<std::unique_ptr<ExprNode>> stmts);
 
         std::string string() const override;
-        ValueData evaluate(Environment& env) const override;
+        NodeType type() const override { return NodeType::Block; }
+        ValueData evaluate(Environment &env) const override;
+        ValueData &evaluate_lvalue(Environment &env) const override;
     };
 
     // While循环节点
@@ -165,7 +226,9 @@ namespace squ {
         WhileNode(std::unique_ptr<ExprNode> cond, std::unique_ptr<ExprNode> b);
 
         std::string string() const override;
-        ValueData evaluate(Environment& env) const override;
+        NodeType type() const override { return NodeType::While; }
+        ValueData evaluate(Environment &env) const override;
+        ValueData &evaluate_lvalue(Environment &env) const override;
     };
 
     // 模块导入节点
@@ -176,18 +239,22 @@ namespace squ {
         explicit ImportNode(std::string name) : moduleName(std::move(name)) {}
 
         std::string string() const override;
-        ValueData evaluate(Environment& env) const override;
+        NodeType type() const override { return NodeType::Import; }
+        ValueData evaluate(Environment &env) const override;
+        ValueData &evaluate_lvalue(Environment &env) const override;
     };
 
     // 循环控制节点
     class ControlFlowNode : public ExprNode {
-        std::string type;
+        std::string control_type;
 
       public:
-        explicit ControlFlowNode(std::string t) : type(std::move(t)) {}
+        explicit ControlFlowNode(std::string t) : control_type(std::move(t)) {}
 
         std::string string() const override;
-        ValueData evaluate(Environment& env) const override;
+        NodeType type() const override { return NodeType::ControlFlow; }
+        ValueData evaluate(Environment &env) const override;
+        ValueData &evaluate_lvalue(Environment &env) const override;
     };
 
     // 返回值节点
@@ -198,7 +265,9 @@ namespace squ {
         explicit ReturnNode(std::unique_ptr<ExprNode> val);
 
         std::string string() const override;
-        ValueData evaluate(Environment& env) const override;
+        NodeType type() const override { return NodeType::Return; }
+        ValueData evaluate(Environment &env) const override;
+        ValueData &evaluate_lvalue(Environment &env) const override;
     };
 
     // 成员访问节点
@@ -210,7 +279,9 @@ namespace squ {
         MemberAccessNode(std::unique_ptr<ExprNode> obj, std::string mem);
 
         std::string string() const override;
-        ValueData evaluate(Environment& env) const override;
+        NodeType type() const override { return NodeType::MemberAccess; }
+        ValueData evaluate(Environment &env) const override;
+        ValueData &evaluate_lvalue(Environment &env) const override;
     };
 
     // 索引访问节点
@@ -222,7 +293,9 @@ namespace squ {
         IndexNode(std::unique_ptr<ExprNode> cont, std::unique_ptr<ExprNode> idx);
 
         std::string string() const override;
-        ValueData evaluate(Environment& env) const override;
+        NodeType type() const override { return NodeType::Index; }
+        ValueData evaluate(Environment &env) const override;
+        ValueData &evaluate_lvalue(Environment &env) const override;
     };
 
     // 原生函数调用节点
@@ -231,11 +304,12 @@ namespace squ {
         std::vector<std::unique_ptr<ExprNode>> arguments;
 
       public:
-        NativeCallNode(std::string name,
-                       std::vector<std::unique_ptr<ExprNode>> args);
+        NativeCallNode(std::string name, std::vector<std::unique_ptr<ExprNode>> args);
 
         std::string string() const override;
-        ValueData evaluate(Environment& env) const override;
+        NodeType type() const override { return NodeType::NativeCall; }
+        ValueData evaluate(Environment &env) const override;
+        ValueData &evaluate_lvalue(Environment &env) const override;
     };
 
     // 数组节点
@@ -246,22 +320,22 @@ namespace squ {
         explicit ArrayNode(std::vector<std::unique_ptr<ExprNode>> elems);
 
         std::string string() const override;
-        ValueData evaluate(Environment& env) const override;
+        NodeType type() const override { return NodeType::Array; }
+        ValueData evaluate(Environment &env) const override;
+        ValueData &evaluate_lvalue(Environment &env) const override;
     };
 
     // 映射表节点
     class MapNode : public ExprNode {
-        std::vector<std::pair<std::unique_ptr<ExprNode>, std::unique_ptr<ExprNode>>>
-            entries;
+        std::vector<std::pair<std::unique_ptr<ExprNode>, std::unique_ptr<ExprNode>>> entries;
 
       public:
-        explicit MapNode(
-            std::vector<
-                std::pair<std::unique_ptr<ExprNode>, std::unique_ptr<ExprNode>>>
-                entries);
+        explicit MapNode(std::vector<std::pair<std::unique_ptr<ExprNode>, std::unique_ptr<ExprNode>>> entries);
 
         std::string string() const override;
-        ValueData evaluate(Environment& env) const override;
+        NodeType type() const override { return NodeType::Map; }
+        ValueData evaluate(Environment &env) const override;
+        ValueData &evaluate_lvalue(Environment &env) const override;
     };
 
 } // namespace squ

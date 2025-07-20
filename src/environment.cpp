@@ -43,4 +43,13 @@ namespace squ {
         return locals[name];
     }
 
+    // 检查是否存在变量
+    bool Environment::exists(const std::string &name) const {
+        if (locals.find(name) != locals.end())
+            return true;
+        if (parent)
+            return parent->exists(name);
+        return false;
+    }
+
 } // namespace squ

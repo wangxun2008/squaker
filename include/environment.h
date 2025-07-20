@@ -28,6 +28,9 @@ namespace squ {
 
         // 写入变量：链式查找，查不到在本层新建
         ValueData &set(const std::string &name, ValueData v);
+
+        // 检查是否存在变量
+        bool exists(const std::string &name) const;
     };
     
 } // namespace squ

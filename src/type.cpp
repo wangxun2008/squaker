@@ -6,6 +6,8 @@ namespace squ {
     std::string ValueData::string() const {
 
         switch (type) {
+        case ValueType::Nil:
+            return "nil";
         case ValueType::Integer:
             return std::to_string(std::get<long long>(value));
         case ValueType::Real:

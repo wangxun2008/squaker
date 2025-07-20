@@ -19,18 +19,3 @@ add_executable(squaker ${SRC_FILES} test/main.cpp)
 
 # 如果想把 exe 放到 bin
 set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_SOURCE_DIR}/bin)
-
-# ⚠️ 关键：调试配置必须在通用标志之前
-# 先设置默认构建类型为 Debug
-if(NOT CMAKE_BUILD_TYPE)
-    set(CMAKE_BUILD_TYPE Debug)
-endif()
-
-# 通用标志（默认）
-set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS}")
-
-# Debug 专用标志（覆盖通用标志）
-set(CMAKE_CXX_FLAGS_DEBUG "-g3 -O0")
-
-# Release 专用标志（可选）
-set(CMAKE_CXX_FLAGS_RELEASE "-O3 -DNDEBUG")

@@ -196,8 +196,12 @@ namespace squ {
                         token.value += processed[i++]; // 保留普通字符
                     }
                 }
+                // 未闭合的字符串或字符字面量
                 if (i >= processed.size())
-                    throw std::runtime_error("[squaker.tokens] Unclosed literal"); // 未闭合字面量
+                    throw std::runtime_error("[squaker.tokens] Unclosed literal");
+                // 字符字面量必须为单个字符
+                if (!is_string && token.value.size() != 1)
+                    throw std::runtime_error("[squaker.tokens] Invalid char literal: '" + token.value + "'");
                 tokens.push_back(token);                                           // 添加 Token 到列表
                 ++i;                                                               // 跳过闭合引号
                 continue;

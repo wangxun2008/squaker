@@ -9,6 +9,7 @@ namespace squ {
 
     // 数据类型枚举
     enum class ValueType {
+        Nil,      // 空值
         Integer,  // 整数
         Real,     // 实数
         Bool,     // 布尔
@@ -34,6 +35,8 @@ namespace squ {
 
         // 成员函数声明
         std::string string() const;
+
+        ~ValueData() = default;
     };
 
 } // namespace squ

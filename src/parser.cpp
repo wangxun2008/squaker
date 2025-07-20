@@ -79,7 +79,13 @@ namespace squ {
         if (match(TokenType::Assignment)) {
             Token op = previous();
             auto right = parse_assignment();
-            return std::make_unique<AssignmentNode>(op.value, std::move(left), std::move(right));
+            if (op.value == "=") {
+                // 简单赋值
+                return std::make_unique<AssignmentNode>(op.value, std::move(left), std::move(right));
+            } else  {
+                // 复合赋值
+                return std::make_unique<CompoundAssignmentNode>(op.value, std::move(left), std::move(right));
+            }
         }
 
         return left;
@@ -493,16 +499,6 @@ namespace squ {
             }
         }
 
-        // 期望箭头运算符 '->'
-        if (!match(TokenType::Operator, "->")) {
-            std::string context;
-            if (current < tokens.size()) {
-                context = " at token '" + tokens[current].value + "'";
-            }
-            throw std::runtime_error(
-                "[squaker.parser.lambda] Expected '->' after parameter list" + context);
-        }
-
         // 解析函数体
         auto body = parse_expression();
 
@@ -511,14 +507,9 @@ namespace squ {
 
     // 解析函数定义
     std::unique_ptr<ExprNode> Parser::parse_function_definition() {
-        // 期望函数名
+        // 期望函数名，如果没有函数名则判断为Lambda表达式
         if (!match(TokenType::Identifier)) {
-            std::string context;
-            if (current < tokens.size()) {
-                context = " at token '" + tokens[current].value + "'";
-            }
-            throw std::runtime_error(
-                "[squaker.parser.function] Expected function name" + context);
+            return parse_lambda_expression();
         }
         std::string functionName = previous().value;
 
@@ -555,14 +546,8 @@ namespace squ {
             }
         }
 
-        // 解析函数体（必须是代码块）
-        auto body = parse_primary();
-
-        // 检查是否是块节点
-        if (dynamic_cast<BlockNode *>(body.get()) == nullptr) {
-            throw std::runtime_error(
-                "[squaker.parser.function] Function body must be a block");
-        }
+        // 解析函数体
+        auto body = parse_expression();
 
         // 创建函数赋值表达式: functionName = lambda(parameters) -> body
         auto lambda = std::make_unique<LambdaNode>(parameters, std::move(body));
@@ -732,10 +717,6 @@ namespace squ {
             else if (token.value == "if") {
                 return parse_if_expression();
             }
-            // 检查lambda关键字
-            else if (token.value == "lambda") {
-                return parse_lambda_expression();
-            }
             // 检查function关键字
             else if (token.value == "function") {
                 return parse_function_definition();
@@ -759,7 +740,9 @@ namespace squ {
             // 检查原生函数调用（以@开头）
             else if (!token.value.empty() && token.value[0] == '@') {
                 return parse_native_call(token.value.substr(1));
-            } else {
+            }
+            // 否则是标识符 
+            else {
                 return std::make_unique<IdentifierNode>(token.value);
             }
         }

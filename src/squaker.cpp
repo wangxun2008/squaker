@@ -22,13 +22,12 @@ namespace squ {
     }
 
     void PrintLOGO() {
-        std::vector<std::string> lines = {
-            "██╗      ███████╗ ██████╗ ██╗   ██╗ █████╗ ██╗  ██╗███████╗██████╗",
-            "╚██╗     ██╔════╝██╔═══██╗██║   ██║██╔══██╗██║ ██╔╝██╔════╝██╔══██╗",
-            " ╚██╗    ███████╗██║   ██║██║   ██║███████║█████╔╝ █████╗  ██████╔╝",
-            " ██╔╝    ╚════██║██║▄▄ ██║██║   ██║██╔══██║██╔═██╗ ██╔══╝  ██╔══██╗",
-            "██╔╝     ███████║╚██████╔╝╚██████╔╝██║  ██║██║  ██╗███████╗██║  ██║",
-            "╚═╝      ╚══════╝ ╚══▀▀═╝  ╚═════╝ ╚═╝  ╚═╝╚═╝  ╚═╝╚══════╝╚═╝  ╚═╝"};
+        std::vector<std::string> lines = {"██╗      ███████╗ ██████╗ ██╗   ██╗ █████╗ ██╗  ██╗███████╗██████╗",
+                                          "╚██╗     ██╔════╝██╔═══██╗██║   ██║██╔══██╗██║ ██╔╝██╔════╝██╔══██╗",
+                                          " ╚██╗    ███████╗██║   ██║██║   ██║███████║█████╔╝ █████╗  ██████╔╝",
+                                          " ██╔╝    ╚════██║██║▄▄ ██║██║   ██║██╔══██║██╔═██╗ ██╔══╝  ██╔══██╗",
+                                          "██╔╝     ███████║╚██████╔╝╚██████╔╝██║  ██║██║  ██╗███████╗██║  ██║",
+                                          "╚═╝      ╚══════╝ ╚══▀▀═╝  ╚═════╝ ╚═╝  ╚═╝╚═╝  ╚═╝╚══════╝╚═╝  ╚═╝"};
 
         int total_width = lines[0].size();
         const int r1 = 121, g1 = 146, b1 = 227;
@@ -116,25 +115,25 @@ namespace squ {
             "for(i=0; i<10; i++) { for(j=0; j<10; j++) {} }",                             // 嵌套表达式
             "*-i",                                                                        // 访问指针
             "if (x > 0)  y = 1 else if (x < 0) y = -1 else if (x < 0) y = -1 else y = 0", // if-else if-else 测试用例
-            "lambda (x, y) -> {x + y}",                                                   // Lambda 函数定义
-            "(lambda (x) -> x * x)(5)",                                                   // Lambda 函数调用
-            "add = lambda (a, b) -> a + b",                                               // 函数赋值和调用
-            "(a+b)()((lambda (x) -> x * x), 2)",                                          // 函数赋值和调用
-            "function add(x, y) { x + y; }",                                              // 函数定义测试用例
+            "function (x, y) {x + y}",                                                    // Lambda 函数定义
+            "(function (x) x * x)(5)",                                                    // Lambda 函数调用
+            "add = function (a, b) a + b",                                                // 函数赋值和调用
+            "(a+b)()((function (x) x * x), 2)",                                           // 函数赋值和调用
+            "function add(x, y) x + y",                                                   // 函数定义测试用例
             "import math",                                                                // 模块导入测试用例
-            "import \"math\"",                                                            // 模块导入测试用例（字符串形式）
-            "for (i = 0; i < 10; i++) { if (i == 5) break; }",                            // break 测试用例
-            "for (i = 0; i < 10; i++) { if (i % 2 == 0) continue; }",                     // continue 测试用例
-            "return 10",                                                                  // 返回值测试用例
-            "a.b",                                                                        // 成员访问测试用例
-            "a[2]",                                                                       // 索引访问测试用例
-            "@print(\"Hello, World!\")",                                                  // 原生函数调用测试用例
-            "a = [1, 2, 3 + 4, 5 * 6]",                                                   // 基本数组
-            "b = [[1,2], [3,4], [5,6]]",                                                  // 嵌套数组
-            "c = [1 + 2, 3 * 4, func(5)]",                                                // 包含表达式的数组
-            "d = {\"key1\": 42, \"key2\": 3.14}",                                         // 基本映射
-            "f = {\"arr\": [1,2,3], \"map\": {\"1\":2, \"2\":3}}",                        // 嵌套结构
-            "g = {\"key\": func(42), \"value\": 3.14 * 2}"                                // 包含表达式的映射
+            "import \"math\"",                                        // 模块导入测试用例（字符串形式）
+            "for (i = 0; i < 10; i++) { if (i == 5) break; }",        // break 测试用例
+            "for (i = 0; i < 10; i++) { if (i % 2 == 0) continue; }", // continue 测试用例
+            "return 10",                                              // 返回值测试用例
+            "a.b",                                                    // 成员访问测试用例
+            "a[2]",                                                   // 索引访问测试用例
+            "@print(\"Hello, World!\")",                              // 原生函数调用测试用例
+            "a = [1, 2, 3 + 4, 5 * 6]",                               // 基本数组
+            "b = [[1,2], [3,4], [5,6]]",                              // 嵌套数组
+            "c = [1 + 2, 3 * 4, func(5)]",                            // 包含表达式的数组
+            "d = {\"key1\": 42, \"key2\": 3.14}",                     // 基本映射
+            "f = {\"arr\": [1,2,3], \"map\": {\"1\":2, \"2\":3}}",    // 嵌套结构
+            "g = {\"key\": func(42), \"value\": 3.14 * 2}"            // 包含表达式的映射
         };
 
         for (const auto &input : test_cases) {
@@ -268,7 +267,7 @@ namespace squ {
 
             // 3. 检查赋值运算符是否完整
             for (size_t i = 0; i < tokens.size(); ++i) {
-                if (tokens[i].type == TokenType::Assignment) {
+                if (tokens[i].type == TokenType::Assignment && tokens[i].value != "++" && tokens[i].value != "--") {
                     // 赋值运算符后必须有表达式
                     if (i == tokens.size() - 1)
                         return false;
@@ -284,6 +283,7 @@ namespace squ {
     // 独立的交互式代码执行函数
     void InteractiveExecution() {
         std::string input_buffer;
+        squ::Environment env; // 创建一个新的环境
 
         while (true) {
             std::string line;
@@ -311,15 +311,14 @@ namespace squ {
                     auto start = std::chrono::high_resolution_clock::now();
                     auto tokens = ParseTokens(input_buffer);
                     std::cout << PrintTokens(tokens) << std::endl;
-                    squ::Environment env; // 创建一个新的环境
                     squ::Parser parser(tokens);
                     auto expr = parser.parse();
                     std::cout << expr->string() << std::endl; // 触发 AST 构建
                     auto result = expr->evaluate(env);
                     auto end = std::chrono::high_resolution_clock::now();
                     std::chrono::duration<double> elapsed = end - start;
-                    std::cout << GRAY << "(return: " << CYAN << result.string() << GRAY
-                              << ", time: " << RED << elapsed.count() * 1000 << "ms" << GRAY << ")" << std::endl;
+                    std::cout << GRAY << "(return: " << CYAN << result.string() << GRAY << ", time: " << RED
+                              << elapsed.count() * 1000 << "ms" << GRAY << ")" << std::endl;
                     input_buffer.clear();
                 }
             } catch (const std::exception &ex) {
