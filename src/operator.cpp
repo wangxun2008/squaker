@@ -339,46 +339,4 @@ namespace squ {
         throw std::runtime_error("[squaker.operator] unknown unary operator: " + op);
     }
 
-    // 应用后缀操作
-    ValueData ApplyPostfix(const std::string &op, ValueData &operand) {
-        //--------------------------------------------------
-        // 后缀自增 ++
-        //--------------------------------------------------
-        if (op == "++") {
-            if (operand.type == ValueType::Integer) {
-                long long val = std::get<long long>(operand.value);
-                operand.value = val + 1; // 更新原值
-                return ValueData{ValueType::Integer, false, val + 1};
-            }
-            if (operand.type == ValueType::Real) {
-                double val = std::get<double>(operand.value);
-                operand.value = val + 1.0; // 更新原值
-                return ValueData{ValueType::Real, false, val + 1.0};
-            }
-            throw std::runtime_error("[squaker.operator:'++'] unsupported type for postfix increment");
-        }
-
-        //--------------------------------------------------
-        // 后缀自减 --
-        //--------------------------------------------------
-        if (op == "--") {
-            if (operand.type == ValueType::Integer) {
-                long long val = std::get<long long>(operand.value);
-                operand.value = val - 1; // 更新原值
-                return ValueData{ValueType::Integer, false, val - 1};
-            }
-            if (operand.type == ValueType::Real) {
-                double val = std::get<double>(operand.value);
-                operand.value = val - 1.0; // 更新原值
-                return ValueData{ValueType::Real, false, val - 1.0};
-            }
-            throw std::runtime_error("[squaker.operator:'--'] unsupported type for postfix decrement");
-        }
-
-        //--------------------------------------------------
-        // 其他后缀操作 …
-        //--------------------------------------------------
-        throw std::runtime_error("[squaker.operator] unknown postfix operator: " + op);
-    }
-
 } // namespace squ

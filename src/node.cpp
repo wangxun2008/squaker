@@ -38,6 +38,10 @@ namespace squ {
     }
 
     ValueData &IdentifierNode::evaluate_lvalue(Environment& env) const {
+        // 如果不存在变量，则自动创建一个未初始化的变量
+        if (!env.exists(name)) {
+            env.set(name, ValueData{ValueType::Nil});
+        }
         return env.get(name);
     }
 
@@ -88,8 +92,36 @@ namespace squ {
     }
 
     ValueData PostfixOpNode::evaluate(Environment& env) const {
-        ValueData& operandVal = operand->evaluate_lvalue(env);
-        return ApplyPostfix(op, operandVal);
+        ValueData operandVal = operand->evaluate(env);
+        ValueData& operandRef = operand->evaluate_lvalue(env);
+        if (op == "++") {
+            if (operandVal.type == ValueType::Integer) {
+                long long &val = std::get<long long>(operandRef.value);
+                val++;
+                operandRef = ValueData{ValueType::Integer, false, val};
+                return ValueData{ValueType::Integer, false, val};
+            } else if (operandVal.type == ValueType::Real) {
+                double &val = std::get<double>(operandRef.value);
+                val++;
+                operandRef = ValueData{ValueType::Real, false, val};
+                return ValueData{ValueType::Real, false, val};
+            }
+            throw std::runtime_error("[squaker.postfix:'++'] unsupported type for postfix increment");
+        } else if (op == "--") {
+            if (operandVal.type == ValueType::Integer) {
+                long long &val = std::get<long long>(operandRef.value);
+                val--;
+                operandRef = ValueData{ValueType::Integer, false, val};
+                return ValueData{ValueType::Integer, false, val};
+            } else if (operandVal.type == ValueType::Real) {
+                double &val = std::get<double>(operandRef.value);
+                val--;
+                operandRef = ValueData{ValueType::Real, false, val};
+                return ValueData{ValueType::Real, false, val};
+            }
+            throw std::runtime_error("[squaker.postfix:'--'] unsupported type for postfix decrement");
+        }
+        throw std::runtime_error("[squaker.postfix] unknown postfix operator: " + op);
     }
 
     ValueData &PostfixOpNode::evaluate_lvalue(Environment& env) const {
@@ -107,16 +139,6 @@ namespace squ {
     }
 
     ValueData AssignmentNode::evaluate(Environment& env) const {
-        // 检查左值是否为标识符
-        if (left->type() == NodeType::Identifier) {
-            // 判断变量是否存在，如果不存在则创建
-            std::string varName = left->string();
-            if (!env.exists(varName)) {
-                env.set(varName, right->evaluate(env));
-                return env.get(varName); // 返回新创建的变量值
-            }
-        }
-
         // 计算左值和右值
         ValueData &leftVal = left->evaluate_lvalue(env);
         ValueData rightVal = right->evaluate(env);
@@ -142,12 +164,13 @@ namespace squ {
 
     ValueData CompoundAssignmentNode::evaluate(Environment& env) const {
         // 计算左值和右值
-        ValueData &leftVal = left->evaluate_lvalue(env);
+        ValueData leftVal = left->evaluate(env);
         ValueData rightVal = right->evaluate(env);
+        ValueData &leftValRef = left->evaluate_lvalue(env);
 
         // 应用二元操作
-        leftVal = ApplyBinary(leftVal, op.substr(0, op.size() - 1), rightVal);
-        return leftVal; // 返回赋值后的左值
+        leftValRef = ApplyBinary(leftVal, op, rightVal);
+        return leftValRef; // 返回赋值后的左值
     }
 
     ValueData &CompoundAssignmentNode::evaluate_lvalue(Environment& env) const {
@@ -170,8 +193,25 @@ namespace squ {
     }
 
     ValueData LambdaNode::evaluate(Environment& env) const {
-        // 返回一个函数值，需要在ValueData中表示函数
-        throw std::runtime_error("Lambda evaluation not implemented");
+        // 返回一个lambda函数对象
+        return ValueData{ValueType::Function, false,
+        [this, &env](std::vector<ValueData> args) -> ValueData {
+            // 创建一个新的子作用域
+            std::unique_ptr<Environment> childEnv = env.new_child();
+
+            // 检查参数数量是否匹配
+            if (args.size() != parameters.size()) {
+                throw std::runtime_error("[squaker.lambda] Argument count mismatch in lambda call");
+            }
+
+            // 设置参数到子作用域
+            for (size_t i = 0; i < parameters.size(); i++) {
+                childEnv->set(parameters[i], args[i]);
+            }
+
+            // 执行函数体
+            return body->evaluate(*childEnv);
+        }};
     }
 
     ValueData &LambdaNode::evaluate_lvalue(Environment& env) const {
@@ -195,8 +235,20 @@ namespace squ {
     }
 
     ValueData ApplyNode::evaluate(Environment& env) const {
-        // 实现函数调用的求值逻辑
-        throw std::runtime_error("Function application evaluation not implemented");
+        // 计算被调用的函数
+        ValueData calleeVal = callee->evaluate(env);
+        if (calleeVal.type != ValueType::Function) {
+            throw std::runtime_error("[squaker.apply] Attempted to call a non-function value");
+        }
+
+        // 准备参数
+        std::vector<ValueData> argValues;
+        for (const auto &arg : arguments) {
+            argValues.push_back(arg->evaluate(env));
+        }
+
+        // 调用函数
+        return std::get<std::function<ValueData(std::vector<ValueData>)>>(calleeVal.value)(argValues);
     }
 
     ValueData &ApplyNode::evaluate_lvalue(Environment& env) const {

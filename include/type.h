@@ -1,5 +1,6 @@
 #pragma once
 
+#include <functional>
 #include <string>
 #include <unordered_map>
 #include <variant>
@@ -30,8 +31,9 @@ namespace squ {
                      char,                   // 字符
                      std::string,            // 字符串
                      std::vector<ValueData>, // 数组
-                     std::unordered_map<std::string, ValueData>>
-            value = 0.0; // 映射（使用字符串作为键）
+                     std::unordered_map<std::string, ValueData>,
+                     std::function<ValueData(std::vector<ValueData>)>> // 函数
+            value = 0.0;                                               // 映射（使用字符串作为键）
 
         // 成员函数声明
         std::string string() const;
