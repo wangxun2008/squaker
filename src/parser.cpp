@@ -1,17 +1,20 @@
-#include "parser.h"
+#include "../include/parser.h"
+#include "../include/scope.h"
 #include <cmath>
 #include <iostream>
 #include <stdexcept>
 
 namespace squ {
 
-    Parser::Parser(std::vector<Token> tokens) : tokens(std::move(tokens)) {}
+    Parser::Parser(std::vector<Token> tokens)
+        : tokens(std::move(tokens)), curScope(std::make_unique<Scope>()) // 顶层也有一块编号
+    {}
 
     std::unique_ptr<ExprNode> Parser::parse() {
 
         std::vector<std::unique_ptr<ExprNode>> statements;
 
-        while(current < tokens.size()) {
+        while (current < tokens.size()) {
             // 解析块内的表达式
             statements.push_back(parse_expression());
 
@@ -29,8 +32,7 @@ namespace squ {
                     break;
                 }
             }
-            throw std::runtime_error(
-                "[squaker.parser] Unexpected tokens after expression: " + unexpected);
+            throw std::runtime_error("[squaker.parser] Unexpected tokens after expression: " + unexpected);
         }
 
         return std::make_unique<BlockNode>(std::move(statements));
@@ -82,7 +84,7 @@ namespace squ {
             if (op.value == "=") {
                 // 简单赋值
                 return std::make_unique<AssignmentNode>(op.value, std::move(left), std::move(right));
-            } else  {
+            } else {
                 // 复合赋值
                 return std::make_unique<CompoundAssignmentNode>(op.value, std::move(left), std::move(right));
             }
@@ -134,8 +136,8 @@ namespace squ {
     std::unique_ptr<ExprNode> Parser::parse_relational() {
         auto left = parse_concatenation();
 
-        while (match(TokenType::Operator, "<") || match(TokenType::Operator, ">") ||
-               match(TokenType::Operator, "<=") || match(TokenType::Operator, ">=")) {
+        while (match(TokenType::Operator, "<") || match(TokenType::Operator, ">") || match(TokenType::Operator, "<=") ||
+               match(TokenType::Operator, ">=")) {
             Token op = previous();
             auto right = parse_shift();
             left = std::make_unique<BinaryOpNode>(op.value, std::move(left), std::move(right));
@@ -187,8 +189,7 @@ namespace squ {
     std::unique_ptr<ExprNode> Parser::parse_multiplicative() {
         auto left = parse_unary();
 
-        while (match(TokenType::Operator, "*") || match(TokenType::Operator, "/") ||
-               match(TokenType::Operator, "%")) {
+        while (match(TokenType::Operator, "*") || match(TokenType::Operator, "/") || match(TokenType::Operator, "%")) {
             Token op = previous();
             auto right = parse_unary();
             left = std::make_unique<BinaryOpNode>(op.value, std::move(left), std::move(right));
@@ -201,8 +202,8 @@ namespace squ {
     std::unique_ptr<ExprNode> Parser::parse_unary() {
         if (match(TokenType::Operator)) {
             Token op = previous();
-            if (op.value == "+" || op.value == "-" || op.value == "!" || op.value == "~" ||
-                op.value == "++" || op.value == "--" || op.value == "&" || op.value == "*") {
+            if (op.value == "+" || op.value == "-" || op.value == "!" || op.value == "~" || op.value == "++" ||
+                op.value == "--" || op.value == "&" || op.value == "*") {
                 auto operand = parse_unary();
                 return std::make_unique<UnaryOpNode>(op.value, std::move(operand));
             } else {
@@ -228,8 +229,7 @@ namespace squ {
                     if (current < tokens.size()) {
                         context = " at token '" + tokens[current].value + "'";
                     }
-                    throw std::runtime_error(
-                        "[squaker.parser.member] Expected identifier after '.'" + context);
+                    throw std::runtime_error("[squaker.parser.member] Expected identifier after '.'" + context);
                 }
             }
             // 索引访问 a[i]
@@ -240,8 +240,7 @@ namespace squ {
                     if (current < tokens.size()) {
                         context = " at token '" + tokens[current].value + "'";
                     }
-                    throw std::runtime_error(
-                        "[squaker.parser.index] Expected ']' after index expression" + context);
+                    throw std::runtime_error("[squaker.parser.index] Expected ']' after index expression" + context);
                 }
                 expr = std::make_unique<IndexNode>(std::move(expr), std::move(index));
             }
@@ -277,8 +276,7 @@ namespace squ {
                 if (current < tokens.size()) {
                     context = " at token '" + tokens[current].value + "'";
                 }
-                throw std::runtime_error(
-                    "[squaker.parser.call] Expected ')' after argument list" + context);
+                throw std::runtime_error("[squaker.parser.call] Expected ')' after argument list" + context);
             }
         }
 
@@ -320,8 +318,7 @@ namespace squ {
         // 消耗掉'while'关键字
         // 期望左括号
         if (!match(TokenType::Punctuation, "(")) {
-            throw std::runtime_error(
-                "[squaker.parser.while] Expected '(' after 'while'");
+            throw std::runtime_error("[squaker.parser.while] Expected '(' after 'while'");
         }
 
         // 解析条件表达式
@@ -333,8 +330,7 @@ namespace squ {
             if (current < tokens.size()) {
                 context = " at token '" + tokens[current].value + "'";
             }
-            throw std::runtime_error(
-                "[squaker.parser.while] Expected ')' after condition" + context);
+            throw std::runtime_error("[squaker.parser.while] Expected ')' after condition" + context);
         }
 
         // 解析循环体（支持块表达式或单行表达式）
@@ -347,8 +343,7 @@ namespace squ {
     std::unique_ptr<ExprNode> Parser::parse_for_expression() {
         // 期望左括号
         if (!match(TokenType::Punctuation, "(")) {
-            throw std::runtime_error(
-                "[squaker.parser.for] Expected '(' after 'for'");
+            throw std::runtime_error("[squaker.parser.for] Expected '(' after 'for'");
         }
 
         // 解析初始化表达式（可选）
@@ -360,8 +355,7 @@ namespace squ {
                 if (current < tokens.size()) {
                     context = " at token '" + tokens[current].value + "'";
                 }
-                throw std::runtime_error(
-                    "[squaker.parser.for] Expected ';' after init expression" + context);
+                throw std::runtime_error("[squaker.parser.for] Expected ';' after init expression" + context);
             }
         }
 
@@ -374,8 +368,7 @@ namespace squ {
                 if (current < tokens.size()) {
                     context = " at token '" + tokens[current].value + "'";
                 }
-                throw std::runtime_error(
-                    "[squaker.parser.for] Expected ';' after condition expression" + context);
+                throw std::runtime_error("[squaker.parser.for] Expected ';' after condition expression" + context);
             }
         }
 
@@ -388,26 +381,19 @@ namespace squ {
                 if (current < tokens.size()) {
                     context = " at token '" + tokens[current].value + "'";
                 }
-                throw std::runtime_error(
-                    "[squaker.parser.for] Expected ')' after update expression" + context);
+                throw std::runtime_error("[squaker.parser.for] Expected ')' after update expression" + context);
             }
         }
 
         // 解析循环体（支持块表达式或单行表达式）
         auto body = parse_expression();
 
-        return std::make_unique<ForNode>(
-            std::move(init),
-            std::move(condition),
-            std::move(update),
-            std::move(body));
+        return std::make_unique<ForNode>(std::move(init), std::move(condition), std::move(update), std::move(body));
     }
 
     // 解析条件表达式
     std::unique_ptr<ExprNode> Parser::parse_if_expression() {
-        std::vector<std::pair<std::unique_ptr<ExprNode>,
-                              std::unique_ptr<ExprNode>>>
-            branches;
+        std::vector<std::pair<std::unique_ptr<ExprNode>, std::unique_ptr<ExprNode>>> branches;
 
         // 解析初始if分支
         branches.push_back(parse_if_branch());
@@ -438,8 +424,7 @@ namespace squ {
     std::pair<std::unique_ptr<ExprNode>, std::unique_ptr<ExprNode>> Parser::parse_if_branch() {
         // 期望左括号
         if (!match(TokenType::Punctuation, "(")) {
-            throw std::runtime_error(
-                "[squaker.parser.if] Expected '(' after 'if' or 'else if'");
+            throw std::runtime_error("[squaker.parser.if] Expected '(' after 'if' or 'else if'");
         }
 
         // 解析条件表达式
@@ -451,8 +436,7 @@ namespace squ {
             if (current < tokens.size()) {
                 context = " at token '" + tokens[current].value + "'";
             }
-            throw std::runtime_error(
-                "[squaker.parser.if] Expected ')' after condition" + context);
+            throw std::runtime_error("[squaker.parser.if] Expected ')' after condition" + context);
         }
 
         // 解析结果表达式
@@ -468,9 +452,12 @@ namespace squ {
     std::unique_ptr<ExprNode> Parser::parse_lambda_expression() {
         // 期望左括号
         if (!match(TokenType::Punctuation, "(")) {
-            throw std::runtime_error(
-                "[squaker.parser.lambda] Expected '(' after 'lambda'");
+            throw std::runtime_error("[squaker.parser.lambda] Expected '(' after 'lambda'");
         }
+
+        // 进入函数作用域
+        scopeStack.emplace(std::move(curScope)); // 保存旧状态
+        curScope = std::make_unique<Scope>();
 
         // 解析参数列表
         std::vector<std::string> parameters;
@@ -483,8 +470,7 @@ namespace squ {
                     if (current < tokens.size()) {
                         context = " at token '" + tokens[current].value + "'";
                     }
-                    throw std::runtime_error(
-                        "[squaker.parser.lambda] Expected identifier in parameter list" + context);
+                    throw std::runtime_error("[squaker.parser.lambda] Expected identifier in parameter list" + context);
                 }
             } while (match(TokenType::Punctuation, ","));
 
@@ -494,15 +480,26 @@ namespace squ {
                 if (current < tokens.size()) {
                     context = " at token '" + tokens[current].value + "'";
                 }
-                throw std::runtime_error(
-                    "[squaker.parser.lambda] Expected ')' after parameter list" + context);
+                throw std::runtime_error("[squaker.parser.lambda] Expected ')' after parameter list" + context);
             }
+        }
+
+        // 参数解析为slot
+        std::vector<Parameter> slot_parameters;
+        for (const auto &name : parameters) {
+            size_t slot = curScope->add(name);
+            slot_parameters.emplace_back(name, slot);
         }
 
         // 解析函数体
         auto body = parse_expression();
 
-        return std::make_unique<LambdaNode>(std::move(parameters), std::move(body));
+        // 退出函数作用域
+        auto oldScope = std::move(scopeStack.top());
+        scopeStack.pop();
+        curScope = std::move(oldScope);
+
+        return std::make_unique<LambdaNode>(std::move(slot_parameters), std::move(body));
     }
 
     // 解析函数定义
@@ -513,10 +510,13 @@ namespace squ {
         }
         std::string functionName = previous().value;
 
+        // 进入函数作用域
+        scopeStack.emplace(std::move(curScope)); // 保存旧状态
+        curScope = std::make_unique<Scope>();
+
         // 期望左括号
         if (!match(TokenType::Punctuation, "(")) {
-            throw std::runtime_error(
-                "[squaker.parser.function] Expected '(' after function name");
+            throw std::runtime_error("[squaker.parser.function] Expected '(' after function name");
         }
 
         // 解析参数列表
@@ -530,8 +530,8 @@ namespace squ {
                     if (current < tokens.size()) {
                         context = " at token '" + tokens[current].value + "'";
                     }
-                    throw std::runtime_error(
-                        "[squaker.parser.function] Expected identifier in parameter list" + context);
+                    throw std::runtime_error("[squaker.parser.function] Expected identifier in parameter list" +
+                                             context);
                 }
             } while (match(TokenType::Punctuation, ","));
 
@@ -541,18 +541,34 @@ namespace squ {
                 if (current < tokens.size()) {
                     context = " at token '" + tokens[current].value + "'";
                 }
-                throw std::runtime_error(
-                    "[squaker.parser.function] Expected ')' after parameter list" + context);
+                throw std::runtime_error("[squaker.parser.function] Expected ')' after parameter list" + context);
             }
+        }
+
+        // 参数解析为slot
+        std::vector<Parameter> slot_parameters;
+        for (const auto &name : parameters) {
+            size_t slot = curScope->add(name);
+            slot_parameters.emplace_back(name, slot);
         }
 
         // 解析函数体
         auto body = parse_expression();
 
+        // 退出函数作用域
+        auto oldScope = std::move(scopeStack.top());
+        scopeStack.pop();
+        curScope = std::move(oldScope);
+
         // 创建函数赋值表达式: functionName = lambda(parameters) -> body
-        auto lambda = std::make_unique<LambdaNode>(parameters, std::move(body));
-        return std::make_unique<AssignmentNode>("=",
-                                                std::make_unique<IdentifierNode>(functionName),
+        auto lambda = std::make_unique<LambdaNode>(slot_parameters, std::move(body));
+
+        // 在当前作用域中添加函数名
+        size_t index = curScope->find(functionName);
+        if (index == Scope::npos) {
+            index = curScope->add(functionName);
+        }
+        return std::make_unique<AssignmentNode>("=", std::make_unique<IdentifierNode>(functionName, index),
                                                 std::move(lambda));
     }
 
@@ -568,8 +584,7 @@ namespace squ {
             if (current < tokens.size()) {
                 context = " at token '" + tokens[current].value + "'";
             }
-            throw std::runtime_error(
-                "[squaker.parser.import] Expected module name" + context);
+            throw std::runtime_error("[squaker.parser.import] Expected module name" + context);
         }
     }
 
@@ -591,8 +606,7 @@ namespace squ {
             if (current < tokens.size()) {
                 context = " at token '" + tokens[current].value + "'";
             }
-            throw std::runtime_error(
-                "[squaker.parser.native] Expected '(' after '@" + functionName + "'" + context);
+            throw std::runtime_error("[squaker.parser.native] Expected '(' after '@" + functionName + "'" + context);
         }
 
         std::vector<std::unique_ptr<ExprNode>> arguments;
@@ -609,8 +623,7 @@ namespace squ {
                 if (current < tokens.size()) {
                     context = " at token '" + tokens[current].value + "'";
                 }
-                throw std::runtime_error(
-                    "[squaker.parser.native] Expected ')' after argument list" + context);
+                throw std::runtime_error("[squaker.parser.native] Expected ')' after argument list" + context);
             }
         }
 
@@ -634,8 +647,7 @@ namespace squ {
         // 期望右方括号
         if (!match(TokenType::Punctuation, "]")) {
             std::string context = current < tokens.size() ? " at token '" + tokens[current].value + "'" : "";
-            throw std::runtime_error(
-                "[squaker.parser.array] Expected ']' after array elements" + context);
+            throw std::runtime_error("[squaker.parser.array] Expected ']' after array elements" + context);
         }
 
         return std::make_unique<ArrayNode>(std::move(elements));
@@ -657,8 +669,7 @@ namespace squ {
             // 期望冒号分隔符
             if (!match(TokenType::Punctuation, ":")) {
                 std::string context = current < tokens.size() ? " at token '" + tokens[current].value + "'" : "";
-                throw std::runtime_error(
-                    "[squaker.parser.map] Expected ':' after map key" + context);
+                throw std::runtime_error("[squaker.parser.map] Expected ':' after map key" + context);
             }
 
             // 解析值表达式
@@ -670,8 +681,7 @@ namespace squ {
         // 期望右花括号
         if (!match(TokenType::Punctuation, "}")) {
             std::string context = current < tokens.size() ? " at token '" + tokens[current].value + "'" : "";
-            throw std::runtime_error(
-                "[squaker.parser.map] Expected '}' after map entries" + context);
+            throw std::runtime_error("[squaker.parser.map] Expected '}' after map entries" + context);
         }
 
         return std::make_unique<MapNode>(std::move(entries));
@@ -741,9 +751,14 @@ namespace squ {
             else if (!token.value.empty() && token.value[0] == '@') {
                 return parse_native_call(token.value.substr(1));
             }
-            // 否则是标识符 
+            // 否则是标识符
             else {
-                return std::make_unique<IdentifierNode>(token.value);
+                // 检查当前作用域中是否有该标识符
+                size_t index = curScope->find(token.value);
+                if (index == Scope::npos) {
+                    return std::make_unique<IdentifierNode>(token.value, curScope->add(token.value));
+                }
+                return std::make_unique<IdentifierNode>(token.value, index);
             }
         }
 
@@ -790,20 +805,18 @@ namespace squ {
                 if (current < tokens.size()) {
                     context = " at token '" + tokens[current].value + "'";
                 }
-                throw std::runtime_error(
-                    "[squaker.parser.primary] Expected ')' after expression" + context);
+                throw std::runtime_error("[squaker.parser.primary] Expected ')' after expression" + context);
             }
             return expr;
         }
-        
+
         // 获取当前token值用于错误信息
         std::string tokenValue = "end of input";
         if (current < tokens.size()) {
             tokenValue = "token '" + tokens[current].value + "'";
         }
 
-        throw std::runtime_error(
-            "[squaker.parser.primary] Unexpected " + tokenValue);
+        throw std::runtime_error("[squaker.parser.primary] Unexpected " + tokenValue);
     }
 
 } // namespace squ

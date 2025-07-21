@@ -27,7 +27,7 @@ namespace squ {
 
     // 标识符节点
     std::string IdentifierNode::string() const {
-        return name;
+        return "v" + std::to_string(index);
     }
 
     ValueData IdentifierNode::evaluate(Environment& env) const {
@@ -178,7 +178,7 @@ namespace squ {
     }
 
     // Lambda节点（函数定义）
-    LambdaNode::LambdaNode(std::vector<std::string> params,
+    LambdaNode::LambdaNode(std::vector<Parameter> params,
                            std::unique_ptr<ExprNode> b)
         : parameters(std::move(params)), body(std::move(b)) {}
 
@@ -187,7 +187,7 @@ namespace squ {
         for (size_t i = 0; i < parameters.size(); i++) {
             if (i > 0)
                 params += ", ";
-            params += parameters[i];
+            params += "v" + std::to_string(parameters[i].slot);
         }
         return "(function (" + params + ") -> " + body->string() + ")";
     }
@@ -206,7 +206,7 @@ namespace squ {
 
             // 设置参数到子作用域
             for (size_t i = 0; i < parameters.size(); i++) {
-                childEnv->set(parameters[i], args[i]);
+                childEnv->set(parameters[i].name, args[i]);
             }
 
             // 执行函数体

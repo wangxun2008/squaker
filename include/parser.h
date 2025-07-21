@@ -4,13 +4,18 @@
 #include <memory>
 #include <string>
 #include <stdexcept>
+#include <stack>
 #include "token.h"
 #include "node.h"
+#include "scope.h"
+
 namespace squ {
 
 class Parser {
     std::vector<Token> tokens;
     size_t current = 0;
+    std::unique_ptr<Scope> curScope;
+    std::stack<std::unique_ptr<Scope>> scopeStack;
 
 public:
     explicit Parser(std::vector<Token> tokens);

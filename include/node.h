@@ -54,7 +54,9 @@ namespace squ {
         explicit LiteralNode(ValueData data) : data(std::move(data)) {}
 
         std::string string() const override;
-        NodeType type() const override { return NodeType::Literal; }
+        NodeType type() const override {
+            return NodeType::Literal;
+        }
         ValueData evaluate(Environment &env) const override;
         ValueData &evaluate_lvalue(Environment &env) const override;
     };
@@ -62,11 +64,14 @@ namespace squ {
     // 标识符节点
     class IdentifierNode : public ExprNode {
         std::string name;
+        size_t index;
 
       public:
-        explicit IdentifierNode(std::string id) : name(std::move(id)) {}
+        explicit IdentifierNode(std::string id, size_t idx) : name(std::move(id)), index(idx) {}
         std::string string() const override;
-        NodeType type() const override { return NodeType::Identifier; }
+        NodeType type() const override {
+            return NodeType::Identifier;
+        }
         ValueData evaluate(Environment &env) const override;
         ValueData &evaluate_lvalue(Environment &env) const override;
     };
@@ -81,7 +86,9 @@ namespace squ {
         BinaryOpNode(std::string op, std::unique_ptr<ExprNode> l, std::unique_ptr<ExprNode> r);
 
         std::string string() const override;
-        NodeType type() const override { return NodeType::BinaryOp; }
+        NodeType type() const override {
+            return NodeType::BinaryOp;
+        }
         ValueData evaluate(Environment &env) const override;
         ValueData &evaluate_lvalue(Environment &env) const override;
     };
@@ -95,7 +102,9 @@ namespace squ {
         UnaryOpNode(std::string op, std::unique_ptr<ExprNode> expr);
 
         std::string string() const override;
-        NodeType type() const override { return NodeType::UnaryOp; }
+        NodeType type() const override {
+            return NodeType::UnaryOp;
+        }
         ValueData evaluate(Environment &env) const override;
         ValueData &evaluate_lvalue(Environment &env) const override;
     };
@@ -109,7 +118,9 @@ namespace squ {
         PostfixOpNode(std::string op, std::unique_ptr<ExprNode> expr);
 
         std::string string() const override;
-        NodeType type() const override { return NodeType::PostfixOp; }
+        NodeType type() const override {
+            return NodeType::PostfixOp;
+        }
         ValueData evaluate(Environment &env) const override;
         ValueData &evaluate_lvalue(Environment &env) const override;
     };
@@ -124,7 +135,9 @@ namespace squ {
         AssignmentNode(std::string op, std::unique_ptr<ExprNode> l, std::unique_ptr<ExprNode> r);
 
         std::string string() const override;
-        NodeType type() const override { return NodeType::Assignment; }
+        NodeType type() const override {
+            return NodeType::Assignment;
+        }
         ValueData evaluate(Environment &env) const override;
         ValueData &evaluate_lvalue(Environment &env) const override;
     };
@@ -139,21 +152,32 @@ namespace squ {
         CompoundAssignmentNode(std::string op, std::unique_ptr<ExprNode> l, std::unique_ptr<ExprNode> r);
 
         std::string string() const override;
-        NodeType type() const override { return NodeType::CompoundAssign; }
+        NodeType type() const override {
+            return NodeType::CompoundAssign;
+        }
         ValueData evaluate(Environment &env) const override;
         ValueData &evaluate_lvalue(Environment &env) const override;
     };
 
     // Lambda节点（函数定义）
+    struct Parameter {
+        std::string name;
+        size_t slot;
+        Parameter() = default;
+        Parameter(std::string n, size_t s) : name(std::move(n)), slot(s) {}
+    };
     class LambdaNode : public ExprNode {
-        std::vector<std::string> parameters;
+        std::vector<Parameter> parameters;
         std::unique_ptr<ExprNode> body;
+        size_t maxSlot = 0;   // 局部变量总数
 
       public:
-        LambdaNode(std::vector<std::string> params, std::unique_ptr<ExprNode> b);
+        LambdaNode(std::vector<Parameter> params, std::unique_ptr<ExprNode> b);
 
         std::string string() const override;
-        NodeType type() const override { return NodeType::Lambda; }
+        NodeType type() const override {
+            return NodeType::Lambda;
+        }
         ValueData evaluate(Environment &env) const override;
         ValueData &evaluate_lvalue(Environment &env) const override;
     };
@@ -167,7 +191,9 @@ namespace squ {
         ApplyNode(std::unique_ptr<ExprNode> callee, std::vector<std::unique_ptr<ExprNode>> args);
 
         std::string string() const override;
-        NodeType type() const override { return NodeType::Apply; }
+        NodeType type() const override {
+            return NodeType::Apply;
+        }
         ValueData evaluate(Environment &env) const override;
         ValueData &evaluate_lvalue(Environment &env) const override;
     };
@@ -182,7 +208,9 @@ namespace squ {
                std::unique_ptr<ExprNode> eb);
 
         std::string string() const override;
-        NodeType type() const override { return NodeType::If; }
+        NodeType type() const override {
+            return NodeType::If;
+        }
         ValueData evaluate(Environment &env) const override;
         ValueData &evaluate_lvalue(Environment &env) const override;
     };
@@ -199,7 +227,9 @@ namespace squ {
                 std::unique_ptr<ExprNode> b);
 
         std::string string() const override;
-        NodeType type() const override { return NodeType::For; }
+        NodeType type() const override {
+            return NodeType::For;
+        }
         ValueData evaluate(Environment &env) const override;
         ValueData &evaluate_lvalue(Environment &env) const override;
     };
@@ -212,7 +242,9 @@ namespace squ {
         explicit BlockNode(std::vector<std::unique_ptr<ExprNode>> stmts);
 
         std::string string() const override;
-        NodeType type() const override { return NodeType::Block; }
+        NodeType type() const override {
+            return NodeType::Block;
+        }
         ValueData evaluate(Environment &env) const override;
         ValueData &evaluate_lvalue(Environment &env) const override;
     };
@@ -226,7 +258,9 @@ namespace squ {
         WhileNode(std::unique_ptr<ExprNode> cond, std::unique_ptr<ExprNode> b);
 
         std::string string() const override;
-        NodeType type() const override { return NodeType::While; }
+        NodeType type() const override {
+            return NodeType::While;
+        }
         ValueData evaluate(Environment &env) const override;
         ValueData &evaluate_lvalue(Environment &env) const override;
     };
@@ -239,7 +273,9 @@ namespace squ {
         explicit ImportNode(std::string name) : moduleName(std::move(name)) {}
 
         std::string string() const override;
-        NodeType type() const override { return NodeType::Import; }
+        NodeType type() const override {
+            return NodeType::Import;
+        }
         ValueData evaluate(Environment &env) const override;
         ValueData &evaluate_lvalue(Environment &env) const override;
     };
@@ -252,7 +288,9 @@ namespace squ {
         explicit ControlFlowNode(std::string t) : control_type(std::move(t)) {}
 
         std::string string() const override;
-        NodeType type() const override { return NodeType::ControlFlow; }
+        NodeType type() const override {
+            return NodeType::ControlFlow;
+        }
         ValueData evaluate(Environment &env) const override;
         ValueData &evaluate_lvalue(Environment &env) const override;
     };
@@ -265,7 +303,9 @@ namespace squ {
         explicit ReturnNode(std::unique_ptr<ExprNode> val);
 
         std::string string() const override;
-        NodeType type() const override { return NodeType::Return; }
+        NodeType type() const override {
+            return NodeType::Return;
+        }
         ValueData evaluate(Environment &env) const override;
         ValueData &evaluate_lvalue(Environment &env) const override;
     };
@@ -279,7 +319,9 @@ namespace squ {
         MemberAccessNode(std::unique_ptr<ExprNode> obj, std::string mem);
 
         std::string string() const override;
-        NodeType type() const override { return NodeType::MemberAccess; }
+        NodeType type() const override {
+            return NodeType::MemberAccess;
+        }
         ValueData evaluate(Environment &env) const override;
         ValueData &evaluate_lvalue(Environment &env) const override;
     };
@@ -293,7 +335,9 @@ namespace squ {
         IndexNode(std::unique_ptr<ExprNode> cont, std::unique_ptr<ExprNode> idx);
 
         std::string string() const override;
-        NodeType type() const override { return NodeType::Index; }
+        NodeType type() const override {
+            return NodeType::Index;
+        }
         ValueData evaluate(Environment &env) const override;
         ValueData &evaluate_lvalue(Environment &env) const override;
     };
@@ -307,7 +351,9 @@ namespace squ {
         NativeCallNode(std::string name, std::vector<std::unique_ptr<ExprNode>> args);
 
         std::string string() const override;
-        NodeType type() const override { return NodeType::NativeCall; }
+        NodeType type() const override {
+            return NodeType::NativeCall;
+        }
         ValueData evaluate(Environment &env) const override;
         ValueData &evaluate_lvalue(Environment &env) const override;
     };
@@ -320,7 +366,9 @@ namespace squ {
         explicit ArrayNode(std::vector<std::unique_ptr<ExprNode>> elems);
 
         std::string string() const override;
-        NodeType type() const override { return NodeType::Array; }
+        NodeType type() const override {
+            return NodeType::Array;
+        }
         ValueData evaluate(Environment &env) const override;
         ValueData &evaluate_lvalue(Environment &env) const override;
     };
@@ -333,7 +381,9 @@ namespace squ {
         explicit MapNode(std::vector<std::pair<std::unique_ptr<ExprNode>, std::unique_ptr<ExprNode>>> entries);
 
         std::string string() const override;
-        NodeType type() const override { return NodeType::Map; }
+        NodeType type() const override {
+            return NodeType::Map;
+        }
         ValueData evaluate(Environment &env) const override;
         ValueData &evaluate_lvalue(Environment &env) const override;
     };
