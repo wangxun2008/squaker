@@ -6,7 +6,7 @@ set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
 # 启用-O3
-# set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -O3")
+set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -O3 -s")
 
 # 头文件搜索路径
 include_directories(include)
@@ -19,3 +19,6 @@ add_executable(squaker ${SRC_FILES} test/main.cpp)
 
 # 如果想把 exe 放到 bin
 set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_SOURCE_DIR}/bin)
+
+# 构建静态库
+add_library(squaker_lib STATIC ${SRC_FILES})

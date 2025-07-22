@@ -2,7 +2,7 @@
 
 #include <functional>
 #include <string>
-#include <unordered_map>
+#include <map>
 #include <variant>
 #include <vector>
 
@@ -23,7 +23,7 @@ namespace squ {
 
     // 值数据存储结构
     struct ValueData {
-        ValueType type = ValueType::Real;
+        ValueType type = ValueType::Nil; // 默认类型为Nil
         bool is_const = false;
         std::variant<long long,              // 整数
                      double,                 // 实数
@@ -31,7 +31,7 @@ namespace squ {
                      char,                   // 字符
                      std::string,            // 字符串
                      std::vector<ValueData>, // 数组
-                     std::unordered_map<std::string, ValueData>,
+                     std::map<std::string, ValueData>,
                      std::function<ValueData(std::vector<ValueData>)>> // 函数
             value = 0.0;                                               // 映射（使用字符串作为键）
 

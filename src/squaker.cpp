@@ -2,6 +2,7 @@
 #include "../include/parser.h"
 #include "../include/token.h"
 #include "../include/type.h"
+#include "../include/squaker.h"
 #include <chrono>
 #include <iostream>
 #include <stack>
@@ -199,10 +200,10 @@ namespace squ {
         auto start = std::chrono::high_resolution_clock::now();
         for (const auto &token_list : tokens) {
             try {
-                squ::Environment env; // 创建一个新的环境
+                squ::VM vm; // 创建一个新的环境
                 squ::Parser parser(token_list);
                 auto expr = parser.parse();
-                auto result = expr->evaluate(env); // 调用求值接口
+                auto result = expr->evaluate(vm); // 调用求值接口
             } catch (const std::exception &e) {
                 std::cerr << "Error evaluating expression: " << e.what() << std::endl;
             }
@@ -285,7 +286,9 @@ namespace squ {
     // 独立的交互式代码执行函数
     void InteractiveExecution() {
         std::string input_buffer;
-        squ::Environment env; // 创建一个新的环境
+        squ::VM vm; // 创建一个新的环境
+        squ::Parser parser({}); // 创建一个空的解析器
+        vm.enter(10000); // 预留足够的局部变量空间
 
         while (true) {
             std::string line;
@@ -313,10 +316,10 @@ namespace squ {
                     auto start = std::chrono::high_resolution_clock::now();
                     auto tokens = ParseTokens(input_buffer);
                     std::cout << PrintTokens(tokens) << std::endl;
-                    squ::Parser parser(tokens);
+                    parser.reset(tokens); // 重置解析器状态
                     auto expr = parser.parse();
                     std::cout << expr->string() << std::endl; // 触发 AST 构建
-                    auto result = expr->evaluate(env);
+                    auto result = expr->evaluate(vm);
                     auto end = std::chrono::high_resolution_clock::now();
                     std::chrono::duration<double> elapsed = end - start;
                     std::cout << GRAY << "(return: " << CYAN << result.string() << GRAY << ", time: " << RED
@@ -329,6 +332,30 @@ namespace squ {
                 input_buffer.clear();
             }
         }
+    }
+
+    // 脚本类的实现
+    ValueData Script::execute() {
+        try {
+            // 解析tokens
+            auto tokens = ParseTokens(code);
+
+            // 创建解析器并解析表达式
+            squ::Parser parser(tokens);
+            auto expr = parser.parse();
+
+            // 执行表达式
+            squ::VM vm; // 创建一个新的环境
+            vm.enter(10000); // 预留足够的局部变量空间
+            auto result = expr->evaluate(vm);
+
+            // 返回结果
+            return result;
+        } catch (const std::exception &e) {
+            std::cerr << "Error: " << e.what() << std::endl;
+        }
+        // 返回一个空的 ValueData
+        return ValueData{ValueType::Nil, false, 0.0};
     }
 
 } // namespace squ

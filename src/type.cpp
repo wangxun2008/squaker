@@ -30,7 +30,7 @@ namespace squ {
         }
         case ValueType::Map: {
             std::string result = "{";
-            const auto &map = std::get<std::unordered_map<std::string, ValueData>>(value);
+            const auto &map = std::get<std::map<std::string, ValueData>>(value);
             bool first = true;
             for (const auto &[key, val] : map) {
                 if (!first)

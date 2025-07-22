@@ -1,4 +1,6 @@
 #pragma once
+#include <string>
+#include "type.h"
 
 namespace squ {
 
@@ -16,5 +18,17 @@ namespace squ {
 
     // 独立的交互式代码执行函数
     void InteractiveExecution();
+
+    // 封装的脚本类
+    class Script {
+      public:
+        explicit Script(const std::string &code) : code(code) {}
+
+        // 解析并执行脚本
+        ValueData execute();
+
+      private:
+        std::string code; // 脚本代码
+    };
 
 } // namespace squ

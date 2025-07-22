@@ -10,6 +10,11 @@ namespace squ {
         : tokens(std::move(tokens)), curScope(std::make_unique<Scope>()) // 顶层也有一块编号
     {}
 
+    void Parser::reset(std::vector<Token> newTokens) {
+        tokens = std::move(newTokens);
+        current = 0; // 重置当前索引
+    }
+
     std::unique_ptr<ExprNode> Parser::parse() {
 
         std::vector<std::unique_ptr<ExprNode>> statements;
@@ -71,6 +76,10 @@ namespace squ {
 
     // 表达式入口
     std::unique_ptr<ExprNode> Parser::parse_expression() {
+        if (match(TokenType::Punctuation, ";")) {
+            // 如果是分号，表示空语句
+            return std::make_unique<LiteralNode>(ValueData{ValueType::Nil});
+        }
         return parse_assignment();
     }
 

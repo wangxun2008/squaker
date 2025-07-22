@@ -1,7 +1,7 @@
 #pragma once
 
-#include "environment.h"
 #include "type.h"
+#include "vm.h"
 #include <memory>
 #include <string>
 #include <unordered_map>
@@ -41,9 +41,9 @@ namespace squ {
         // 节点类型接口
         virtual NodeType type() const = 0;
         // 右值求值接口
-        virtual ValueData evaluate(Environment &env) const = 0;
+        virtual ValueData evaluate(VM &vm) const = 0;
         // 左值求值接口
-        virtual ValueData &evaluate_lvalue(Environment &env) const = 0;
+        virtual ValueData &evaluate_lvalue(VM &vm) const = 0;
     };
 
     // 统一字面量节点
@@ -57,8 +57,8 @@ namespace squ {
         NodeType type() const override {
             return NodeType::Literal;
         }
-        ValueData evaluate(Environment &env) const override;
-        ValueData &evaluate_lvalue(Environment &env) const override;
+        ValueData evaluate(VM &vm) const override;
+        ValueData &evaluate_lvalue(VM &vm) const override;
     };
 
     // 标识符节点
@@ -72,8 +72,8 @@ namespace squ {
         NodeType type() const override {
             return NodeType::Identifier;
         }
-        ValueData evaluate(Environment &env) const override;
-        ValueData &evaluate_lvalue(Environment &env) const override;
+        ValueData evaluate(VM &vm) const override;
+        ValueData &evaluate_lvalue(VM &vm) const override;
     };
 
     // 二元操作节点
@@ -89,8 +89,8 @@ namespace squ {
         NodeType type() const override {
             return NodeType::BinaryOp;
         }
-        ValueData evaluate(Environment &env) const override;
-        ValueData &evaluate_lvalue(Environment &env) const override;
+        ValueData evaluate(VM &vm) const override;
+        ValueData &evaluate_lvalue(VM &vm) const override;
     };
 
     // 一元操作节点（前缀）
@@ -105,8 +105,8 @@ namespace squ {
         NodeType type() const override {
             return NodeType::UnaryOp;
         }
-        ValueData evaluate(Environment &env) const override;
-        ValueData &evaluate_lvalue(Environment &env) const override;
+        ValueData evaluate(VM &vm) const override;
+        ValueData &evaluate_lvalue(VM &vm) const override;
     };
 
     // 后缀操作节点
@@ -121,8 +121,8 @@ namespace squ {
         NodeType type() const override {
             return NodeType::PostfixOp;
         }
-        ValueData evaluate(Environment &env) const override;
-        ValueData &evaluate_lvalue(Environment &env) const override;
+        ValueData evaluate(VM &vm) const override;
+        ValueData &evaluate_lvalue(VM &vm) const override;
     };
 
     // 赋值节点
@@ -138,8 +138,8 @@ namespace squ {
         NodeType type() const override {
             return NodeType::Assignment;
         }
-        ValueData evaluate(Environment &env) const override;
-        ValueData &evaluate_lvalue(Environment &env) const override;
+        ValueData evaluate(VM &vm) const override;
+        ValueData &evaluate_lvalue(VM &vm) const override;
     };
 
     // 复合赋值节点（如 +=, -= 等）
@@ -155,8 +155,8 @@ namespace squ {
         NodeType type() const override {
             return NodeType::CompoundAssign;
         }
-        ValueData evaluate(Environment &env) const override;
-        ValueData &evaluate_lvalue(Environment &env) const override;
+        ValueData evaluate(VM &vm) const override;
+        ValueData &evaluate_lvalue(VM &vm) const override;
     };
 
     // Lambda节点（函数定义）
@@ -169,7 +169,7 @@ namespace squ {
     class LambdaNode : public ExprNode {
         std::vector<Parameter> parameters;
         std::unique_ptr<ExprNode> body;
-        size_t maxSlot = 0;   // 局部变量总数
+        size_t maxSlot = 0; // 局部变量总数
 
       public:
         LambdaNode(std::vector<Parameter> params, std::unique_ptr<ExprNode> b);
@@ -178,8 +178,8 @@ namespace squ {
         NodeType type() const override {
             return NodeType::Lambda;
         }
-        ValueData evaluate(Environment &env) const override;
-        ValueData &evaluate_lvalue(Environment &env) const override;
+        ValueData evaluate(VM &vm) const override;
+        ValueData &evaluate_lvalue(VM &vm) const override;
     };
 
     // 函数应用节点（函数调用）
@@ -194,8 +194,8 @@ namespace squ {
         NodeType type() const override {
             return NodeType::Apply;
         }
-        ValueData evaluate(Environment &env) const override;
-        ValueData &evaluate_lvalue(Environment &env) const override;
+        ValueData evaluate(VM &vm) const override;
+        ValueData &evaluate_lvalue(VM &vm) const override;
     };
 
     // 条件节点（if-else if-else）
@@ -211,8 +211,8 @@ namespace squ {
         NodeType type() const override {
             return NodeType::If;
         }
-        ValueData evaluate(Environment &env) const override;
-        ValueData &evaluate_lvalue(Environment &env) const override;
+        ValueData evaluate(VM &vm) const override;
+        ValueData &evaluate_lvalue(VM &vm) const override;
     };
 
     // For循环节点
@@ -230,8 +230,8 @@ namespace squ {
         NodeType type() const override {
             return NodeType::For;
         }
-        ValueData evaluate(Environment &env) const override;
-        ValueData &evaluate_lvalue(Environment &env) const override;
+        ValueData evaluate(VM &vm) const override;
+        ValueData &evaluate_lvalue(VM &vm) const override;
     };
 
     // 块节点（用于多语句）
@@ -245,8 +245,8 @@ namespace squ {
         NodeType type() const override {
             return NodeType::Block;
         }
-        ValueData evaluate(Environment &env) const override;
-        ValueData &evaluate_lvalue(Environment &env) const override;
+        ValueData evaluate(VM &vm) const override;
+        ValueData &evaluate_lvalue(VM &vm) const override;
     };
 
     // While循环节点
@@ -261,8 +261,8 @@ namespace squ {
         NodeType type() const override {
             return NodeType::While;
         }
-        ValueData evaluate(Environment &env) const override;
-        ValueData &evaluate_lvalue(Environment &env) const override;
+        ValueData evaluate(VM &vm) const override;
+        ValueData &evaluate_lvalue(VM &vm) const override;
     };
 
     // 模块导入节点
@@ -276,8 +276,8 @@ namespace squ {
         NodeType type() const override {
             return NodeType::Import;
         }
-        ValueData evaluate(Environment &env) const override;
-        ValueData &evaluate_lvalue(Environment &env) const override;
+        ValueData evaluate(VM &vm) const override;
+        ValueData &evaluate_lvalue(VM &vm) const override;
     };
 
     // 循环控制节点
@@ -291,8 +291,8 @@ namespace squ {
         NodeType type() const override {
             return NodeType::ControlFlow;
         }
-        ValueData evaluate(Environment &env) const override;
-        ValueData &evaluate_lvalue(Environment &env) const override;
+        ValueData evaluate(VM &vm) const override;
+        ValueData &evaluate_lvalue(VM &vm) const override;
     };
 
     // 返回值节点
@@ -306,8 +306,8 @@ namespace squ {
         NodeType type() const override {
             return NodeType::Return;
         }
-        ValueData evaluate(Environment &env) const override;
-        ValueData &evaluate_lvalue(Environment &env) const override;
+        ValueData evaluate(VM &vm) const override;
+        ValueData &evaluate_lvalue(VM &vm) const override;
     };
 
     // 成员访问节点
@@ -322,8 +322,8 @@ namespace squ {
         NodeType type() const override {
             return NodeType::MemberAccess;
         }
-        ValueData evaluate(Environment &env) const override;
-        ValueData &evaluate_lvalue(Environment &env) const override;
+        ValueData evaluate(VM &vm) const override;
+        ValueData &evaluate_lvalue(VM &vm) const override;
     };
 
     // 索引访问节点
@@ -338,8 +338,8 @@ namespace squ {
         NodeType type() const override {
             return NodeType::Index;
         }
-        ValueData evaluate(Environment &env) const override;
-        ValueData &evaluate_lvalue(Environment &env) const override;
+        ValueData evaluate(VM &vm) const override;
+        ValueData &evaluate_lvalue(VM &vm) const override;
     };
 
     // 原生函数调用节点
@@ -354,8 +354,8 @@ namespace squ {
         NodeType type() const override {
             return NodeType::NativeCall;
         }
-        ValueData evaluate(Environment &env) const override;
-        ValueData &evaluate_lvalue(Environment &env) const override;
+        ValueData evaluate(VM &vm) const override;
+        ValueData &evaluate_lvalue(VM &vm) const override;
     };
 
     // 数组节点
@@ -369,8 +369,8 @@ namespace squ {
         NodeType type() const override {
             return NodeType::Array;
         }
-        ValueData evaluate(Environment &env) const override;
-        ValueData &evaluate_lvalue(Environment &env) const override;
+        ValueData evaluate(VM &vm) const override;
+        ValueData &evaluate_lvalue(VM &vm) const override;
     };
 
     // 映射表节点
@@ -384,8 +384,8 @@ namespace squ {
         NodeType type() const override {
             return NodeType::Map;
         }
-        ValueData evaluate(Environment &env) const override;
-        ValueData &evaluate_lvalue(Environment &env) const override;
+        ValueData evaluate(VM &vm) const override;
+        ValueData &evaluate_lvalue(VM &vm) const override;
     };
 
 } // namespace squ
