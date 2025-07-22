@@ -27,6 +27,19 @@ namespace squ {
 
         // 读写局部变量
         ValueData &local(size_t slot);
+
+        // 打印当前调用栈
+        void printStack() const;
+    };
+
+    // RAII风格的虚拟机保护类，用于自动管理函数调用的进入和离开
+    class VMGuard {
+        VM& vm;
+    public:
+        explicit VMGuard(VM& v, size_t locals) : vm(v) { vm.enter(locals); }
+        ~VMGuard() { vm.leave(); }
+        VMGuard(const VMGuard&) = delete;
+        VMGuard& operator=(const VMGuard&) = delete;
     };
 
 } // namespace squ

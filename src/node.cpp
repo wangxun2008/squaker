@@ -31,10 +31,11 @@ namespace squ {
     }
 
     ValueData IdentifierNode::evaluate(VM &vm) const {
-        if (vm.local(index).type == ValueType::Nil) {
+        ValueData& data = vm.local(index);
+        if (data.type == ValueType::Nil) {
             throw std::runtime_error("[squaker.identifier] Undefined identifier: " + name);
         }
-        return vm.local(index);
+        return data;
     }
 
     ValueData &IdentifierNode::evaluate_lvalue(VM &vm) const {
@@ -145,7 +146,7 @@ namespace squ {
 
         // 应用二元操作
         leftValRef = rightVal; // 简单赋值
-        return leftValRef; // 返回赋值后的左值
+        return leftValRef;     // 返回赋值后的左值
     }
 
     ValueData &AssignmentNode::evaluate_lvalue(VM &vm) const {
@@ -193,25 +194,36 @@ namespace squ {
 
     ValueData LambdaNode::evaluate(VM &vm) const {
         // 返回一个lambda函数对象
-        return ValueData{ValueType::Function, false, [this, &vm](std::vector<ValueData> args) -> ValueData {
+        // 深拷贝body防止this指针悬空
+        return ValueData{ValueType::Function, false, [this](std::vector<ValueData> args, VM &vm) -> ValueData {
                              // 创建一个新的子作用域
-                             vm.enter(maxSlot);
+                             printf("Lambda body addr=%p\n", (void*)body.get());
+
+                             auto type = body->type();
+                             printf("[squaker.lambda] Evaluating lambda with type: %d\n", static_cast<int>(type));
+
+                             VMGuard guard(vm, parameters.size());
+
                              // 检查参数数量是否匹配
+                             // printf("[squaker.lambda] Evaluating lambda with %zu parameters\n", parameters.size());
                              if (args.size() != parameters.size()) {
-                                 throw std::runtime_error("[squaker.lambda] Argument count mismatch in lambda call");
+                                 throw std::runtime_error(
+                                     "[squaker.lambda] Argument count mismatch in lambda call (expected " +
+                                     std::to_string(parameters.size()) + ", got " + std::to_string(args.size()) + ")");
                              }
 
                              // 设置参数到虚拟机的局部变量
+                             // printf("[squaker.lambda] Setting parameters in VM\n");
                              for (size_t i = 0; i < parameters.size(); i++) {
                                  vm.local(parameters[i].slot) = args[i];
                              }
 
                              // 执行函数体
+                             // printf("[squaker.lambda] Executing lambda body\n");
                              ValueData result = body->evaluate(vm);
 
-                             // 离开函数作用域
-                             vm.leave();
-
+                             // 返回值
+                             // printf("[squaker.lambda] Lambda execution completed, returning value\n");
                              return result;
                          }};
     }
@@ -236,20 +248,24 @@ namespace squ {
     }
 
     ValueData ApplyNode::evaluate(VM &vm) const {
+        // printf("[squaker.apply] Evaluating function application: %s\n", callee->string().c_str());
         // 计算被调用的函数
         ValueData calleeVal = callee->evaluate(vm);
+        // printf("[squaker.apply] Function value type: %d\n", static_cast<int>(calleeVal.type));
         if (calleeVal.type != ValueType::Function) {
             throw std::runtime_error("[squaker.apply] Attempted to call a non-function value");
         }
 
         // 准备参数
+        // printf("[squaker.apply] Preparing arguments for function call\n");
         std::vector<ValueData> argValues;
         for (const auto &arg : arguments) {
             argValues.push_back(arg->evaluate(vm));
         }
 
         // 调用函数
-        return std::get<std::function<ValueData(std::vector<ValueData>)>>(calleeVal.value)(argValues);
+        // printf("[squaker.apply] Calling function with %zu arguments\n", argValues.size());
+        return std::get<std::function<ValueData(std::vector<ValueData>, VM &)>>(calleeVal.value)(argValues, vm);
     }
 
     ValueData &ApplyNode::evaluate_lvalue(VM &vm) const {

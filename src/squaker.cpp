@@ -30,7 +30,7 @@ namespace squ {
                                           "██╔╝     ███████║╚██████╔╝╚██████╔╝██║  ██║██║  ██╗███████╗██║  ██║",
                                           "╚═╝      ╚══════╝ ╚══▀▀═╝  ╚═════╝ ╚═╝  ╚═╝╚═╝  ╚═╝╚══════╝╚═╝  ╚═╝"};
 
-        int total_width = lines[0].size();
+        int total_width = int(lines[0].size());
         const int r1 = 121, g1 = 146, b1 = 227;
         const int r2 = 136, g2 = 127, b2 = 188;
         const int r3 = 161, g3 = 115, b3 = 131;
@@ -201,7 +201,7 @@ namespace squ {
         for (const auto &token_list : tokens) {
             try {
                 squ::VM vm; // 创建一个新的环境
-                squ::Parser parser(token_list);
+                squ::Parser parser(token_list); // 创建解析器并传入 VM
                 auto expr = parser.parse();
                 auto result = expr->evaluate(vm); // 调用求值接口
             } catch (const std::exception &e) {
@@ -287,10 +287,9 @@ namespace squ {
     void InteractiveExecution() {
         std::string input_buffer;
         squ::VM vm; // 创建一个新的环境
-        squ::Parser parser({}); // 创建一个空的解析器
-        vm.enter(10000); // 预留足够的局部变量空间
+        vm.enter(10); // 预留足够的局部变量空间
 
-        while (true) {
+        for(int i = 0; ; ++i) {
             std::string line;
 
             // 显示智能提示符
@@ -310,16 +309,17 @@ namespace squ {
 
             // 自动检测代码完整性
             try {
+                std::unique_ptr<squ::ExprNode> expr[1024];
                 if (isCompleteBlock(input_buffer)) {
                     // 计算用时
                     std::cout << CYAN;
                     auto start = std::chrono::high_resolution_clock::now();
                     auto tokens = ParseTokens(input_buffer);
                     std::cout << PrintTokens(tokens) << std::endl;
-                    parser.reset(tokens); // 重置解析器状态
-                    auto expr = parser.parse();
-                    std::cout << expr->string() << std::endl; // 触发 AST 构建
-                    auto result = expr->evaluate(vm);
+                    Parser parser(tokens);
+                    expr[i] = parser.parse();
+                    std::cout << expr[i]->string() << std::endl; // 触发 AST 构建
+                    auto result = expr[i]->evaluate(vm);
                     auto end = std::chrono::high_resolution_clock::now();
                     std::chrono::duration<double> elapsed = end - start;
                     std::cout << GRAY << "(return: " << CYAN << result.string() << GRAY << ", time: " << RED
@@ -345,7 +345,7 @@ namespace squ {
             auto expr = parser.parse();
 
             // 执行表达式
-            squ::VM vm; // 创建一个新的环境
+            squ::VM vm; // 创建一个新的虚拟机实例
             vm.enter(10000); // 预留足够的局部变量空间
             auto result = expr->evaluate(vm);
 

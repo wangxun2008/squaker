@@ -1,8 +1,8 @@
 #pragma once
 
 #include <functional>
-#include <string>
 #include <map>
+#include <string>
 #include <variant>
 #include <vector>
 
@@ -21,19 +21,21 @@ namespace squ {
         Map       // 表
     };
 
+    // 前向声明
+    class VM;
+
     // 值数据存储结构
     struct ValueData {
         ValueType type = ValueType::Nil; // 默认类型为Nil
         bool is_const = false;
-        std::variant<long long,              // 整数
-                     double,                 // 实数
-                     bool,                   // 布尔
-                     char,                   // 字符
-                     std::string,            // 字符串
-                     std::vector<ValueData>, // 数组
-                     std::map<std::string, ValueData>,
-                     std::function<ValueData(std::vector<ValueData>)>> // 函数
-            value = 0.0;                                               // 映射（使用字符串作为键）
+        std::variant<long long,                                                                                // 整数
+                     double,                                                                                   // 实数
+                     bool,                                                                                     // 布尔
+                     char,                                                                                     // 字符
+                     std::string,                                                                              // 字符串
+                     std::vector<ValueData>,                                                                   // 数组
+                     std::map<std::string, ValueData>, std::function<ValueData(std::vector<ValueData>, VM &)>> // 函数
+            value = 0.0; // 映射（使用字符串作为键）
 
         // 成员函数声明
         std::string string() const;

@@ -8,6 +8,7 @@
 #include "token.h"
 #include "node.h"
 #include "scope.h"
+#include "vm.h"
 
 namespace squ {
 
@@ -19,8 +20,6 @@ class Parser {
 
 public:
     explicit Parser(std::vector<Token> tokens);
-
-    void reset(std::vector<Token> newTokens);
 
     std::unique_ptr<ExprNode> parse();
 

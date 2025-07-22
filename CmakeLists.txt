@@ -6,7 +6,13 @@ set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
 # 启用-O3
-set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -O3 -s")
+set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Ofast -s")
+
+if(MSVC)
+    add_compile_options(/source-charset:utf-8 /execution-charset:utf-8)
+    # MSVC中启用编译优化
+    set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} /O3 /EHsc")
+endif()
 
 # 头文件搜索路径
 include_directories(include)

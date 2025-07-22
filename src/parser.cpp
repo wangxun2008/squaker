@@ -7,13 +7,8 @@
 namespace squ {
 
     Parser::Parser(std::vector<Token> tokens)
-        : tokens(std::move(tokens)), curScope(std::make_unique<Scope>()) // 顶层也有一块编号
+        : tokens(std::move(tokens)), curScope(std::make_unique<Scope>())
     {}
-
-    void Parser::reset(std::vector<Token> newTokens) {
-        tokens = std::move(newTokens);
-        current = 0; // 重置当前索引
-    }
 
     std::unique_ptr<ExprNode> Parser::parse() {
 
