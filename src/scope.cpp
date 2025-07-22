@@ -11,20 +11,39 @@ namespace squ {
         return std::make_unique<Scope>(this);
     }
 
+    // 进入块级作用域
+    void Scope::enter() {
+        blockStack.emplace_back();
+    }
+
+    // 离开块级作用域
+    void Scope::leave() {
+        if (blockStack.empty())
+            throw std::runtime_error("[squaker.scope.leave] leave without enter");
+        blockStack.pop_back();
+    }
+
     // 查：找到返回 slot，否则 npos
     size_t Scope::find(const std::string& name) const {
-        for (const Scope* s = this; s; s = s->parent_) {
-            auto it = vars_.find(name);
-            if (it != vars_.end()) return it->second;
+        for (auto it = blockStack.rbegin(); it != blockStack.rend(); ++it) {
+            auto& block = *it;
+            auto it_var = block.find(name);
+            if (it_var != block.end()) return it_var->second;
         }
         return npos;
     }
 
     // 加：只在当前层插入，返回新 slot
     size_t Scope::add(const std::string& name) {
-        size_t slot = vars_.size();   // 连续编号
-        vars_.emplace(name, slot);
+        size_t slot = vars_.size();
+        blockStack.back()[name] = slot;
+        vars_.push_back(name);  // 保留变量名，方便调试
         return slot;
+    }
+
+    // 获取当前作用域的变量数量
+    size_t Scope::size() const {
+        return vars_.size();
     }
 
 } // namespace squ

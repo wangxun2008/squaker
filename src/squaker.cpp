@@ -134,7 +134,8 @@ namespace squ {
             "d = {\"key1\": 42, \"key2\": 3.14}",                     // 基本映射
             "f = {\"arr\": [1,2,3], \"map\": {\"1\":2, \"2\":3}}",    // 嵌套结构
             "g = {\"key\": func(42), \"value\": 3.14 * 2}",           // 包含表达式的映射
-            "a = 1; b = 2; function f(x, y) {x + y}; c = 4"           // 变量编号测试
+            "a = 1; b = 2; function f(x, y) {x + y}; c = 4",          // 变量编号测试
+            "a = 1; b = 2; {c = 3; d = 4}; c = 5; e = 6",             // 块表达式测试
         };
 
         for (const auto &input : test_cases) {
@@ -199,7 +200,6 @@ namespace squ {
         for (const auto &token_list : tokens) {
             try {
                 squ::Environment env; // 创建一个新的环境
-                squ::Scope scope;     // 创建一个新的作用域
                 squ::Parser parser(token_list);
                 auto expr = parser.parse();
                 auto result = expr->evaluate(env); // 调用求值接口

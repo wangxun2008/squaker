@@ -292,6 +292,9 @@ namespace squ {
             return std::make_unique<BlockNode>(std::move(statements));
         }
 
+        // 进入块作用域
+        ScopeGuard scopeGuard(curScope.get());
+
         do {
             // 解析块内的表达式
             statements.push_back(parse_expression());
@@ -315,11 +318,13 @@ namespace squ {
 
     // 解析while循环表达式
     std::unique_ptr<ExprNode> Parser::parse_while_expression() {
-        // 消耗掉'while'关键字
         // 期望左括号
         if (!match(TokenType::Punctuation, "(")) {
             throw std::runtime_error("[squaker.parser.while] Expected '(' after 'while'");
         }
+
+        // 进入作用域
+        ScopeGuard scopeGuard(curScope.get());
 
         // 解析条件表达式
         auto condition = parse_expression();
@@ -345,6 +350,9 @@ namespace squ {
         if (!match(TokenType::Punctuation, "(")) {
             throw std::runtime_error("[squaker.parser.for] Expected '(' after 'for'");
         }
+
+        // 进入作用域
+        ScopeGuard scopeGuard(curScope.get());
 
         // 解析初始化表达式（可选）
         std::unique_ptr<ExprNode> init;
@@ -394,6 +402,9 @@ namespace squ {
     // 解析条件表达式
     std::unique_ptr<ExprNode> Parser::parse_if_expression() {
         std::vector<std::pair<std::unique_ptr<ExprNode>, std::unique_ptr<ExprNode>>> branches;
+
+        // 进入作用域
+        ScopeGuard scopeGuard(curScope.get());
 
         // 解析初始if分支
         branches.push_back(parse_if_branch());
