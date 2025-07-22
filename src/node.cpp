@@ -11,6 +11,23 @@
 
 namespace squ {
 
+    // 控制流异常类
+    class BreakException : public std::exception {
+      public:
+        BreakException() : std::exception() {}
+    };
+
+    class ContinueException : public std::exception {
+      public:
+        ContinueException() : std::exception() {}
+    };
+
+    class ReturnException : public std::exception {
+      public:
+        ValueData value; // 返回值
+        explicit ReturnException(ValueData val) : value(std::move(val)) {}
+    };
+
     // 统一字面量节点
     std::string LiteralNode::string() const {
         return data.string();
@@ -243,11 +260,18 @@ namespace squ {
 
                              // 执行函数体
                              // printf("[squaker.lambda] Executing lambda body\n");
-                             ValueData result = body->evaluate(vm);
+                             try {
+                                 ValueData result = body->evaluate(vm);
+                                 return result; // 返回函数体的结果
+                                 // printf("[squaker.lambda] Lambda execution completed, returning value\n");
+                             } catch (const ReturnException &e) {
+                                 // 捕获返回异常，直接返回结果
+                                 // printf("[squaker.lambda] Lambda returned value: %s\n", e.value.string().c_str());
+                                 return e.value;
+                             }
 
-                             // 返回值
-                             // printf("[squaker.lambda] Lambda execution completed, returning value\n");
-                             return result;
+                             // 如果没有返回异常，默认返回Nil
+                             return ValueData{ValueType::Nil, false, 0.0};
                          }};
     }
 
@@ -389,8 +413,16 @@ namespace squ {
                     break; // 如果条件是实数0.0，视为false
                 }
             }
-            // 执行循环体
-            result = body->evaluate(vm);
+            try {
+                // 执行循环体
+                result = body->evaluate(vm);
+            } catch (const BreakException &) {
+                break; // 捕获break异常，退出循环
+            } catch (const ContinueException &) {
+                continue; // 捕获continue异常，跳过当前循环迭代
+            } catch (const ReturnException &e) {
+                throw e; // 直接抛出返回异常
+            }
             // 更新
             if (update)
                 update->evaluate(vm);
@@ -466,8 +498,16 @@ namespace squ {
             } else if (condValue.type == ValueType::Real && std::get<double>(condValue.value) == 0.0) {
                 break; // 如果条件是实数0.0，视为false
             }
-            // 执行循环体
-            result = body->evaluate(vm);
+            try {
+                // 执行循环体
+                result = body->evaluate(vm);
+            } catch (const BreakException &) {
+                break; // 捕获break异常，退出循环
+            } catch (const ContinueException &) {
+                continue; // 捕获continue异常，跳过当前循环迭代
+            } catch (const ReturnException &e) {
+                throw e; // 直接抛出返回异常
+            }
         }
         return result; // 返回最后一次循环体的结果
     }
@@ -508,9 +548,9 @@ namespace squ {
     ValueData ControlFlowNode::evaluate(VM &vm) const {
         // 实现控制流的求值逻辑
         if (control_type == "break") {
-            throw std::runtime_error("Break statement evaluation not implemented");
+            throw BreakException(); // 抛出break异常
         } else if (control_type == "continue") {
-            throw std::runtime_error("Continue statement evaluation not implemented");
+            throw ContinueException(); // 抛出continue异常
         } else {
             throw std::runtime_error("Unknown control flow type: " + control_type);
         }
@@ -533,9 +573,11 @@ namespace squ {
     }
 
     ValueData ReturnNode::evaluate(VM &vm) const {
-        // 实现返回语句的求值逻辑
-        // 这里应该抛出一个异常，由解释器捕获并处理返回值
-        throw std::runtime_error("Return evaluation should be handled by the interpreter");
+        if (!value) {
+            throw ReturnException(ValueData{ValueType::Nil}); // 返回Nil
+        }
+        ValueData returnValue = value->evaluate(vm);
+        throw ReturnException(std::move(returnValue)); // 抛出返回异常
     }
 
     ValueData &ReturnNode::evaluate_lvalue(VM &vm) const {
