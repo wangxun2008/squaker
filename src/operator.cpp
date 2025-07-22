@@ -285,6 +285,54 @@ namespace squ {
         }
 
         //--------------------------------------------------
+        // 位操作符
+        //--------------------------------------------------
+        if (op == "&") {
+            if (lhs.type == ValueType::Integer && rhs.type == ValueType::Integer) {
+                long long l = std::get<long long>(lhs.value);
+                long long r = std::get<long long>(rhs.value);
+                return ValueData{ValueType::Integer, false, l & r};
+            }
+            throw std::runtime_error("[squaker.operator:'&'] unsupported types for bitwise AND");
+        }
+
+        if (op == "|") {
+            if (lhs.type == ValueType::Integer && rhs.type == ValueType::Integer) {
+                long long l = std::get<long long>(lhs.value);
+                long long r = std::get<long long>(rhs.value);
+                return ValueData{ValueType::Integer, false, l | r};
+            }
+            throw std::runtime_error("[squaker.operator:'|'] unsupported types for bitwise OR");
+        }
+
+        if (op == "^") {
+            if (lhs.type == ValueType::Integer && rhs.type == ValueType::Integer) {
+                long long l = std::get<long long>(lhs.value);
+                long long r = std::get<long long>(rhs.value);
+                return ValueData{ValueType::Integer, false, l ^ r};
+            }
+            throw std::runtime_error("[squaker.operator:'^'] unsupported types for bitwise XOR");
+        }
+
+        if (op == "<<") {
+            if (lhs.type == ValueType::Integer && rhs.type == ValueType::Integer) {
+                long long l = std::get<long long>(lhs.value);
+                long long r = std::get<long long>(rhs.value);
+                return ValueData{ValueType::Integer, false, l << r};
+            }
+            throw std::runtime_error("[squaker.operator:'<<'] unsupported types for left shift");
+        }
+
+        if (op == ">>") {
+            if (lhs.type == ValueType::Integer && rhs.type == ValueType::Integer) {
+                long long l = std::get<long long>(lhs.value);
+                long long r = std::get<long long>(rhs.value);
+                return ValueData{ValueType::Integer, false, l >> r};
+            }
+            throw std::runtime_error("[squaker.operator:'>>'] unsupported types for right shift");
+        }
+
+        //--------------------------------------------------
         // 其他运算符 …
         //--------------------------------------------------
         throw std::runtime_error("[squaker.operator] unknown binary operator: " + op);

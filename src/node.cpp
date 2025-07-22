@@ -746,7 +746,23 @@ namespace squ {
     }
 
     ValueData NativeCallNode::evaluate(VM &vm) const {
-        // 实现原生函数调用的求值逻辑
+        // 标准输出
+        if (functionName == "print") {
+            // 特殊处理print函数
+            for (const auto &arg : arguments) {
+                ValueData argValue = arg->evaluate(vm);
+                std::cout << argValue.string() << " ";
+            }
+            std::cout << std::endl;
+            return ValueData{ValueType::Nil}; // print函数返回Nil
+        }
+        // 打印调用栈
+        if (functionName == "stack") {
+            // 打印当前调用栈
+            vm.printStack();
+            return ValueData{ValueType::Nil}; // stack函数返回Nil
+        }
+        // 其他原生函数调用
         throw std::runtime_error("Native function call evaluation not implemented for: " + functionName);
     }
 
