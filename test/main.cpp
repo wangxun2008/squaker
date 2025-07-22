@@ -2,7 +2,7 @@
 
 int main() {
     squ::InitConsole();
-    //squ::PrintLOGO();
+    squ::PrintLOGO();
     //squ::RunTests();
     //squ::RunEvalTests();
     squ::InteractiveExecution();

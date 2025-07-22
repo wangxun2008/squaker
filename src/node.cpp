@@ -25,13 +25,17 @@ namespace squ {
         throw std::runtime_error("[squaker.literal] Literal nodes cannot be evaluated as lvalues");
     }
 
+    std::unique_ptr<ExprNode> LiteralNode::clone() const {
+        return std::make_unique<LiteralNode>(data);
+    }
+
     // 标识符节点
     std::string IdentifierNode::string() const {
         return "v" + std::to_string(index);
     }
 
     ValueData IdentifierNode::evaluate(VM &vm) const {
-        ValueData& data = vm.local(index);
+        ValueData &data = vm.local(index);
         if (data.type == ValueType::Nil) {
             throw std::runtime_error("[squaker.identifier] Undefined identifier: " + name);
         }
@@ -40,6 +44,10 @@ namespace squ {
 
     ValueData &IdentifierNode::evaluate_lvalue(VM &vm) const {
         return vm.local(index);
+    }
+
+    std::unique_ptr<ExprNode> IdentifierNode::clone() const {
+        return std::make_unique<IdentifierNode>(name, index);
     }
 
     // 二元操作节点
@@ -64,6 +72,10 @@ namespace squ {
         throw std::runtime_error("[squaker.binary] Binary operations cannot be evaluated as lvalues");
     }
 
+    std::unique_ptr<ExprNode> BinaryOpNode::clone() const {
+        return std::make_unique<BinaryOpNode>(op, left->clone(), right->clone());
+    }
+
     // 一元操作节点（前缀）
     UnaryOpNode::UnaryOpNode(std::string op, std::unique_ptr<ExprNode> expr)
         : op(std::move(op)), operand(std::move(expr)) {}
@@ -83,6 +95,10 @@ namespace squ {
     ValueData &UnaryOpNode::evaluate_lvalue(VM &vm) const {
         // 一元操作通常不支持左值求值
         throw std::runtime_error("[squaker.unary] Unary operations cannot be evaluated as lvalues");
+    }
+
+    std::unique_ptr<ExprNode> UnaryOpNode::clone() const {
+        return std::make_unique<UnaryOpNode>(op, operand->clone());
     }
 
     // 后缀操作节点
@@ -131,6 +147,10 @@ namespace squ {
         throw std::runtime_error("[squaker.postfix] Postfix operations cannot be evaluated as lvalues");
     }
 
+    std::unique_ptr<ExprNode> PostfixOpNode::clone() const {
+        return std::make_unique<PostfixOpNode>(op, operand->clone());
+    }
+
     // 赋值节点
     AssignmentNode::AssignmentNode(std::string op, std::unique_ptr<ExprNode> l, std::unique_ptr<ExprNode> r)
         : op(std::move(op)), left(std::move(l)), right(std::move(r)) {}
@@ -151,6 +171,10 @@ namespace squ {
 
     ValueData &AssignmentNode::evaluate_lvalue(VM &vm) const {
         throw std::runtime_error("[squaker.assignment] Assignment nodes cannot be evaluated as lvalues");
+    }
+
+    std::unique_ptr<ExprNode> AssignmentNode::clone() const {
+        return std::make_unique<AssignmentNode>(op, left->clone(), right->clone());
     }
 
     // 复合赋值节点（如 +=, -= 等）
@@ -178,6 +202,10 @@ namespace squ {
             "[squaker.compound_assignment] Compound assignment nodes cannot be evaluated as lvalues");
     }
 
+    std::unique_ptr<ExprNode> CompoundAssignmentNode::clone() const {
+        return std::make_unique<CompoundAssignmentNode>(op, left->clone(), right->clone());
+    }
+
     // Lambda节点（函数定义）
     LambdaNode::LambdaNode(std::vector<Parameter> params, std::unique_ptr<ExprNode> b)
         : parameters(std::move(params)), body(std::move(b)) {}
@@ -194,14 +222,9 @@ namespace squ {
 
     ValueData LambdaNode::evaluate(VM &vm) const {
         // 返回一个lambda函数对象
-        // 深拷贝body防止this指针悬空
-        return ValueData{ValueType::Function, false, [this](std::vector<ValueData> args, VM &vm) -> ValueData {
-                             // 创建一个新的子作用域
-                             printf("Lambda body addr=%p\n", (void*)body.get());
-
-                             auto type = body->type();
-                             printf("[squaker.lambda] Evaluating lambda with type: %d\n", static_cast<int>(type));
-
+        return ValueData{ValueType::Function, false,
+                         [body = body, parameters = parameters, maxSlot = maxSlot](std::vector<ValueData> args,
+                                                                                   VM &vm) -> ValueData {
                              VMGuard guard(vm, parameters.size());
 
                              // 检查参数数量是否匹配
@@ -231,6 +254,10 @@ namespace squ {
     ValueData &LambdaNode::evaluate_lvalue(VM &vm) const {
         // Lambda节点通常不支持左值求值
         throw std::runtime_error("[squaker.lambda] Lambda nodes cannot be evaluated as lvalues");
+    }
+
+    std::unique_ptr<ExprNode> LambdaNode::clone() const {
+        return std::make_unique<LambdaNode>(parameters, body->clone());
     }
 
     // 函数应用节点（函数调用）
@@ -271,6 +298,14 @@ namespace squ {
     ValueData &ApplyNode::evaluate_lvalue(VM &vm) const {
         // 函数应用通常不支持左值求值
         throw std::runtime_error("[squaker.apply] Apply nodes cannot be evaluated as lvalues");
+    }
+
+    std::unique_ptr<ExprNode> ApplyNode::clone() const {
+        std::vector<std::unique_ptr<ExprNode>> clonedArgs;
+        for (const auto &arg : arguments) {
+            clonedArgs.push_back(arg->clone());
+        }
+        return std::make_unique<ApplyNode>(callee->clone(), std::move(clonedArgs));
     }
 
     // 条件节点（if-else if-else）
@@ -318,6 +353,14 @@ namespace squ {
         throw std::runtime_error("[squaker.if] If nodes cannot be evaluated as lvalues");
     }
 
+    std::unique_ptr<ExprNode> IfNode::clone() const {
+        std::vector<std::pair<std::unique_ptr<ExprNode>, std::unique_ptr<ExprNode>>> clonedBranches;
+        for (const auto &branch : branches) {
+            clonedBranches.emplace_back(branch.first->clone(), branch.second->clone());
+        }
+        return std::make_unique<IfNode>(std::move(clonedBranches), elseBranch ? elseBranch->clone() : nullptr);
+    }
+
     // For循环节点
     ForNode::ForNode(std::unique_ptr<ExprNode> i, std::unique_ptr<ExprNode> c, std::unique_ptr<ExprNode> u,
                      std::unique_ptr<ExprNode> b)
@@ -360,6 +403,11 @@ namespace squ {
         throw std::runtime_error("[squaker.for] For nodes cannot be evaluated as lvalues");
     }
 
+    std::unique_ptr<ExprNode> ForNode::clone() const {
+        return std::make_unique<ForNode>(init ? init->clone() : nullptr, condition ? condition->clone() : nullptr,
+                                         update ? update->clone() : nullptr, body->clone());
+    }
+
     // 块节点（用于多语句）
     BlockNode::BlockNode(std::vector<std::unique_ptr<ExprNode>> stmts) : statements(std::move(stmts)) {}
 
@@ -387,6 +435,14 @@ namespace squ {
     ValueData &BlockNode::evaluate_lvalue(VM &vm) const {
         // 块节点通常不支持左值求值
         throw std::runtime_error("[squaker.block] Block nodes cannot be evaluated as lvalues");
+    }
+
+    std::unique_ptr<ExprNode> BlockNode::clone() const {
+        std::vector<std::unique_ptr<ExprNode>> clonedStatements;
+        for (const auto &stmt : statements) {
+            clonedStatements.push_back(stmt->clone());
+        }
+        return std::make_unique<BlockNode>(std::move(clonedStatements));
     }
 
     // While循环节点
@@ -421,6 +477,10 @@ namespace squ {
         throw std::runtime_error("[squaker.while] While nodes cannot be evaluated as lvalues");
     }
 
+    std::unique_ptr<ExprNode> WhileNode::clone() const {
+        return std::make_unique<WhileNode>(condition->clone(), body->clone());
+    }
+
     // 模块导入节点
     std::string ImportNode::string() const {
         return "(import " + moduleName + ")";
@@ -434,6 +494,10 @@ namespace squ {
     ValueData &ImportNode::evaluate_lvalue(VM &vm) const {
         // 模块导入通常不支持左值求值
         throw std::runtime_error("[squaker.import] Import nodes cannot be evaluated as lvalues");
+    }
+
+    std::unique_ptr<ExprNode> ImportNode::clone() const {
+        return std::make_unique<ImportNode>(moduleName);
     }
 
     // 循环控制节点
@@ -457,6 +521,10 @@ namespace squ {
         throw std::runtime_error("[squaker.control] Control flow nodes cannot be evaluated as lvalues");
     }
 
+    std::unique_ptr<ExprNode> ControlFlowNode::clone() const {
+        return std::make_unique<ControlFlowNode>(control_type);
+    }
+
     // 返回值节点
     ReturnNode::ReturnNode(std::unique_ptr<ExprNode> val) : value(std::move(val)) {}
 
@@ -473,6 +541,10 @@ namespace squ {
     ValueData &ReturnNode::evaluate_lvalue(VM &vm) const {
         // 返回值节点通常不支持左值求值
         throw std::runtime_error("[squaker.return] Return nodes cannot be evaluated as lvalues");
+    }
+
+    std::unique_ptr<ExprNode> ReturnNode::clone() const {
+        return std::make_unique<ReturnNode>(value ? value->clone() : nullptr);
     }
 
     // 成员访问节点
@@ -519,6 +591,10 @@ namespace squ {
         }
 
         return it->second; // 返回成员值的引用
+    }
+
+    std::unique_ptr<ExprNode> MemberAccessNode::clone() const {
+        return std::make_unique<MemberAccessNode>(object->clone(), member);
     }
 
     // 索引访问节点
@@ -609,6 +685,10 @@ namespace squ {
         throw std::runtime_error("[squaker.index] Unsupported container type for indexing");
     }
 
+    std::unique_ptr<ExprNode> IndexNode::clone() const {
+        return std::make_unique<IndexNode>(container->clone(), index->clone());
+    }
+
     // 原生函数调用节点
     NativeCallNode::NativeCallNode(std::string name, std::vector<std::unique_ptr<ExprNode>> args)
         : functionName(std::move(name)), arguments(std::move(args)) {}
@@ -631,6 +711,14 @@ namespace squ {
     ValueData &NativeCallNode::evaluate_lvalue(VM &vm) const {
         // 原生函数调用通常不支持左值求值
         throw std::runtime_error("[squaker.native] Native call nodes cannot be evaluated as lvalues");
+    }
+
+    std::unique_ptr<ExprNode> NativeCallNode::clone() const {
+        std::vector<std::unique_ptr<ExprNode>> clonedArgs;
+        for (const auto &arg : arguments) {
+            clonedArgs.push_back(arg->clone());
+        }
+        return std::make_unique<NativeCallNode>(functionName, std::move(clonedArgs));
     }
 
     // 数组节点
@@ -663,6 +751,14 @@ namespace squ {
     ValueData &ArrayNode::evaluate_lvalue(VM &vm) const {
         // 数组节点通常不支持左值求值
         throw std::runtime_error("[squaker.array] Array nodes cannot be evaluated as lvalues");
+    }
+
+    std::unique_ptr<ExprNode> ArrayNode::clone() const {
+        std::vector<std::unique_ptr<ExprNode>> clonedElements;
+        for (const auto &elem : elements) {
+            clonedElements.push_back(elem->clone());
+        }
+        return std::make_unique<ArrayNode>(std::move(clonedElements));
     }
 
     // 映射表节点
@@ -701,6 +797,14 @@ namespace squ {
     ValueData &MapNode::evaluate_lvalue(VM &vm) const {
         // 映射表节点通常不支持左值求值
         throw std::runtime_error("[squaker.map] Map nodes cannot be evaluated as lvalues");
+    }
+
+    std::unique_ptr<ExprNode> MapNode::clone() const {
+        std::vector<std::pair<std::unique_ptr<ExprNode>, std::unique_ptr<ExprNode>>> clonedEntries;
+        for (const auto &entry : entries) {
+            clonedEntries.emplace_back(entry.first->clone(), entry.second->clone());
+        }
+        return std::make_unique<MapNode>(std::move(clonedEntries));
     }
 
 } // namespace squ

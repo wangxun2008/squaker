@@ -44,6 +44,8 @@ namespace squ {
         virtual ValueData evaluate(VM &vm) const = 0;
         // 左值求值接口
         virtual ValueData &evaluate_lvalue(VM &vm) const = 0;
+        // 克隆接口，用于深拷贝
+        virtual std::unique_ptr<ExprNode> clone() const = 0;
     };
 
     // 统一字面量节点
@@ -59,6 +61,7 @@ namespace squ {
         }
         ValueData evaluate(VM &vm) const override;
         ValueData &evaluate_lvalue(VM &vm) const override;
+        std::unique_ptr<ExprNode> clone() const override;
     };
 
     // 标识符节点
@@ -74,6 +77,7 @@ namespace squ {
         }
         ValueData evaluate(VM &vm) const override;
         ValueData &evaluate_lvalue(VM &vm) const override;
+        std::unique_ptr<ExprNode> clone() const override;
     };
 
     // 二元操作节点
@@ -91,6 +95,7 @@ namespace squ {
         }
         ValueData evaluate(VM &vm) const override;
         ValueData &evaluate_lvalue(VM &vm) const override;
+        std::unique_ptr<ExprNode> clone() const override;
     };
 
     // 一元操作节点（前缀）
@@ -107,6 +112,7 @@ namespace squ {
         }
         ValueData evaluate(VM &vm) const override;
         ValueData &evaluate_lvalue(VM &vm) const override;
+        std::unique_ptr<ExprNode> clone() const override;
     };
 
     // 后缀操作节点
@@ -123,6 +129,7 @@ namespace squ {
         }
         ValueData evaluate(VM &vm) const override;
         ValueData &evaluate_lvalue(VM &vm) const override;
+        std::unique_ptr<ExprNode> clone() const override;
     };
 
     // 赋值节点
@@ -140,6 +147,7 @@ namespace squ {
         }
         ValueData evaluate(VM &vm) const override;
         ValueData &evaluate_lvalue(VM &vm) const override;
+        std::unique_ptr<ExprNode> clone() const override;
     };
 
     // 复合赋值节点（如 +=, -= 等）
@@ -157,6 +165,7 @@ namespace squ {
         }
         ValueData evaluate(VM &vm) const override;
         ValueData &evaluate_lvalue(VM &vm) const override;
+        std::unique_ptr<ExprNode> clone() const override;
     };
 
     // Lambda节点（函数定义）
@@ -168,7 +177,7 @@ namespace squ {
     };
     class LambdaNode : public ExprNode {
         std::vector<Parameter> parameters;
-        std::unique_ptr<ExprNode> body;
+        std::shared_ptr<ExprNode> body;
         size_t maxSlot = 0; // 局部变量总数
 
       public:
@@ -180,6 +189,7 @@ namespace squ {
         }
         ValueData evaluate(VM &vm) const override;
         ValueData &evaluate_lvalue(VM &vm) const override;
+        std::unique_ptr<ExprNode> clone() const override;
     };
 
     // 函数应用节点（函数调用）
@@ -196,6 +206,7 @@ namespace squ {
         }
         ValueData evaluate(VM &vm) const override;
         ValueData &evaluate_lvalue(VM &vm) const override;
+        std::unique_ptr<ExprNode> clone() const override;
     };
 
     // 条件节点（if-else if-else）
@@ -213,6 +224,7 @@ namespace squ {
         }
         ValueData evaluate(VM &vm) const override;
         ValueData &evaluate_lvalue(VM &vm) const override;
+        std::unique_ptr<ExprNode> clone() const override;
     };
 
     // For循环节点
@@ -232,6 +244,7 @@ namespace squ {
         }
         ValueData evaluate(VM &vm) const override;
         ValueData &evaluate_lvalue(VM &vm) const override;
+        std::unique_ptr<ExprNode> clone() const override;
     };
 
     // 块节点（用于多语句）
@@ -247,6 +260,7 @@ namespace squ {
         }
         ValueData evaluate(VM &vm) const override;
         ValueData &evaluate_lvalue(VM &vm) const override;
+        std::unique_ptr<ExprNode> clone() const override;
     };
 
     // While循环节点
@@ -263,6 +277,7 @@ namespace squ {
         }
         ValueData evaluate(VM &vm) const override;
         ValueData &evaluate_lvalue(VM &vm) const override;
+        std::unique_ptr<ExprNode> clone() const override;
     };
 
     // 模块导入节点
@@ -278,6 +293,7 @@ namespace squ {
         }
         ValueData evaluate(VM &vm) const override;
         ValueData &evaluate_lvalue(VM &vm) const override;
+        std::unique_ptr<ExprNode> clone() const override;
     };
 
     // 循环控制节点
@@ -293,6 +309,7 @@ namespace squ {
         }
         ValueData evaluate(VM &vm) const override;
         ValueData &evaluate_lvalue(VM &vm) const override;
+        std::unique_ptr<ExprNode> clone() const override;
     };
 
     // 返回值节点
@@ -308,6 +325,7 @@ namespace squ {
         }
         ValueData evaluate(VM &vm) const override;
         ValueData &evaluate_lvalue(VM &vm) const override;
+        std::unique_ptr<ExprNode> clone() const override;
     };
 
     // 成员访问节点
@@ -324,6 +342,7 @@ namespace squ {
         }
         ValueData evaluate(VM &vm) const override;
         ValueData &evaluate_lvalue(VM &vm) const override;
+        std::unique_ptr<ExprNode> clone() const override;
     };
 
     // 索引访问节点
@@ -340,6 +359,7 @@ namespace squ {
         }
         ValueData evaluate(VM &vm) const override;
         ValueData &evaluate_lvalue(VM &vm) const override;
+        std::unique_ptr<ExprNode> clone() const override;
     };
 
     // 原生函数调用节点
@@ -356,6 +376,7 @@ namespace squ {
         }
         ValueData evaluate(VM &vm) const override;
         ValueData &evaluate_lvalue(VM &vm) const override;
+        std::unique_ptr<ExprNode> clone() const override;
     };
 
     // 数组节点
@@ -371,6 +392,7 @@ namespace squ {
         }
         ValueData evaluate(VM &vm) const override;
         ValueData &evaluate_lvalue(VM &vm) const override;
+        std::unique_ptr<ExprNode> clone() const override;
     };
 
     // 映射表节点
@@ -386,6 +408,7 @@ namespace squ {
         }
         ValueData evaluate(VM &vm) const override;
         ValueData &evaluate_lvalue(VM &vm) const override;
+        std::unique_ptr<ExprNode> clone() const override;
     };
 
 } // namespace squ

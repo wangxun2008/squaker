@@ -27,7 +27,6 @@ namespace squ {
 
     // 读写局部变量
     ValueData &VM::local(size_t slot) {
-        printf("[squaker.vm.local] access local slot %zu\n", slot);
         if (callStack.empty())
             throw std::runtime_error("[squaker.vm.local] access local without frame");
         if (slot >= mem.size())
