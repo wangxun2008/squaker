@@ -287,6 +287,7 @@ namespace squ {
     void InteractiveExecution() {
         std::string input_buffer;
         squ::VM vm; // 创建一个新的环境
+        squ::Parser parser({}); // 创建一个空解析器
         vm.enter(10); // 预留足够的局部变量空间
 
         for(int i = 0; ; ++i) {
@@ -309,17 +310,16 @@ namespace squ {
 
             // 自动检测代码完整性
             try {
-                std::unique_ptr<squ::ExprNode> expr[1024];
                 if (isCompleteBlock(input_buffer)) {
                     // 计算用时
                     std::cout << CYAN;
                     auto start = std::chrono::high_resolution_clock::now();
                     auto tokens = ParseTokens(input_buffer);
                     std::cout << PrintTokens(tokens) << std::endl;
-                    Parser parser(tokens);
-                    expr[i] = parser.parse();
-                    std::cout << expr[i]->string() << std::endl; // 触发 AST 构建
-                    auto result = expr[i]->evaluate(vm);
+                    parser.reset(std::move(tokens)); // 重置解析器
+                    auto expr = parser.parse(); // 解析表达式
+                    std::cout << "AST: " << expr->string() << std::endl;
+                    auto result = expr->evaluate(vm); // 调用求值接口
                     auto end = std::chrono::high_resolution_clock::now();
                     std::chrono::duration<double> elapsed = end - start;
                     std::cout << GRAY << "(return: " << CYAN << result.string() << GRAY << ", time: " << RED

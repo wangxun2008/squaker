@@ -10,6 +10,11 @@ namespace squ {
         : tokens(std::move(tokens)), curScope(std::make_unique<Scope>())
     {}
 
+    void Parser::reset(std::vector<Token> newTokens) {
+        tokens = std::move(newTokens);
+        current = 0;
+    }
+
     std::unique_ptr<ExprNode> Parser::parse() {
 
         std::vector<std::unique_ptr<ExprNode>> statements;
