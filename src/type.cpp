@@ -70,17 +70,23 @@ namespace squ {
             }
             return result + "]";
         }
-        case ValueType::Map: {
-            std::string result = "{";
-            const auto &map = std::get<std::map<std::string, ValueData>>(value);
-            bool first = true;
-            for (const auto &[key, val] : map) {
-                if (!first)
+        case ValueType::Table: {
+            std::string result = "[";
+            const auto &table = std::get<TableData>(value);
+            for (const auto &pair : table.array_map) {
+                if (result.size() > 1)
                     result += ", ";
-                result += "\"" + key + "\": " + val.string();
-                first = false;
+                result += pair.first.string() + "=" + pair.second.string();
             }
-            return result + "}";
+            for (const auto &pair : table.dot_map) {
+                if (result.size() > 1)
+                    result += ", ";
+                result += pair.first + ": " + pair.second.string();
+            }
+            return result + "]";
+        }
+        case ValueType::Function: {
+            return "[function]";
         }
         default:
             return "[complex_value]";

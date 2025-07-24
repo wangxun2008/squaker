@@ -643,7 +643,7 @@ namespace squ {
         ValueData indexValue = index->evaluate(vm);
 
         // 检查容器类型
-        if (containerValue.type != ValueType::Array && containerValue.type != ValueType::Map && containerValue.type != ValueType::Table) {
+        if (containerValue.type != ValueType::Array && containerValue.type != ValueType::Table) {
             throw std::runtime_error("[squaker.index] Indexing on non-table type: " + containerValue.string());
         }
 
@@ -658,20 +658,6 @@ namespace squ {
                 throw std::out_of_range("[squaker.index] Array index out of bounds");
             }
             return array[idx]; // 返回数组元素
-        }
-
-        // 处理映射索引
-        if (containerValue.type == ValueType::Map) {
-            if (indexValue.type != ValueType::String) {
-                throw std::runtime_error("[squaker.index] Map index must be a string: " + indexValue.string());
-            }
-            auto &map = std::get<std::map<std::string, ValueData>>(containerValue.value);
-            auto it = map.find(std::get<std::string>(indexValue.value));
-            if (it == map.end()) {
-                throw std::runtime_error("[squaker.index] Key not found in map: " +
-                                         std::get<std::string>(indexValue.value));
-            }
-            return it->second; // 返回映射值
         }
 
         // 处理表索引
@@ -689,7 +675,7 @@ namespace squ {
         ValueData indexValue = index->evaluate(vm);
 
         // 检查容器类型
-        if (containerValue.type != ValueType::Array && containerValue.type != ValueType::Map && containerValue.type != ValueType::Table) {
+        if (containerValue.type != ValueType::Array && containerValue.type != ValueType::Table) {
             throw std::runtime_error("[squaker.index] Indexing on non-array/map type: " + containerValue.string());
         }
 
@@ -704,20 +690,6 @@ namespace squ {
                 throw std::out_of_range("[squaker.index] Array index out of bounds");
             }
             return array[idx]; // 返回数组元素的引用
-        }
-
-        // 处理映射索引
-        if (containerValue.type == ValueType::Map) {
-            if (indexValue.type != ValueType::String) {
-                throw std::runtime_error("[squaker.index] Map index must be a string: " + indexValue.string());
-            }
-            auto &map = std::get<std::map<std::string, ValueData>>(containerValue.value);
-            auto it = map.find(std::get<std::string>(indexValue.value));
-            if (it == map.end()) {
-                throw std::runtime_error("[squaker.index] Key not found in map: " +
-                                         std::get<std::string>(indexValue.value));
-            }
-            return it->second; // 返回映射值的引用
         }
 
         // 处理表索引
