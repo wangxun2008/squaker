@@ -767,6 +767,31 @@ namespace squ {
             vm.printStack();
             return ValueData{ValueType::Nil}; // stack函数返回Nil
         }
+        // 打印类型
+        if (functionName == "type") {
+            // 特殊处理type函数
+            ValueData argValue = arguments[0]->evaluate(vm);
+            switch (argValue.type) {
+                case ValueType::Nil:
+                    return ValueData{ValueType::String, false, "nil"};
+                case ValueType::Bool:
+                    return ValueData{ValueType::String, false, "bool"};
+                case ValueType::Integer:
+                    return ValueData{ValueType::String, false, "integer"};
+                case ValueType::Real:
+                    return ValueData{ValueType::String, false, "real"};
+                case ValueType::String: 
+                    return ValueData{ValueType::String, false, "string"};
+                case ValueType::Array: 
+                    return ValueData{ValueType::String, false, "array"};
+                case ValueType::Table: 
+                    return ValueData{ValueType::String, false, "table"};
+                case ValueType::Function: {
+                    return ValueData{ValueType::String, false, "function"};
+                }
+            }
+            return ValueData{ValueType::Nil}; // type函数返回Nil
+        }
         // 其他原生函数调用
         throw std::runtime_error("Native function call evaluation not implemented for: " + functionName);
     }
