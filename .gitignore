@@ -1,8 +1,11 @@
 # 忽略 build 文件夹
 build/
 
-# 忽略 .VSCodeCounter
+# 忽略 .VSCodeCounter 文件夹
 .VSCodeCounter/
+
+# 忽略 .vscode 文件夹
+.vscode
 
 # 忽略其他常见临时文件
 *.o
