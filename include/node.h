@@ -81,6 +81,22 @@ namespace squ {
         std::unique_ptr<ExprNode> clone() const override;
     };
 
+    // 常量字面量节点
+    class ConstantNode : public ExprNode {
+        std::unique_ptr<ExprNode> expr;
+
+      public:
+        explicit ConstantNode(std::unique_ptr<ExprNode> expr);
+
+        std::string string() const override;
+        NodeType type() const override {
+            return NodeType::Literal;
+        }
+        ValueData evaluate(VM &vm) const override;
+        ValueData &evaluate_lvalue(VM &vm) const override;
+        std::unique_ptr<ExprNode> clone() const override;
+    };
+
     // 二元操作节点
     class BinaryOpNode : public ExprNode {
         std::string op;

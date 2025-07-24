@@ -110,6 +110,9 @@ namespace squ {
         // 解析原生函数调用
         std::unique_ptr<ExprNode> parse_native_call(const std::string &functionName);
 
+        // 解析常量字面量
+        std::unique_ptr<ExprNode> parse_constant();
+
         // 解析数组字面量
         std::unique_ptr<ExprNode> parse_array();
 

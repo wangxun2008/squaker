@@ -659,6 +659,12 @@ namespace squ {
         return std::make_unique<NativeCallNode>(functionName, std::move(arguments));
     }
 
+    // 解析常量字面量
+    std::unique_ptr<ExprNode> Parser::parse_constant() {
+        auto value = parse_expression();
+        return std::make_unique<ConstantNode>(std::move(value));
+    }
+
     // 解析数组字面量
     std::unique_ptr<ExprNode> Parser::parse_array() {
         std::vector<std::unique_ptr<ExprNode>> elements;
@@ -804,6 +810,10 @@ namespace squ {
             // 检查原生函数调用（以@开头）
             else if (!token.value.empty() && token.value[0] == '@') {
                 return parse_native_call(token.value.substr(1));
+            }
+            // 检查constant关键字
+            else if (token.value == "const") {
+                return parse_constant();
             }
             // 否则是标识符
             else {

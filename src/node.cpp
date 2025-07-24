@@ -67,6 +67,28 @@ namespace squ {
         return std::make_unique<IdentifierNode>(name, index);
     }
 
+    // 常量字面量节点
+    ConstantNode::ConstantNode(std::unique_ptr<ExprNode> expr) : expr(std::move(expr)) {}
+
+    std::string ConstantNode::string() const {
+        return "const " + expr->string();
+    }
+
+    ValueData ConstantNode::evaluate(VM &vm) const {
+        ValueData data = expr->evaluate(vm);
+        data.is_const = true;
+        return data;
+    }
+
+    ValueData &ConstantNode::evaluate_lvalue(VM &vm) const {
+        // 常量节点通常不支持左值求值
+        throw std::runtime_error("[squaker.constant] Constant nodes cannot be evaluated as lvalues");
+    }
+
+    std::unique_ptr<ExprNode> ConstantNode::clone() const {
+        return std::make_unique<ConstantNode>(expr->clone());
+    }
+
     // 二元操作节点
     BinaryOpNode::BinaryOpNode(std::string op, std::unique_ptr<ExprNode> l, std::unique_ptr<ExprNode> r)
         : op(std::move(op)), left(std::move(l)), right(std::move(r)) {}
@@ -128,6 +150,9 @@ namespace squ {
 
     ValueData PostfixOpNode::evaluate(VM &vm) const {
         ValueData operandVal = operand->evaluate(vm);
+        if (operandVal.is_const == true) {
+            throw std::runtime_error("[squaker.postfix] Cannot apply postfix operator to const");
+        }
         ValueData &operandRef = operand->evaluate_lvalue(vm);
         if (op == "++") {
             if (operandVal.type == ValueType::Integer) {
@@ -179,6 +204,9 @@ namespace squ {
     ValueData AssignmentNode::evaluate(VM &vm) const {
         // 计算左值和右值
         ValueData &leftValRef = left->evaluate_lvalue(vm);
+        if (leftValRef.is_const == true) {
+            throw std::runtime_error("[squaker.assignment] Cannot assign to const variable");
+        }
         ValueData rightVal = right->evaluate(vm);
 
         // 应用二元操作
@@ -206,8 +234,11 @@ namespace squ {
     ValueData CompoundAssignmentNode::evaluate(VM &vm) const {
         // 计算左值和右值
         ValueData leftVal = left->evaluate(vm);
-        ValueData rightVal = right->evaluate(vm);
+        if (leftVal.is_const == true) {
+            throw std::runtime_error("[squaker.assignment] Cannot assign to const variable");
+        }
         ValueData &leftValRef = left->evaluate_lvalue(vm);
+        ValueData rightVal = right->evaluate(vm);
 
         // 应用二元操作
         leftValRef = ApplyBinary(leftVal, op, rightVal);
@@ -821,7 +852,7 @@ namespace squ {
         if (!members.empty()) {
             if (!elements.empty() || !entries.empty())
                 result += ", ";
-        }   
+        }
         for (size_t i = 0; i < members.size(); i++) {
             if (i > 0)
                 result += ", ";
@@ -891,7 +922,8 @@ namespace squ {
         for (const auto &entry : elements) {
             clonedElements.emplace_back(entry->clone());
         }
-        return std::make_unique<TableNode>(std::move(clonedEntries), std::move(clonedMembers), std::move(clonedElements));
+        return std::make_unique<TableNode>(std::move(clonedEntries), std::move(clonedMembers),
+                                           std::move(clonedElements));
     }
 
 } // namespace squ
