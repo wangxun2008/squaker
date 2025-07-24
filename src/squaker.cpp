@@ -1,8 +1,8 @@
+#include "../include/squaker.h"
 #include "../include/node.h"
 #include "../include/parser.h"
 #include "../include/token.h"
 #include "../include/type.h"
-#include "../include/squaker.h"
 #include <chrono>
 #include <iostream>
 #include <stack>
@@ -200,7 +200,7 @@ namespace squ {
         auto start = std::chrono::high_resolution_clock::now();
         for (const auto &token_list : tokens) {
             try {
-                squ::VM vm; // 创建一个新的环境
+                squ::VM vm;                     // 创建一个新的环境
                 squ::Parser parser(token_list); // 创建解析器并传入 VM
                 auto expr = parser.parse();
                 auto result = expr->evaluate(vm); // 调用求值接口
@@ -286,11 +286,11 @@ namespace squ {
     // 独立的交互式代码执行函数
     void InteractiveExecution() {
         std::string input_buffer;
-        squ::VM vm; // 创建一个新的环境
+        squ::VM vm;         // 创建一个新的环境
         squ::Parser parser; // 创建一个空解析器
-        vm.enter(10); // 预留足够的局部变量空间
+        vm.enter(10);       // 预留足够的局部变量空间
 
-        for(int i = 0; ; ++i) {
+        for (int i = 0;; ++i) {
             std::string line;
 
             // 显示智能提示符
@@ -317,7 +317,7 @@ namespace squ {
                     auto tokens = ParseTokens(input_buffer);
                     std::cout << PrintTokens(tokens) << std::endl;
                     parser.reset(std::move(tokens)); // 重置解析器
-                    auto expr = parser.parse(); // 解析表达式
+                    auto expr = parser.parse();      // 解析表达式
                     std::cout << "AST: " << expr->string() << std::endl;
                     auto result = expr->evaluate(vm); // 调用求值接口
                     auto end = std::chrono::high_resolution_clock::now();
@@ -334,24 +334,79 @@ namespace squ {
         }
     }
 
+    void RunScriptTests() {
+        std::string input_buffer;
+        Script script;
+
+        while (true) {
+            std::string line;
+
+            // 显示智能提示符
+            if (input_buffer.empty()) {
+                std::cout << YELLOW << ">>> " << RESET; // 首行提示符
+            } else {
+                std::cout << YELLOW << "... " << RESET; // 多行提示符
+            }
+
+            std::getline(std::cin, line);
+
+            // 添加换行符保证块识别正确
+            if (!input_buffer.empty() && input_buffer.back() != '\n') {
+                input_buffer += ' ';
+            }
+            input_buffer += line;
+
+            // 自动检测代码完整性
+            try {
+                if (isCompleteBlock(input_buffer)) {
+                    script.append(input_buffer);
+                    std::cout << CYAN;
+                    auto start = std::chrono::high_resolution_clock::now();
+                    auto result = script.execute();
+                    auto end = std::chrono::high_resolution_clock::now();
+                    std::chrono::duration<double> elapsed = end - start;
+                    std::cout << GRAY << "(return: " << CYAN << result.string() << GRAY << ", time: " << RED
+                              << elapsed.count() * 1000 << "ms" << GRAY << ")" << std::endl;
+                    input_buffer.clear();
+                }
+            } catch (const std::exception &ex) {
+                // 完整代码执行出错时清空缓冲区
+                std::cout << RED << ex.what() << RESET << std::endl;
+                input_buffer.clear();
+            }
+        }
+    }
+
     // 脚本类的实现
+    Script::Script() : current_index(0) {
+        vm.enter(1024); // 预留足够的局部变量空间
+    }
+
+    void Script::append(const std::string &append_code) {
+        code.emplace_back(append_code);
+    }
+
     ValueData Script::execute() {
-        try {
+        // 初始化
+        auto result = ValueData{ValueType::Nil, false, 0.0};
+
+        // 逐行执行
+        for (; current_index < code.size(); ++current_index) {
+            const auto &code = this->code[current_index];
             // 解析tokens
             auto tokens = ParseTokens(code);
 
             // 解释器实例化
             parser.reset(std::move(tokens)); // 重置解析器
-            auto expr = parser.parse(); // 解析表达式
+            auto expr = parser.parse();      // 解析表达式
 
             // 执行表达式
-            auto result = expr->evaluate(vm); // 调用求值接口
-            
-            // 返回结果
-            return result;
-        } catch (const std::exception &e) {
-            std::cerr << "Error: " << e.what() << std::endl;
+            result = expr->evaluate(vm); // 调用求值接口
         }
+
+        // 返回结果
+        return result;
+
         // 返回一个空的 ValueData
         return ValueData{ValueType::Nil, false, 0.0};
     }

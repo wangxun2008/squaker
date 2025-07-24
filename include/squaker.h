@@ -1,8 +1,8 @@
 #pragma once
-#include <string>
+#include "parser.h"
 #include "type.h"
 #include "vm.h"
-#include "parser.h"
+#include <string>
 
 namespace squ {
 
@@ -21,18 +21,26 @@ namespace squ {
     // 独立的交互式代码执行函数
     void InteractiveExecution();
 
+    // 测试脚本执行
+    void RunScriptTests();
+
     // 封装的脚本类
     class Script {
       public:
-        explicit Script(const std::string &code) : code(code) {}
+        // 构造函数
+        explicit Script();
+
+        // 添加代码
+        void append(const std::string &append_code);
 
         // 解析并执行脚本
         ValueData execute();
 
       private:
-        std::string code; // 脚本代码
-        VM vm; // 虚拟机实例
-        Parser parser; // 解析器实例
+        std::vector<std::string> code; // 代码
+        size_t current_index = 0;      // 当前代码索引
+        VM vm;                         // 虚拟机实例
+        Parser parser;                 // 解析器实例
     };
 
 } // namespace squ

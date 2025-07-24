@@ -28,6 +28,9 @@ namespace squ {
         // 重置解析器状态
         void reset(std::vector<Token> newTokens);
 
+        // 注册占位标识符，返回起始slot
+        size_t register_identifiers(std::vector<std::string> identifiers);
+
         // 解析入口函数
         std::unique_ptr<ExprNode> parse();
 

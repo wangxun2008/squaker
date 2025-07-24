@@ -3,7 +3,8 @@
 int main() {
     squ::InitConsole();
     squ::PrintLOGO();
-    //squ::RunTests();
-    //squ::RunEvalTests();
-    squ::InteractiveExecution();
+    // squ::RunTests();
+    // squ::RunEvalTests();
+    // squ::InteractiveExecution();
+    squ::RunScriptTests();
 }

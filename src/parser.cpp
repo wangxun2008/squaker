@@ -33,6 +33,17 @@ namespace squ {
         current = 0;
     }
 
+    size_t Parser::register_identifiers(std::vector<std::string> identifiers) {
+        size_t slot = curScope->size();
+        for (const auto &identifier : identifiers) {
+            if (curScope->find(identifier)) {
+                throw std::runtime_error("[squaker.parser] Identifier already declared: " + identifier);
+            }
+            curScope->add(identifier);
+        }
+        return slot;   
+    }
+
     std::unique_ptr<ExprNode> Parser::parse() {
 
         std::vector<std::unique_ptr<ExprNode>> statements;
