@@ -3,6 +3,38 @@
 
 namespace squ {
 
+    // 实现TableData的index_at成员函数
+    ValueData &TableData::index_at(const ValueData &index) {
+        return array_map[index];
+    }
+
+    // 实现TableData的index成员函数
+    ValueData &TableData::index(const ValueData &index) {
+        if (index.type != ValueType::String && index.type != ValueType::Integer) {
+            throw std::runtime_error("[squaker.table] Index must be a string or integer");
+        }
+        return array_map[index];
+    }
+
+    // 实现TableData的dot_at成员函数
+    ValueData &TableData::dot_at(const std::string &name) {
+        return dot_map[name];
+    }
+
+    // 实现TableData的dot成员函数
+    ValueData &TableData::dot(const std::string &name) {
+        auto it = dot_map.find(name);
+        if (it == dot_map.end()) {
+            throw std::runtime_error("[squaker.table] Key not found in dot map: " + name);
+        }
+        return it->second;
+    }
+
+    // 实现TableData的length成员函数
+    size_t TableData::length() const {
+        return array_map.size() + dot_map.size();
+    }
+
     // 实现ValueData的string成员函数
     std::string ValueData::string() const {
 
@@ -46,6 +78,7 @@ namespace squ {
         }
     }
 
+    // 比较两个ValueData对象
 	bool operator<(const squ::ValueData& a, const squ::ValueData& b) noexcept {
 		if (a.type != b.type) return a.type < b.type;
 		

@@ -28,6 +28,7 @@ namespace squ {
     class VM;
     struct ValueData;
 
+    // 表数据存储结构
     struct TableData {
         using ArrayMap = std::map<ValueData, ValueData>; 
         ArrayMap array_map;
@@ -35,9 +36,13 @@ namespace squ {
         using DotMap = std::map<std::string, ValueData>; 
         DotMap dot_map;
 
-        ValueData &operator[](ValueData &key);
+        ValueData &index_at(const ValueData &index);
 
-        ValueData &dot(std::string &name);
+        ValueData &index(const ValueData &index);
+
+        ValueData &dot_at(const std::string &name);
+
+        ValueData &dot(const std::string &name);
 
         size_t length() const;
     };
