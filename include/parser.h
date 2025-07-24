@@ -113,9 +113,6 @@ namespace squ {
         // 解析数组字面量
         std::unique_ptr<ExprNode> parse_array();
 
-        // 解析映射字面量
-        std::unique_ptr<ExprNode> parse_map();
-
         // 解析表字面量
         std::unique_ptr<ExprNode> parse_table();
 

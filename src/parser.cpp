@@ -682,40 +682,6 @@ namespace squ {
         return std::make_unique<ArrayNode>(std::move(elements));
     }
 
-    // 解析映射字面量
-    std::unique_ptr<ExprNode> Parser::parse_map() {
-        std::vector<std::pair<std::unique_ptr<ExprNode>, std::unique_ptr<ExprNode>>> entries;
-
-        // 检查空映射 {}
-        if (match(TokenType::Punctuation, "}")) {
-            return std::make_unique<MapNode>(std::move(entries));
-        }
-
-        do {
-            // 解析键表达式（必须是字符串、字符或标识符）
-            auto key = parse_expression();
-
-            // 期望冒号分隔符
-            if (!match(TokenType::Punctuation, ":")) {
-                std::string context = current < tokens.size() ? " at token '" + tokens[current].value + "'" : "";
-                throw std::runtime_error("[squaker.parser.map] Expected ':' after map key" + context);
-            }
-
-            // 解析值表达式
-            auto value = parse_expression();
-
-            entries.emplace_back(std::move(key), std::move(value));
-        } while (match(TokenType::Punctuation, ","));
-
-        // 期望右花括号
-        if (!match(TokenType::Punctuation, "}")) {
-            std::string context = current < tokens.size() ? " at token '" + tokens[current].value + "'" : "";
-            throw std::runtime_error("[squaker.parser.map] Expected '}' after map entries" + context);
-        }
-
-        return std::make_unique<MapNode>(std::move(entries));
-    }
-
     // 解析表字面量
     std::unique_ptr<ExprNode> Parser::parse_table() {
         std::vector<std::pair<std::unique_ptr<ExprNode>, std::unique_ptr<ExprNode>>> entries;
@@ -788,13 +754,8 @@ namespace squ {
             return parse_table();
         }
 
-        // 检查花括号块，可能是块表达式或映射字面量
+        // 检查块表达式
         if (match(TokenType::Punctuation, "{")) {
-            // 检查映射字面量（花括号）
-            if (peek(0, TokenType::String) && peek(1, TokenType::Punctuation, ":")) {
-                return parse_map();
-            }
-            // 检查块表达式（花括号）
             return parse_block();
         }
 

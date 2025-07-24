@@ -395,22 +395,6 @@ namespace squ {
         std::unique_ptr<ExprNode> clone() const override;
     };
 
-    // 映射表节点
-    class MapNode : public ExprNode {
-        std::vector<std::pair<std::unique_ptr<ExprNode>, std::unique_ptr<ExprNode>>> entries;
-
-      public:
-        explicit MapNode(std::vector<std::pair<std::unique_ptr<ExprNode>, std::unique_ptr<ExprNode>>> entries);
-
-        std::string string() const override;
-        NodeType type() const override {
-            return NodeType::Map;
-        }
-        ValueData evaluate(VM &vm) const override;
-        ValueData &evaluate_lvalue(VM &vm) const override;
-        std::unique_ptr<ExprNode> clone() const override;
-    };
-
     // 表节点
     class TableNode : public ExprNode {
         std::vector<std::pair<std::unique_ptr<ExprNode>, std::unique_ptr<ExprNode>>> entries;

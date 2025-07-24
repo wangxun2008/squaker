@@ -821,52 +821,6 @@ namespace squ {
         return std::make_unique<ArrayNode>(std::move(clonedElements));
     }
 
-    // 映射表节点
-    MapNode::MapNode(std::vector<std::pair<std::unique_ptr<ExprNode>, std::unique_ptr<ExprNode>>> entries)
-        : entries(std::move(entries)) {}
-
-    std::string MapNode::string() const {
-        std::string result = "{";
-        for (size_t i = 0; i < entries.size(); i++) {
-            if (i > 0)
-                result += ", ";
-            result += entries[i].first->string() + ": " + entries[i].second->string();
-        }
-        return result + "}";
-    }
-
-    ValueData MapNode::evaluate(VM &vm) const {
-        // 实现映射表创建的求值逻辑
-        ValueData mapValue;
-        mapValue.type = ValueType::Map;
-        std::map<std::string, ValueData> mapEntries;
-
-        for (const auto &entry : entries) {
-            ValueData key = entry.first->evaluate(vm);
-            if (key.type != ValueType::String) {
-                throw std::runtime_error("[squaker.map] Map keys must be strings: " + key.string());
-            }
-            ValueData value = entry.second->evaluate(vm);
-            mapEntries[std::get<std::string>(key.value)] = value;
-        }
-
-        mapValue.value = std::move(mapEntries);
-        return mapValue; // 返回创建的映射表
-    }
-
-    ValueData &MapNode::evaluate_lvalue(VM &vm) const {
-        // 映射表节点通常不支持左值求值
-        throw std::runtime_error("[squaker.map] Map nodes cannot be evaluated as lvalues");
-    }
-
-    std::unique_ptr<ExprNode> MapNode::clone() const {
-        std::vector<std::pair<std::unique_ptr<ExprNode>, std::unique_ptr<ExprNode>>> clonedEntries;
-        for (const auto &entry : entries) {
-            clonedEntries.emplace_back(entry.first->clone(), entry.second->clone());
-        }
-        return std::make_unique<MapNode>(std::move(clonedEntries));
-    }
-
     // 表节点
     TableNode::TableNode(std::vector<std::pair<std::unique_ptr<ExprNode>, std::unique_ptr<ExprNode>>> entries,
                          std::vector<std::pair<std::unique_ptr<ExprNode>, std::unique_ptr<ExprNode>>> members,
