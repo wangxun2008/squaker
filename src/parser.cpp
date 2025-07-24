@@ -718,25 +718,66 @@ namespace squ {
 
     // 解析表字面量
     std::unique_ptr<ExprNode> Parser::parse_table() {
+        std::vector<std::pair<std::unique_ptr<ExprNode>, std::unique_ptr<ExprNode>>> entries;
+        std::vector<std::pair<std::unique_ptr<ExprNode>, std::unique_ptr<ExprNode>>> members;
         std::vector<std::unique_ptr<ExprNode>> elements;
 
-        // 检查空表 []
+        // 检查空表[]
         if (match(TokenType::Punctuation, "]")) {
-            return std::make_unique<ArrayNode>(std::move(elements));
+            return std::make_unique<TableNode>(std::move(entries), std::move(members), std::move(elements));
         }
 
         do {
-            // 解析数组元素表达式
-            elements.push_back(parse_expression());
+            std::unique_ptr<ExprNode> key;
+
+            // 解析键表达式（必须是数组或标识符）
+            ValueType type = ValueType::Nil;
+            if (match(TokenType::Punctuation, "[")) {
+                key = parse_array();
+                type = ValueType::Array;
+            } else if (match(TokenType::Identifier)) {
+                Token token = previous();
+                ValueData data;
+                data.type = ValueType::String;
+                data.value = token.value;
+                key = std::make_unique<LiteralNode>(data);
+                type = ValueType::String;
+            } else {
+                key = parse_expression();
+                type = ValueType::Nil;  // 默认为Nil类型
+            }
+
+            // 如果有等号分隔符，则解析为键值对
+            if (match(TokenType::Assignment, "=")) {
+                // 键必须是数组或标识符
+                if (type == ValueType::Nil) {
+                    std::string context = current < tokens.size() ? " at token '" + tokens[current].value + "'" : "";
+                    throw std::runtime_error("[squaker.parser.table] Expected array or identifier as table key" + context);
+                }
+
+                // 解析值表达式
+                auto value = parse_expression();
+
+                if (type == ValueType::Array) {
+                    entries.emplace_back(std::move(key), std::move(value));
+                } else {
+                    members.emplace_back(std::move(key), std::move(value));
+                }
+            }
+            // 否则解析为没有键的纯数组
+            else {
+                elements.emplace_back(std::move(key));
+            }
+
         } while (match(TokenType::Punctuation, ","));
 
         // 期望右方括号
         if (!match(TokenType::Punctuation, "]")) {
             std::string context = current < tokens.size() ? " at token '" + tokens[current].value + "'" : "";
-            throw std::runtime_error("[squaker.parser.array] Expected ']' after array elements" + context);
+            throw std::runtime_error("[squaker.parser.table] Expected ']' after table entries" + context);
         }
 
-        return std::make_unique<ArrayNode>(std::move(elements));
+        return std::make_unique<TableNode>(std::move(entries), std::move(members), std::move(elements));
     }
 
     // 基本表达式
@@ -744,7 +785,7 @@ namespace squ {
 
         // 检查数组字面量（方括号）
         if (match(TokenType::Punctuation, "[")) {
-            return parse_array();
+            return parse_table();
         }
 
         // 检查花括号块，可能是块表达式或映射字面量

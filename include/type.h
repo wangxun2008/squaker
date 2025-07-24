@@ -30,10 +30,10 @@ namespace squ {
 
     // 表数据存储结构
     struct TableData {
-        using ArrayMap = std::map<ValueData, ValueData>; 
+        using ArrayMap = std::map<ValueData, ValueData>;
         ArrayMap array_map;
 
-        using DotMap = std::map<std::string, ValueData>; 
+        using DotMap = std::map<std::string, ValueData>;
         DotMap dot_map;
 
         ValueData &index_at(const ValueData &index);
@@ -57,6 +57,7 @@ namespace squ {
                      char,                                                                                     // 字符
                      std::string,                                                                              // 字符串
                      std::vector<ValueData>,                                                                   // 数组
+                     TableData,                                                                                // 表
                      std::map<std::string, ValueData>, std::function<ValueData(std::vector<ValueData>, VM &)>> // 函数
             value = 0.0; // 映射（使用字符串作为键）
 

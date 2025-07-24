@@ -382,9 +382,8 @@ namespace squ {
 
     // 数组节点
     class ArrayNode : public ExprNode {
-        std::vector<std::unique_ptr<ExprNode>> elements;
-
       public:
+        std::vector<std::unique_ptr<ExprNode>> elements;
         explicit ArrayNode(std::vector<std::unique_ptr<ExprNode>> elems);
 
         std::string string() const override;
@@ -414,11 +413,14 @@ namespace squ {
 
     // 表节点
     class TableNode : public ExprNode {
-        // 使用映射表来存储表数据
-        std::map<std::string, ValueData> entries;
+        std::vector<std::pair<std::unique_ptr<ExprNode>, std::unique_ptr<ExprNode>>> entries;
+        std::vector<std::pair<std::unique_ptr<ExprNode>, std::unique_ptr<ExprNode>>> members;
+        std::vector<std::unique_ptr<ExprNode>> elements;
 
       public:
-        explicit TableNode(std::map<std::string, ValueData> entries);
+        explicit TableNode(std::vector<std::pair<std::unique_ptr<ExprNode>, std::unique_ptr<ExprNode>>> entries,
+                           std::vector<std::pair<std::unique_ptr<ExprNode>, std::unique_ptr<ExprNode>>> members,
+                           std::vector<std::unique_ptr<ExprNode>> elements);
 
         std::string string() const override;
         NodeType type() const override {

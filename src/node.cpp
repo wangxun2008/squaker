@@ -602,18 +602,13 @@ namespace squ {
         ValueData objValue = object->evaluate(vm);
 
         // 检查对象类型
-        if (objValue.type != ValueType::Map) {
-            throw std::runtime_error("[squaker.member] Member access on non-map type: " + objValue.string());
+        if (objValue.type != ValueType::Table) {
+            throw std::runtime_error("[squaker.member] Member access on non-table type: " + objValue.string());
         }
 
         // 获取映射中的成员
-        auto &map = std::get<std::map<std::string, ValueData>>(objValue.value);
-        auto it = map.find(member);
-        if (it == map.end()) {
-            throw std::runtime_error("[squaker.member] Member not found: " + member);
-        }
-
-        return it->second; // 返回成员值
+        auto &map = std::get<TableData>(objValue.value);
+        return map.dot_at(member); // 返回成员值
     }
 
     ValueData &MemberAccessNode::evaluate_lvalue(VM &vm) const {
@@ -621,18 +616,13 @@ namespace squ {
         ValueData &objValue = object->evaluate_lvalue(vm);
 
         // 检查对象类型
-        if (objValue.type != ValueType::Map) {
+        if (objValue.type != ValueType::Table) {
             throw std::runtime_error("[squaker.member] Member access on non-map type: " + objValue.string());
         }
 
         // 获取映射中的成员
-        auto &map = std::get<std::map<std::string, ValueData>>(objValue.value);
-        auto it = map.find(member);
-        if (it == map.end()) {
-            throw std::runtime_error("[squaker.member] Member not found: " + member);
-        }
-
-        return it->second; // 返回成员值的引用
+        auto &map = std::get<TableData>(objValue.value);
+        return map.dot(member); // 返回成员值
     }
 
     std::unique_ptr<ExprNode> MemberAccessNode::clone() const {
@@ -653,8 +643,8 @@ namespace squ {
         ValueData indexValue = index->evaluate(vm);
 
         // 检查容器类型
-        if (containerValue.type != ValueType::Array && containerValue.type != ValueType::Map) {
-            throw std::runtime_error("[squaker.index] Indexing on non-array/map type: " + containerValue.string());
+        if (containerValue.type != ValueType::Array && containerValue.type != ValueType::Map && containerValue.type != ValueType::Table) {
+            throw std::runtime_error("[squaker.index] Indexing on non-table type: " + containerValue.string());
         }
 
         // 处理数组索引
@@ -684,6 +674,12 @@ namespace squ {
             return it->second; // 返回映射值
         }
 
+        // 处理表索引
+        if (containerValue.type == ValueType::Table) {
+            auto &table = std::get<TableData>(containerValue.value);
+            return table.index_at(indexValue); // 返回表值
+        }
+
         throw std::runtime_error("[squaker.index] Unsupported container type for indexing");
     }
 
@@ -693,7 +689,7 @@ namespace squ {
         ValueData indexValue = index->evaluate(vm);
 
         // 检查容器类型
-        if (containerValue.type != ValueType::Array && containerValue.type != ValueType::Map) {
+        if (containerValue.type != ValueType::Array && containerValue.type != ValueType::Map && containerValue.type != ValueType::Table) {
             throw std::runtime_error("[squaker.index] Indexing on non-array/map type: " + containerValue.string());
         }
 
@@ -722,6 +718,12 @@ namespace squ {
                                          std::get<std::string>(indexValue.value));
             }
             return it->second; // 返回映射值的引用
+        }
+
+        // 处理表索引
+        if (containerValue.type == ValueType::Table) {
+            auto &table = std::get<TableData>(containerValue.value);
+            return table.index(indexValue); // 返回表值
         }
 
         throw std::runtime_error("[squaker.index] Unsupported container type for indexing");
@@ -866,19 +868,83 @@ namespace squ {
     }
 
     // 表节点
-    TableNode::TableNode(std::map<std::string, ValueData> entries) : entries(std::move(entries)) {}
+    TableNode::TableNode(std::vector<std::pair<std::unique_ptr<ExprNode>, std::unique_ptr<ExprNode>>> entries,
+                         std::vector<std::pair<std::unique_ptr<ExprNode>, std::unique_ptr<ExprNode>>> members,
+                         std::vector<std::unique_ptr<ExprNode>> elements)
+        : entries(std::move(entries)), members(std::move(members)), elements(std::move(elements)) {}
 
     std::string TableNode::string() const {
         std::string result = "[";
+        // 1.打印数组
+        for (size_t i = 0; i < elements.size(); i++) {
+            if (i > 0)
+                result += ", ";
+            result += elements[i]->string();
+        }
+        // 2.打印映射表
+        if (!entries.empty()) {
+            if (!elements.empty())
+                result += ", ";
+        }
         for (size_t i = 0; i < entries.size(); i++) {
             if (i > 0)
                 result += ", ";
+            result += entries[i].first->string() + " = " + entries[i].second->string();
+        }
+        // 3.打印成员表
+        if (!members.empty()) {
+            if (!elements.empty() || !entries.empty())
+                result += ", ";
+        }   
+        for (size_t i = 0; i < members.size(); i++) {
+            if (i > 0)
+                result += ", ";
+            result += members[i].first->string() + " = " + members[i].second->string();
         }
         return result + "]";
     }
 
     ValueData TableNode::evaluate(VM &vm) const {
-        throw std::runtime_error("Table creation not implemented yet");
+        // 实现表创建的求值逻辑
+        TableData table;
+        int index = 0;
+
+        // 1.处理数组部分
+        for (const auto &elem : elements) {
+            ValueData value = elem->evaluate(vm);
+            table.index(ValueData{ValueType::Integer, false, index}) = value;
+            index++;
+        }
+
+        // 2.处理映射表部分
+        for (const auto &entry : entries) {
+            if (entry.first->type() != NodeType::Array) {
+                throw std::runtime_error("[squaker.table] Member keys must be identifiers: " + entry.first->string());
+            }
+            ValueData keys = entry.first->evaluate(vm);
+            ValueData value = entry.second->evaluate(vm);
+            if (keys.type != ValueType::Array) {
+                throw std::runtime_error("[squaker.table] Member keys must be arrays: " + keys.string());
+            }
+            for (const auto &key : std::get<std::vector<ValueData>>(keys.value)) {
+                table.index(key) = value;
+            }
+        }
+
+        // 3.处理成员表部分
+        for (const auto &entry : members) {
+            if (entry.first->type() != NodeType::Literal) {
+                throw std::runtime_error("[squaker.table] Member keys must be literals: " + entry.first->string());
+            }
+            ValueData key = entry.first->evaluate(vm);
+            if (key.type != ValueType::String) {
+                throw std::runtime_error("[squaker.table] Member keys must be literals: " + key.string());
+            }
+            ValueData value = entry.second->evaluate(vm);
+            table.dot(std::get<std::string>(key.value)) = value;
+        }
+
+        return ValueData{ValueType::Table, false, std::move(table)};
     }
 
     ValueData &TableNode::evaluate_lvalue(VM &vm) const {
@@ -886,10 +952,20 @@ namespace squ {
         throw std::runtime_error("[squaker.table] Table nodes cannot be evaluated as lvalues");
     }
 
-    // TODO: 实现表节点的克隆方法
     std::unique_ptr<ExprNode> TableNode::clone() const {
-        // 目前表节点不支持克隆
-        throw std::runtime_error("[squaker.table] Table nodes cannot be cloned yet");
+        std::vector<std::pair<std::unique_ptr<ExprNode>, std::unique_ptr<ExprNode>>> clonedEntries;
+        std::vector<std::pair<std::unique_ptr<ExprNode>, std::unique_ptr<ExprNode>>> clonedMembers;
+        std::vector<std::unique_ptr<ExprNode>> clonedElements;
+        for (const auto &entry : entries) {
+            clonedEntries.emplace_back(entry.first->clone(), entry.second->clone());
+        }
+        for (const auto &entry : members) {
+            clonedMembers.emplace_back(entry.first->clone(), entry.second->clone());
+        }
+        for (const auto &entry : elements) {
+            clonedElements.emplace_back(entry->clone());
+        }
+        return std::make_unique<TableNode>(std::move(clonedEntries), std::move(clonedMembers), std::move(clonedElements));
     }
 
 } // namespace squ
