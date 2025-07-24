@@ -57,7 +57,7 @@ namespace squ {
                      std::string,                                            // 字符串
                      std::vector<ValueData>,                                 // 数组
                      TableData,                                              // 表
-                     std::function<ValueData(std::vector<ValueData>, VM &)>> // 函数
+                     std::function<ValueData(std::vector<ValueData>&, VM &)>> // 函数
             value = 0.0;                                                     // 映射（使用字符串作为键）
 
         // 成员函数声明

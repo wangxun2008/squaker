@@ -8,6 +8,7 @@
 #include <stack>
 #include <string>
 #include <vector>
+#include <cmath>
 
 namespace squ {
 
@@ -338,6 +339,33 @@ namespace squ {
         std::string input_buffer;
         Script script;
 
+        script.register_identifier("sin", ValueData{ValueType::Function, false, [&](std::vector<ValueData> &args, VM&) {
+            if (args.size() != 1)
+                throw std::runtime_error("sin expects 1 argument");
+            double result = 0;
+            if (args[0].type == ValueType::Integer) {
+                result = std::sin(std::get<long long>(args[0].value));
+            } else if (args[0].type == ValueType::Real) {
+                result = std::sin(std::get<double>(args[0].value));
+            } else {
+                throw std::runtime_error("sin expects a int or real");
+            }
+            return ValueData{ValueType::Real, false, result};
+        }});
+        script.register_identifier("cos", ValueData{ValueType::Function, false, [&](std::vector<ValueData> &args, VM&) {
+            if (args.size() != 1)
+                throw std::runtime_error("cos expects 1 argument");
+            double result = 0;
+            if (args[0].type == ValueType::Integer) {
+                result = std::cos(std::get<long long>(args[0].value));
+            } else if (args[0].type == ValueType::Real) {
+                result = std::cos(std::get<double>(args[0].value));
+            } else {
+                throw std::runtime_error("cos expects a int or real");
+            }
+            return ValueData{ValueType::Real, false, result};
+        }});
+
         while (true) {
             std::string line;
 
@@ -384,6 +412,11 @@ namespace squ {
 
     void Script::append(const std::string &append_code) {
         code.emplace_back(append_code);
+    }
+
+    void Script::register_identifier(const std::string &name, const ValueData &value) {
+        size_t slot = parser.register_identifiers(name);
+        vm.local(slot) = value;
     }
 
     ValueData Script::execute() {

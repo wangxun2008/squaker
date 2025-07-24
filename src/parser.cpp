@@ -33,15 +33,13 @@ namespace squ {
         current = 0;
     }
 
-    size_t Parser::register_identifiers(std::vector<std::string> identifiers) {
+    size_t Parser::register_identifiers(std::string identifier) {
         size_t slot = curScope->size();
-        for (const auto &identifier : identifiers) {
-            if (curScope->find(identifier)) {
-                throw std::runtime_error("[squaker.parser] Identifier already declared: " + identifier);
-            }
-            curScope->add(identifier);
+        if (curScope->find(identifier) != Scope::npos) {
+            throw std::runtime_error("[squaker.parser] Identifier already declared: " + identifier);
         }
-        return slot;   
+        curScope->add(identifier);
+        return slot;
     }
 
     std::unique_ptr<ExprNode> Parser::parse() {
@@ -727,7 +725,7 @@ namespace squ {
                 type = ValueType::String;
             } else {
                 key = parse_expression();
-                type = ValueType::Nil;  // 默认为Nil类型
+                type = ValueType::Nil; // 默认为Nil类型
             }
 
             // 如果有等号分隔符，则解析为键值对
@@ -735,7 +733,8 @@ namespace squ {
                 // 键必须是数组或标识符
                 if (type == ValueType::Nil) {
                     std::string context = current < tokens.size() ? " at token '" + tokens[current].value + "'" : "";
-                    throw std::runtime_error("[squaker.parser.table] Expected array or identifier as table key" + context);
+                    throw std::runtime_error("[squaker.parser.table] Expected array or identifier as table key" +
+                                             context);
                 }
 
                 // 解析值表达式

@@ -29,7 +29,7 @@ namespace squ {
         void reset(std::vector<Token> newTokens);
 
         // 注册占位标识符，返回起始slot
-        size_t register_identifiers(std::vector<std::string> identifiers);
+        size_t register_identifiers(std::string identifier);
 
         // 解析入口函数
         std::unique_ptr<ExprNode> parse();

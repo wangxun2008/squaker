@@ -347,7 +347,7 @@ namespace squ {
 
         // 调用函数
         // printf("[squaker.apply] Calling function with %zu arguments\n", argValues.size());
-        return std::get<std::function<ValueData(std::vector<ValueData>, VM &)>>(calleeVal.value)(argValues, vm);
+        return std::get<std::function<ValueData(std::vector<ValueData>&, VM &)>>(calleeVal.value)(argValues, vm);
     }
 
     ValueData &ApplyNode::evaluate_lvalue(VM &vm) const {

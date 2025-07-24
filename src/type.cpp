@@ -98,7 +98,7 @@ namespace squ {
         if (a.type != b.type)
             return a.type < b.type;
 
-        using Func = std::function<squ::ValueData(std::vector<squ::ValueData>, squ::VM &)>;
+        using Func = std::function<squ::ValueData(std::vector<squ::ValueData>&, squ::VM &)>;
         return std::visit(
             [](const auto &x, const auto &y) -> bool {
                 using T = std::decay_t<decltype(x)>;

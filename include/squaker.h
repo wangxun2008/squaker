@@ -33,6 +33,9 @@ namespace squ {
         // 添加代码
         void append(const std::string &append_code);
 
+        // 注册标识符
+        void register_identifier(const std::string &identifier, const ValueData &value);
+
         // 解析并执行脚本
         ValueData execute();
 
