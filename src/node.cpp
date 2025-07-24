@@ -865,4 +865,31 @@ namespace squ {
         return std::make_unique<MapNode>(std::move(clonedEntries));
     }
 
+    // 表节点
+    TableNode::TableNode(std::map<std::string, ValueData> entries) : entries(std::move(entries)) {}
+
+    std::string TableNode::string() const {
+        std::string result = "[";
+        for (size_t i = 0; i < entries.size(); i++) {
+            if (i > 0)
+                result += ", ";
+        }
+        return result + "]";
+    }
+
+    ValueData TableNode::evaluate(VM &vm) const {
+        throw std::runtime_error("Table creation not implemented yet");
+    }
+
+    ValueData &TableNode::evaluate_lvalue(VM &vm) const {
+        // 表节点通常不支持左值求值
+        throw std::runtime_error("[squaker.table] Table nodes cannot be evaluated as lvalues");
+    }
+
+    // TODO: 实现表节点的克隆方法
+    std::unique_ptr<ExprNode> TableNode::clone() const {
+        // 目前表节点不支持克隆
+        throw std::runtime_error("[squaker.table] Table nodes cannot be cloned yet");
+    }
+
 } // namespace squ

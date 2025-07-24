@@ -287,7 +287,7 @@ namespace squ {
     void InteractiveExecution() {
         std::string input_buffer;
         squ::VM vm; // 创建一个新的环境
-        squ::Parser parser({}); // 创建一个空解析器
+        squ::Parser parser; // 创建一个空解析器
         vm.enter(10); // 预留足够的局部变量空间
 
         for(int i = 0; ; ++i) {
@@ -340,15 +340,13 @@ namespace squ {
             // 解析tokens
             auto tokens = ParseTokens(code);
 
-            // 创建解析器并解析表达式
-            squ::Parser parser(tokens);
-            auto expr = parser.parse();
+            // 解释器实例化
+            parser.reset(std::move(tokens)); // 重置解析器
+            auto expr = parser.parse(); // 解析表达式
 
             // 执行表达式
-            squ::VM vm; // 创建一个新的虚拟机实例
-            vm.enter(10000); // 预留足够的局部变量空间
-            auto result = expr->evaluate(vm);
-
+            auto result = expr->evaluate(vm); // 调用求值接口
+            
             // 返回结果
             return result;
         } catch (const std::exception &e) {

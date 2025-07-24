@@ -3,6 +3,8 @@
 #include <functional>
 #include <map>
 #include <string>
+#include <string_view>
+#include <unordered_map>
 #include <variant>
 #include <vector>
 
@@ -18,11 +20,27 @@ namespace squ {
         String,   // 字符串
         Function, // 函数
         Array,    // 数组
-        Map       // 表
+        Map,      // 映射表
+        Table     // 表
     };
 
     // 前向声明
     class VM;
+    struct ValueData;
+
+    struct TableData {
+        using ArrayMap = std::map<ValueData, ValueData>; 
+        ArrayMap array_map;
+
+        using DotMap = std::map<std::string, ValueData>; 
+        DotMap dot_map;
+
+        ValueData &operator[](ValueData &key);
+
+        ValueData &dot(std::string &name);
+
+        size_t length() const;
+    };
 
     // 值数据存储结构
     struct ValueData {

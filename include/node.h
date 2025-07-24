@@ -31,7 +31,8 @@ namespace squ {
         Index,          // 索引访问
         NativeCall,     // 原生函数调用
         Array,          // 数组
-        Map             // 映射表
+        Map,            // 映射表
+        Table           // 表
     };
 
     class ExprNode {
@@ -405,6 +406,23 @@ namespace squ {
         std::string string() const override;
         NodeType type() const override {
             return NodeType::Map;
+        }
+        ValueData evaluate(VM &vm) const override;
+        ValueData &evaluate_lvalue(VM &vm) const override;
+        std::unique_ptr<ExprNode> clone() const override;
+    };
+
+    // 表节点
+    class TableNode : public ExprNode {
+        // 使用映射表来存储表数据
+        std::map<std::string, ValueData> entries;
+
+      public:
+        explicit TableNode(std::map<std::string, ValueData> entries);
+
+        std::string string() const override;
+        NodeType type() const override {
+            return NodeType::Table;
         }
         ValueData evaluate(VM &vm) const override;
         ValueData &evaluate_lvalue(VM &vm) const override;

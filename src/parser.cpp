@@ -6,9 +6,27 @@
 
 namespace squ {
 
-    Parser::Parser(std::vector<Token> tokens)
-        : tokens(std::move(tokens)), curScope(std::make_unique<Scope>())
-    {}
+    // RAII风格的作用域栈管理类
+    class ScopeStackGuard {
+        Parser *parser;
+
+      public:
+        explicit ScopeStackGuard(Parser *p) : parser(p) {
+            parser->scopeStack.emplace(std::move(parser->curScope));
+            parser->curScope = std::make_unique<Scope>();
+        }
+        ~ScopeStackGuard() {
+            auto oldScope = std::move(parser->scopeStack.top());
+            parser->scopeStack.pop();
+            parser->curScope = std::move(oldScope);
+        }
+        ScopeStackGuard(const ScopeStackGuard &) = delete;
+        ScopeStackGuard &operator=(const ScopeStackGuard &) = delete;
+    };
+
+    Parser::Parser() : curScope(std::make_unique<Scope>()) {}
+
+    Parser::Parser(std::vector<Token> tokens) : tokens(std::move(tokens)), curScope(std::make_unique<Scope>()) {}
 
     void Parser::reset(std::vector<Token> newTokens) {
         tokens = std::move(newTokens);
@@ -476,8 +494,7 @@ namespace squ {
         }
 
         // 进入函数作用域
-        scopeStack.emplace(std::move(curScope)); // 保存旧状态
-        curScope = std::make_unique<Scope>();
+        ScopeStackGuard scopeGuard(this);
 
         // 解析参数列表
         std::vector<std::string> parameters;
@@ -514,11 +531,6 @@ namespace squ {
         // 解析函数体
         auto body = parse_expression();
 
-        // 退出函数作用域
-        auto oldScope = std::move(scopeStack.top());
-        scopeStack.pop();
-        curScope = std::move(oldScope);
-
         return std::make_unique<LambdaNode>(std::move(slot_parameters), std::move(body));
     }
 
@@ -529,59 +541,56 @@ namespace squ {
             return parse_lambda_expression();
         }
         std::string functionName = previous().value;
+        std::unique_ptr<ExprNode> lambda;
 
         // 进入函数作用域
-        scopeStack.emplace(std::move(curScope)); // 保存旧状态
-        curScope = std::make_unique<Scope>();
+        {
+            ScopeStackGuard scopeGuard(this);
 
-        // 期望左括号
-        if (!match(TokenType::Punctuation, "(")) {
-            throw std::runtime_error("[squaker.parser.function] Expected '(' after function name");
-        }
+            // 期望左括号
+            if (!match(TokenType::Punctuation, "(")) {
+                throw std::runtime_error("[squaker.parser.function] Expected '(' after function name");
+            }
 
-        // 解析参数列表
-        std::vector<std::string> parameters;
-        if (!match(TokenType::Punctuation, ")")) {
-            do {
-                if (match(TokenType::Identifier)) {
-                    parameters.push_back(previous().value);
-                } else {
+            // 解析参数列表
+            std::vector<std::string> parameters;
+            if (!match(TokenType::Punctuation, ")")) {
+                do {
+                    if (match(TokenType::Identifier)) {
+                        parameters.push_back(previous().value);
+                    } else {
+                        std::string context;
+                        if (current < tokens.size()) {
+                            context = " at token '" + tokens[current].value + "'";
+                        }
+                        throw std::runtime_error("[squaker.parser.function] Expected identifier in parameter list" +
+                                                 context);
+                    }
+                } while (match(TokenType::Punctuation, ","));
+
+                // 期望右括号
+                if (!match(TokenType::Punctuation, ")")) {
                     std::string context;
                     if (current < tokens.size()) {
                         context = " at token '" + tokens[current].value + "'";
                     }
-                    throw std::runtime_error("[squaker.parser.function] Expected identifier in parameter list" +
-                                             context);
+                    throw std::runtime_error("[squaker.parser.function] Expected ')' after parameter list" + context);
                 }
-            } while (match(TokenType::Punctuation, ","));
-
-            // 期望右括号
-            if (!match(TokenType::Punctuation, ")")) {
-                std::string context;
-                if (current < tokens.size()) {
-                    context = " at token '" + tokens[current].value + "'";
-                }
-                throw std::runtime_error("[squaker.parser.function] Expected ')' after parameter list" + context);
             }
+
+            // 参数解析为slot
+            std::vector<Parameter> slot_parameters;
+            for (const auto &name : parameters) {
+                size_t slot = curScope->add(name);
+                slot_parameters.emplace_back(name, slot);
+            }
+
+            // 解析函数体
+            auto body = parse_expression();
+
+            // 创建函数赋值表达式: functionName = lambda(parameters) -> body
+            lambda = std::make_unique<LambdaNode>(slot_parameters, std::move(body));
         }
-
-        // 参数解析为slot
-        std::vector<Parameter> slot_parameters;
-        for (const auto &name : parameters) {
-            size_t slot = curScope->add(name);
-            slot_parameters.emplace_back(name, slot);
-        }
-
-        // 解析函数体
-        auto body = parse_expression();
-
-        // 退出函数作用域
-        auto oldScope = std::move(scopeStack.top());
-        scopeStack.pop();
-        curScope = std::move(oldScope);
-
-        // 创建函数赋值表达式: functionName = lambda(parameters) -> body
-        auto lambda = std::make_unique<LambdaNode>(slot_parameters, std::move(body));
 
         // 在当前作用域中添加函数名
         size_t index = curScope->find(functionName);
@@ -705,6 +714,29 @@ namespace squ {
         }
 
         return std::make_unique<MapNode>(std::move(entries));
+    }
+
+    // 解析表字面量
+    std::unique_ptr<ExprNode> Parser::parse_table() {
+        std::vector<std::unique_ptr<ExprNode>> elements;
+
+        // 检查空表 []
+        if (match(TokenType::Punctuation, "]")) {
+            return std::make_unique<ArrayNode>(std::move(elements));
+        }
+
+        do {
+            // 解析数组元素表达式
+            elements.push_back(parse_expression());
+        } while (match(TokenType::Punctuation, ","));
+
+        // 期望右方括号
+        if (!match(TokenType::Punctuation, "]")) {
+            std::string context = current < tokens.size() ? " at token '" + tokens[current].value + "'" : "";
+            throw std::runtime_error("[squaker.parser.array] Expected ']' after array elements" + context);
+        }
+
+        return std::make_unique<ArrayNode>(std::move(elements));
     }
 
     // 基本表达式

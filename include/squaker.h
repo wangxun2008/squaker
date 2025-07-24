@@ -1,6 +1,8 @@
 #pragma once
 #include <string>
 #include "type.h"
+#include "vm.h"
+#include "parser.h"
 
 namespace squ {
 
@@ -29,6 +31,8 @@ namespace squ {
 
       private:
         std::string code; // 脚本代码
+        VM vm; // 虚拟机实例
+        Parser parser; // 解析器实例
     };
 
 } // namespace squ
