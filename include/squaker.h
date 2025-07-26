@@ -2,6 +2,7 @@
 #include "parser.h"
 #include "type.h"
 #include "vm.h"
+#include "identifier.h"
 #include <string>
 
 namespace squ {
@@ -34,7 +35,7 @@ namespace squ {
         void append(const std::string &append_code);
 
         // 注册标识符
-        void register_identifier(const std::string &identifier, const ValueData &value);
+        void register_identifier(const IdentifierData &identifier);
 
         // 解析并执行脚本
         ValueData execute();

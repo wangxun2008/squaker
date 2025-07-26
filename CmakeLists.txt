@@ -15,7 +15,7 @@ include_directories(include)
 file(GLOB SRC_FILES src/*.cpp)
 
 # 可执行文件
-add_executable(squaker ${SRC_FILES} test/main.cpp)
+add_executable(squaker ${SRC_FILES} test/test.cpp)
 
 # 如果想把 exe 放到 bin
 set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_SOURCE_DIR}/bin)
