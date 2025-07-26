@@ -211,6 +211,7 @@ namespace squ {
 
         // 应用二元操作
         leftValRef = rightVal; // 简单赋值
+        leftValRef.is_const = false; // 确保左值不是常量
         return leftValRef;     // 返回赋值后的左值
     }
 
@@ -242,6 +243,7 @@ namespace squ {
 
         // 应用二元操作
         leftValRef = ApplyBinary(leftVal, op, rightVal);
+        leftValRef.is_const = false; // 确保左值不是常量
         return leftValRef; // 返回赋值后的左值
     }
 
