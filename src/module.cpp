@@ -79,26 +79,26 @@ namespace squ {
                     }
                     return result;
                 }),
-                // Function("split", [](const std::string &s, const std::string &delimiter) {
-                //     std::vector<std::string> result;
-                //     size_t start = 0, end;
-                //     while ((end = s.find(delimiter, start)) != std::string::npos) {
-                //         result.push_back(s.substr(start, end - start));
-                //         start = end + delimiter.length();
-                //     }
-                //     result.push_back(s.substr(start));
-                //     return result;
-                // }),
-                // Function("join", [](const std::vector<std::string> &parts, const std::string &delimiter) {
-                //     std::string result;
-                //     for (size_t i = 0; i < parts.size(); ++i) {
-                //         result += parts[i];
-                //         if (i < parts.size() - 1) {
-                //             result += delimiter;
-                //         }
-                //     }
-                //     return result;
-                // }),
+                Function("split", [](const std::string &s, const std::string &delimiter) {
+                    std::vector<std::string> result;
+                    size_t start = 0, end;
+                    while ((end = s.find(delimiter, start)) != std::string::npos) {
+                        result.push_back(s.substr(start, end - start));
+                        start = end + delimiter.length();
+                    }
+                    result.push_back(s.substr(start));
+                    return result;
+                }),
+                Function("join", [](std::vector<std::string> parts, const std::string &delimiter) {
+                    std::string result;
+                    for (size_t i = 0; i < parts.size(); ++i) {
+                        result += parts[i];
+                        if (i < parts.size() - 1) {
+                            result += delimiter;
+                        }
+                    }
+                    return result;
+                }),
                 Function("trim", [](const std::string &s) {
                     size_t first = s.find_first_not_of(" \t\n\r");
                     size_t last = s.find_last_not_of(" \t\n\r");
