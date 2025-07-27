@@ -418,6 +418,59 @@ namespace squ {
         return std::make_unique<IfNode>(std::move(clonedBranches), elseBranch ? elseBranch->clone() : nullptr);
     }
 
+    // Switch节点（switch-case）
+    SwitchNode::SwitchNode(std::unique_ptr<ExprNode> expr, std::vector<std::pair<std::unique_ptr<ExprNode>,
+                                                                                 std::unique_ptr<ExprNode>>> cases,
+                           std::unique_ptr<ExprNode> defaultCase)
+        : expression(std::move(expr)), cases(std::move(cases)), defaultCase(std::move(defaultCase)) {}
+
+    std::string SwitchNode::string() const {
+        std::string result = "(switch " + expression->string() + " {\n";
+        for (const auto &casePair : cases) {
+            result += "  case " + casePair.first->string() + ": " + casePair.second->string() + "\n";
+        }
+        if (defaultCase) {
+            result += "  default: " + defaultCase->string() + "\n";
+        }
+        result += "})";
+        return result;
+    }
+
+    ValueData SwitchNode::evaluate(VM &vm) const {
+        // 计算switch表达式的值
+        ValueData exprValue = expression->evaluate(vm);
+
+        // 遍历所有case分支
+        for (const auto &casePair : cases) {
+            ValueData caseValue = casePair.first->evaluate(vm);
+            if (caseValue.type == exprValue.type && std::get<bool>(ApplyBinary(caseValue, "==", exprValue).value)){
+                return casePair.second->evaluate(vm); // 匹配到case，执行对应分支
+            }
+        }
+
+        // 如果没有匹配到case且有default分支，执行default分支
+        if (defaultCase) {
+            return defaultCase->evaluate(vm);
+        }
+
+        // 如果没有匹配到任何分支，返回Nil
+        return ValueData{ValueType::Nil};
+    }
+
+    ValueData &SwitchNode::evaluate_lvalue(VM &vm) const {
+        // Switch节点通常不支持左值求值
+        throw std::runtime_error("[squaker.switch] Switch nodes cannot be evaluated as lvalues");
+    }
+    
+    std::unique_ptr<ExprNode> SwitchNode::clone() const {
+        std::vector<std::pair<std::unique_ptr<ExprNode>, std::unique_ptr<ExprNode>>> clonedCases;
+        for (const auto &casePair : cases) {
+            clonedCases.emplace_back(casePair.first->clone(), casePair.second->clone());
+        }
+        return std::make_unique<SwitchNode>(expression->clone(), std::move(clonedCases),
+                                            defaultCase ? defaultCase->clone() : nullptr);
+    }
+
     // For循环节点
     ForNode::ForNode(std::unique_ptr<ExprNode> i, std::unique_ptr<ExprNode> c, std::unique_ptr<ExprNode> u,
                      std::unique_ptr<ExprNode> b)
@@ -552,6 +605,50 @@ namespace squ {
 
     std::unique_ptr<ExprNode> WhileNode::clone() const {
         return std::make_unique<WhileNode>(condition->clone(), body->clone());
+    }
+
+    // Do-While循环节点
+    DoWhileNode::DoWhileNode(std::unique_ptr<ExprNode> b, std::unique_ptr<ExprNode> cond)
+        : body(std::move(b)), condition(std::move(cond)) {}
+
+    std::string DoWhileNode::string() const {
+        return "(do " + body->string() + " while (" + condition->string() + "))";
+    }
+
+    ValueData DoWhileNode::evaluate(VM &vm) const {
+        // 进入作用域并执行循环
+        ValueData result = ValueData{ValueType::Nil}; // 初始化结果为Nil
+        do {
+            try {
+                // 执行循环体
+                result = body->evaluate(vm);
+            } catch (const BreakException &) {
+                break; // 捕获break异常，退出循环
+            } catch (const ContinueException &) {
+                continue; // 捕获continue异常，跳过当前循环迭代
+            } catch (const ReturnException &e) {
+                throw e; // 直接抛出返回异常
+            }
+            // 计算条件
+            ValueData condValue = condition->evaluate(vm);
+            if (condValue.type == ValueType::Bool && !std::get<bool>(condValue.value)) {
+                break; // 条件为false时退出循环
+            } else if (condValue.type == ValueType::Integer && std::get<long long>(condValue.value) == 0) {
+                break; // 如果条件是整数0，视为false
+            } else if (condValue.type == ValueType::Real && std::get<double>(condValue.value) == 0.0) {
+                break; // 如果条件是实数0.0，视为false
+            }
+        } while (true);
+        return result; // 返回最后一次循环体的结果
+    }
+
+    ValueData &DoWhileNode::evaluate_lvalue(VM &vm) const {
+        // Do-While循环节点通常不支持左值求值
+        throw std::runtime_error("[squaker.dowhile] DoWhile nodes cannot be evaluated as lvalues");
+    }
+
+    std::unique_ptr<ExprNode> DoWhileNode::clone() const {
+        return std::make_unique<DoWhileNode>(body->clone(), condition->clone());
     }
 
     // 模块导入节点

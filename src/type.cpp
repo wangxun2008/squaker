@@ -115,6 +115,39 @@ namespace squ {
             a.value, b.value);
     }
 
+    // 重载相等运算符
+    bool operator==(const squ::ValueData &a, const squ::ValueData &b) noexcept {
+        switch (a.type) {
+            case ValueType::Nil:
+                return true; // Nil值相等
+            case ValueType::Integer:
+                return std::get<long long>(a.value) == std::get<long long>(b.value);
+            case ValueType::Real:
+                return std::get<double>(a.value) == std::get<double>(b.value);
+            case ValueType::Bool:
+                return std::get<bool>(a.value) == std::get<bool>(b.value);
+            case ValueType::Char:
+                return std::get<char>(a.value) == std::get<char>(b.value);
+            case ValueType::String:
+                return std::get<std::string>(a.value) == std::get<std::string>(b.value);
+            case ValueType::Array: {
+                const auto &arrA = std::get<std::vector<ValueData>>(a.value);
+                const auto &arrB = std::get<std::vector<ValueData>>(b.value);
+                if (arrA.size() != arrB.size()) return false;
+                for (size_t i = 0; i < arrA.size(); ++i) {
+                    if (!(arrA[i] == arrB[i])) return false;
+                }
+                return true;
+            }
+            case ValueType::Table:
+                return &std::get<TableData>(a.value) == &std::get<TableData>(b.value);
+            case ValueType::Function:
+                return &a == &b; // 函数比较地址
+            default:
+                return false; // 未知类型
+        }
+    }
+
 } // namespace squ
 
 template <> struct std::less<std::function<squ::ValueData(std::vector<squ::ValueData>, squ::VM &)>> {

@@ -103,9 +103,9 @@ namespace squ {
 
     // 表达式入口
     std::unique_ptr<ExprNode> Parser::parse_expression() {
-        if (match(TokenType::Punctuation, ";")) {
-            // 如果是分号，表示空语句
-            return std::make_unique<LiteralNode>(ValueData{ValueType::Nil});
+        if (peek(0, TokenType::Punctuation, ";")) {
+            // 如果当前token是分号，直接返回空表达式
+            return std::make_unique<LiteralNode>(ValueData()); // 返回一个空的LiteralNode
         }
         return parse_assignment();
     }
@@ -380,6 +380,42 @@ namespace squ {
         return std::make_unique<WhileNode>(std::move(condition), std::move(body));
     }
 
+    // 解析do-while循环表达式
+    std::unique_ptr<ExprNode> Parser::parse_do_while_expression() {
+        // 进入作用域
+        ScopeGuard scopeGuard(curScope.get());
+
+        // 解析循环体（支持块表达式或单行表达式）
+        auto body = parse_expression();
+
+        // 期望"while"
+        if (!match(TokenType::Identifier, "while")) {
+            throw std::runtime_error("[squaker.parser.do] Expected 'while' after do-while body");
+        }
+
+        // 期望左括号
+        if (!match(TokenType::Punctuation, "(")) {
+            throw std::runtime_error("[squaker.parser.do] Expected '(' after 'while'");
+        }
+
+        // 解析条件表达式
+        auto condition = parse_expression();
+
+        // 期望右括号
+        if (!match(TokenType::Punctuation, ")")) {
+            std::string context;
+            if (current < tokens.size()) {
+                context = " at token '" + tokens[current].value + "'";
+            }
+            throw std::runtime_error("[squaker.parser.do] Expected ')' after condition" + context);
+        }
+
+        // 可选分号分隔符，也可没有
+        match(TokenType::Punctuation, ";");
+
+        return std::make_unique<DoWhileNode>(std::move(body), std::move(condition));
+    }
+
     // 解析for循环表达式
     std::unique_ptr<ExprNode> Parser::parse_for_expression() {
         // 期望左括号
@@ -493,6 +529,85 @@ namespace squ {
         match(TokenType::Punctuation, ";");
 
         return {std::move(condition), std::move(body)};
+    }
+
+    // 解析switch表达式
+    std::unique_ptr<ExprNode> Parser::parse_switch_expression() {
+        // 期望左括号
+        if (!match(TokenType::Punctuation, "(")) {
+            throw std::runtime_error("[squaker.parser.switch] Expected '(' after 'switch'");
+        }
+
+        // 进入作用域
+        ScopeGuard scopeGuard(curScope.get());
+
+        // 解析条件表达式
+        auto condition = parse_expression();
+
+        // 期望右括号
+        if (!match(TokenType::Punctuation, ")")) {
+            std::string context;
+            if (current < tokens.size()) {
+                context = " at token '" + tokens[current].value + "'";
+            }
+            throw std::runtime_error("[squaker.parser.switch] Expected ')' after condition" + context);
+        }
+
+        // 期望左大括号开始case分支
+        if (!match(TokenType::Punctuation, "{")) {
+            std::string context;
+            if (current < tokens.size()) {
+                context = " at token '" + tokens[current].value + "'";
+            }
+            throw std::runtime_error("[squaker.parser.switch] Expected '{' after switch condition" + context);
+        }
+
+        // 解析case分支
+        std::vector<std::pair<std::unique_ptr<ExprNode>, std::unique_ptr<ExprNode>>> cases;
+        while (match(TokenType::Identifier, "case")) {
+            // 解析case条件
+            auto caseCondition = parse_expression();
+
+            // 期望冒号
+            if (!match(TokenType::Punctuation, ":")) {
+                std::string context;
+                if (current < tokens.size()) {
+                    context = " at token '" + tokens[current].value + "'";
+                }
+                throw std::runtime_error("[squaker.parser.switch] Expected ':' after case condition" + context);
+            }
+
+            // 解析case结果
+            auto caseBody = parse_expression();
+            cases.emplace_back(std::move(caseCondition), std::move(caseBody));
+
+            // 可选分号分隔符，也可没有
+            match(TokenType::Punctuation, ";");
+        }
+
+        // 可选的default分支
+        std::unique_ptr<ExprNode> defaultBody;
+        if (match(TokenType::Identifier, "default")) {
+            if (!match(TokenType::Punctuation, ":")) {
+                std::string context;
+                if (current < tokens.size()) {
+                    context = " at token '" + tokens[current].value + "'";
+                }
+                throw std::runtime_error("[squaker.parser.switch] Expected ':' after 'default'" + context);
+            }
+            defaultBody = parse_expression();
+        }
+
+        // 期望右大括号结束case分支
+        if (!match(TokenType::Punctuation, "}")) {
+            std::string context;
+            if (current < tokens.size()) {
+                context = " at token '" + tokens[current].value + "'";
+            }
+            throw std::runtime_error("[squaker.parser.switch] Expected '}' after switch cases" + context);
+        }
+
+        return std::make_unique<SwitchNode>(std::move(condition), std::move(cases), std::move(defaultBody));
     }
 
     // 解析Lambda表达式
@@ -789,6 +904,10 @@ namespace squ {
             else if (token.value == "while") {
                 return parse_while_expression();
             }
+            // 检查do关键字
+            else if (token.value == "do") {
+                return parse_do_while_expression();
+            }
             // 检查for关键字
             else if (token.value == "for") {
                 return parse_for_expression();
@@ -796,6 +915,10 @@ namespace squ {
             // 检查if关键字
             else if (token.value == "if") {
                 return parse_if_expression();
+            }
+            // 检查switch关键字
+            else if (token.value == "switch") {
+                return parse_switch_expression();
             }
             // 检查function关键字
             else if (token.value == "function") {

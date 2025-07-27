@@ -5,6 +5,6 @@ int main() {
     squ::PrintLOGO();
     // squ::RunTests();
     // squ::RunEvalTests();
-    // squ::InteractiveExecution();
-    squ::RunScriptTests();
+    squ::InteractiveExecution();
+    //squ::RunScriptTests();
 }

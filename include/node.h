@@ -244,6 +244,26 @@ namespace squ {
         std::unique_ptr<ExprNode> clone() const override;
     };
 
+    // Switch节点（switch-case）
+    class SwitchNode : public ExprNode {
+        std::unique_ptr<ExprNode> expression; // switch表达式
+        std::vector<std::pair<std::unique_ptr<ExprNode>, std::unique_ptr<ExprNode>>> cases; // (case条件, 结果) 对
+        std::unique_ptr<ExprNode> defaultCase; // 可选的default分支
+
+      public:
+        SwitchNode(std::unique_ptr<ExprNode> expr,
+                   std::vector<std::pair<std::unique_ptr<ExprNode>, std::unique_ptr<ExprNode>>> cs,
+                   std::unique_ptr<ExprNode> dc);
+
+        std::string string() const override;
+        NodeType type() const override {
+            return NodeType::If;
+        }
+        ValueData evaluate(VM &vm) const override;
+        ValueData &evaluate_lvalue(VM &vm) const override;
+        std::unique_ptr<ExprNode> clone() const override;
+    };
+
     // For循环节点
     class ForNode : public ExprNode {
         std::unique_ptr<ExprNode> init;
@@ -287,6 +307,23 @@ namespace squ {
 
       public:
         WhileNode(std::unique_ptr<ExprNode> cond, std::unique_ptr<ExprNode> b);
+
+        std::string string() const override;
+        NodeType type() const override {
+            return NodeType::While;
+        }
+        ValueData evaluate(VM &vm) const override;
+        ValueData &evaluate_lvalue(VM &vm) const override;
+        std::unique_ptr<ExprNode> clone() const override;
+    };
+
+    // Do-while循环节点
+    class DoWhileNode : public ExprNode {
+        std::unique_ptr<ExprNode> body;
+        std::unique_ptr<ExprNode> condition;
+
+      public:
+        DoWhileNode(std::unique_ptr<ExprNode> b, std::unique_ptr<ExprNode> cond);
 
         std::string string() const override;
         NodeType type() const override {

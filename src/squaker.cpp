@@ -1,15 +1,15 @@
 #include "../include/squaker.h"
+#include "../include/identifier.h"
 #include "../include/node.h"
 #include "../include/parser.h"
 #include "../include/token.h"
 #include "../include/type.h"
-#include "../include/identifier.h"
 #include <chrono>
+#include <cmath>
 #include <iostream>
 #include <stack>
 #include <string>
 #include <vector>
-#include <cmath>
 
 namespace squ {
 
@@ -399,16 +399,21 @@ namespace squ {
 
         // 逐行执行
         for (; current_index < code.size(); ++current_index) {
-            const auto &code = this->code[current_index];
-            // 解析tokens
-            auto tokens = ParseTokens(code);
+            try {
+                const auto &code = this->code[current_index];
+                // 解析tokens
+                auto tokens = ParseTokens(code);
 
-            // 解释器实例化
-            parser.reset(std::move(tokens)); // 重置解析器
-            auto expr = parser.parse();      // 解析表达式
+                // 解释器实例化
+                parser.reset(std::move(tokens)); // 重置解析器
+                auto expr = parser.parse();      // 解析表达式
 
-            // 执行表达式
-            result = expr->evaluate(vm); // 调用求值接口
+                // 执行表达式
+                result = expr->evaluate(vm); // 调用求值接口
+            } catch (const std::exception &e) {
+                current_index++; // 跳过错误行
+                throw std::runtime_error(e.what());
+            }
         }
 
         // 返回结果

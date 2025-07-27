@@ -89,6 +89,9 @@ namespace squ {
         // 解析while循环表达式
         std::unique_ptr<ExprNode> parse_while_expression();
 
+        // 解析do-while循环表达式
+        std::unique_ptr<ExprNode> parse_do_while_expression();
+
         // 解析for循环表达式
         std::unique_ptr<ExprNode> parse_for_expression();
 
@@ -97,6 +100,9 @@ namespace squ {
 
         // 解析单个条件分支（if或else if）
         std::pair<std::unique_ptr<ExprNode>, std::unique_ptr<ExprNode>> parse_if_branch();
+        
+        // 解析switch表达式
+        std::unique_ptr<ExprNode> parse_switch_expression();
 
         // 解析Lambda表达式
         std::unique_ptr<ExprNode> parse_lambda_expression();
