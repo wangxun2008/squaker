@@ -68,6 +68,12 @@ namespace squ::internal {
             return std::get<std::string>(v.value);
         }
     };
+    template <> struct TypeConverter<const std::string &> {
+        static constexpr ValueType type = ValueType::String;
+        static std::string convert(const ValueData &v) {
+            return TypeConverter<std::string>::convert(v);
+        }
+    };
 
     // 返回值构造工具
     template <typename T> ValueData make_value(T &&value) {

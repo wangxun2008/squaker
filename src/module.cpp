@@ -2,11 +2,18 @@
 #include "../include/identifier.h"
 #include <cmath>
 #include <stdexcept>
+#include <fstream>
+#include <sstream>
+#include <thread>
+#include <unistd.h> // for getpid
+#include <ctime>
+#include <chrono>
 
 namespace squ {
 
     IdentifierData Module(std::string module_name) {
         // 模块注册逻辑
+        // 数学模块
         if (module_name == "math") {
             return Namespace("math",
                 Function("sin", static_cast<double (*)(double)>(std::sin)),
@@ -27,9 +34,114 @@ namespace squ {
                 Function("hypot", static_cast<double (*)(double, double)>(std::hypot)),
                 Function("max", static_cast<double (*)(double, double)>(std::fmax)),
                 Function("min", static_cast<double (*)(double, double)>(std::fmin)),
-                Function("atan2", static_cast<double (*)(double, double)>(std::atan2))
+                Function("atan2", static_cast<double (*)(double, double)>(std::atan2)),
+                Function("ceil", static_cast<double (*)(double)>(std::ceil)),
+                Function("floor", static_cast<double (*)(double)>(std::floor)),
+                Function("cosh", static_cast<double (*)(double)>(std::cosh)),
+                Function("sinh", static_cast<double (*)(double)>(std::sinh)),
+                Function("tanh", static_cast<double (*)(double)>(std::tanh)),
+                Constant("PI", 3.14159265358979323846),
+                Constant("E", 2.71828182845904523536),
+                Constant("LN2", 0.69314718055994530942),
+                Constant("LN10", 2.30258509299404568402),
+                Constant("LOG2E", 1.44269504088896340736),
+                Constant("LOG10E", 0.43429448190325182765)
             );
-        } else {
+        } 
+        // 字符串模块
+        else if (module_name == "string") {
+            return Namespace("string",
+                Function("length", [](const std::string &s) { return static_cast<long long>(s.length()); }),
+                Function("concat", [](const std::string &a, const std::string &b) { return a + b; }),
+                Function("substring", [](const std::string &s, long long start, long long end) {
+                    return s.substr(static_cast<size_t>(start), static_cast<size_t>(end - start));
+                }),
+                Function("to_upper", [](const std::string &s) {
+                    std::string result = s;
+                    for (auto &c : result) c = static_cast<char>(std::toupper(c));
+                    return result;
+                }),
+                Function("to_lower", [](const std::string &s) {
+                    std::string result = s;
+                    for (auto &c : result) c = static_cast<char>(std::tolower(c));
+                    return result;
+                })
+            );
+        }
+        // 文件输入输出模块
+        else if (module_name == "io") {
+            return Namespace("io",
+                Function("read_file", [](const std::string &filename) {
+                    std::ifstream file(filename);
+                    if (!file.is_open()) {
+                        throw std::runtime_error("[squaker.io] Failed to open file: " + filename);
+                    }
+                    std::stringstream buffer;
+                    buffer << file.rdbuf();
+                    return buffer.str();
+                }),
+                Function("write_file", [](const std::string &filename, const std::string &content) {
+                    std::ofstream file(filename);
+                    if (!file.is_open()) {
+                        throw std::runtime_error("[squaker.io] Failed to open file for writing: " + filename);
+                    }
+                    file << content;
+                })
+            );
+        }
+        // 操作系统工具模块
+        else if (module_name == "os") {
+            return Namespace("os",
+                Function("system", [](const std::string &command) {
+                    int result = std::system(command.c_str());
+                    return result;
+                }),
+                Function("getenv", [](const std::string &name) {
+                    const char *value = std::getenv(name.c_str());
+                    return value ? std::string(value) : "";
+                }),
+                Function("exit", [](long long code) {
+                    std::exit(static_cast<int>(code));
+                }),
+                Function("sleep", [](long long seconds) {
+                    std::this_thread::sleep_for(std::chrono::seconds(static_cast<int>(seconds)));
+                }),
+                Function("clock", []() {
+                    return static_cast<long long>(std::clock() / CLOCKS_PER_SEC);
+                }),
+                Function("remove" , [](const std::string &filename) {
+                    if (std::remove(filename.c_str()) != 0) {
+                        throw std::runtime_error("[squaker.os] Failed to remove file: " + filename);
+                    }
+                }),
+                Function("date", []() {
+                    std::time_t now = std::time(nullptr);
+                    char buffer[100];
+                    std::strftime(buffer, sizeof(buffer), "%Y-%m-%d %H:%M:%S", std::localtime(&now));
+                    return std::string(buffer);
+                }),
+                Function("time", []() {
+                    std::time_t now = std::time(nullptr);
+                    return static_cast<long long>(now);
+                }),
+                Function("getpid", []() {
+                    return static_cast<long long>(getpid());
+                }),
+                Function("getcwd", []() {
+                    char buffer[1024];
+                    if (getcwd(buffer, sizeof(buffer)) == nullptr) {
+                        throw std::runtime_error("[squaker.os] Failed to get current working directory");
+                    }
+                    return std::string(buffer);
+                }),
+                Function("rename", [](const std::string &old_name, const std::string &new_name) {
+                    if (std::rename(old_name.c_str(), new_name.c_str()) != 0) {
+                        throw std::runtime_error("[squaker.os] Failed to rename file: " + old_name + " to " + new_name);
+                    }
+                })
+            );
+        }
+        else {
             throw std::runtime_error("[squaker.module] Unknown module: " + module_name);
         }
 

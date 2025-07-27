@@ -731,15 +731,28 @@ namespace squ {
             std::string moduleName = previous().value;
             auto module = Module(moduleName);
             // 在当前作用域中注册模块
+            if (curScope->find(moduleName) != Scope::npos) {
+                throw std::runtime_error("[squaker.parser.import] Module already imported: " + moduleName);
+            }
             size_t slot = curScope->add(moduleName);
             // 返回导入节点
             return std::make_unique<AssignmentNode>(
                 "=", std::make_unique<IdentifierNode>(moduleName, slot),
                 std::make_unique<LiteralNode>(module.value)
             );
-            //return std::make_unique<ImportNode>(previous().value);
         } else if (match(TokenType::String)) {
-            return std::make_unique<ImportNode>(previous().value);
+            std::string moduleName = previous().value;
+            auto module = Module(moduleName);
+            // 在当前作用域中注册模块
+            if (curScope->find(moduleName) != Scope::npos) {
+                throw std::runtime_error("[squaker.parser.import] Module already imported: " + moduleName);
+            }
+            size_t slot = curScope->add(moduleName);
+            // 返回导入节点
+            return std::make_unique<AssignmentNode>(
+                "=", std::make_unique<IdentifierNode>(moduleName, slot),
+                std::make_unique<LiteralNode>(module.value)
+            );
         } else {
             std::string context;
             if (current < tokens.size()) {
