@@ -53,18 +53,59 @@ namespace squ {
             return Namespace("string",
                 Function("length", [](const std::string &s) { return static_cast<long long>(s.length()); }),
                 Function("concat", [](const std::string &a, const std::string &b) { return a + b; }),
-                Function("substring", [](const std::string &s, long long start, long long end) {
+                Function("substr", [](const std::string &s, long long start, long long end) {
                     return s.substr(static_cast<size_t>(start), static_cast<size_t>(end - start));
                 }),
-                Function("to_upper", [](const std::string &s) {
+                Function("upper", [](const std::string &s) {
                     std::string result = s;
                     for (auto &c : result) c = static_cast<char>(std::toupper(c));
                     return result;
                 }),
-                Function("to_lower", [](const std::string &s) {
+                Function("lower", [](const std::string &s) {
                     std::string result = s;
                     for (auto &c : result) c = static_cast<char>(std::tolower(c));
                     return result;
+                }),
+                Function("find", [](const std::string &s, const std::string &sub) {
+                    size_t pos = s.find(sub);
+                    return pos != std::string::npos ? static_cast<long long>(pos) : -1;
+                }),
+                Function("replace", [](const std::string &s, const std::string &old_sub, const std::string &new_sub) {
+                    std::string result = s;
+                    size_t pos = 0;
+                    while ((pos = result.find(old_sub, pos)) != std::string::npos) {
+                        result.replace(pos, old_sub.length(), new_sub);
+                        pos += new_sub.length();
+                    }
+                    return result;
+                }),
+                // Function("split", [](const std::string &s, const std::string &delimiter) {
+                //     std::vector<std::string> result;
+                //     size_t start = 0, end;
+                //     while ((end = s.find(delimiter, start)) != std::string::npos) {
+                //         result.push_back(s.substr(start, end - start));
+                //         start = end + delimiter.length();
+                //     }
+                //     result.push_back(s.substr(start));
+                //     return result;
+                // }),
+                // Function("join", [](const std::vector<std::string> &parts, const std::string &delimiter) {
+                //     std::string result;
+                //     for (size_t i = 0; i < parts.size(); ++i) {
+                //         result += parts[i];
+                //         if (i < parts.size() - 1) {
+                //             result += delimiter;
+                //         }
+                //     }
+                //     return result;
+                // }),
+                Function("trim", [](const std::string &s) {
+                    size_t first = s.find_first_not_of(" \t\n\r");
+                    size_t last = s.find_last_not_of(" \t\n\r");
+                    return (first == std::string::npos || last == std::string::npos) ? "" : s.substr(first, last - first + 1);
+                }),
+                Function("reverse", [](const std::string &s) {
+                    return std::string(s.rbegin(), s.rend());
                 })
             );
         }
