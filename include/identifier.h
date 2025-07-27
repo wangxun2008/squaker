@@ -1,6 +1,6 @@
 #pragma once
 
-#include "squaker.h"
+#include "type.h"
 #include <functional>
 #include <string>
 #include <tuple>
@@ -8,6 +8,7 @@
 #include <utility>
 #include <variant>
 #include <vector>
+#include <stdexcept>
 
 namespace squ::internal {
 

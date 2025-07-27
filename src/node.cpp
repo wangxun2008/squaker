@@ -657,8 +657,7 @@ namespace squ {
     }
 
     ValueData ImportNode::evaluate(VM &vm) const {
-        // 实现模块导入的求值逻辑
-        throw std::runtime_error("Module import evaluation not implemented for: " + moduleName);
+        throw std::runtime_error("[squaker.import] Import nodes cannot be evaluated directly");
     }
 
     ValueData &ImportNode::evaluate_lvalue(VM &vm) const {

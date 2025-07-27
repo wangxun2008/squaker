@@ -1,5 +1,7 @@
 #include "../include/parser.h"
 #include "../include/scope.h"
+#include "../include/identifier.h"
+#include "../include/module.h"
 #include <cmath>
 #include <iostream>
 #include <stdexcept>
@@ -660,11 +662,13 @@ namespace squ {
 
     // 解析函数定义
     std::unique_ptr<ExprNode> Parser::parse_function_definition() {
-        // 期望函数名，如果没有函数名则判断为Lambda表达式
-        if (!match(TokenType::Identifier)) {
+        // 如果当前token是括号，则认为是Lambda表达式
+        if (peek(0, TokenType::Punctuation, "(")) {
             return parse_lambda_expression();
         }
-        std::string functionName = previous().value;
+
+        // 解析函数名，暂时只能是标识符，后续可以扩展为支持其他类型
+        auto functionName = parse_primary();
         std::unique_ptr<ExprNode> lambda;
 
         // 进入函数作用域
@@ -716,20 +720,24 @@ namespace squ {
             lambda = std::make_unique<LambdaNode>(slot_parameters, std::move(body));
         }
 
-        // 在当前作用域中添加函数名
-        size_t index = curScope->find(functionName);
-        if (index == Scope::npos) {
-            index = curScope->add(functionName);
-        }
-        return std::make_unique<AssignmentNode>("=", std::make_unique<IdentifierNode>(functionName, index),
-                                                std::move(lambda));
+        // 在当前作用域中添加函数
+        return std::make_unique<AssignmentNode>("=", std::move(functionName), std::move(lambda));
     }
 
     // 解析导入语句
     std::unique_ptr<ExprNode> Parser::parse_import_statement() {
         // 期望模块名（标识符或字符串）
         if (match(TokenType::Identifier)) {
-            return std::make_unique<ImportNode>(previous().value);
+            std::string moduleName = previous().value;
+            auto module = Module(moduleName);
+            // 在当前作用域中注册模块
+            size_t slot = curScope->add(moduleName);
+            // 返回导入节点
+            return std::make_unique<AssignmentNode>(
+                "=", std::make_unique<IdentifierNode>(moduleName, slot),
+                std::make_unique<LiteralNode>(module.value)
+            );
+            //return std::make_unique<ImportNode>(previous().value);
         } else if (match(TokenType::String)) {
             return std::make_unique<ImportNode>(previous().value);
         } else {

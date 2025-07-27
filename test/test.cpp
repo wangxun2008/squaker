@@ -1,4 +1,5 @@
 #include "squaker.h"
+#include "module.h"
 
 #include <chrono>
 #include <cmath>
@@ -89,15 +90,7 @@ int main() {
     std::string input_buffer;
     squ::Script script;
 
-    auto math = squ::Namespace(
-        "math", squ::Function("sin", [](double x) { return std::sin(x); }),
-        squ::Function("cos", [](double x) { return std::cos(x); }),
-        squ::Function("tan", [](double x) { return std::tan(x); }),
-        squ::Namespace("constants", 
-            squ::Constant("pi", 3.14159265358979323846), 
-            squ::Constant("e", 2.71828182845904523536)
-        )
-    );
+    auto math = squ::Module("math");
 
     script.register_identifier(math); // 修改为直接接受 IdentifierData
 
