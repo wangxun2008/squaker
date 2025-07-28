@@ -97,7 +97,7 @@ namespace squ::internal {
 
         static std::vector<T> convert(const ValueData &v) {
             if (v.type != ValueType::Table) {
-                throw std::runtime_error("Expected table type");
+                throw std::runtime_error("[squaker.wrapper] Expected table type");
             }
 
             const TableData &table = std::get<TableData>(v.value);
@@ -107,7 +107,7 @@ namespace squ::internal {
             // 按索引顺序提取值
             for (const auto &[key, value] : table.array_map) {
                 if (key.type != ValueType::Integer) {
-                    throw std::runtime_error("Expected integer index in table array");
+                    throw std::runtime_error("[squaker.wrapper] Expected integer index in table array");
                 }
                 result.push_back(TypeConverter<T>::convert(value));
             }
@@ -126,15 +126,14 @@ namespace squ::internal {
             return ValueData{ValueType::Table, false, table};
         }
     };
-
-
+    
     // std::map<K, V> 到 ValueData 的转换
     template <typename K, typename V> struct TypeConverter<std::map<K, V>> {
         static constexpr ValueType type = ValueType::Table;
 
         static std::map<K, V> convert(const ValueData &v) {
             if (v.type != ValueType::Table) {
-                throw std::runtime_error("Expected table type");
+                throw std::runtime_error("[squaker.wrapper] Expected table type");
             }
 
             const TableData &table = std::get<TableData>(v.value);
@@ -159,11 +158,11 @@ namespace squ::internal {
             TableData table;
 
             for (const auto &[key, value] : map) {
-                ValueData key_val = convert_to_value(key);
-                ValueData value_val = convert_to_value(value);
+                ValueData key_val = TypeConverter<K>::convert_to_value(key);
+                ValueData value_val = TypeConverter<V>::convert_to_value(value);
 
                 // 所有键值对都添加到 array_map
-                table.array_map[key_val] = value_val;
+                table.index(key_val) = value_val;
             }
 
             return ValueData{ValueType::Table, false, table};
@@ -325,7 +324,9 @@ namespace squ {
 
     // 工厂函数：返回 IdentifierData
     template <typename F> inline IdentifierData Function(std::string_view name, F &&f) {
-        return {std::string(name), make_function(std::forward<F>(f))};
+        auto func = make_function(std::forward<F>(f));
+        func.is_const = true; // 函数默认是常量
+        return {std::string(name), func};
     }
 
     template <typename T> inline IdentifierData Variable(std::string_view name, T &&v) {

@@ -109,6 +109,31 @@ namespace squ {
                 })
             );
         }
+        // 表处理模块
+        else if (module_name == "table") {
+            return Namespace("table",
+                Function("remove", [](std::map<std::string, std::string> table, const std::string &key) {
+                    table.erase(key);
+                }),
+                Function("keys", [](std::map<std::string, std::string> table) {
+                    std::vector<std::string> keys;
+                    for (const auto &pair : table) {
+                        keys.push_back(pair.first);
+                    }
+                    return keys;
+                }),
+                Function("values", [](std::map<std::string, std::string> table) {
+                    std::vector<std::string> values;
+                    for (const auto &pair : table) {
+                        values.push_back(pair.second);
+                    }
+                    return values;
+                }),
+                Function("size", [](std::map<std::string, std::string> table) {
+                    return static_cast<long long>(table.size());
+                })
+            );
+        }
         // 文件输入输出模块
         else if (module_name == "io") {
             return Namespace("io",
