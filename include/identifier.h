@@ -91,7 +91,7 @@ namespace squ::internal {
         }
     };
 
-    // 为 std::vector<T> 添加特化
+    // std::vector<T> 到 ValueData的转换
     template <typename T> struct TypeConverter<std::vector<T>> {
         static constexpr ValueType type = ValueType::Table;
 
@@ -127,27 +127,46 @@ namespace squ::internal {
         }
     };
 
-    template <> struct TypeConverter<std::vector<ValueData>> {
-        static constexpr ValueType type = ValueType::Array;
-        static std::vector<ValueData> convert(const ValueData &v) {
-            if (v.type != ValueType::Array)
-                throw std::runtime_error("[squaker.wrapper] Expected array type");
-            return std::get<std::vector<ValueData>>(v.value);
-        }
-        static ValueData convert_to_value(const std::vector<ValueData> &value) {
-            return ValueData{ValueType::Array, false, value};
-        }
-    };
 
-    template <> struct TypeConverter<TableData> {
+    // std::map<K, V> 到 ValueData 的转换
+    template <typename K, typename V> struct TypeConverter<std::map<K, V>> {
         static constexpr ValueType type = ValueType::Table;
-        static TableData convert(const ValueData &v) {
-            if (v.type != ValueType::Table)
-                throw std::runtime_error("[squaker.wrapper] Expected table type");
-            return std::get<TableData>(v.value);
+
+        static std::map<K, V> convert(const ValueData &v) {
+            if (v.type != ValueType::Table) {
+                throw std::runtime_error("Expected table type");
+            }
+
+            const TableData &table = std::get<TableData>(v.value);
+            std::map<K, V> result;
+
+            // 只转换 array_map 部分
+            for (const auto &[key, value] : table.array_map) {
+                try {
+                    K converted_key = TypeConverter<K>::convert(key);
+                    V converted_value = TypeConverter<V>::convert(value);
+                    result[converted_key] = converted_value;
+                } catch (const std::exception &e) {
+                    // 跳过无法转换的条目
+                    continue;
+                }
+            }
+
+            return result;
         }
-        static ValueData convert_to_value(const TableData &value) {
-            return ValueData{ValueType::Table, false, value};
+
+        static ValueData convert_to_value(const std::map<K, V> &map) {
+            TableData table;
+
+            for (const auto &[key, value] : map) {
+                ValueData key_val = convert_to_value(key);
+                ValueData value_val = convert_to_value(value);
+
+                // 所有键值对都添加到 array_map
+                table.array_map[key_val] = value_val;
+            }
+
+            return ValueData{ValueType::Table, false, table};
         }
     };
 
