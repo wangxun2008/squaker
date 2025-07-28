@@ -333,6 +333,59 @@ namespace squ {
         }
 
         //--------------------------------------------------
+        // 逻辑操作符
+        //--------------------------------------------------
+        if (op == "&&") {
+            if (lhs.type == ValueType::Bool && rhs.type == ValueType::Bool) {
+                bool l = std::get<bool>(lhs.value);
+                bool r = std::get<bool>(rhs.value);
+                return ValueData{ValueType::Bool, false, l && r};
+            }
+            if (lhs.type == ValueType::Bool && rhs.type == ValueType::Integer) {
+                bool l = std::get<bool>(lhs.value);
+                long long r = std::get<long long>(rhs.value);
+                return ValueData{ValueType::Bool, false, l && (r != 0)};
+            }
+            if (lhs.type == ValueType::Integer && rhs.type == ValueType::Bool) {
+                long long l = std::get<long long>(lhs.value);
+                bool r = std::get<bool>(rhs.value);
+                return ValueData{ValueType::Bool, false, (l != 0) && r};
+            }
+            if (lhs.type == ValueType::Integer && rhs.type == ValueType::Integer) {
+                long long l = std::get<long long>(lhs.value);
+                long long r = std::get<long long>(rhs.value);
+                return ValueData{ValueType::Bool, false, (l != 0) && (r != 0)};
+            }
+
+            throw std::runtime_error("[squaker.operator:'&&'] unsupported types for logical AND");
+        }
+
+        if (op == "||") {
+            if (lhs.type == ValueType::Bool && rhs.type == ValueType::Bool) {
+                bool l = std::get<bool>(lhs.value);
+                bool r = std::get<bool>(rhs.value);
+                return ValueData{ValueType::Bool, false, l || r};
+            }
+            if (lhs.type == ValueType::Bool && rhs.type == ValueType::Integer) {
+                bool l = std::get<bool>(lhs.value);
+                long long r = std::get<long long>(rhs.value);
+                return ValueData{ValueType::Bool, false, l || (r != 0)};
+            }
+            if (lhs.type == ValueType::Integer && rhs.type == ValueType::Bool) {
+                long long l = std::get<long long>(lhs.value);
+                bool r = std::get<bool>(rhs.value);
+                return ValueData{ValueType::Bool, false, (l != 0) || r};
+            }
+            if (lhs.type == ValueType::Integer && rhs.type == ValueType::Integer) {
+                long long l = std::get<long long>(lhs.value);
+                long long r = std::get<long long>(rhs.value);
+                return ValueData{ValueType::Bool, false, (l != 0) || (r != 0)};
+            }
+
+            throw std::runtime_error("[squaker.operator:'||'] unsupported types for logical OR");
+        }
+
+        //--------------------------------------------------
         // 其他运算符 …
         //--------------------------------------------------
         throw std::runtime_error("[squaker.operator] unknown binary operator: " + op);

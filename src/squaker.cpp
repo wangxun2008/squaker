@@ -10,6 +10,8 @@
 #include <stack>
 #include <string>
 #include <vector>
+#include <fstream>
+#include <sstream>
 
 namespace squ {
 
@@ -379,6 +381,17 @@ namespace squ {
         }
     }
 
+    // 读取文件字符串
+    std::string ReadFile(const std::string &file_path) {
+        std::ifstream file(file_path);
+        if (!file.is_open()) {
+            throw std::runtime_error("[squaker] Failed to open file: " + file_path);
+        }
+        std::stringstream buffer;
+        buffer << file.rdbuf();
+        return buffer.str();
+    }
+
     // 脚本类的实现
     Script::Script() : current_index(0) {
         vm.enter(1024); // 预留足够的局部变量空间
@@ -393,7 +406,10 @@ namespace squ {
         vm.local(slot) = identifier.value;
     }
 
-    ValueData Script::execute() {
+    ValueData Script::execute(const std::string& code) {
+        // 如果传入了代码，则增加到缓冲区
+        append(code);
+
         // 初始化
         auto result = ValueData{ValueType::Nil, false, 0.0};
 

@@ -25,6 +25,9 @@ namespace squ {
     // 测试脚本执行
     void RunScriptTests();
 
+    // 读取文件字符串
+    std::string ReadFile(const std::string &file_path);
+
     // 封装的脚本类
     class Script {
       public:
@@ -38,7 +41,7 @@ namespace squ {
         void register_identifier(const IdentifierData &identifier);
 
         // 解析并执行脚本
-        ValueData execute();
+        ValueData execute(const std::string& code = "");
 
       private:
         std::vector<std::string> code; // 代码
