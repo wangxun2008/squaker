@@ -6,7 +6,12 @@ set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
 # 启用-O3
-# set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -O3 -s")
+set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -O3 -s -static")
+
+# 仅对 MSVC 启用 /utf-8
+if(MSVC)
+    set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} /utf-8")
+endif()
 
 # 头文件搜索路径
 include_directories(include)
@@ -21,4 +26,4 @@ add_executable(squaker ${SRC_FILES} test/main.cpp)
 set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_SOURCE_DIR}/bin)
 
 # 构建静态库
-# add_library(squaker_lib STATIC ${SRC_FILES})
+add_library(squaker_lib STATIC ${SRC_FILES})

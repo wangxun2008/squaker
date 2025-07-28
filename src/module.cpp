@@ -5,7 +5,6 @@
 #include <fstream>
 #include <sstream>
 #include <thread>
-#include <unistd.h> // for getpid
 #include <ctime>
 #include <chrono>
 
@@ -192,13 +191,6 @@ namespace squ {
                 }),
                 Function("getpid", []() {
                     return static_cast<long long>(getpid());
-                }),
-                Function("getcwd", []() {
-                    char buffer[1024];
-                    if (getcwd(buffer, sizeof(buffer)) == nullptr) {
-                        throw std::runtime_error("[squaker.os] Failed to get current working directory");
-                    }
-                    return std::string(buffer);
                 }),
                 Function("rename", [](const std::string &old_name, const std::string &new_name) {
                     if (std::rename(old_name.c_str(), new_name.c_str()) != 0) {
