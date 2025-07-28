@@ -18,33 +18,45 @@ namespace squ::internal {
     // 类型转换工具
     template <typename T, typename = void> struct TypeConverter;
 
-    // 整型全家桶
-    template <typename T>
-    struct TypeConverter<
-        T, std::enable_if_t<std::is_integral_v<std::decay_t<T>> && !std::is_same_v<std::decay_t<T>, bool>>> {
-        using Raw = std::decay_t<T>;
+    template <> struct TypeConverter<long long> {
         static constexpr ValueType type = ValueType::Integer;
         static long long convert(const ValueData &v) {
-            return internal::TypeConverter<long long>::convert(v);
+            if (v.type != ValueType::Integer)
+                throw std::runtime_error("[squaker.wrapper] Expected integer type");
+            return std::get<long long>(v.value);
         }
-        static ValueData convert_to_value(Raw v) {
-            return internal::TypeConverter<long long>::convert_to_value(static_cast<long long>(v));
+        static ValueData convert_to_value(long long value) {
+            return ValueData{ValueType::Integer, false, value};
         }
     };
-
-    // 浮点全家桶
-    template <typename T>
-    struct TypeConverter<T, std::enable_if_t<std::is_floating_point_v<std::decay_t<T>>>> {
-        using Raw = std::decay_t<T>;
+    template <> struct TypeConverter<int> {
+        static constexpr ValueType type = ValueType::Integer;
+        static long long convert(const ValueData &v) {
+            return TypeConverter<long long>::convert(v);
+        }
+        static ValueData convert_to_value(int value) {
+            return ValueData{ValueType::Integer, false, value};
+        }
+    };
+    template <> struct TypeConverter<double> {
         static constexpr ValueType type = ValueType::Real;
-        static double convert(const ValueData& v) {
+        static double convert(const ValueData &v) {
+            if (v.type == ValueType::Integer)
+                return static_cast<double>(std::get<long long>(v.value));
+            if (v.type != ValueType::Real)
+                throw std::runtime_error("[squaker.wrapper] Expected real or integer type");
+            return std::get<double>(v.value);
+        }
+        static ValueData convert_to_value(double value) {
+            return ValueData{ValueType::Real, false, value};
+        }
+    };
+    template <> struct TypeConverter<float> {
+        static constexpr ValueType type = ValueType::Real;
+        static double convert(const ValueData &v) {
             return TypeConverter<double>::convert(v);
         }
-        static ValueData convert_to_value(Raw v) {
-            return TypeConverter<double>::convert_to_value(static_cast<double>(v));
-        }
     };
-    
     template <> struct TypeConverter<bool> {
         static constexpr ValueType type = ValueType::Bool;
         static bool convert(const ValueData &v) {
@@ -76,12 +88,6 @@ namespace squ::internal {
         }
         static ValueData convert_to_value(const std::string &value) {
             return ValueData{ValueType::String, false, value};
-        }
-    };
-    template <> struct TypeConverter<const std::string &> {
-        static constexpr ValueType type = ValueType::String;
-        static std::string convert(const ValueData &v) {
-            return TypeConverter<std::string>::convert(v);
         }
     };
 
@@ -210,6 +216,71 @@ namespace squ::internal {
                 auto result = func(TypeConverter<typename traits::template arg_type<Is>>::convert(args[Is])...);
                 return convert_to_value(result);
             }
+        }
+    };
+
+    // 整型全家桶（放在所有显式特化之后）
+    template <typename T>
+    struct TypeConverter<
+        T, std::enable_if_t<std::is_integral_v<std::decay_t<T>> && !std::is_same_v<std::decay_t<T>, bool> &&
+                            !std::is_same_v<std::decay_t<T>, char> && !std::is_same_v<std::decay_t<T>, long long>>> {
+        using Raw = std::decay_t<T>;
+        static constexpr ValueType type = ValueType::Integer;
+        static long long convert(const ValueData &v) {
+            return std::get<long long>(v.value);
+        }
+        static ValueData convert_to_value(Raw v) {
+            return ValueData{ValueType::Integer, false, static_cast<long long>(v)};
+        }
+    };
+
+    // 浮点全家桶
+    template <typename T>
+    struct TypeConverter<
+        T, std::enable_if_t<std::is_floating_point_v<std::decay_t<T>> && !std::is_same_v<std::decay_t<T>, double>>> {
+        using Raw = std::decay_t<T>;
+        static constexpr ValueType type = ValueType::Real;
+        static double convert(const ValueData &v) {
+            return std::get<double>(v.value);
+        }
+        static ValueData convert_to_value(Raw v) {
+            return ValueData{ValueType::Real, false, static_cast<double>(v)};
+        }
+    };
+
+    // bool专用
+    template <typename T> struct TypeConverter<T, std::enable_if_t<std::is_same_v<std::decay_t<T>, bool>>> {
+        using Raw = bool;
+        static constexpr ValueType type = ValueType::Bool;
+        static bool convert(const ValueData &v) {
+            return std::get<bool>(v.value);
+        }
+        static ValueData convert_to_value(Raw v) {
+            return ValueData{ValueType::Bool, false, v};
+        }
+    };
+
+    // char专用
+    template <typename T> struct TypeConverter<T, std::enable_if_t<std::is_same_v<std::decay_t<T>, char>>> {
+        using Raw = char;
+        static constexpr ValueType type = ValueType::Char;
+        static char convert(const ValueData &v) {
+            return std::get<char>(v.value);
+        }
+        static ValueData convert_to_value(Raw v) {
+            return ValueData{ValueType::Char, false, v};
+        }
+    };
+
+    // std::string / const std::string& 专用
+    template <typename T> struct TypeConverter<T, std::enable_if_t<std::is_same_v<std::decay_t<T>, std::string>>> {
+        using Raw = std::string;
+        static constexpr ValueType type = ValueType::String;
+        static std::string convert(const ValueData &v) {
+            return std::get<std::string>(v.value);
+        }
+        static ValueData convert_to_value(const Raw &v) {
+            return ValueData{ValueType::String, false, v};
         }
     };
 
