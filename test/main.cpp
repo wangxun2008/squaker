@@ -8,7 +8,8 @@ int main(int argc, char **argv) {
         // squ::RunTests();
         // squ::RunEvalTests();
         // squ::InteractiveExecution();
-        squ::RunScriptTests();
+        squ::Script script;
+        squ::RunScriptTests(script);
         return 0;
     }
     std::string script_path = argv[1];

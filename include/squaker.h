@@ -22,9 +22,6 @@ namespace squ {
     // 独立的交互式代码执行函数
     void InteractiveExecution();
 
-    // 测试脚本执行
-    void RunScriptTests();
-
     // 读取文件字符串
     std::string ReadFile(const std::string &file_path);
 
@@ -49,5 +46,8 @@ namespace squ {
         VM vm;                         // 虚拟机实例
         Parser parser;                 // 解析器实例
     };
+
+    // 测试脚本执行
+    void RunScriptTests(Script &script);
 
 } // namespace squ

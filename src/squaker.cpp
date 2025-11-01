@@ -319,10 +319,8 @@ namespace squ {
                     std::cout << CYAN;
                     auto start = std::chrono::high_resolution_clock::now();
                     auto tokens = ParseTokens(input_buffer);
-                    std::cout << PrintTokens(tokens) << std::endl;
                     parser.reset(std::move(tokens)); // 重置解析器
                     auto expr = parser.parse();      // 解析表达式
-                    std::cout << "AST: " << expr->string() << std::endl;
                     auto result = expr->evaluate(vm); // 调用求值接口
                     auto end = std::chrono::high_resolution_clock::now();
                     std::chrono::duration<double> elapsed = end - start;
@@ -338,35 +336,33 @@ namespace squ {
         }
     }
 
-    void RunScriptTests() {
+    void RunScriptTests(Script& script) {
         std::string input_buffer;
-        Script script;
 
         while (true) {
             std::string line;
-
+    
             // 显示智能提示符
             if (input_buffer.empty()) {
                 std::cout << YELLOW << ">>> " << RESET; // 首行提示符
             } else {
                 std::cout << YELLOW << "... " << RESET; // 多行提示符
             }
-
+    
             std::getline(std::cin, line);
-
+    
             // 添加换行符保证块识别正确
             if (!input_buffer.empty() && input_buffer.back() != '\n') {
                 input_buffer += ' ';
             }
             input_buffer += line;
-
+    
             // 自动检测代码完整性
             try {
                 if (isCompleteBlock(input_buffer)) {
-                    script.append(input_buffer);
                     std::cout << CYAN;
                     auto start = std::chrono::high_resolution_clock::now();
-                    auto result = script.execute();
+                    auto result = script.execute(input_buffer);
                     auto end = std::chrono::high_resolution_clock::now();
                     std::chrono::duration<double> elapsed = end - start;
                     std::cout << GRAY << "(return: " << CYAN << result.string() << GRAY << ", time: " << RED
@@ -395,6 +391,121 @@ namespace squ {
     // 脚本类的实现
     Script::Script() : current_index(0) {
         vm.enter(1024); // 预留足够的局部变量空间
+        register_identifier(IdentifierData{"print", ValueData{ValueType::Function, false,
+            [](std::vector<ValueData> &args, VM &vm) -> ValueData {
+                for (const auto &arg : args) {
+                    if (arg.type == ValueType::String) {
+                        std::cout << std::get<std::string>(arg.value);
+                    } else if (arg.type == ValueType::Char) {
+                        std::cout << static_cast<char>(std::get<char>(arg.value));
+                    } else {
+                        std::cout << arg.string() << " ";
+                    }
+                }
+                return ValueData{ValueType::Nil, false, 0.0};
+        }}});
+        register_identifier(IdentifierData{"println", ValueData{ValueType::Function, false,
+            [](std::vector<ValueData> &args, VM &vm) -> ValueData {
+                for (const auto &arg : args) {
+                    if (arg.type == ValueType::String) {
+                        std::cout << std::get<std::string>(arg.value);
+                    } else if (arg.type == ValueType::Char) {
+                        std::cout << static_cast<char>(std::get<char>(arg.value));
+                    } else {
+                        std::cout << arg.string() << " ";
+                    }
+                }
+                std::cout << std::endl;
+                return ValueData{ValueType::Nil, false, 0.0};
+        }}});
+        register_identifier(IdentifierData{"input", ValueData{ValueType::Function, false,
+            [](std::vector<ValueData> &args, VM &vm) -> ValueData {
+                std::string input;
+                std::getline(std::cin, input);
+                return ValueData{ValueType::String, false, input};
+        }}});
+        register_identifier(IdentifierData{"int", ValueData{ValueType::Function, false,
+            [](std::vector<ValueData> &args, VM &vm) -> ValueData {
+                if (args.size() != 1) {
+                    throw std::runtime_error("[squaker] int() requires exactly one argument");
+                }
+                const auto &arg = args[0];
+                if (arg.type == ValueType::String) {
+                    return ValueData{ValueType::Integer, false, std::stoll(std::get<std::string>(arg.value))};
+                } else if (arg.type == ValueType::Real) {
+                    return ValueData{ValueType::Integer, false, static_cast<long long>(std::get<double>(arg.value))};
+                } else if (arg.type == ValueType::Integer) {
+                    return arg; // 已经是整数
+                }
+                throw std::runtime_error("[squaker] int() unsupported type: " + arg.string());
+        }}});
+        register_identifier(IdentifierData{"real", ValueData{ValueType::Function, false,
+            [](std::vector<ValueData> &args, VM &vm) -> ValueData {
+                if (args.size() != 1) {
+                    throw std::runtime_error("[squaker] float() requires exactly one argument");
+                }
+                const auto &arg = args[0];
+                if (arg.type == ValueType::String) {
+                    return ValueData{ValueType::Real, false, std::stod(std::get<std::string>(arg.value))};
+                } else if (arg.type == ValueType::Integer) {
+                    return ValueData{ValueType::Real, false, static_cast<double>(std::get<long long>(arg.value))};
+                } else if (arg.type == ValueType::Real) {
+                    return arg; // 已经是实数
+                }
+                throw std::runtime_error("[squaker] float() unsupported type: " + arg.string());
+        }}});
+        register_identifier(IdentifierData{"bool", ValueData{ValueType::Function, false,
+            [](std::vector<ValueData> &args, VM &vm) -> ValueData {
+                if (args.size() != 1) {
+                    throw std::runtime_error("[squaker] bool() requires exactly one argument");
+                }
+                const auto &arg = args[0];
+                if (arg.type == ValueType::String) {
+                    return ValueData{ValueType::Bool, false, !std::get<std::string>(arg.value).empty()};
+                } else if (arg.type == ValueType::Integer || arg.type == ValueType::Real) {
+                    return ValueData{ValueType::Bool, false, std::get<double>(arg.value) != 0.0};
+                } else if (arg.type == ValueType::Bool) {
+                    return arg; // 已经是布尔值
+                }
+                throw std::runtime_error("[squaker] bool() unsupported type: " + arg.string());
+        }}});
+        register_identifier(IdentifierData{"char", ValueData{ValueType::Function, false,
+            [](std::vector<ValueData> &args, VM &vm) -> ValueData {
+                if (args.size() != 1) {
+                    throw std::runtime_error("[squaker] char() requires exactly one argument");
+                }
+                const auto &arg = args[0];
+                if (arg.type == ValueType::String && !std::get<std::string>(arg.value).empty()) {
+                    return ValueData{ValueType::Char, false, std::get<std::string>(arg.value)[0]};
+                } else if (arg.type == ValueType::Integer) {
+                    return ValueData{ValueType::Char, false, static_cast<char>(std::get<long long>(arg.value))};
+                } else if (arg.type == ValueType::Real) {
+                    return ValueData{ValueType::Char, false, static_cast<char>(std::get<double>(arg.value))};
+                } else if (arg.type == ValueType::Char) {
+                    return arg; // 已经是字符
+                }
+                throw std::runtime_error("[squaker] char() unsupported type: " + arg.string());
+        }}});
+        register_identifier(IdentifierData{"str", ValueData{ValueType::Function, false,
+            [](std::vector<ValueData> &args, VM &vm) -> ValueData {
+                if (args.size() != 1) {
+                    throw std::runtime_error("[squaker] str() requires exactly one argument");
+                }
+                const auto &arg = args[0];
+                if (arg.type == ValueType::String) {
+                    return arg; // 已经是字符串
+                } else if (arg.type == ValueType::Integer) {
+                    return ValueData{ValueType::String, false, std::to_string(std::get<long long>(arg.value))};
+                } else if (arg.type == ValueType::Real) {
+                    return ValueData{ValueType::String, false, std::to_string(std::get<double>(arg.value))};
+                } else if (arg.type == ValueType::Bool) {
+                    return ValueData{ValueType::String, false, std::get<bool>(arg.value) ? "true" : "false"};
+                } else if (arg.type == ValueType::Char) {
+                    return ValueData{ValueType::String, false, std::string(1, std::get<char>(arg.value))};
+                }
+                throw std::runtime_error("[squaker] str() unsupported type: " + arg.string());
+        }}});
+
     }
 
     void Script::append(const std::string &append_code) {
@@ -406,9 +517,9 @@ namespace squ {
         vm.local(slot) = identifier.value;
     }
 
-    ValueData Script::execute(const std::string& code) {
+    ValueData Script::execute(const std::string& new_code) {
         // 如果传入了代码，则增加到缓冲区
-        append(code);
+        if (new_code.size() > 0) append(new_code);
 
         // 初始化
         auto result = ValueData{ValueType::Nil, false, 0.0};
@@ -434,9 +545,6 @@ namespace squ {
 
         // 返回结果
         return result;
-
-        // 返回一个空的 ValueData
-        return ValueData{ValueType::Nil, false, 0.0};
     }
 
 } // namespace squ
