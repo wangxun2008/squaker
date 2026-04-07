@@ -124,8 +124,8 @@ namespace squ {
                 return std::make_unique<AssignmentNode>(op.value, std::move(left), std::move(right));
             } else {
                 // 复合赋值
-                printf("111");
-                return std::make_unique<CompoundAssignmentNode>(op.value, std::move(left), std::move(right));
+                std::string baseOp = op.value.substr(0, op.value.size() - 1); // 去掉最后的 '='
+                return std::make_unique<CompoundAssignmentNode>(baseOp, std::move(left), std::move(right));
             }
         }
 
