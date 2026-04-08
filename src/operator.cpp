@@ -435,6 +435,17 @@ namespace squ {
         }
 
         //--------------------------------------------------
+        // 按位非 ~
+        //--------------------------------------------------
+        if (op == "~") {
+            if (operand.type == ValueType::Integer) {
+                long long val = std::get<long long>(operand.value);
+                return ValueData{ValueType::Integer, false, ~val};
+            }
+            throw std::runtime_error("[squaker.operator:'~'] unsupported type for bitwise NOT");
+        }
+
+        //--------------------------------------------------
         // 其他一元操作 …
         //--------------------------------------------------
         throw std::runtime_error("[squaker.operator] unknown unary operator: " + op);

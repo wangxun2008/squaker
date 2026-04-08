@@ -22,37 +22,25 @@ file(GLOB SRC_FILES src/*.cpp)
 # 可执行文件
 add_executable(squaker ${SRC_FILES} test/main.cpp)
 
-# 如果想把 exe 放到 bin
+# 把 exe 放到 bin
 set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_SOURCE_DIR}/bin)
 
 # 构建静态库
 add_library(squaker_lib STATIC ${SRC_FILES})
 
 # --- 安装 ---
-
-# 1. 注册目标到导出集
+# 注册目标到导出集
 install(TARGETS squaker squaker_lib
         EXPORT squakerTargets
         RUNTIME DESTINATION bin
         ARCHIVE DESTINATION lib)
 
-# 2. 生成并安装 *.cmake
+# 生成并安装 *.cmake
 install(EXPORT squakerTargets
         FILE squakerConfig.cmake
         NAMESPACE squaker::
         DESTINATION lib/cmake/squaker)
 
-# 安装头文件（假设都在 include/ 目录）
+# 安装头文件
 install(DIRECTORY include/
         DESTINATION include)
-
-# --- 测试 ---
-
-# 1. 开启测试功能（屋顶 CMakeLists.txt 任意位置）
-enable_testing()          # 或 include(CTest) 也行
-
-# 2. 把普通可执行“注册”成测试
-add_executable(squaker_test test/test_main.cpp)   # 你的测试代码
-target_link_libraries(squaker_test PRIVATE squaker_lib)  # 链被测模块
-
-add_test(NAME squaker.test COMMAND squaker_test)     # 名字随便起

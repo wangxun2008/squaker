@@ -5,9 +5,6 @@ int main(int argc, char **argv) {
     if (argc != 2) {
         squ::InitConsole();
         squ::PrintLOGO();
-        // squ::RunTests();
-        // squ::RunEvalTests();
-        // squ::InteractiveExecution();
         squ::Script script;
         squ::RunScriptTests(script);
         return 0;

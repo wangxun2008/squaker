@@ -46,7 +46,6 @@ namespace squ {
 
     // 实现ValueData的string成员函数
     std::string ValueData::string() const {
-
         switch (type) {
         case ValueType::Nil:
             return "nil";

@@ -96,7 +96,8 @@ namespace squ {
             {"=", TokenType::Assignment},   {"+", TokenType::Operator},     {"-", TokenType::Operator},
             {"*", TokenType::Operator},     {"/", TokenType::Operator},     {"<", TokenType::Operator},
             {">", TokenType::Operator},     {"&", TokenType::Operator},     {"|", TokenType::Operator},
-            {"^", TokenType::Operator},     {"%", TokenType::Operator},     {"!", TokenType::Operator}};
+            {"^", TokenType::Operator},     {"%", TokenType::Operator},     {"!", TokenType::Operator},
+            {"~", TokenType::Operator},     {"?", TokenType::Operator},     {":", TokenType::Operator}};
         // 解析数字的 lambda 函数
         auto parse_number = [&](size_t &idx) -> Token {
             const size_t start = idx;            // 记录数字起始位置

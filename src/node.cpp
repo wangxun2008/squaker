@@ -125,7 +125,7 @@ namespace squ {
 
     ValueData UnaryOpNode::evaluate(VM &vm) const {
         ValueData operandVal = operand->evaluate(vm);
-        ValueData &operandRef = operand->evaluate_lvalue(vm);
+        // ValueData &operandRef = operand->evaluate_lvalue(vm);
 
         // 应用一元操作
         return ApplyUnary(op, operandVal);
@@ -210,9 +210,9 @@ namespace squ {
         ValueData rightVal = right->evaluate(vm);
 
         // 应用二元操作
-        leftValRef = rightVal; // 简单赋值
+        leftValRef = rightVal;       // 简单赋值
         leftValRef.is_const = false; // 确保左值不是常量
-        return leftValRef;     // 返回赋值后的左值
+        return leftValRef;           // 返回赋值后的左值
     }
 
     ValueData &AssignmentNode::evaluate_lvalue(VM &vm) const {
@@ -244,7 +244,7 @@ namespace squ {
         // 应用二元操作
         leftValRef = ApplyBinary(leftVal, op, rightVal);
         leftValRef.is_const = false; // 确保左值不是常量
-        return leftValRef; // 返回赋值后的左值
+        return leftValRef;           // 返回赋值后的左值
     }
 
     ValueData &CompoundAssignmentNode::evaluate_lvalue(VM &vm) const {
@@ -263,8 +263,7 @@ namespace squ {
     std::string LambdaNode::string() const {
         std::string params;
         for (size_t i = 0; i < parameters.size(); i++) {
-            if (i > 0)
-                params += ", ";
+            if (i > 0) params += ", ";
             params += "v" + std::to_string(parameters[i].slot);
         }
         return "(function (" + params + ") -> " + body->string() + ")";
@@ -324,8 +323,7 @@ namespace squ {
     std::string ApplyNode::string() const {
         std::string args;
         for (size_t i = 0; i < arguments.size(); i++) {
-            if (i > 0)
-                args += ", ";
+            if (i > 0) args += ", ";
             args += arguments[i]->string();
         }
         return "(apply:" + callee->string() + "(" + args + "))";
@@ -349,7 +347,7 @@ namespace squ {
 
         // 调用函数
         // printf("[squaker.apply] Calling function with %zu arguments\n", argValues.size());
-        return std::get<std::function<ValueData(std::vector<ValueData>&, VM &)>>(calleeVal.value)(argValues, vm);
+        return std::get<std::function<ValueData(std::vector<ValueData> &, VM &)>>(calleeVal.value)(argValues, vm);
     }
 
     ValueData &ApplyNode::evaluate_lvalue(VM &vm) const {
@@ -374,8 +372,7 @@ namespace squ {
         std::string result = "(if ";
         for (size_t i = 0; i < branches.size(); i++) {
             const auto &branch = branches[i];
-            if (i > 0)
-                result += " else if ";
+            if (i > 0) result += " else if ";
             result += "(" + branch.first->string() + ") " + branch.second->string();
         }
         if (elseBranch) {
@@ -419,8 +416,8 @@ namespace squ {
     }
 
     // Switch节点（switch-case）
-    SwitchNode::SwitchNode(std::unique_ptr<ExprNode> expr, std::vector<std::pair<std::unique_ptr<ExprNode>,
-                                                                                 std::unique_ptr<ExprNode>>> cases,
+    SwitchNode::SwitchNode(std::unique_ptr<ExprNode> expr,
+                           std::vector<std::pair<std::unique_ptr<ExprNode>, std::unique_ptr<ExprNode>>> cases,
                            std::unique_ptr<ExprNode> defaultCase)
         : expression(std::move(expr)), cases(std::move(cases)), defaultCase(std::move(defaultCase)) {}
 
@@ -443,7 +440,7 @@ namespace squ {
         // 遍历所有case分支
         for (const auto &casePair : cases) {
             ValueData caseValue = casePair.first->evaluate(vm);
-            if (caseValue.type == exprValue.type && std::get<bool>(ApplyBinary(caseValue, "==", exprValue).value)){
+            if (caseValue.type == exprValue.type && std::get<bool>(ApplyBinary(caseValue, "==", exprValue).value)) {
                 return casePair.second->evaluate(vm); // 匹配到case，执行对应分支
             }
         }
@@ -461,7 +458,7 @@ namespace squ {
         // Switch节点通常不支持左值求值
         throw std::runtime_error("[squaker.switch] Switch nodes cannot be evaluated as lvalues");
     }
-    
+
     std::unique_ptr<ExprNode> SwitchNode::clone() const {
         std::vector<std::pair<std::unique_ptr<ExprNode>, std::unique_ptr<ExprNode>>> clonedCases;
         for (const auto &casePair : cases) {
@@ -484,8 +481,7 @@ namespace squ {
 
     ValueData ForNode::evaluate(VM &vm) const {
         // 执行初始化
-        if (init)
-            init->evaluate(vm);
+        if (init) init->evaluate(vm);
         ValueData result = ValueData{ValueType::Nil}; // 初始化结果为Nil
         while (true) {
             // 检查循环条件
@@ -505,13 +501,17 @@ namespace squ {
             } catch (const BreakException &) {
                 break; // 捕获break异常，退出循环
             } catch (const ContinueException &) {
+                if (update) {
+                    update->evaluate(vm);
+                }
                 continue; // 捕获continue异常，跳过当前循环迭代
             } catch (const ReturnException &e) {
                 throw e; // 直接抛出返回异常
             }
             // 更新
-            if (update)
+            if (update) {
                 update->evaluate(vm);
+            }
         }
         return result; // 返回最后一次循环体的结果
     }
@@ -841,8 +841,7 @@ namespace squ {
     std::string NativeCallNode::string() const {
         std::string args;
         for (size_t i = 0; i < arguments.size(); i++) {
-            if (i > 0)
-                args += ", ";
+            if (i > 0) args += ", ";
             args += arguments[i]->string();
         }
         return "(@" + functionName + "(" + args + "))";
@@ -870,23 +869,23 @@ namespace squ {
             // 特殊处理type函数
             ValueData argValue = arguments[0]->evaluate(vm);
             switch (argValue.type) {
-                case ValueType::Nil:
-                    return ValueData{ValueType::String, false, "nil"};
-                case ValueType::Bool:
-                    return ValueData{ValueType::String, false, "bool"};
-                case ValueType::Integer:
-                    return ValueData{ValueType::String, false, "integer"};
-                case ValueType::Real:
-                    return ValueData{ValueType::String, false, "real"};
-                case ValueType::String: 
-                    return ValueData{ValueType::String, false, "string"};
-                case ValueType::Array: 
-                    return ValueData{ValueType::String, false, "array"};
-                case ValueType::Table: 
-                    return ValueData{ValueType::String, false, "table"};
-                case ValueType::Function: {
-                    return ValueData{ValueType::String, false, "function"};
-                }
+            case ValueType::Nil:
+                return ValueData{ValueType::String, false, "nil"};
+            case ValueType::Bool:
+                return ValueData{ValueType::String, false, "bool"};
+            case ValueType::Integer:
+                return ValueData{ValueType::String, false, "integer"};
+            case ValueType::Real:
+                return ValueData{ValueType::String, false, "real"};
+            case ValueType::String:
+                return ValueData{ValueType::String, false, "string"};
+            case ValueType::Array:
+                return ValueData{ValueType::String, false, "array"};
+            case ValueType::Table:
+                return ValueData{ValueType::String, false, "table"};
+            case ValueType::Function: {
+                return ValueData{ValueType::String, false, "function"};
+            }
             }
             return ValueData{ValueType::Nil}; // type函数返回Nil
         }
@@ -913,8 +912,7 @@ namespace squ {
     std::string ArrayNode::string() const {
         std::string result = "[";
         for (size_t i = 0; i < elements.size(); i++) {
-            if (i > 0)
-                result += ", ";
+            if (i > 0) result += ", ";
             result += elements[i]->string();
         }
         return result + "]";
@@ -957,28 +955,23 @@ namespace squ {
         std::string result = "[";
         // 1.打印数组
         for (size_t i = 0; i < elements.size(); i++) {
-            if (i > 0)
-                result += ", ";
+            if (i > 0) result += ", ";
             result += elements[i]->string();
         }
         // 2.打印映射表
         if (!entries.empty()) {
-            if (!elements.empty())
-                result += ", ";
+            if (!elements.empty()) result += ", ";
         }
         for (size_t i = 0; i < entries.size(); i++) {
-            if (i > 0)
-                result += ", ";
+            if (i > 0) result += ", ";
             result += entries[i].first->string() + " = " + entries[i].second->string();
         }
         // 3.打印成员表
         if (!members.empty()) {
-            if (!elements.empty() || !entries.empty())
-                result += ", ";
+            if (!elements.empty() || !entries.empty()) result += ", ";
         }
         for (size_t i = 0; i < members.size(); i++) {
-            if (i > 0)
-                result += ", ";
+            if (i > 0) result += ", ";
             result += members[i].first->string() + " = " + members[i].second->string();
         }
         return result + "]";

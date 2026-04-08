@@ -56,6 +56,15 @@ namespace squ {
         // 逻辑与
         std::unique_ptr<ExprNode> parse_logical_and();
 
+        // 按位或
+        std::unique_ptr<ExprNode> parse_bitwise_or();
+
+        // 按位异或
+        std::unique_ptr<ExprNode> parse_bitwise_xor();
+
+        // 按位与
+        std::unique_ptr<ExprNode> parse_bitwise_and();
+
         // 相等性
         std::unique_ptr<ExprNode> parse_equality();
 

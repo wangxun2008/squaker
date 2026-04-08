@@ -147,9 +147,48 @@ namespace squ {
 
     // 逻辑与
     std::unique_ptr<ExprNode> Parser::parse_logical_and() {
-        auto left = parse_equality();
+        auto left = parse_bitwise_or();
 
         while (match(TokenType::Operator, "&&")) {
+            Token op = previous();
+            auto right = parse_bitwise_or();
+            left = std::make_unique<BinaryOpNode>(op.value, std::move(left), std::move(right));
+        }
+
+        return left;
+    }
+
+    // 按位或
+    std::unique_ptr<ExprNode> Parser::parse_bitwise_or() {
+        auto left = parse_bitwise_xor();
+
+        while (match(TokenType::Operator, "|")) {
+            Token op = previous();
+            auto right = parse_bitwise_xor();
+            left = std::make_unique<BinaryOpNode>(op.value, std::move(left), std::move(right));
+        }
+
+        return left;
+    }
+
+    // 按位异或
+    std::unique_ptr<ExprNode> Parser::parse_bitwise_xor() {
+        auto left = parse_bitwise_and();
+
+        while (match(TokenType::Operator, "^")) {
+            Token op = previous();
+            auto right = parse_bitwise_and();
+            left = std::make_unique<BinaryOpNode>(op.value, std::move(left), std::move(right));
+        }
+
+        return left;
+    }
+
+    // 按位与
+    std::unique_ptr<ExprNode> Parser::parse_bitwise_and() {
+        auto left = parse_equality();
+
+        while (match(TokenType::Operator, "&")) {
             Token op = previous();
             auto right = parse_equality();
             left = std::make_unique<BinaryOpNode>(op.value, std::move(left), std::move(right));

@@ -395,9 +395,9 @@ namespace squ {
             [](std::vector<ValueData> &args, VM &vm) -> ValueData {
                 for (const auto &arg : args) {
                     if (arg.type == ValueType::String) {
-                        std::cout << std::get<std::string>(arg.value);
+                        std::cout << std::get<std::string>(arg.value) << " ";
                     } else if (arg.type == ValueType::Char) {
-                        std::cout << static_cast<char>(std::get<char>(arg.value));
+                        std::cout << static_cast<char>(std::get<char>(arg.value)) << " ";
                     } else {
                         std::cout << arg.string() << " ";
                     }
@@ -408,9 +408,9 @@ namespace squ {
             [](std::vector<ValueData> &args, VM &vm) -> ValueData {
                 for (const auto &arg : args) {
                     if (arg.type == ValueType::String) {
-                        std::cout << std::get<std::string>(arg.value);
+                        std::cout << std::get<std::string>(arg.value) << " ";
                     } else if (arg.type == ValueType::Char) {
-                        std::cout << static_cast<char>(std::get<char>(arg.value));
+                        std::cout << static_cast<char>(std::get<char>(arg.value)) << " ";
                     } else {
                         std::cout << arg.string() << " ";
                     }
@@ -420,7 +420,20 @@ namespace squ {
         }}});
         register_identifier(IdentifierData{"input", ValueData{ValueType::Function, false,
             [](std::vector<ValueData> &args, VM &vm) -> ValueData {
-                std::string input;
+                if (args.size() > 1) {
+                    throw std::runtime_error("[squaker] input() takes at most one argument");
+                }
+                if (!args.empty()) {
+                    const auto &arg = args[0];
+                    if (arg.type == ValueType::String) {
+                        std::cout << std::get<std::string>(arg.value) << " ";
+                    } else if (arg.type == ValueType::Char) {
+                        std::cout << static_cast<char>(std::get<char>(arg.value)) << " ";
+                    } else {
+                        std::cout << arg.string() << " ";
+                    }
+                }
+                std::string input;  
                 std::getline(std::cin, input);
                 return ValueData{ValueType::String, false, input};
         }}});
@@ -435,7 +448,11 @@ namespace squ {
                 } else if (arg.type == ValueType::Real) {
                     return ValueData{ValueType::Integer, false, static_cast<long long>(std::get<double>(arg.value))};
                 } else if (arg.type == ValueType::Integer) {
-                    return arg; // 已经是整数
+                    return arg;
+                } else if (arg.type == ValueType::Bool) {
+                    return ValueData{ValueType::Integer, false, std::get<bool>(arg.value) ? 1 : 0};
+                } else if (arg.type == ValueType::Char) {
+                    return ValueData{ValueType::Integer, false, static_cast<long long>(std::get<char>(arg.value))};
                 }
                 throw std::runtime_error("[squaker] int() unsupported type: " + arg.string());
         }}});
@@ -450,7 +467,11 @@ namespace squ {
                 } else if (arg.type == ValueType::Integer) {
                     return ValueData{ValueType::Real, false, static_cast<double>(std::get<long long>(arg.value))};
                 } else if (arg.type == ValueType::Real) {
-                    return arg; // 已经是实数
+                    return arg;
+                } else if (arg.type == ValueType::Bool) {
+                    return ValueData{ValueType::Real, false, std::get<bool>(arg.value) ? 1.0 : 0.0};
+                } else if (arg.type == ValueType::Char) {
+                    return ValueData{ValueType::Real, false, static_cast<double>(std::get<char>(arg.value))};
                 }
                 throw std::runtime_error("[squaker] float() unsupported type: " + arg.string());
         }}});
@@ -462,10 +483,14 @@ namespace squ {
                 const auto &arg = args[0];
                 if (arg.type == ValueType::String) {
                     return ValueData{ValueType::Bool, false, !std::get<std::string>(arg.value).empty()};
-                } else if (arg.type == ValueType::Integer || arg.type == ValueType::Real) {
+                } else if (arg.type == ValueType::Integer) {
+                    return ValueData{ValueType::Bool, false, std::get<long long>(arg.value) != 0.0};
+                } else if (arg.type == ValueType::Real) {
                     return ValueData{ValueType::Bool, false, std::get<double>(arg.value) != 0.0};
                 } else if (arg.type == ValueType::Bool) {
                     return arg; // 已经是布尔值
+                } else if (arg.type == ValueType::Char) {
+                    return ValueData{ValueType::Bool, false, std::get<char>(arg.value) != '\0'};
                 }
                 throw std::runtime_error("[squaker] bool() unsupported type: " + arg.string());
         }}});
@@ -493,17 +518,12 @@ namespace squ {
                 }
                 const auto &arg = args[0];
                 if (arg.type == ValueType::String) {
-                    return arg; // 已经是字符串
-                } else if (arg.type == ValueType::Integer) {
-                    return ValueData{ValueType::String, false, std::to_string(std::get<long long>(arg.value))};
-                } else if (arg.type == ValueType::Real) {
-                    return ValueData{ValueType::String, false, std::to_string(std::get<double>(arg.value))};
-                } else if (arg.type == ValueType::Bool) {
-                    return ValueData{ValueType::String, false, std::get<bool>(arg.value) ? "true" : "false"};
+                    return ValueData{ValueType::String, false, std::get<std::string>(arg.value)};
                 } else if (arg.type == ValueType::Char) {
                     return ValueData{ValueType::String, false, std::string(1, std::get<char>(arg.value))};
+                } else {
+                    return ValueData{ValueType::String, false, arg.string()};
                 }
-                throw std::runtime_error("[squaker] str() unsupported type: " + arg.string());
         }}});
 
     }
