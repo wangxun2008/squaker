@@ -2,15 +2,15 @@
 
 ## 概述
 
-本目录包含 Squaker 脚本语言的完整文档。Squaker 是一个使用 C++ 实现的轻量级脚本语言，支持动态类型、函数式编程。
+Squaker 是一个使用 C++ 实现的轻量级脚本语言，支持动态类型、函数式编程。
 
 ## 文档
 
-1. **[语言指南](language_guide.md)** - 完整的语言参考，涵盖所有语法和特性
+1. **language_guide.md** - 完整的语言参考，涵盖所有语法和特性
 
-2. **[快速入门](quick_start.md)** - 快速上手指南
+2. **quick_start.md** - 快速上手指南
 
-3. **[API 参考](api_reference.md)** - 详细的 API 文档
+3. **api_reference.md** - 详细的 API 文档
 
 ## 构建
 
