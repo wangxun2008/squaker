@@ -23,6 +23,8 @@ Squaker 是一个轻量级脚本语言，使用 C++ 实现。它支持动态类�
 
 Squaker 支持两种注释方式：
 
+注意：Squaker 尚不支持 Unicode 编码，所以中文注释会产生问题，此处只做演示
+
 ```squaker
 // 单行注释
 
@@ -67,8 +69,7 @@ Squaker 支持以下数据类型：
 | `Char`     | 字符   | `'a'`, `'\n'`, `'\t'`    |
 | `String`   | 字符串  | `"hello"`, `"world\n"`   |
 | `Function` | 函数   | `function(x) x * x`      |
-| `Array`    | 数组   | `[1, 2, 3]`              |
-| `Table`    | 表/映射 | `{"key": "value"}`       |
+| `Table`    | 表/映射 | `[["key"] = "value"]`       |
 
 ### 类型转换
 
@@ -100,8 +101,8 @@ is_valid = true     // 布尔变量
 使用 `const` 关键字声明常量：
 
 ```squaker
-const PI = 3.14159
-const MAX_SIZE = 100
+PI = const 3.14159
+MAX_SIZE = const 100
 ```
 
 ### 变量作用域
@@ -202,11 +203,11 @@ x = 1               // 全局变量
 
 ```squaker
 if (condition) {
-    // 条件为真时执行
+    // ...
 } else if (another_condition) {
-    // 另一个条件为真时执行
+    // ...
 } else {
-    // 所有条件都为假时执行
+    // ...
 }
 ```
 
@@ -229,7 +230,7 @@ if (x > 0) {
 
 ```squaker
 while (condition) {
-    // 循环体
+    // ...
 }
 ```
 
@@ -265,7 +266,7 @@ do {
 
 ```squaker
 for (initialization; condition; update) {
-    // 循环体
+    // ...
 }
 ```
 
@@ -313,7 +314,7 @@ for (i = 0; i < 10; i = i + 1) {
 
 ```squaker
 function function_name(parameter1, parameter2, ...) {
-    // 函数体
+    // ...
     return value
 }
 ```
@@ -338,7 +339,7 @@ function(parameters) expression
 
 ```squaker
 function(parameters) {
-    // 函数体
+    // ...
     return value
 }
 ```
@@ -569,7 +570,7 @@ area = math.PI * radius * radius
 
 ```squaker
 print("Hello, ")
-print("World!")  // 输出: Hello, World!
+print("World!")  // print: Hello, World!
 ```
 
 #### println
@@ -577,7 +578,7 @@ print("World!")  // 输出: Hello, World!
 打印内容并换行：
 
 ```squaker
-println("Hello, World!")  // 输出: Hello, World! 并换行
+println("Hello, World!")  // print: Hello, World! \n
 ```
 
 #### input
